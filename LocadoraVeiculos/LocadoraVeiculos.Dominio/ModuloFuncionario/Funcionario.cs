@@ -5,12 +5,27 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 {
     public class Funcionario : EntidadeBase<Funcionario>
     {
+        public Funcionario()
+        {
+        }
+
+        public Funcionario(string v1, string v2, string v3, DateTime dateTime, decimal v4, bool v5)
+        {
+            Nome = v1;
+            Login = v2;
+            Senha = v3;
+            DataAdmissao = dateTime;
+            Salario = v4;
+            EhAdmin = v5;
+        }
+
         public string Nome { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
         public DateTime DataAdmissao { get; set; }
         public decimal Salario { get; set; }
         public bool EhAdmin { get; set; }
+       
 
         public override bool Equals(object obj)
         {
