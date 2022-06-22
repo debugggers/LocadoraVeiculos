@@ -13,4 +13,9 @@
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.BancoDados\LocadoraVeiculos.BancoDados.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
+  </ItemGroup>
+
 </Project>
