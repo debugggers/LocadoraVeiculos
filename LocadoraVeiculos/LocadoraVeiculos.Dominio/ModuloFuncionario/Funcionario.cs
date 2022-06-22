@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
         public string Login { get; set; }
         public string Senha { get; set; }
         public DateTime DataAdmissao { get; set; }
-        public string Salario { get; set; }
+        public decimal Salario { get; set; }
         public bool EhAdmin { get; set; }
 
         public override bool Equals(object obj)
