@@ -12,11 +12,11 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 
             RuleFor(x => x.Senha).NotNull().NotEmpty();
 
-            RuleFor(x => x.Salario).NotNull().NotEmpty();
+            RuleFor(x => x.Salario).NotNull();
 
-            RuleFor(x => x.DataAdmissao).NotNull().NotEmpty();
+            RuleFor(x => x.DataAdmissao).NotNull();
 
-            RuleFor(x => x.EhAdmin).NotNull().NotEmpty();
+            RuleFor(x => x.EhAdmin).NotNull();
         }
     }
 }

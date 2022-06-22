@@ -33,7 +33,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
 			        NOME = @NOME,
                     LOGIN = @LOGIN,
                     SENHA = @SENHA,
-                    DATA_ADMISSAO @DATA_ADMISSAO,
+                    DATA_ADMISSAO = @DATA_ADMISSAO,
                     SALARIO = @SALARIO,
                     EHADMIN = @EHADMIN
 		        WHERE
