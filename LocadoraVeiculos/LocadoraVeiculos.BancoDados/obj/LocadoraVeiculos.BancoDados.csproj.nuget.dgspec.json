@@ -1,0 +1,132 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.BancoDados\\LocadoraVeiculos.BancoDados.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.BancoDados\\LocadoraVeiculos.BancoDados.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.BancoDados\\LocadoraVeiculos.BancoDados.csproj",
+        "projectName": "LocadoraVeiculos.BancoDados",
+        "projectPath": "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.BancoDados\\LocadoraVeiculos.BancoDados.csproj",
+        "packagesPath": "C:\\Users\\mossi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.BancoDados\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mossi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.Dominio\\LocadoraVeiculos.Dominio.csproj": {
+                "projectPath": "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.Dominio\\LocadoraVeiculos.Dominio.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.Dominio\\LocadoraVeiculos.Dominio.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.Dominio\\LocadoraVeiculos.Dominio.csproj",
+        "projectName": "LocadoraVeiculos.Dominio",
+        "projectPath": "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.Dominio\\LocadoraVeiculos.Dominio.csproj",
+        "packagesPath": "C:\\Users\\mossi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mossi\\source\\repos\\LocadoraVeiculos\\LocadoraVeiculos\\LocadoraVeiculos.Dominio\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mossi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
