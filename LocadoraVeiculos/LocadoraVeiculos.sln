@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3- Infra", "3- Infra", "{72
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4- TestesIntegracao", "4- TestesIntegracao", "{521912D6-9F53-4826-9051-91036A33F43A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Dominio", "LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj", "{80EB1B43-E4FC-4F9C-A67E-AB59A06BA4A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Dominio", "LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj", "{80EB1B43-E4FC-4F9C-A67E-AB59A06BA4A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.BancoDados", "LocadoraVeiculos.BancoDados\LocadoraVeiculos.BancoDados.csproj", "{107C183F-E754-4D2F-8E39-CC4E0124EAA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.BancoDados", "LocadoraVeiculos.BancoDados\LocadoraVeiculos.BancoDados.csproj", "{107C183F-E754-4D2F-8E39-CC4E0124EAA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Infra.BancoDados.TestesIntegracao", "LocadoraVeiculos.Infra.BancoDados.TestesIntegracao\LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.csproj", "{7C27ECE8-A215-4DB5-80CF-94680BA93F19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Infra.BancoDados.TestesIntegracao", "LocadoraVeiculos.Infra.BancoDados.TestesIntegracao\LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.csproj", "{7C27ECE8-A215-4DB5-80CF-94680BA93F19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculosForm", "WinFormsApp1\LocadoraVeiculosForm.csproj", "{AD1438CE-CF7D-413C-AE3A-EA8A24BBAF81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculosForm", "WinFormsApp1\LocadoraVeiculosForm.csproj", "{AD1438CE-CF7D-413C-AE3A-EA8A24BBAF81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
