@@ -59,16 +59,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
                     ID = @ID";
 
         protected override string sqlSelecionarTodos =>
-             @"SELECT 
-		            ID, 
-		            NOME,
-                    LOGIN,
-                    SENHA,
-                    DATA_ADMISSAO,
-                    SALARIO,
-                    EHADMIN
-	            FROM 
-		            TBFUNCIONARIO";
+             @"SELECT * FROM TBFUNCIONARIO";
 
         #endregion
     }
