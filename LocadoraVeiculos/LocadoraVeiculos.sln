@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.BancoDados
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Infra.BancoDados.TestesIntegracao", "LocadoraVeiculos.Infra.BancoDados.TestesIntegracao\LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.csproj", "{7C27ECE8-A215-4DB5-80CF-94680BA93F19}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculosForm", "WinFormsApp1\LocadoraVeiculosForm.csproj", "{AD1438CE-CF7D-413C-AE3A-EA8A24BBAF81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculosForm", "LocadoraVeiculosForm\LocadoraVeiculosForm.csproj", "{AD1438CE-CF7D-413C-AE3A-EA8A24BBAF81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

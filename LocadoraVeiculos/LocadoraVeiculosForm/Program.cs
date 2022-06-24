@@ -1,10 +1,9 @@
+using LocadoraVeiculos.BancoDados.ModuloFuncionario;
+using LocadoraVeiculosForm.ModuloFuncionario;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinFormsApp1
+namespace LocadoraVeiculosForm
 {
     internal static class Program
     {
@@ -17,6 +16,7 @@ namespace WinFormsApp1
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new TelaCadastroFuncionarioForm(new RepositorioFuncionarioEmBancoDados()));
         }
     }
 }
