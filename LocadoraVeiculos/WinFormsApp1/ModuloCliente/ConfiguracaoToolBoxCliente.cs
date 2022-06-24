@@ -11,10 +11,10 @@ namespace LocadoraVeiculosForm.ModuloCliente
     {
         public override string TipoCadastro => "Cadastro de clientes";
 
-        public override string TooltipInserir => throw new NotImplementedException();
+        public override string TooltipInserir { get { return "Inserir um novo Cliente"; } }
 
-        public override string TooltipEditar => throw new NotImplementedException();
+        public override string TooltipEditar { get { return "Editar um Cliente existente"; } }
 
-        public override string TooltipExcluir => throw new NotImplementedException();
+        public override string TooltipExcluir { get { return "Excluir um Cliente existente"; } }
     }
 }
