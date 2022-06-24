@@ -120,7 +120,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             _repositorio.Inserir(_funcionario);
 
             //action
-            var funcionarioExiste = _repositorio.FuncionarioJaExiste("Tatiane Mossi");
+            var funcionarioExiste = _repositorio.FuncionarioJaExiste("Tatiane Mossi", 2);
 
             //assert
             Assert.AreEqual(funcionarioExiste, true);
@@ -133,7 +133,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             _repositorio.Inserir(_funcionario);
 
             //action
-            var funcionarioExiste = _repositorio.FuncionarioJaExiste("Thiago Souza");
+            var funcionarioExiste = _repositorio.FuncionarioJaExiste("Thiago Souza", 1);
 
             //assert
             Assert.AreEqual(funcionarioExiste, false);
