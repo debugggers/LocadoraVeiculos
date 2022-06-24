@@ -1,5 +1,7 @@
 ﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
 {
@@ -33,7 +35,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
 			        NOME = @NOME,
                     LOGIN = @LOGIN,
                     SENHA = @SENHA,
-                    DATA_ADMISSAO @DATA_ADMISSAO,
+                    DATA_ADMISSAO = @DATA_ADMISSAO,
                     SALARIO = @SALARIO,
                     EHADMIN = @EHADMIN
 		        WHERE
@@ -59,17 +61,36 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
                     ID = @ID";
 
         protected override string sqlSelecionarTodos =>
-             @"SELECT 
-		            ID, 
-		            NOME,
-                    LOGIN,
-                    SENHA,
-                    DATA_ADMISSAO,
-                    SALARIO,
-                    EHADMIN
-	            FROM 
-		            TBFUNCIONARIO";
+             @"SELECT * FROM TBFUNCIONARIO";
+
+        private const string sqlSelecionarPorNome =
+            @"SELECT ID 
+                FROM 
+                    TBFUNCIONARIO
+                WHERE
+                    NOME = @NOME";
 
         #endregion
+
+        public bool FuncionarioJaExiste(string nome)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNome, conexaoComBanco);
+
+            comandoSelecao.Parameters.AddWithValue("NOME", nome);
+
+            conexaoComBanco.Open();
+            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
+
+            var funcionarioJaExiste = false;
+
+            if (leitorRegistro != null)
+                funcionarioJaExiste = leitorRegistro.HasRows;
+
+            conexaoComBanco.Close();
+
+            return funcionarioJaExiste;
+        }
     }
 }

@@ -1,12 +1,7 @@
-using LocadoraVeiculosForm;
-using LocadoraVeiculosForm.ModuloCliente;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinFormsApp1
+namespace LocadoraVeiculosForm
 {
     internal static class Program
     {
