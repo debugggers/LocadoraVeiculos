@@ -95,7 +95,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             //arrange
             var funcionario1 = new Funcionario("Thiago Souza", "thiagosouza", "12345", new DateTime(2022, 02, 03), 3000.00m, false);
             var funcionario2 = new Funcionario("Rosimeri Morais", "merimorais", "13579", new DateTime(2022, 02, 04), 4000.00m, true);
-            var funcionario3 = new Funcionario("Ademir Jacó Mossi", "milamossi", "24680", new DateTime(2022, 02, 05), 5000.00m, false);
+            var funcionario3 = new Funcionario("Ademir Jaco Mossi", "milamossi", "24680", new DateTime(2022, 02, 05), 5000.00m, false);
 
             var repositorio = new RepositorioFuncionarioEmBancoDados();
 
@@ -111,6 +111,64 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             Assert.AreEqual(funcionario1, funcionarios[0]);
             Assert.AreEqual(funcionario2, funcionarios[1]);
             Assert.AreEqual(funcionario3, funcionarios[2]);
+        }
+
+        [TestMethod]
+        public void Deve_retornar_true_quando_funcionario_ja_existir()
+        {
+            //arrange
+            _repositorio.Inserir(_funcionario);
+
+            //action
+            var funcionarioExiste = _repositorio.FuncionarioJaExiste("Tatiane Mossi");
+
+            //assert
+            Assert.AreEqual(funcionarioExiste, true);
+        }
+
+        [TestMethod]
+        public void Deve_retornar_false_quando_funcionario_nao_existir()
+        {
+            //arrange
+            _repositorio.Inserir(_funcionario);
+
+            //action
+            var funcionarioExiste = _repositorio.FuncionarioJaExiste("Thiago Souza");
+
+            //assert
+            Assert.AreEqual(funcionarioExiste, false);
+        }
+
+        [TestMethod]
+        public void Deve_inserir_somente_se_nome_tiver_mais_que_2_caracteres()
+        {
+            //arrange
+            var funcionario = new Funcionario("Ha", "tatimossi", "12345", new DateTime(2022, 06, 24), 2200.00m, false);
+
+            //action
+            _repositorio.Inserir(funcionario);
+
+            //assert
+            var funcionarioEncontrado = _repositorio.SelecionarPorId(funcionario.Id);
+
+            Assert.IsNull(funcionarioEncontrado);
+            Assert.AreEqual(funcionarioEncontrado, null);
+        }
+
+        [TestMethod]
+        public void Nao_deve_inserir_se_nome_tiver_caracteres_especiais()
+        {
+            //arrange
+            var funcionario = new Funcionario("T@ti4ne", "tatimossi", "12345", new DateTime(2022, 06, 24), 2200.00m, false);
+
+            //action
+            _repositorio.Inserir(funcionario);
+
+            //assert
+            var funcionarioEncontrado = _repositorio.SelecionarPorId(funcionario.Id);
+
+            Assert.IsNull(funcionarioEncontrado);
+            Assert.AreEqual(funcionarioEncontrado, null);
         }
     }
 }
