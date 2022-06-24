@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculosForm.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 {
-    public class ControladorEmpresa
+    public class ControladorEmpresa : ControladorBase
     {
 
         private RepositorioEmpresaBancoDados repositorio;
@@ -23,9 +24,30 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
         }
 
-        public void Inserir()
+        private void CarregarEmpresas()
         {
+            List<Empresa> empresas = repositorio.SelecionarTodos();
 
+            listagem.AtualizarRegistrosPessoaJuridica(empresas);
+        }
+
+
+        private Empresa ObtemEmpresaSelecionada()
+        {
+            int id = listagem.SelecionarNumeroCliente();
+
+            Empresa empresaSelecionada = repositorio.SelecionarPorId(id);
+
+            return empresaSelecionada;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Inserir()
+        {
             TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm();
             tela.Empresa = new Empresa();
 
@@ -37,12 +59,10 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             {
                 CarregarEmpresas();
             }
-
         }
 
-        public void Editar()
+        public override void Editar()
         {
-
             Empresa empresaSelecionada = ObtemEmpresaSelecionada();
 
             if (empresaSelecionada == null)
@@ -64,9 +84,8 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             }
         }
 
-        public void Excluir()
+        public override void Excluir()
         {
-
             Empresa empresaSelecionada = ObtemEmpresaSelecionada();
 
             if (empresaSelecionada == null)
@@ -84,17 +103,9 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
                 repositorio.Excluir(empresaSelecionada);
                 CarregarEmpresas();
             }
-
         }
 
-        private void CarregarEmpresas()
-        {
-            List<Empresa> empresas = repositorio.SelecionarTodos();
-
-            listagem.AtualizarRegistrosPessoaJuridica(empresas);
-        }
-
-        public UserControl ObtemListagem()
+        public override UserControl ObtemListagem()
         {
             if (listagem == null)
                 listagem = new ListagemClientesControl();
@@ -104,13 +115,9 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             return listagem;
         }
 
-        private Empresa ObtemEmpresaSelecionada()
+        public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            int id = listagem.SelecionarNumeroCliente();
-
-            Empresa empresaSelecionada = repositorio.SelecionarPorId(id);
-
-            return empresaSelecionada;
+            throw new NotImplementedException();
         }
     }
 }
