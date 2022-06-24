@@ -16,6 +16,9 @@ namespace LocadoraVeiculosForm.ModuloCliente
         public ListagemClientesControl()
         {
             InitializeComponent();
+            grid.ConfigurarGridZebrado();
+            grid.ConfigurarGridSomenteLeitura();
+            grid.Columns.AddRange(ObterColunas());
         }
 
         public void AtualizarRegistros(List<Cliente> clientes)
@@ -29,6 +32,23 @@ namespace LocadoraVeiculosForm.ModuloCliente
                 grid.Rows.Add(c.Id, c.Nome, c.Email, c.Telefone, c.Endereco, c.CPF, c.CnhNumero, c.CnhNome, c.CnhVencimento.ToShortDateString());
 
             }
+
+        }
+
+        private DataGridViewColumn[] ObterColunas()
+        {
+            var colunas = new DataGridViewColumn[]
+            {
+
+            };
+
+            return colunas;
+        }
+
+        public int SelecionarNumeroCliente()
+        {
+
+            return grid.SelecionarNumero<int>();
 
         }
 

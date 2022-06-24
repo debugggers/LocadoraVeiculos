@@ -106,6 +106,7 @@
             this.btnExcluir.Padding = new System.Windows.Forms.Padding(5);
             this.btnExcluir.Size = new System.Drawing.Size(72, 30);
             this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // statusStrip1
             // 
