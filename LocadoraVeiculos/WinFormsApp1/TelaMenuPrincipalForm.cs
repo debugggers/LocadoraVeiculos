@@ -156,6 +156,7 @@ namespace LocadoraVeiculosForm
 
             controladores.Add("Funcionário", new ControladorFuncionario());
             controladores.Add("Clientes", new ControladorFuncionario());
+
         }
     }
 }

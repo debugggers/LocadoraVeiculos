@@ -34,6 +34,9 @@ namespace LocadoraVeiculosForm.ModuloCliente
                 txtTelefone.Text = cliente.Telefone;
                 txtCpf.Text = cliente.CPF;
                 txtEndereco.Text = cliente.Endereco;
+                txtNumeroCnh.Text = cliente.CnhNumero.ToString();
+                txtNomeCnh.Text = cliente.CnhNome;
+                monthCalendarVencimento.SelectionStart = cliente.CnhVencimento;
 
             }
         }
@@ -48,7 +51,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
             cliente.CPF = txtCpf.Text;
             cliente.CnhNumero = Convert.ToInt32(txtNumeroCnh.Text);
             cliente.CnhNome = txtNomeCnh.Text;
-            cliente.CnhVencimento = monthCalendarVencimento.MaxDate;
+            cliente.CnhVencimento = monthCalendarVencimento.SelectionStart;
 
             var resultadoValidacao = GravarRegistro(cliente);
 
