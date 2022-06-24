@@ -16,7 +16,6 @@ namespace LocadoraVeiculosForm
         private Dictionary<string, ControladorBase> controladores;
 
         private RepositorioClienteEmBancoDados _repositorioClientes;
-        private RepositorioFuncionarioEmBancoDados _repositorioFucionarios;
 
         public TelaMenuPrincipalForm()
         {
@@ -30,8 +29,6 @@ namespace LocadoraVeiculosForm
             {
                 if (telaLoginForm.DialogResult == DialogResult.OK)
                 {
-                    var controlador = new ControladorFuncionario();
-                    _repositorioFucionarios = new RepositorioFuncionarioEmBancoDados();
                     Instancia = this;
                     break;
                 }
@@ -150,13 +147,11 @@ namespace LocadoraVeiculosForm
         private void InicializarControladores()
         {
             var repositorioClientes = new RepositorioClienteEmBancoDados();
-            var repositorioFuncionarios = new RepositorioFuncionarioEmBancoDados();
 
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Funcionário", new ControladorFuncionario());
-            controladores.Add("Clientes", new ControladorFuncionario());
-
+            controladores.Add("Clientes", new ControladorCliente(repositorioClientes));
         }
     }
 }

@@ -17,10 +17,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         {
             _funcionario = new Funcionario("Tatiane Mossi", "tatimossi", "12345", new DateTime(2022,02,02), 2000.00m, true);
             _repositorio = new RepositorioFuncionarioEmBancoDados();
-            _repositorio.EnderecoBanco = "Data Source=(LocalDB)\\MSSqlLocalDB;" +
+            _repositorio.SetEnderecoBanco("Data Source=(LocalDB)\\MSSqlLocalDB;" +
                "Initial Catalog=locadoraVeiculosDbTeste;" +
                "Integrated Security=True;" +
-               "Pooling=False";
+               "Pooling=False");
         }
 
         [TestCleanup()]
