@@ -31,9 +31,26 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
                     @CLIENTE_CNH_VENCIMENTO
                 ); SELECT SCOPE_IDENTITY();";
 
-        protected override string sqlEditar => throw new System.NotImplementedException();
+        protected override string sqlEditar =>
 
-        protected override string sqlExcluir => throw new System.NotImplementedException();
+            @"UPDATE [TBCLIENTE]	
+		        SET
+                    [NOME] = @CLIENTE_NOME,
+                    [TELEFONE] = @CLIENTE_TELEFONE,
+                    [EMAIL] = @CLIENTE_EMAIL,
+                    [ENDERECO] = @CLIENTE_ENDERECO,
+                    [CPF] = @CLIENTE_CPF,
+                    [CNH_NUMERO] = @CLIENTE_CNH_NUMERO,
+                    [CNH_NOME] = @CLIENTE_CNH_NOME,
+                    [CNH_VENCIMENTO] = @CLIENTE_CNH_VENCIMENTO
+		        WHERE
+			        [ID] = @ID";
+
+        protected override string sqlExcluir =>
+
+            @"DELETE FROM [TBCLIENTE]
+		        WHERE
+			        [ID] = @ID";
 
         protected override string sqlSelecionarPorId =>
 
@@ -52,6 +69,19 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
             WHERE 
                 [ID] = @ID";
 
-        protected override string sqlSelecionarTodos => throw new System.NotImplementedException();
+        protected override string sqlSelecionarTodos =>
+
+            @"SELECT 
+		            [ID],       
+                    [NOME],
+                    [TELEFONE],
+                    [EMAIL],             
+                    [ENDERECO],                    
+                    [CPF],
+                    [CNH_NUMERO],
+                    [CNH_NOME],
+                    [CNH_VENCIMENTO]
+	            FROM 
+		            [TBCLIENTE]";
     }
 }

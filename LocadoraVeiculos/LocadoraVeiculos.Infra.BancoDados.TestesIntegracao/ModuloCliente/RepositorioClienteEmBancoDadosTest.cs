@@ -11,7 +11,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
     {
 
         private Cliente cliente;
-        private CNH cnh;
         private RepositorioClienteEmBancoDados repositorio;
 
         public RepositorioClienteEmBancoDadosTest()
@@ -23,15 +22,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
             cliente.Email = "Paulo@teste.com";
             cliente.Telefone = "123456789";
             cliente.Endereco = "123, rua 123, 123";
-            cliente.CPF = "1234567890";
-
-            cnh = new CNH();
-
-            cnh.Numero = 123;
-            cnh.Nome = "Paulo";
-            cnh.Vencimento = DateTime.Now.Date;
-
-            cliente.Cnh = cnh;
+            cliente.CPF = "123.123.123-12";
+            cliente.CnhNumero = 123;
+            cliente.CnhNome = "Paulo";
+            cliente.CnhVencimento = DateTime.Now.Date;
 
             repositorio = new RepositorioClienteEmBancoDados();
 
@@ -41,15 +35,63 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         public void Deve_Inserir_Cliente()
         {
 
-            //action
             repositorio.Inserir(cliente);
 
-            //assert
             var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
 
             Assert.IsNotNull(clienteEncontrado);
-            Assert.AreEqual(cliente.Id, clienteEncontrado.Id);
+            Assert.AreEqual(cliente, clienteEncontrado);
 
         }
+
+        [TestMethod]
+        public void Deve_Editar_Cliente()
+        {
+                     
+            repositorio.Inserir(cliente);
+
+            cliente.Nome = "Pedro";
+            cliente.Email = "Pedro@teste.com";
+            cliente.Telefone = "987654321";
+            cliente.Endereco = "321, rua 321, 321";
+            cliente.CPF = "321.123.123-12";
+            cliente.CnhNumero = 321;
+            cliente.CnhNome = "Pedro";
+            cliente.CnhVencimento = DateTime.Now.Date;
+            repositorio.Editar(cliente);
+
+            var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
+
+            Assert.IsNotNull(clienteEncontrado);
+            Assert.AreEqual(cliente, clienteEncontrado);
+
+        }
+
+        [TestMethod]
+        public void Deve_Excluir_Cliente()
+        {
+           
+            repositorio.Inserir(cliente);
+          
+            repositorio.Excluir(cliente);
+
+            var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
+            Assert.IsNull(clienteEncontrado);
+
+        }
+
+        [TestMethod]
+        public void Deve_Selecionar_Cliente()
+        {
+
+            repositorio.Inserir(cliente);
+
+            var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
+
+            Assert.IsNotNull(clienteEncontrado);
+            Assert.AreEqual(cliente, clienteEncontrado);
+
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloCliente
 {
@@ -10,13 +11,35 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
         public string Telefone { get; set; }
         public string Endereco { get; set; }
         public string CPF { get; set; }
-        public CNH Cnh { get; set; }
+        public int CnhNumero { get; set; }
+        public string CnhNome { get; set; }
+        public DateTime CnhVencimento { get; set; }
 
         public Cliente()
         {
 
 
 
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Cliente cliente &&
+                  Id == cliente.Id &&
+                  Nome == cliente.Nome &&
+                  Telefone == cliente.Telefone &&
+                  Email == cliente.Email &&
+                  Endereco == cliente.Endereco &&
+                  CPF == cliente.CPF &&
+                  CnhNumero == cliente.CnhNumero &&
+                  CnhNome == cliente.CnhNome &&
+                  CnhVencimento == cliente.CnhVencimento;
+        }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Nome: {Nome}, Telefone: {Telefone}, Email: {Email}, Endereco: {Endereco}, CPF: {CPF}," + "\n" +
+                $" Número da CNH: {CnhNumero}, Nome da CNH: {CnhNome}, Data de Vencimento da CNH: {CnhVencimento.ToShortDateString()}";
         }
 
     }

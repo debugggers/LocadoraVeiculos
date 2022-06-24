@@ -1,11 +1,7 @@
 ﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.BancoDados.ModuloCliente
 {
@@ -14,14 +10,14 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
         public override void ConfigurarParametros(Cliente cliente, SqlCommand comando)
         {
             comando.Parameters.AddWithValue("ID", cliente.Id);
-            comando.Parameters.AddWithValue("NOME", cliente.Nome);
-            comando.Parameters.AddWithValue("TELEFONE", cliente.Telefone);
-            comando.Parameters.AddWithValue("EMAIL", cliente.Email);
-            comando.Parameters.AddWithValue("ENDERECO", cliente.Endereco);
-            comando.Parameters.AddWithValue("CPF", cliente.CPF);
-            comando.Parameters.AddWithValue("CNH_NUMERO", cliente.Cnh.Numero);
-            comando.Parameters.AddWithValue("CNH_NOME", cliente.Cnh.Nome);
-            comando.Parameters.AddWithValue("CNH_VENCIMENTO", cliente.Cnh.Vencimento);
+            comando.Parameters.AddWithValue("CLIENTE_NOME", cliente.Nome);
+            comando.Parameters.AddWithValue("CLIENTE_TELEFONE", cliente.Telefone);
+            comando.Parameters.AddWithValue("CLIENTE_EMAIL", cliente.Email);
+            comando.Parameters.AddWithValue("CLIENTE_ENDERECO", cliente.Endereco);
+            comando.Parameters.AddWithValue("CLIENTE_CPF", cliente.CPF);
+            comando.Parameters.AddWithValue("CLIENTE_CNH_NUMERO", cliente.CnhNumero);
+            comando.Parameters.AddWithValue("CLIENTE_CNH_NOME", cliente.CnhNome);
+            comando.Parameters.AddWithValue("CLIENTE_CNH_VENCIMENTO", cliente.CnhVencimento);
         }
 
         public override Cliente ConverterRegistro(SqlDataReader leitorCliente)
@@ -45,10 +41,9 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
             cliente.Email = email;
             cliente.Endereco = endereco;
             cliente.CPF = cpf;
-            cliente.Cnh = new CNH();
-            cliente.Cnh.Numero = numeroCnh;
-            cliente.Cnh.Nome = nomeCnh;
-            cliente.Cnh.Vencimento = dataVencimento;
+            cliente.CnhNumero = numeroCnh;
+            cliente.CnhNome = nomeCnh;
+            cliente.CnhVencimento = dataVencimento;
 
             return cliente;
 
