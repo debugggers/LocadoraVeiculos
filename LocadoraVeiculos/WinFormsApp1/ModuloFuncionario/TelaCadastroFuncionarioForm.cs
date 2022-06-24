@@ -11,14 +11,12 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
         private Funcionario _funcionario;
         private RepositorioFuncionarioEmBancoDados _repositorioFuncionario;
 
-
         public TelaCadastroFuncionarioForm(RepositorioFuncionarioEmBancoDados repositorioFuncionario)
         {
             InitializeComponent();
 
             _repositorioFuncionario = repositorioFuncionario;
         }
-
 
         public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
 
@@ -51,9 +49,9 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
             _funcionario.DataAdmissao = Convert.ToDateTime(dtDataAdmissao.Text);
             _funcionario.EhAdmin = checkBoxAdmin.Checked;
 
-            if (_repositorioFuncionario.FuncionarioJaExiste(_funcionario.Nome, _funcionario.Id))
+            if (_repositorioFuncionario.FuncionarioJaExiste(_funcionario.Login, _funcionario.Id))
             {
-                MessageBox.Show("Já existe um funcionário com este nome.",
+                MessageBox.Show("Login já existente, não é possível adicionar.",
                     "Inserindo Funcionário",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);

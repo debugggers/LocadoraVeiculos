@@ -17,6 +17,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         {
             _funcionario = new Funcionario("Tatiane Mossi", "tatimossi", "12345", new DateTime(2022,02,02), 2000.00m, true);
             _repositorio = new RepositorioFuncionarioEmBancoDados();
+            _repositorio.EnderecoBanco = "Data Source=(LocalDB)\\MSSqlLocalDB;" +
+               "Initial Catalog=locadoraVeiculosDbTeste;" +
+               "Integrated Security=True;" +
+               "Pooling=False";
         }
 
         [TestCleanup()]
@@ -114,26 +118,26 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         }
 
         [TestMethod]
-        public void Deve_retornar_true_quando_funcionario_ja_existir()
+        public void Deve_retornar_true_quando_login_funcionario_ja_existir()
         {
             //arrange
             _repositorio.Inserir(_funcionario);
 
             //action
-            var funcionarioExiste = _repositorio.FuncionarioJaExiste("Tatiane Mossi", 2);
+            var funcionarioExiste = _repositorio.FuncionarioJaExiste("tatimossi", 2);
 
             //assert
             Assert.AreEqual(funcionarioExiste, true);
         }
 
         [TestMethod]
-        public void Deve_retornar_false_quando_funcionario_nao_existir()
+        public void Deve_retornar_false_quando_login_funcionario_nao_existir()
         {
             //arrange
             _repositorio.Inserir(_funcionario);
 
             //action
-            var funcionarioExiste = _repositorio.FuncionarioJaExiste("Thiago Souza", 1);
+            var funcionarioExiste = _repositorio.FuncionarioJaExiste("thiagosouza", 1);
 
             //assert
             Assert.AreEqual(funcionarioExiste, false);
