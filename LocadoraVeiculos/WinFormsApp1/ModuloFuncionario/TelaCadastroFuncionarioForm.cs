@@ -34,7 +34,10 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
                 txtLogin.Text = _funcionario.Login;
                 txtSenha.Text = _funcionario.Senha;
                 txtSalario.Text = _funcionario.Salario.ToString();
-                dtDataAdmissao.Value = _funcionario.DataAdmissao;
+                if (_funcionario.DataAdmissao == DateTime.MinValue)
+                    dtDataAdmissao.Value = DateTime.Now;
+                else
+                    dtDataAdmissao.Value = _funcionario.DataAdmissao;
                 checkBoxAdmin.Checked = _funcionario.EhAdmin;
             }
         }
@@ -42,8 +45,13 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
         private void btnGravar_Click(object sender, EventArgs e)
         {
             _funcionario.Nome = txtNome.Text;
+            _funcionario.Login = txtLogin.Text;
+            _funcionario.Senha = txtSenha.Text;
+            _funcionario.Salario = Convert.ToDecimal(txtSalario.Text);
+            _funcionario.DataAdmissao = Convert.ToDateTime(dtDataAdmissao.Text);
+            _funcionario.EhAdmin = checkBoxAdmin.Checked;
 
-            if (_repositorioFuncionario.FuncionarioJaExiste(_funcionario.Nome))
+            if (_repositorioFuncionario.FuncionarioJaExiste(_funcionario.Nome, _funcionario.Id))
             {
                 MessageBox.Show("Já existe um funcionário com este nome.",
                     "Inserindo Funcionário",

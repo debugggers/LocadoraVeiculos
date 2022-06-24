@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
+using LocadoraVeiculosForm.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm.ModuloCliente
 {
-    public class ControladorCliente
+    public class ControladorCliente : ControladorBase
     {
 
         private RepositorioClienteEmBancoDados repositorio;
@@ -23,7 +24,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
         }
 
-        public void Inserir()
+        public override void Inserir()
         {
 
             TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
@@ -40,7 +41,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
         }
 
-        public void Editar()
+        public override void Editar()
         {
 
             Cliente clienteSelecionado = ObtemClienteSelecionado();
@@ -64,7 +65,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
             }
         }
 
-        public void Excluir()
+        public override void Excluir()
         {
 
             Cliente cleienteSelecionado = ObtemClienteSelecionado();
@@ -94,7 +95,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
             listagem.AtualizarRegistros(clientes);
         }
 
-        public UserControl ObtemListagem()
+        public override UserControl ObtemListagem()
         {
             if (listagem == null)
                 listagem = new ListagemClientesControl();
@@ -111,6 +112,11 @@ namespace LocadoraVeiculosForm.ModuloCliente
             Cliente clienteSelecionado = repositorio.SelecionarPorId(id);
 
             return clienteSelecionado;
+        }
+
+        public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
+        {
+            return new ConfiguracaoToolBoxCliente();
         }
 
     }
