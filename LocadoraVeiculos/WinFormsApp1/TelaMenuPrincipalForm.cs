@@ -1,6 +1,10 @@
 ﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
+using LocadoraVeiculos.BancoDados.ModuloFuncionario;
+using LocadoraVeiculosForm.Compartilhado;
 using LocadoraVeiculosForm.ModuloCliente;
+using LocadoraVeiculosForm.ModuloFuncionario;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm
@@ -8,15 +12,49 @@ namespace LocadoraVeiculosForm
     public partial class TelaMenuPrincipalForm : Form
     {
 
-        private ControladorCliente controlador;
-        private RepositorioClienteEmBancoDados repositorio;
+        private ControladorBase _controlador;
+        private Dictionary<string, ControladorBase> controladores;
+
+        private RepositorioClienteEmBancoDados _repositorioClientes;
+        private RepositorioFuncionarioEmBancoDados _repositorioFucionarios;
 
         public TelaMenuPrincipalForm()
         {
             InitializeComponent();
-            controlador = new ControladorCliente(new RepositorioClienteEmBancoDados());
-            repositorio = new RepositorioClienteEmBancoDados();
+
+            var telaLoginForm = new TelaLoginForm();
+
+            telaLoginForm.ShowDialog();
+
+            while (telaLoginForm.DialogResult == DialogResult.Retry)
+            {
+                if (telaLoginForm.DialogResult == DialogResult.OK)
+                {
+                    var controlador = new ControladorFuncionario();
+                    _repositorioFucionarios = new RepositorioFuncionarioEmBancoDados();
+                    Instancia = this;
+                    break;
+                }
+                else if (telaLoginForm.DialogResult == DialogResult.Cancel)
+                {
+                    throw new Exception();
+                }
+
+                telaLoginForm.ShowDialog();
+            }
+
+            if (telaLoginForm.DialogResult == DialogResult.Cancel)
+            {
+                MessageBox.Show(this, "Aplicação será encerrada");
+                throw new Exception();
+            }
+
             Instancia = this;
+
+            labelRodape.Text = string.Empty;
+            labelTipoCadastro.Text = string.Empty;
+
+            InicializarControladores();
         }
 
         public static TelaMenuPrincipalForm Instancia
@@ -25,41 +63,99 @@ namespace LocadoraVeiculosForm
             private set;
         }
 
-
+        public void AtualizarRodape(string mensagem)
+        {
+            labelRodape.Text = mensagem;
+        }
 
         private void clientesMenuItem_Click(object sender, EventArgs e)
         {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
 
-            ListagemClientesControl listagem = new ListagemClientesControl();
-
-            var clientes = repositorio.SelecionarTodos();
-
-            listagem.AtualizarRegistros(clientes);
-
-            panelRegistros.Controls.Clear();
-
-            panelRegistros.Controls.Add(listagem);
-
+        private void funcionariosMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-
-            controlador.Inserir();
-
+            _controlador.Inserir();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-
-            controlador.Editar();
-
+            _controlador.Editar();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+            _controlador.Excluir();
+        }
 
-            controlador.Excluir();
+        private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)
+        {
+            btnInserir.Visible = configuracao.InserirHabilitado;
+            btnEditar.Visible = configuracao.EditarHabilitado;
+            btnExcluir.Visible = configuracao.ExcluirHabilitado;
+        }
+
+        private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
+        {
+            btnInserir.ToolTipText = configuracao.TooltipInserir;
+            btnEditar.ToolTipText = configuracao.TooltipEditar;
+            btnExcluir.ToolTipText = configuracao.TooltipExcluir;
+        }
+
+        private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
+        {
+            var tipo = opcaoSelecionada.Text;
+
+            _controlador = controladores[tipo];
+
+            ConfigurarToolbox();
+
+            ConfigurarListagem();
+        }
+
+        private void ConfigurarToolbox()
+        {
+            ConfiguracaoToolboxBase configuracao = _controlador.ObtemConfiguracaoToolbox();
+
+            if (configuracao != null)
+            {
+                toolbox.Enabled = true;
+
+                labelTipoCadastro.Text = configuracao.TipoCadastro;
+
+                ConfigurarTooltips(configuracao);
+
+                ConfigurarBotoes(configuracao);
+            }
+        }
+
+        private void ConfigurarListagem()
+        {
+            AtualizarRodape("");
+
+            var listagemControl = _controlador.ObtemListagem();
+
+            panelRegistros.Controls.Clear();
+
+            listagemControl.Dock = DockStyle.Fill;
+
+            panelRegistros.Controls.Add(listagemControl);
+        }
+
+        private void InicializarControladores()
+        {
+            var repositorioClientes = new RepositorioClienteEmBancoDados();
+            var repositorioFuncionarios = new RepositorioFuncionarioEmBancoDados();
+
+            controladores = new Dictionary<string, ControladorBase>();
+
+            controladores.Add("Funcionário", new ControladorFuncionario());
+            controladores.Add("Clientes", new ControladorFuncionario());
 
         }
     }
