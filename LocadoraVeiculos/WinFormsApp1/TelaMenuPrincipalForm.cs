@@ -1,6 +1,5 @@
 ﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
-using LocadoraVeiculos.BancoDados.ModuloFuncionario;
 using LocadoraVeiculosForm.Compartilhado;
 using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
@@ -32,7 +31,7 @@ namespace LocadoraVeiculosForm
                 if (telaLoginForm.DialogResult == DialogResult.OK)
                     break;
                 else if (telaLoginForm.DialogResult == DialogResult.Cancel)
-                    Close();                
+                    Close();
 
                 telaLoginForm.ShowDialog();
             }
@@ -144,7 +143,6 @@ namespace LocadoraVeiculosForm
         private void InicializarControladores()
         {
             var repositorioClientes = new RepositorioClienteEmBancoDados();
-            var repositorioFuncionarios = new RepositorioFuncionarioEmBancoDados();
             var repositorioEmpresa = new RepositorioEmpresaBancoDados();
 
             controladores = new Dictionary<string, ControladorBase>();
@@ -152,6 +150,7 @@ namespace LocadoraVeiculosForm
             controladores.Add("Funcionário", new ControladorFuncionario());
             controladores.Add("Clientes", new ControladorCliente(repositorioClientes));
             controladores.Add("Empresas", new ControladorEmpresa(repositorioEmpresa));
+        }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
