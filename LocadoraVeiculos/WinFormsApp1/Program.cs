@@ -1,5 +1,3 @@
-using LocadoraVeiculos.BancoDados.ModuloFuncionario;
-using LocadoraVeiculosForm.ModuloFuncionario;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +14,7 @@ namespace LocadoraVeiculosForm
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new TelaCadastroFuncionarioForm(new RepositorioFuncionarioEmBancoDados()));
+            Application.Run(new TelaMenuPrincipalForm());
         }
     }
 }
