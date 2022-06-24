@@ -68,17 +68,18 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
                 FROM 
                     TBFUNCIONARIO
                 WHERE
-                    NOME = @NOME";
+                    NOME = @NOME AND ID != @ID";
 
         #endregion
 
-        public bool FuncionarioJaExiste(string nome)
+        public bool FuncionarioJaExiste(string nome, int id)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNome, conexaoComBanco);
 
             comandoSelecao.Parameters.AddWithValue("NOME", nome);
+            comandoSelecao.Parameters.AddWithValue("ID", id);
 
             conexaoComBanco.Open();
             SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();

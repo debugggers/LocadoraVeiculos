@@ -122,6 +122,7 @@
             // 
             this.txtSenha.Location = new System.Drawing.Point(185, 164);
             this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(115, 26);
             this.txtSenha.TabIndex = 8;
             // 
@@ -130,9 +131,8 @@
             this.checkBoxAdmin.AutoSize = true;
             this.checkBoxAdmin.Location = new System.Drawing.Point(185, 299);
             this.checkBoxAdmin.Name = "checkBoxAdmin";
-            this.checkBoxAdmin.Size = new System.Drawing.Size(92, 23);
-            this.checkBoxAdmin.TabIndex = 10;
-            this.checkBoxAdmin.Text = "checkBox1";
+            this.checkBoxAdmin.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAdmin.TabIndex = 11;
             this.checkBoxAdmin.UseVisualStyleBackColor = true;
             // 
             // dtDataAdmissao
@@ -141,15 +141,15 @@
             this.dtDataAdmissao.Location = new System.Drawing.Point(185, 209);
             this.dtDataAdmissao.Name = "dtDataAdmissao";
             this.dtDataAdmissao.Size = new System.Drawing.Size(115, 26);
-            this.dtDataAdmissao.TabIndex = 11;
+            this.dtDataAdmissao.TabIndex = 9;
             // 
             // txtSalario
             // 
             this.txtSalario.Location = new System.Drawing.Point(185, 254);
-            this.txtSalario.Mask = "0000000,00";
+            this.txtSalario.Mask = "00000,00";
             this.txtSalario.Name = "txtSalario";
             this.txtSalario.Size = new System.Drawing.Size(100, 26);
-            this.txtSalario.TabIndex = 12;
+            this.txtSalario.TabIndex = 10;
             // 
             // btnCancelar
             // 
@@ -170,6 +170,7 @@
             this.btnGravar.TabIndex = 14;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // label7
             // 
