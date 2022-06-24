@@ -1,5 +1,6 @@
 ﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -63,22 +64,29 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
         protected override string sqlSelecionarTodos =>
              @"SELECT * FROM TBFUNCIONARIO";
 
-        private const string sqlSelecionarPorNome =
+        private const string sqlSelecionarPorLogin =
             @"SELECT ID 
                 FROM 
                     TBFUNCIONARIO
                 WHERE
-                    NOME = @NOME AND ID != @ID";
+                    LOGIN = @LOGIN AND ID != @ID";
+
+        private const string sqlSelecionarPorLoginSenha =
+            @"SELECT *
+                FROM 
+                    TBFUNCIONARIO
+                WHERE
+                    LOGIN = @LOGIN AND SENHA = @SENHA";
 
         #endregion
 
-        public bool FuncionarioJaExiste(string nome, int id)
+        public bool FuncionarioJaExiste(string login, int id)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
-            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNome, conexaoComBanco);
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorLogin, conexaoComBanco);
 
-            comandoSelecao.Parameters.AddWithValue("NOME", nome);
+            comandoSelecao.Parameters.AddWithValue("LOGIN", login);
             comandoSelecao.Parameters.AddWithValue("ID", id);
 
             conexaoComBanco.Open();
@@ -92,6 +100,29 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
             conexaoComBanco.Close();
 
             return funcionarioJaExiste;
+        }
+
+        public Funcionario BuscarUsuarioPorLoginSenha(string login, string senha)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorLoginSenha, conexaoComBanco);
+
+            comandoSelecao.Parameters.AddWithValue("LOGIN", login);
+            comandoSelecao.Parameters.AddWithValue("SENHA", senha);
+
+            conexaoComBanco.Open();
+            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
+
+            var mapeador = new MapeadorFuncionario();
+
+            Funcionario funcionario = null;
+            if (leitorRegistro.Read())
+                funcionario = mapeador.ConverterRegistro(leitorRegistro);
+
+            conexaoComBanco.Close();
+
+            return funcionario;
         }
     }
 }

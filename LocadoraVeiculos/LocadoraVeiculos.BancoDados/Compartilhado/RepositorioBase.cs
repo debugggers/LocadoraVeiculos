@@ -13,13 +13,12 @@ namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
         where TValidador : AbstractValidator<T>, new()
         where TMapeador : MapeadorBase<T>, new()
     {
-        #region Endereço do Banco de Dados
-        protected const string enderecoBanco =
-               "Data Source=(LocalDB)\\MSSqlLocalDB;" +
-               "Initial Catalog=locadoraVeiculosDb;" +
-               "Integrated Security=True;" +
-               "Pooling=False";
-        #endregion
+        protected string EnderecoBanco = EnderecoBancoConst.EnderecoBanco;
+     
+        public void SetEnderecoBanco(string enderecoBanco)
+        {
+            EnderecoBanco = enderecoBanco;
+        }
 
         protected abstract string sqlInserir { get; }
 
@@ -40,7 +39,7 @@ namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
 
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
             SqlCommand comandoInsercao = new SqlCommand(sqlInserir, conexaoComBanco);
 
@@ -65,7 +64,7 @@ namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
 
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
             SqlCommand comandoEdicao = new SqlCommand(sqlEditar, conexaoComBanco);
 
@@ -81,7 +80,7 @@ namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
 
         public void Excluir(T registro)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
             SqlCommand comandoExclusao = new SqlCommand(sqlExcluir, conexaoComBanco);
 
@@ -94,7 +93,7 @@ namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
 
         public T SelecionarPorId(int id)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorId, conexaoComBanco);
 
@@ -116,7 +115,7 @@ namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
 
         public List<T> SelecionarTodos()
         {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarTodos, conexaoComBanco);
             conexaoComBanco.Open();

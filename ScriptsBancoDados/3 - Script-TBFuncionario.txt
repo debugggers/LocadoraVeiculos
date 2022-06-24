@@ -18,7 +18,7 @@ CREATE TABLE [dbo].[TBFuncionario](
 	[Nome] [varchar](50) NOT NULL,
 	[Login] [varchar](50) NOT NULL,
 	[Senha] [varchar](50) NOT NULL,
-	[DataAdmissao] [varchar](50) NOT NULL,
+	[Data_Admissao] [varchar](50) NOT NULL,
 	[Salario] [decimal](18, 0) NOT NULL,
 	[EhAdmin] [bit] NOT NULL,
  CONSTRAINT [PK_TBFuncionario] PRIMARY KEY CLUSTERED 

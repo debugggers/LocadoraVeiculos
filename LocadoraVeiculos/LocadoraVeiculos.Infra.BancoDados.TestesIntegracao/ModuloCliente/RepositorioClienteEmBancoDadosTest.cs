@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
+﻿using LocadoraVeiculos.BancoDados.Compartilhado;
+using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -23,7 +24,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
                   DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)
                 ";
 
-            DB.ExecutarSql(sql);
+            Db.ExecutarSql(sql);
 
             cliente = new Cliente();
 

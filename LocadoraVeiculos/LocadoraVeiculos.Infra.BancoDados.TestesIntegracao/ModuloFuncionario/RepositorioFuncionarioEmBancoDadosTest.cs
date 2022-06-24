@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloFuncionario;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -17,6 +18,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         {
             _funcionario = new Funcionario("Tatiane Mossi", "tatimossi", "12345", new DateTime(2022,02,02), 2000.00m, true);
             _repositorio = new RepositorioFuncionarioEmBancoDados();
+
+            _repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
+
+            Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
         }
 
         [TestCleanup()]
@@ -97,14 +102,12 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             var funcionario2 = new Funcionario("Rosimeri Morais", "merimorais", "13579", new DateTime(2022, 02, 04), 4000.00m, true);
             var funcionario3 = new Funcionario("Ademir Jaco Mossi", "milamossi", "24680", new DateTime(2022, 02, 05), 5000.00m, false);
 
-            var repositorio = new RepositorioFuncionarioEmBancoDados();
-
-            repositorio.Inserir(funcionario1);
-            repositorio.Inserir(funcionario2);
-            repositorio.Inserir(funcionario3);
+            _repositorio.Inserir(funcionario1);
+            _repositorio.Inserir(funcionario2);
+            _repositorio.Inserir(funcionario3);
 
             //action
-            var funcionarios = repositorio.SelecionarTodos();
+            var funcionarios = _repositorio.SelecionarTodos();
 
             //assert
             Assert.AreEqual(3, funcionarios.Count);
@@ -114,26 +117,26 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         }
 
         [TestMethod]
-        public void Deve_retornar_true_quando_funcionario_ja_existir()
+        public void Deve_retornar_true_quando_login_funcionario_ja_existir()
         {
             //arrange
             _repositorio.Inserir(_funcionario);
 
             //action
-            var funcionarioExiste = _repositorio.FuncionarioJaExiste("Tatiane Mossi", 2);
+            var funcionarioExiste = _repositorio.FuncionarioJaExiste("tatimossi", 2);
 
             //assert
             Assert.AreEqual(funcionarioExiste, true);
         }
 
         [TestMethod]
-        public void Deve_retornar_false_quando_funcionario_nao_existir()
+        public void Deve_retornar_false_quando_login_funcionario_nao_existir()
         {
             //arrange
             _repositorio.Inserir(_funcionario);
 
             //action
-            var funcionarioExiste = _repositorio.FuncionarioJaExiste("Thiago Souza", 1);
+            var funcionarioExiste = _repositorio.FuncionarioJaExiste("thiagosouza", 1);
 
             //assert
             Assert.AreEqual(funcionarioExiste, false);
