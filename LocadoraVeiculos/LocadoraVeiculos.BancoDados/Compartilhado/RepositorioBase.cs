@@ -13,14 +13,8 @@ namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
         where TValidador : AbstractValidator<T>, new()
         where TMapeador : MapeadorBase<T>, new()
     {
-        #region Endereço do Banco de Dados
-        protected string EnderecoBanco =
-               "Data Source=(LocalDB)\\MSSqlLocalDB;" +
-               "Initial Catalog=locadoraVeiculosDb;" +
-               "Integrated Security=True;" +
-               "Pooling=False";
-        #endregion
-
+        protected string EnderecoBanco = EnderecoBancoConst.EnderecoBanco;
+     
         public void SetEnderecoBanco(string enderecoBanco)
         {
             EnderecoBanco = enderecoBanco;

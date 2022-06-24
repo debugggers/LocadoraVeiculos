@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.BancoDados.ModuloFuncionario;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculosForm.Compartilhado;
 using System.Collections.Generic;
@@ -19,61 +20,74 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
 
         public override void Inserir()
         {
-            TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm(_repositorioFuncionario);
-            tela.Funcionario = new Funcionario();
+            if (GerenciadorUsuario.EhAdmin())
+            {
+                TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm(_repositorioFuncionario);
+                tela.Funcionario = new Funcionario();
 
-            tela.GravarRegistro = _repositorioFuncionario.Inserir;
+                tela.GravarRegistro = _repositorioFuncionario.Inserir;
 
-            DialogResult resultado = tela.ShowDialog();
+                DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
-                CarregarFuncionarios();
+                if (resultado == DialogResult.OK)
+                    CarregarFuncionarios();
+            }
+            else
+                MessageBox.Show("Somente usuários 'Admin' podem gerenciar funcionários.");
         }
 
         public override void Editar()
         {
-            Funcionario funcionarioSelecionado = ObtemFuncionarioSelecionado();
-
-            if (funcionarioSelecionado == null)
+            if (GerenciadorUsuario.EhAdmin())
             {
-                MessageBox.Show("Selecione um Funcionário primeiro",
-                "Edição de Funcinários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                Funcionario funcionarioSelecionado = ObtemFuncionarioSelecionado();
+
+                if (funcionarioSelecionado == null)
+                {
+                    MessageBox.Show("Selecione um Funcionário primeiro",
+                    "Edição de Funcinários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm(_repositorioFuncionario);
+
+                tela.Funcionario = funcionarioSelecionado;
+
+                tela.GravarRegistro = _repositorioFuncionario.Editar;
+
+                DialogResult resultado = tela.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                    CarregarFuncionarios();
             }
-
-            TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm(_repositorioFuncionario);
-
-            tela.Funcionario = funcionarioSelecionado;
-
-            tela.GravarRegistro = _repositorioFuncionario.Editar;
-
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
-                CarregarFuncionarios();
-            }
+            else
+                MessageBox.Show("Somente usuários 'Admin' podem gerenciar funcionários.");
         }
 
         public override void Excluir()
         {
-            Funcionario funcionarioSelecionado = ObtemFuncionarioSelecionado();
-
-            if (funcionarioSelecionado == null)
+            if (GerenciadorUsuario.EhAdmin())
             {
-                MessageBox.Show("Selecione um Funcionário primeiro",
-                "Exclusão de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+                Funcionario funcionarioSelecionado = ObtemFuncionarioSelecionado();
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Funcionário?",
-                "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (funcionarioSelecionado == null)
+                {
+                    MessageBox.Show("Selecione um Funcionário primeiro",
+                    "Exclusão de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-            if (resultado == DialogResult.OK)
-            {
-                _repositorioFuncionario.Excluir(funcionarioSelecionado);
-                CarregarFuncionarios();
+                DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Funcionário?",
+                    "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.OK)
+                {
+                    _repositorioFuncionario.Excluir(funcionarioSelecionado);
+                    CarregarFuncionarios();
+                }
             }
+            else
+                MessageBox.Show("Somente usuários 'Admin' podem gerenciar funcionários.");
         }
 
         public override UserControl ObtemListagem()

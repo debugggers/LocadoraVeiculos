@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloFuncionario;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -17,10 +18,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         {
             _funcionario = new Funcionario("Tatiane Mossi", "tatimossi", "12345", new DateTime(2022,02,02), 2000.00m, true);
             _repositorio = new RepositorioFuncionarioEmBancoDados();
-            _repositorio.SetEnderecoBanco("Data Source=(LocalDB)\\MSSqlLocalDB;" +
-               "Initial Catalog=locadoraVeiculosDbTeste;" +
-               "Integrated Security=True;" +
-               "Pooling=False");
+
+            _repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
+
+            Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
         }
 
         [TestCleanup()]
@@ -101,14 +102,12 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             var funcionario2 = new Funcionario("Rosimeri Morais", "merimorais", "13579", new DateTime(2022, 02, 04), 4000.00m, true);
             var funcionario3 = new Funcionario("Ademir Jaco Mossi", "milamossi", "24680", new DateTime(2022, 02, 05), 5000.00m, false);
 
-            var repositorio = new RepositorioFuncionarioEmBancoDados();
-
-            repositorio.Inserir(funcionario1);
-            repositorio.Inserir(funcionario2);
-            repositorio.Inserir(funcionario3);
+            _repositorio.Inserir(funcionario1);
+            _repositorio.Inserir(funcionario2);
+            _repositorio.Inserir(funcionario3);
 
             //action
-            var funcionarios = repositorio.SelecionarTodos();
+            var funcionarios = _repositorio.SelecionarTodos();
 
             //assert
             Assert.AreEqual(3, funcionarios.Count);

@@ -40,6 +40,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
+            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -60,7 +61,8 @@
             // 
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientesMenuItem,
-            this.funcionárioToolStripMenuItem});
+            this.funcionárioToolStripMenuItem,
+            this.sairToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(82, 23);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -68,14 +70,14 @@
             // clientesMenuItem
             // 
             this.clientesMenuItem.Name = "clientesMenuItem";
-            this.clientesMenuItem.Size = new System.Drawing.Size(149, 24);
+            this.clientesMenuItem.Size = new System.Drawing.Size(180, 24);
             this.clientesMenuItem.Text = "Clientes";
             this.clientesMenuItem.Click += new System.EventHandler(this.clientesMenuItem_Click);
             // 
             // funcionárioToolStripMenuItem
             // 
             this.funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
-            this.funcionárioToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
+            this.funcionárioToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.funcionárioToolStripMenuItem.Text = "Funcionário";
             this.funcionárioToolStripMenuItem.Click += new System.EventHandler(this.funcionariosMenuItem_Click);
             // 
@@ -88,7 +90,7 @@
             this.labelTipoCadastro});
             this.toolbox.Location = new System.Drawing.Point(0, 29);
             this.toolbox.Name = "toolbox";
-            this.toolbox.Size = new System.Drawing.Size(1179, 36);
+            this.toolbox.Size = new System.Drawing.Size(1179, 25);
             this.toolbox.TabIndex = 2;
             this.toolbox.Text = "toolStrip1";
             // 
@@ -129,7 +131,7 @@
             // 
             this.labelTipoCadastro.ForeColor = System.Drawing.Color.MediumBlue;
             this.labelTipoCadastro.Name = "labelTipoCadastro";
-            this.labelTipoCadastro.Size = new System.Drawing.Size(96, 33);
+            this.labelTipoCadastro.Size = new System.Drawing.Size(96, 22);
             this.labelTipoCadastro.Text = "[tipoCadastro]";
             // 
             // statusStrip1
@@ -156,6 +158,13 @@
             this.panelRegistros.Name = "panelRegistros";
             this.panelRegistros.Size = new System.Drawing.Size(1153, 573);
             this.panelRegistros.TabIndex = 4;
+            // 
+            // sairToolStripMenuItem
+            // 
+            this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // TelaMenuPrincipalForm
             // 
@@ -198,5 +207,6 @@
         private System.Windows.Forms.ToolStripMenuItem funcionárioToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel labelRodape;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
+        private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
     }
 }

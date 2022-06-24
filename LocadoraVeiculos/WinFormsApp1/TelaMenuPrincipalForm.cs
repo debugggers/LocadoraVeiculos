@@ -1,5 +1,4 @@
 ﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
-using LocadoraVeiculos.BancoDados.ModuloFuncionario;
 using LocadoraVeiculosForm.Compartilhado;
 using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloFuncionario;
@@ -28,22 +27,17 @@ namespace LocadoraVeiculosForm
             while (telaLoginForm.DialogResult == DialogResult.Retry)
             {
                 if (telaLoginForm.DialogResult == DialogResult.OK)
-                {
-                    Instancia = this;
                     break;
-                }
                 else if (telaLoginForm.DialogResult == DialogResult.Cancel)
-                {
-                    throw new Exception();
-                }
+                    Close();                
 
                 telaLoginForm.ShowDialog();
             }
 
             if (telaLoginForm.DialogResult == DialogResult.Cancel)
             {
-                MessageBox.Show(this, "Aplicação será encerrada");
-                throw new Exception();
+                MessageBox.Show(this, "Aplicação será encerrada!");
+                Close();
             }
 
             Instancia = this;
@@ -152,6 +146,11 @@ namespace LocadoraVeiculosForm
 
             controladores.Add("Funcionário", new ControladorFuncionario());
             controladores.Add("Clientes", new ControladorCliente(repositorioClientes));
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

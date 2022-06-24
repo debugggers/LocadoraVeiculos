@@ -1,4 +1,6 @@
 ﻿using LocadoraVeiculos.BancoDados.ModuloFuncionario;
+using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using System;
 using System.Windows.Forms;
 
@@ -17,7 +19,10 @@ namespace LocadoraVeiculosForm
         private void btnEntrar_Click(object sender, EventArgs e)
         {
             if (txtLogin.Text == "admin" && txtSenha.Text == "admin")
+            {
+                GerenciadorUsuario.Set(new Funcionario { Nome = "admin", EhAdmin = true });
                 DialogResult = DialogResult.OK;
+            }
             else
             {
                 var usuario = _repositorioFuncionario.BuscarUsuarioPorLoginSenha(txtLogin.Text, txtSenha.Text);
@@ -28,7 +33,10 @@ namespace LocadoraVeiculosForm
                     DialogResult = DialogResult.Retry;
                 }
                 else
+                {
+                    GerenciadorUsuario.Set(usuario);
                     DialogResult = DialogResult.OK;
+                }
             }
         }
     }

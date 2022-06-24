@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
+﻿using LocadoraVeiculos.BancoDados.Compartilhado;
+using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
@@ -28,7 +29,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
                   DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)
                 ";
 
-            DB.ExecutarSql(sql);
+            Db.ExecutarSql(sql);
 
             empresa = new Empresa();
 
