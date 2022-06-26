@@ -1,4 +1,6 @@
 ﻿using FluentValidation;
+using System;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ModuloCliente
 {
@@ -9,17 +11,19 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
         {
             RuleFor(x => x.Nome)
                 .NotNull().WithMessage("O campo nome não pode ficar vazio")
-                .NotEmpty().WithMessage("O campo nome não pode ficar vazio");
+                .NotEmpty().WithMessage("O campo nome não pode ficar vazio")
+                .MinimumLength(3).WithMessage("O Nome precisa ter mais do que três caracteres");
 
             RuleFor(x => x.Telefone)
                 .NotNull().WithMessage("O campo telefone não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo telefone não pode ficar vazio")
-                .MinimumLength(9).WithMessage("O telefone precisa ter pelo menos 9 digitos");
+                .MinimumLength(9).WithMessage("O telefone precisa deve ter 9 digitos");
+            //.Matches(@"/^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/").WithMessage("Formato de telefone inválido");
 
             RuleFor(x => x.Email)
                 .NotNull().WithMessage("O campo email não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo email não pode ficar vazio")
-                .EmailAddress().WithMessage("Formato inválido");
+                .EmailAddress().WithMessage("Formato de email inválido");
 
             RuleFor(x => x.Endereco)
                 .NotNull().WithMessage("O campo endereço não pode ficar vazio")
@@ -41,8 +45,9 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
 
             RuleFor(x => x.CnhVencimento)
                 .NotEmpty().WithMessage("O campo de vencimento não pode ficar vazio")
-                .NotNull().WithMessage("O campo de vencimento não pode ficar vazio");
-        }
+                .NotNull().WithMessage("O campo de vencimento não pode ficar vazio")
+                .GreaterThan(DateTime.Now.Date).WithMessage("Impossivel cadastrar com documento vencido");
 
+        }
     }
 }

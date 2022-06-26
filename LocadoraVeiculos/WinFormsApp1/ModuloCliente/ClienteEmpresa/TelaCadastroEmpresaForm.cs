@@ -1,4 +1,6 @@
 ﻿using FluentValidation.Results;
+using LocadoraVeiculos.BancoDados.ModuloCliente;
+using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using System;
 using System.Collections.Generic;
@@ -16,10 +18,19 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
     {
 
         Empresa empresa;
+        List<Cliente> pessoasFisicas;
+        
 
-        public TelaCadastroEmpresaForm()
+        public TelaCadastroEmpresaForm(RepositorioClienteEmBancoDados repositorioCliente)
         {
             InitializeComponent();
+            pessoasFisicas = repositorioCliente.SelecionarTodos();
+            foreach (var item in pessoasFisicas)
+            {
+
+                comboBoxPessoasFisicas.Items.Add(item.Id);
+
+            }
         }
 
         public Func<Empresa, ValidationResult> GravarRegistro { get; set; }
@@ -38,7 +49,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
                 txtTelefoneEmpresa.Text = empresa.Telefone;
                 txtCnpjEmpresa.Text = empresa.CNPJ;
                 txtEnderecoEmpresa.Text = empresa.Endereco;
-                txtNumeroCondutor.Text = empresa.Condutor.Id.ToString();
+                comboBoxPessoasFisicas.SelectedItem = empresa.Condutor;
 
             }
         }
@@ -51,7 +62,13 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             empresa.Telefone = txtTelefoneEmpresa.Text;
             empresa.Endereco = txtEnderecoEmpresa.Text;
             empresa.CNPJ = txtCnpjEmpresa.Text;
-            empresa.Condutor.Id = Convert.ToInt32(txtNumeroCondutor.Text);
+            foreach (var item in pessoasFisicas)
+            {
+
+                if (item.Id.Equals(comboBoxPessoasFisicas.SelectedItem))
+                    empresa.Condutor = item;
+
+            }
 
             var resultadoValidacao = GravarRegistro(empresa);
 
@@ -59,8 +76,21 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             {
                 string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
                 DialogResult = DialogResult.None;
             }
         }
+
+        private void TelaCadastroEmpresasForm_Load(object sender, EventArgs e)
+        {
+            TelaMenuPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
+        private void TelaCadastroEmpresasForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TelaMenuPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
     }
 }

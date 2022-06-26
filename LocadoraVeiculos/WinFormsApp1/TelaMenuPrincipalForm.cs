@@ -63,7 +63,7 @@ namespace LocadoraVeiculosForm
 
         private void clientesMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            
         }
 
         private void funcionariosMenuItem_Click(object sender, EventArgs e)
@@ -148,13 +148,27 @@ namespace LocadoraVeiculosForm
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Funcionário", new ControladorFuncionario());
-            controladores.Add("Clientes", new ControladorCliente(repositorioClientes));
-            controladores.Add("Empresas", new ControladorEmpresa(repositorioEmpresa));
+            controladores.Add("Pessoa física", new ControladorCliente(repositorioClientes));
+            controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes));
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pessoaFísicaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+
+        }
+
+        private void pessoaJurídicaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+
         }
     }
 }

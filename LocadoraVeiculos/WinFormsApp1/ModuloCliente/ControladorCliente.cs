@@ -55,6 +55,8 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
             TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
 
+            tela.Cliente = clienteSelecionado;
+            
             tela.GravarRegistro = repositorio.Editar;
 
             DialogResult resultado = tela.ShowDialog();
