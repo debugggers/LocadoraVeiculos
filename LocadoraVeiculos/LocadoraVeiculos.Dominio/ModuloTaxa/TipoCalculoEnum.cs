@@ -2,6 +2,7 @@
 {
     public enum TipoCalculoEnum : int
     {
-        CalculoFixo, CalculoDiario
+        CalculoFixo = 0,
+        CalculoDiario = 1
     }
 }
