@@ -1,7 +1,5 @@
 ﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
