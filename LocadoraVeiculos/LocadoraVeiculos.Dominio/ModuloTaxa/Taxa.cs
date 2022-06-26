@@ -1,5 +1,4 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
-using LocadoraVeiculos.Dominio.ModuloFuncionario;
 
 namespace LocadoraVeiculos.Dominio.ModuloTaxa
 {
