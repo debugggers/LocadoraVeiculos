@@ -1,11 +1,9 @@
-﻿using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
+﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
+using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculosForm.Compartilhado;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
@@ -14,13 +12,15 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
     {
 
         private RepositorioEmpresaBancoDados repositorio;
-        private ListagemClientesControl listagem;
+        private RepositorioClienteEmBancoDados repositorioClientes;
+        private ListagemEmpresasControl listagem;
 
-        public ControladorEmpresa(RepositorioEmpresaBancoDados repositorio)
+        public ControladorEmpresa(RepositorioEmpresaBancoDados repositorio, RepositorioClienteEmBancoDados repositorioCliente)
         {
 
             this.repositorio = repositorio;
-            listagem = new ListagemClientesControl();
+            this.repositorioClientes = repositorioCliente;
+            listagem = new ListagemEmpresasControl();
 
         }
 
@@ -34,7 +34,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
         private Empresa ObtemEmpresaSelecionada()
         {
-            int id = listagem.SelecionarNumeroCliente();
+            int id = listagem.SelecionarNumeroEmpresa();
 
             Empresa empresaSelecionada = repositorio.SelecionarPorId(id);
 
@@ -48,7 +48,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
         public override void Inserir()
         {
-            TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm();
+            TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm(repositorioClientes);
             tela.Empresa = new Empresa();
 
             tela.GravarRegistro = repositorio.Inserir;
@@ -72,8 +72,10 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
                 return;
             }
 
-            TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm();
+            TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm(repositorioClientes);
 
+            tela.Empresa = empresaSelecionada;
+            
             tela.GravarRegistro = repositorio.Editar;
 
             DialogResult resultado = tela.ShowDialog();
@@ -108,7 +110,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
         public override UserControl ObtemListagem()
         {
             if (listagem == null)
-                listagem = new ListagemClientesControl();
+                listagem = new ListagemEmpresasControl();
 
             CarregarEmpresas();
 
@@ -117,7 +119,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolBoxEmpresa();
         }
     }
 }

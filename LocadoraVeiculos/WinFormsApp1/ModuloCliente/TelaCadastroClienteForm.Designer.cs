@@ -92,9 +92,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 119);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 15);
+            this.label3.Size = new System.Drawing.Size(144, 15);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Telefone:";
+            this.label3.Text = "Telefone((xx) xxxxx-xxxx):";
             // 
             // txtEndereco
             // 

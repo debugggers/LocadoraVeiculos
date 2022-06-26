@@ -2,12 +2,6 @@
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm.ModuloCliente
@@ -21,9 +15,6 @@ namespace LocadoraVeiculosForm.ModuloCliente
             grid.ConfigurarGridSomenteLeitura();
             grid.Columns.AddRange(ObterColunas());
 
-            gridPessoaJuridica.ConfigurarGridZebrado();
-            gridPessoaJuridica.ConfigurarGridSomenteLeitura();
-            gridPessoaJuridica.Columns.AddRange(ObterColunasPessoaJuridica());
         }
 
         public void AtualizarRegistros(List<Cliente> clientes)
@@ -35,19 +26,6 @@ namespace LocadoraVeiculosForm.ModuloCliente
             {
 
                 grid.Rows.Add(c.Id, c.Nome, c.Email, c.Telefone, c.Endereco, c.CPF, c.CnhNumero, c.CnhNome, c.CnhVencimento.ToShortDateString());
-
-            }
-
-        }
-        public void AtualizarRegistrosPessoaJuridica(List<Empresa> empresas)
-        {
-
-            gridPessoaJuridica.Rows.Clear();
-
-            foreach (Empresa e in empresas)
-            {
-
-                grid.Rows.Add(e.Id, e.Nome, e.Email, e.Telefone, e.Endereco, e.CNPJ, e.Condutor.Id);
 
             }
 
@@ -81,41 +59,10 @@ namespace LocadoraVeiculosForm.ModuloCliente
             return colunas;
         }
 
-        private DataGridViewColumn[] ObterColunasPessoaJuridica()
-        {
-            var colunas = new DataGridViewColumn[]
-            {
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "E-mail"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Endereco", HeaderText = "Endereço"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cnpj", HeaderText = "CNPJ"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cliente_Numero", HeaderText = "Número condutor"}
-
-            };
-
-            return colunas;
-        }
-
         public int SelecionarNumeroCliente()
         {
 
             return grid.SelecionarNumero<int>();
-
-        }
-
-        public int SelecionarNumeroEmpresa()
-        {
-
-            return gridPessoaJuridica.SelecionarNumero<int>();
 
         }
 

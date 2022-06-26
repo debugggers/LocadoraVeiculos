@@ -59,8 +59,21 @@ namespace LocadoraVeiculosForm.ModuloCliente
             {
                 string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
                 DialogResult = DialogResult.None;
             }
         }
+
+        private void TelaCadastroClientesForm_Load(object sender, EventArgs e)
+        {
+            TelaMenuPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
+        private void TelaCadastroClientesForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TelaMenuPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
     }
 }
