@@ -9,7 +9,7 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 {
     public class ConfiguracaoToolBoxGrupoVeiculos : ConfiguracaoToolboxBase
     {
-        public override string TipoCadastro => "Cadastro Grupo veiculos";
+        public override string TipoCadastro => "Cadastro Grupo de veiculos";
 
         public override string TooltipInserir { get { return "Inserir uma nova taxa"; } }
 

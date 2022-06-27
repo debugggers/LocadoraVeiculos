@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculosForm.Compartilhado;
 using System;
 using System.Collections.Generic;
 
@@ -32,7 +33,7 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
         public int SelecionarNumeroGrupoVeiculos()
         {
 
-            return gridGrupoVeiculos.SelecionarNumero<int>();
+            return gridGrupoVeiculos.SelecionarId<int>();
 
         }
         internal void AtualizarRegistros(List<GrupoVeiculos> grupoVeiculos)

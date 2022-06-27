@@ -15,7 +15,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
 
         public RepositorioGrupoVeiculosEmBancoDadosTest()
         {
-            _grupoVeiculos = new GrupoVeiculos("Uber");
+            _grupoVeiculos = new GrupoVeiculos();
+            _grupoVeiculos.Nome = "Uber";
             _repositorio = new RepositorioGrupoVeiculosEmBancoDados();
 
             _repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);

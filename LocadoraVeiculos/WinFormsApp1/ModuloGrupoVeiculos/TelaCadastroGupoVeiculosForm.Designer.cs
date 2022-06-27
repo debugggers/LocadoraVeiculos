@@ -32,6 +32,10 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.labelNOmeGrupoVEiculos = new System.Windows.Forms.Label();
             this.txtGrupoVeiculos = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.buttonCancelar = new System.Windows.Forms.Button();
+            this.btnInserir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGravar
@@ -62,27 +66,59 @@
             this.labelNOmeGrupoVEiculos.Size = new System.Drawing.Size(43, 15);
             this.labelNOmeGrupoVEiculos.TabIndex = 3;
             this.labelNOmeGrupoVEiculos.Text = "Nome:";
-            this.labelNOmeGrupoVEiculos.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtGrupoVeiculos
             // 
-            this.txtGrupoVeiculos.Location = new System.Drawing.Point(86, 47);
+            this.txtGrupoVeiculos.Location = new System.Drawing.Point(0, 0);
             this.txtGrupoVeiculos.Name = "txtGrupoVeiculos";
-            this.txtGrupoVeiculos.Size = new System.Drawing.Size(350, 23);
-            this.txtGrupoVeiculos.TabIndex = 4;
+            this.txtGrupoVeiculos.Size = new System.Drawing.Size(100, 23);
+            this.txtGrupoVeiculos.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nome:";
+            // 
+            // txtNome
+            // 
+            this.txtNome.Location = new System.Drawing.Point(12, 27);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(235, 23);
+            this.txtNome.TabIndex = 1;
+            // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancelar.Location = new System.Drawing.Point(43, 75);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(99, 46);
+            this.buttonCancelar.TabIndex = 2;
+            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnInserir
+            // 
+            this.btnInserir.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnInserir.Location = new System.Drawing.Point(148, 75);
+            this.btnInserir.Name = "btnInserir";
+            this.btnInserir.Size = new System.Drawing.Size(99, 46);
+            this.btnInserir.TabIndex = 3;
+            this.btnInserir.Text = "Inserir";
+            this.btnInserir.UseVisualStyleBackColor = true;
+            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // TelaCadastroGupoVeiculosForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 189);
-            this.Controls.Add(this.txtGrupoVeiculos);
-            this.Controls.Add(this.labelNOmeGrupoVEiculos);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnGravar);
+            this.ClientSize = new System.Drawing.Size(277, 138);
+            this.Controls.Add(this.btnInserir);
+            this.Controls.Add(this.buttonCancelar);
+            this.Controls.Add(this.txtNome);
+            this.Controls.Add(this.label1);
             this.Name = "TelaCadastroGupoVeiculosForm";
-            this.Text = "Cadastro Gupo de Veiculos";
-            this.Load += new System.EventHandler(this.TelaCadastroGupoVeiculosForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,5 +130,9 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label labelNOmeGrupoVEiculos;
         private System.Windows.Forms.TextBox txtGrupoVeiculos;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.Button buttonCancelar;
+        private System.Windows.Forms.Button btnInserir;
     }
 }

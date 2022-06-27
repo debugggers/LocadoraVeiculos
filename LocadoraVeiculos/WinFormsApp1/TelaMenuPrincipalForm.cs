@@ -6,6 +6,7 @@ using LocadoraVeiculosForm.Compartilhado;
 using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculosForm.ModuloFuncionario;
+using LocadoraVeiculosForm.ModuloGrupoVeiculos;
 using LocadoraVeiculosForm.ModuloTaxa;
 using System;
 using System.Collections.Generic;
@@ -156,7 +157,7 @@ namespace LocadoraVeiculosForm
             controladores.Add("Pessoa física", new ControladorCliente(repositorioClientes));
             controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes));
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
-            controladores.Add("Grupo de Veiculos", new ControladorGrupoVeiculos(repositorioGrupoveiculos));
+            controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos));
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -187,6 +188,8 @@ namespace LocadoraVeiculosForm
 
         private void grupoDeVeiculosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
 
         }
     }

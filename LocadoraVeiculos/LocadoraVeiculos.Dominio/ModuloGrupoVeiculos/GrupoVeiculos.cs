@@ -10,11 +10,6 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 
         }
 
-        public GrupoVeiculos(string nome)
-        {
-            Nome = nome;
-        }
-
         public string Nome { get; set; }
 
         public override bool Equals(object obj)
@@ -29,9 +24,5 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 
         }
 
-        public static implicit operator Func<object, object>(GrupoVeiculos v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
