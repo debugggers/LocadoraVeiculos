@@ -17,8 +17,8 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
             RuleFor(x => x.Telefone)
                 .NotNull().WithMessage("O campo telefone não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo telefone não pode ficar vazio")
-                .MinimumLength(9).WithMessage("O telefone precisa deve ter 9 digitos");
-            //.Matches(@"/^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/").WithMessage("Formato de telefone inválido");
+                .MinimumLength(9).WithMessage("O telefone precisa deve ter 9 digitos")
+                .Matches(@"^(?:\+55)?\s?\(?0?[1-9][1-9]\)?\s?(?:9)?\s?\d{4}\-?\d{4}$").WithMessage("Formato de telefone inválido");
 
             RuleFor(x => x.Email)
                 .NotNull().WithMessage("O campo email não pode ficar vazio")

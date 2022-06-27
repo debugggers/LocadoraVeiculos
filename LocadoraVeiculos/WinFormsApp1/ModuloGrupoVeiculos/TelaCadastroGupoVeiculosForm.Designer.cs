@@ -118,7 +118,10 @@
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TelaCadastroGupoVeiculosForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 

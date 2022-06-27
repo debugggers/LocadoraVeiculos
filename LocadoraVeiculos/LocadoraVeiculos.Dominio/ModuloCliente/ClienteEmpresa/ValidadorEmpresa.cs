@@ -22,8 +22,8 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
             RuleFor(x => x.Telefone)
                 .NotNull().WithMessage("O campo telefone não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo telefone não pode ficar vazio")
-                .MinimumLength(9).WithMessage("O telefone precisa ter pelo menos 9 digitos");
-                //.Matches(@"\+\d+[ ]?\(?\d+\)?[ ]?\d+[-. ]?\d+").WithMessage("Formato de telefone inválido");
+                .MinimumLength(9).WithMessage("O telefone precisa ter pelo menos 9 digitos")
+                .Matches(@"^(?:\+55)?\s?\(?0?[1-9][1-9]\)?\s?(?:9)?\s?\d{4}\-?\d{4}$").WithMessage("Formato de telefone inválido");
 
             RuleFor(x => x.Email)
                 .NotNull().WithMessage("O campo email não pode ficar vazio")
@@ -36,8 +36,8 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
 
             RuleFor(x => x.CNPJ)
                 .NotNull().WithMessage("O campo CNPJ não pode ficar vazio")
-                .NotEmpty().WithMessage("O campo CNPJ não pode ficar vazio");
-                //Matches(@"^\d{2}\.\d{3}\.\d{3}\/d{4}\-\d{2}$").WithMessage("Formato de cnpj inválido");
+                .NotEmpty().WithMessage("O campo CNPJ não pode ficar vazio")
+                .Matches(@"([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})").WithMessage("Formato de cnpj inválido");
         }
     }
 }
