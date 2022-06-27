@@ -54,7 +54,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
         #endregion
 
 
-        public object GrupoVeiculosJaExiste(string nome)
+        public bool GrupoVeiculosJaExiste(string nome)
         {
             SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
