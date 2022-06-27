@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -35,9 +36,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
             cliente.CPF = "123.123.123-12";
             cliente.CnhNumero = 123;
             cliente.CnhNome = "Paulo";
-            cliente.CnhVencimento = DateTime.Now.Date.AddMonths(12);
+            cliente.CnhVencimento = DateTime.Now.Date.AddMonths(6);
 
             repositorio = new RepositorioClienteEmBancoDados();
+
+            repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
+
+            Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
 
         }
 

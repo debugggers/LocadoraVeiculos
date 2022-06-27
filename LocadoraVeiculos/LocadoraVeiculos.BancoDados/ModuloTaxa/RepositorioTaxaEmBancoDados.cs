@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloTaxa
                 WHERE
                     DESCRICAO = @DESCRICAO AND ID != @ID";
 
-        public object TaxaJaExiste(string descricao, int id)
+        public bool TaxaJaExiste(string descricao, int id)
         {
             SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
