@@ -45,7 +45,19 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
             _funcionario.Nome = txtNome.Text;
             _funcionario.Login = txtLogin.Text;
             _funcionario.Senha = txtSenha.Text;
-            _funcionario.Salario = Convert.ToDecimal(txtSalario.Text);
+
+            decimal salario;
+
+            if (decimal.TryParse(txtSalario.Text, out salario))
+            {
+                _funcionario.Salario = salario;
+            } else
+            {
+                labelRodapeFuncionario.Text = "Campo salário está inválido.";
+                DialogResult = DialogResult.None;
+                return;
+            }
+            
             _funcionario.DataAdmissao = Convert.ToDateTime(dtDataAdmissao.Text);
             _funcionario.EhAdmin = checkBoxAdmin.Checked;
 

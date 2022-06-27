@@ -16,7 +16,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 
             RuleFor(x => x.Senha).NotNull().NotEmpty();
 
-            RuleFor(x => x.Salario).NotNull();
+            RuleFor(x => x.Salario).NotEmpty();
 
             RuleFor(x => x.DataAdmissao).NotNull();
 

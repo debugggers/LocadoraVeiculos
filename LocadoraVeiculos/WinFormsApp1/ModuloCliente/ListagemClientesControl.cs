@@ -1,5 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloCliente;
-using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculosForm.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -14,19 +14,15 @@ namespace LocadoraVeiculosForm.ModuloCliente
             grid.ConfigurarGridZebrado();
             grid.ConfigurarGridSomenteLeitura();
             grid.Columns.AddRange(ObterColunas());
-
         }
 
         public void AtualizarRegistros(List<Cliente> clientes)
         {
-
             grid.Rows.Clear();
 
             foreach (Cliente c in clientes)
             {
-
                 grid.Rows.Add(c.Id, c.Nome, c.Email, c.Telefone, c.Endereco, c.CPF, c.CnhNumero, c.CnhNome, c.CnhVencimento.ToShortDateString());
-
             }
 
         }
@@ -35,7 +31,6 @@ namespace LocadoraVeiculosForm.ModuloCliente
         {
             var colunas = new DataGridViewColumn[]
             {
-
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
@@ -53,7 +48,6 @@ namespace LocadoraVeiculosForm.ModuloCliente
                 new DataGridViewTextBoxColumn { DataPropertyName = "CnhNome", HeaderText = "Nome CNH"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "CnhVencimento", HeaderText = "Data de vencimento CNH"}
-
             };
 
             return colunas;
@@ -61,9 +55,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
         public int SelecionarNumeroCliente()
         {
-
-            return grid.SelecionarNumero<int>();
-
+            return grid.SelecionarId<int>();
         }
 
         private void tabPage1_Click(object sender, EventArgs e)

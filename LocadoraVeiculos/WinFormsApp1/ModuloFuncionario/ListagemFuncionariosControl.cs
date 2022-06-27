@@ -29,6 +29,8 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "DataAdmissao", HeaderText = "Data de Admissão"},
 
+                new DataGridViewTextBoxColumn { DataPropertyName = "Salario", HeaderText = "Salário" },
+
                 new DataGridViewTextBoxColumn { DataPropertyName = "EhAdmin", HeaderText = "É admin"}
             };
 
@@ -46,7 +48,7 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
 
             foreach (var funcionario in funcionarios)
             {
-                gridFuncionarios.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.DataAdmissao.ToShortDateString(), funcionario.EhAdmin.ToString());
+                gridFuncionarios.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.DataAdmissao.ToShortDateString(), funcionario.Salario.ToString(), funcionario.EhAdmin.ToString());
             }
         }
     }
