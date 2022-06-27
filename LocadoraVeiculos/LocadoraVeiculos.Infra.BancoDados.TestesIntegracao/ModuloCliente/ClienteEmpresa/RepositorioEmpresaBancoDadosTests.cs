@@ -48,7 +48,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
                 CPF = "123.123.123-12",
                 CnhNumero = 123,
                 CnhNome = "Paulo",
-                CnhVencimento = DateTime.Now.Date,
+                CnhVencimento = DateTime.Now.Date.AddMonths(6),
 
             };
 

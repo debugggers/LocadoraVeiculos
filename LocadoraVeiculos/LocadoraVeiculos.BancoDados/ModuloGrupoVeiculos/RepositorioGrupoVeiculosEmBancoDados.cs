@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
 
         #region SQL Queries
         protected override string sqlInserir =>
-            @"INSERT INTO [TBCATEGORIAVEICULO]
+            @"INSERT INTO [TBGRUPOVEICULO]
            (
 		   [Nome]
 		   )
@@ -19,13 +19,13 @@ namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
 		   );SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar =>
-        @"UPDATE [TBCATEGORIAVEICULO]
+        @"UPDATE [TBGRUPOVEICULO]
             SET 
                 [NOME] = @NOME
             WHERE [ID] = @ID";
 
         protected override string sqlExcluir =>
-        @"DELETE FROM [TBCATEGORIAVEICULO]
+        @"DELETE FROM [TBGRUPOVEICULO]
             WHERE [ID] = @ID";
 
         protected override string sqlSelecionarPorId =>
@@ -33,7 +33,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
             [ID],       
             [NOME] 
         FROM
-            [TBCATEGORIAVEICULO]
+            [TBGRUPOVEICULO]
         WHERE 
             [ID] = @ID";
 
@@ -42,12 +42,12 @@ namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
             [ID],       
             [NOME]  
         FROM
-            [TBCATEGORIAVEICULO]";
+            [TBGRUPOVEICULO]";
 
         private const string sqlSelecionarPorNome =
             @"SELECT ID 
                 FROM 
-                    TBGRUPOVEICULOS
+                    TBGRUPOVEICULO
                 WHERE
                     NOME = @NOME";
 

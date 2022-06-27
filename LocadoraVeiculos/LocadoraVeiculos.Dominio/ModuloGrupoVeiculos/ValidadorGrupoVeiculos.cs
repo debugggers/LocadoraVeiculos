@@ -8,7 +8,7 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
         {
             RuleFor(x => x.Nome).NotNull()
                 .NotEmpty()
-                .MinimumLength(2)
+                .MinimumLength(3)
                 .Matches(@"^[a-zA-Z\s]+$")
                 .WithMessage("Não são permitidos caracteres especiais.");
         }
