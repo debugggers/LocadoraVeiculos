@@ -1,7 +1,7 @@
 USE [locadoraVeiculosDb]
 GO
 
-/****** Object:  Table [dbo].[TBTaxa]    Script Date: 26/06/2022 16:23:17 ******/
+/****** Object:  Table [dbo].[TBTaxa]    Script Date: 27/06/2022 10:41:32 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,7 +11,7 @@ GO
 CREATE TABLE [dbo].[TBTaxa](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Descricao] [varchar](100) NOT NULL,
-	[Valor] [decimal](2, 0) NOT NULL,
+	[Valor] [decimal](5, 0) NOT NULL,
 	[TipoCalculo] [int] NOT NULL,
  CONSTRAINT [PK_TBTaxa] PRIMARY KEY CLUSTERED 
 (

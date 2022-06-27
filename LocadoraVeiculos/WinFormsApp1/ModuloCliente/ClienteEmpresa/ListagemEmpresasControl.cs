@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculosForm.Compartilhado;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -29,6 +30,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             }
 
         }
+
         private DataGridViewColumn[] ObterColunasPessoaJuridica()
         {
             var colunas = new DataGridViewColumn[]
@@ -56,7 +58,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
         public int SelecionarNumeroEmpresa()
         {
 
-            return gridPessoaJuridica.SelecionarNumero<int>();
+            return gridPessoaJuridica.SelecionarId<int>();
 
         }
     }
