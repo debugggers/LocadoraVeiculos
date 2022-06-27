@@ -81,5 +81,21 @@ namespace LocadoraVeiculos.BancoDados.ModuloTaxa
 
 
         #endregion
+
+        public bool VerificarSeExiste(Taxa taxa)
+        {
+
+            var taxas = SelecionarTodos();
+
+            foreach (Taxa item in taxas)
+            {
+
+                if (item.Descricao == taxa.Descricao || item.Valor == taxa.Valor || item.TipoCalculo == taxa.TipoCalculo)
+                    return false;
+
+            }
+
+            return true;
+        }
     }
 }

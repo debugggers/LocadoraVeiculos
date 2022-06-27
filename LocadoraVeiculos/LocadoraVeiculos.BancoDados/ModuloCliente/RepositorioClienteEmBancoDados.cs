@@ -83,5 +83,21 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
                     [CNH_VENCIMENTO]
 	            FROM 
 		            [TBCLIENTE]";
+
+        public bool VerificarSeExiste(Cliente cliente)
+        {
+
+            var clientes = SelecionarTodos();
+
+            foreach (Cliente item in clientes)
+            {
+
+                if (item.Nome == cliente.Nome || item.CPF == cliente.CPF || item.CnhNumero == cliente.CnhNumero || cliente.Email == item.Email)
+                    return false;
+
+            }
+
+            return true;
+        }
     }
 }

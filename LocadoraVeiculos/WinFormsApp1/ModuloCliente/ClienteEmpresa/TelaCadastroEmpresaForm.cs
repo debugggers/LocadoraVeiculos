@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
+using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using System;
@@ -18,12 +19,14 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
     {
 
         Empresa empresa;
+        RepositorioEmpresaBancoDados repositorio;
         List<Cliente> pessoasFisicas;
         
 
         public TelaCadastroEmpresaForm(RepositorioClienteEmBancoDados repositorioCliente)
         {
             InitializeComponent();
+            repositorio = new RepositorioEmpresaBancoDados();
             pessoasFisicas = repositorioCliente.SelecionarTodos();
             foreach (var item in pessoasFisicas)
             {
@@ -67,6 +70,15 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
                 if (item.Id.Equals(comboBoxPessoasFisicas.SelectedItem))
                     empresa.Condutor = item;
+
+            }
+
+            if (!repositorio.VerificarSeExiste(empresa))
+            {
+
+                MessageBox.Show("Empresa ou dados já inseridos",
+               "Cadastro de Empresa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
 
             }
 
