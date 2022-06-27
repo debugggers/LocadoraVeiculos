@@ -1,9 +1,11 @@
 ﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculos.BancoDados.ModuloTaxa;
 using LocadoraVeiculosForm.Compartilhado;
 using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculosForm.ModuloFuncionario;
+using LocadoraVeiculosForm.ModuloTaxa;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -144,12 +146,14 @@ namespace LocadoraVeiculosForm
         {
             var repositorioClientes = new RepositorioClienteEmBancoDados();
             var repositorioEmpresa = new RepositorioEmpresaBancoDados();
+            var repositorioTaxa = new RepositorioTaxaEmBancoDados();
 
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Funcionário", new ControladorFuncionario());
             controladores.Add("Pessoa física", new ControladorCliente(repositorioClientes));
             controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes));
+            controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -165,6 +169,13 @@ namespace LocadoraVeiculosForm
         }
 
         private void pessoaJurídicaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+
+        }
+
+        private void taxasToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);

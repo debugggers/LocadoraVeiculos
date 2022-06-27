@@ -43,6 +43,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
+            this.taxasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -63,6 +64,7 @@
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientesMenuItem,
             this.funcionárioToolStripMenuItem,
+            this.taxasToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
@@ -81,14 +83,14 @@
             // pessoaFísicaToolStripMenuItem
             // 
             this.pessoaFísicaToolStripMenuItem.Name = "pessoaFísicaToolStripMenuItem";
-            this.pessoaFísicaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pessoaFísicaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pessoaFísicaToolStripMenuItem.Text = "Pessoa física";
             this.pessoaFísicaToolStripMenuItem.Click += new System.EventHandler(this.pessoaFísicaToolStripMenuItem_Click);
             // 
             // pessoaJurídicaToolStripMenuItem
             // 
             this.pessoaJurídicaToolStripMenuItem.Name = "pessoaJurídicaToolStripMenuItem";
-            this.pessoaJurídicaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pessoaJurídicaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pessoaJurídicaToolStripMenuItem.Text = "Pessoa jurídica";
             this.pessoaJurídicaToolStripMenuItem.Click += new System.EventHandler(this.pessoaJurídicaToolStripMenuItem_Click);
             // 
@@ -182,6 +184,13 @@
             this.panelRegistros.Size = new System.Drawing.Size(1009, 452);
             this.panelRegistros.TabIndex = 4;
             // 
+            // taxasToolStripMenuItem
+            // 
+            this.taxasToolStripMenuItem.Name = "taxasToolStripMenuItem";
+            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.taxasToolStripMenuItem.Text = "Taxas";
+            this.taxasToolStripMenuItem.Click += new System.EventHandler(this.taxasToolStripMenuItem_Click);
+            // 
             // TelaMenuPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -225,5 +234,6 @@
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pessoaFísicaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pessoaJurídicaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem taxasToolStripMenuItem;
     }
 }
