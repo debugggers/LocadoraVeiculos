@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
             cliente.CPF = "123.123.123-12";
             cliente.CnhNumero = 123;
             cliente.CnhNome = "Paulo";
-            cliente.CnhVencimento = DateTime.Now.Date;
+            cliente.CnhVencimento = DateTime.Now.Date.AddMonths(12);
 
             repositorio = new RepositorioClienteEmBancoDados();
 
@@ -67,7 +67,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
             cliente.CPF = "321.123.123-12";
             cliente.CnhNumero = 321;
             cliente.CnhNome = "Pedro";
-            cliente.CnhVencimento = DateTime.Now.Date;
+            cliente.CnhVencimento = DateTime.Now.Date.AddMonths(6);
             repositorio.Editar(cliente);
 
             var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
