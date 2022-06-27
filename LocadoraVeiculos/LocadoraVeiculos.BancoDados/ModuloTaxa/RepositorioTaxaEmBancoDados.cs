@@ -90,7 +90,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloTaxa
             foreach (Taxa item in taxas)
             {
 
-                if (item.Descricao == taxa.Descricao || item.Valor == taxa.Valor || item.TipoCalculo == taxa.TipoCalculo)
+                if (item.Descricao == taxa.Descricao)
                     return false;
 
             }
