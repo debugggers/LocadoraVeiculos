@@ -11,7 +11,7 @@ GO
 CREATE TABLE [dbo].[TBTaxa](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Descricao] [varchar](100) NOT NULL,
-	[Valor] [decimal](5, 0) NOT NULL,
+	[Valor] [decimal](5, 2) NOT NULL,
 	[TipoCalculo] [int] NOT NULL,
  CONSTRAINT [PK_TBTaxa] PRIMARY KEY CLUSTERED 
 (

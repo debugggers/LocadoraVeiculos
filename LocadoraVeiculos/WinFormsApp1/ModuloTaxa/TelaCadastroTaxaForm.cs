@@ -31,7 +31,19 @@ namespace LocadoraVeiculosForm.ModuloTaxa
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             taxa.Descricao = txtDescricao.Text;
-            taxa.Valor = Convert.ToDecimal(txtValor.Text);
+
+            decimal valor;
+
+            if (decimal.TryParse(txtValor.Text, out valor))
+            {
+                taxa.Valor = valor;
+            }
+            else
+            {
+                labelRodapeTaxa.Text = "Campo valor está inválido.";
+                DialogResult = DialogResult.None;
+                return;
+            }
             taxa.TipoCalculo = (TipoCalculoEnum)comboBoxTipoCalculo.SelectedIndex;
 
             var resultadoValidacao = GravarRegistro(taxa);
@@ -40,7 +52,7 @@ namespace LocadoraVeiculosForm.ModuloTaxa
             {
                 string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+                labelRodapeTaxa.Text = erro;
 
                 DialogResult = DialogResult.None;
             }

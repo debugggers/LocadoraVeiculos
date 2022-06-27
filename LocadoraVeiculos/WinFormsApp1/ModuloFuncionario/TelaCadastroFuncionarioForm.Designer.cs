@@ -39,7 +39,6 @@
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.checkBoxAdmin = new System.Windows.Forms.CheckBox();
             this.dtDataAdmissao = new System.Windows.Forms.DateTimePicker();
-            this.txtSalario = new System.Windows.Forms.MaskedTextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodapeFuncionario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtSalario = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -143,14 +143,6 @@
             this.dtDataAdmissao.Size = new System.Drawing.Size(115, 26);
             this.dtDataAdmissao.TabIndex = 9;
             // 
-            // txtSalario
-            // 
-            this.txtSalario.Location = new System.Drawing.Point(185, 254);
-            this.txtSalario.Mask = "00000,00";
-            this.txtSalario.Name = "txtSalario";
-            this.txtSalario.Size = new System.Drawing.Size(100, 26);
-            this.txtSalario.TabIndex = 10;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -213,6 +205,13 @@
             this.labelRodapeFuncionario.Size = new System.Drawing.Size(60, 19);
             this.labelRodapeFuncionario.Text = "[rodapé]";
             // 
+            // txtSalario
+            // 
+            this.txtSalario.Location = new System.Drawing.Point(185, 255);
+            this.txtSalario.Name = "txtSalario";
+            this.txtSalario.Size = new System.Drawing.Size(100, 26);
+            this.txtSalario.TabIndex = 19;
+            // 
             // TelaCadastroFuncionarioForm
             // 
             this.AcceptButton = this.btnGravar;
@@ -220,13 +219,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(586, 472);
+            this.Controls.Add(this.txtSalario);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.txtSalario);
             this.Controls.Add(this.dtDataAdmissao);
             this.Controls.Add(this.checkBoxAdmin);
             this.Controls.Add(this.txtSenha);
@@ -266,7 +265,6 @@
         private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.CheckBox checkBoxAdmin;
         private System.Windows.Forms.DateTimePicker dtDataAdmissao;
-        private System.Windows.Forms.MaskedTextBox txtSalario;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Label label7;
@@ -274,5 +272,6 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel labelRodapeFuncionario;
+        private System.Windows.Forms.TextBox txtSalario;
     }
 }
