@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using LocadoraVeiculos.BancoDados.ModuloTaxa;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using System;
 using System.Windows.Forms;
@@ -9,9 +10,11 @@ namespace LocadoraVeiculosForm.ModuloTaxa
     {
 
         Taxa taxa;
+        RepositorioTaxaEmBancoDados repositorio;
         public TelaCadastroTaxaForm()
         {
             InitializeComponent();
+            repositorio = new RepositorioTaxaEmBancoDados();
         }
 
         public Func<Taxa, ValidationResult> GravarRegistro { get; set; }
@@ -45,6 +48,15 @@ namespace LocadoraVeiculosForm.ModuloTaxa
                 return;
             }
             taxa.TipoCalculo = (TipoCalculoEnum)comboBoxTipoCalculo.SelectedIndex;
+
+            if (!repositorio.VerificarSeExiste(taxa))
+            {
+
+                MessageBox.Show("Taxa ou dados já inseridos",
+               "Taxa de clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+
+            }
 
             var resultadoValidacao = GravarRegistro(taxa);
 

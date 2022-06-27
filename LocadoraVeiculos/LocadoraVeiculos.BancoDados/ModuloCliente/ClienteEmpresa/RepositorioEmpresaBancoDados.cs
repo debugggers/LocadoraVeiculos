@@ -95,5 +95,21 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
 	                TBEMPRESA EMPRESA INNER JOIN TBCLIENTE CLIENTE
                 ON 
 	                EMPRESA.CLIENTE_ID = CLIENTE.ID";
+
+        public bool VerificarSeExiste(Empresa empresa)
+        {
+
+            var empresas = SelecionarTodos();
+
+            foreach (Empresa item in empresas)
+            {
+
+                if (item.Nome == empresa.Nome || item.CNPJ == empresa.CNPJ || item.Email == empresa.Email)
+                    return false;
+
+            }
+
+            return true;
+        }
     }
 }

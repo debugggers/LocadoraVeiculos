@@ -4,6 +4,7 @@ using FluentValidation.Results;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
 using ValidationResult = FluentValidation.Results.ValidationResult;
+using LocadoraVeiculos.BancoDados.ModuloCliente;
 
 namespace LocadoraVeiculosForm.ModuloCliente
 {
@@ -11,10 +12,11 @@ namespace LocadoraVeiculosForm.ModuloCliente
     {
 
         Cliente cliente;
-
+        RepositorioClienteEmBancoDados repositorio;
         public TelaCadastroClienteForm()
         {
             InitializeComponent();
+            repositorio = new RepositorioClienteEmBancoDados();
         }
 
         public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
@@ -52,6 +54,15 @@ namespace LocadoraVeiculosForm.ModuloCliente
             cliente.CnhNumero = Convert.ToInt32(txtNumeroCnh.Text);
             cliente.CnhNome = txtNomeCnh.Text;
             cliente.CnhVencimento = monthCalendarVencimento.SelectionStart;
+
+            if (!repositorio.VerificarSeExiste(cliente))
+            {
+
+                MessageBox.Show("Cliente ou dados já inseridos",
+               "Cadastro de clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+
+            }
 
             var resultadoValidacao = GravarRegistro(cliente);
 
