@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Infra.Banc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculosForm", "WinFormsApp1\LocadoraVeiculosForm.csproj", "{AD1438CE-CF7D-413C-AE3A-EA8A24BBAF81}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LocadoraVeiculos.DataBase.SqlServer", "LocadoraVeiculos.DataBase.SqlServer\LocadoraVeiculos.DataBase.SqlServer.sqlproj", "{5B67449E-63A3-4B35-BDEB-59257C4972AC}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LocadoraVeiculosTeste.DataBase.SqlServer", "LocadoraVeiculosTeste.DataBase.SqlServer\LocadoraVeiculosTeste.DataBase.SqlServer.sqlproj", "{CB1C2751-F2B0-4D2F-B700-90C896733405}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,18 @@ Global
 		{AD1438CE-CF7D-413C-AE3A-EA8A24BBAF81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD1438CE-CF7D-413C-AE3A-EA8A24BBAF81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD1438CE-CF7D-413C-AE3A-EA8A24BBAF81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B67449E-63A3-4B35-BDEB-59257C4972AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B67449E-63A3-4B35-BDEB-59257C4972AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B67449E-63A3-4B35-BDEB-59257C4972AC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5B67449E-63A3-4B35-BDEB-59257C4972AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B67449E-63A3-4B35-BDEB-59257C4972AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B67449E-63A3-4B35-BDEB-59257C4972AC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CB1C2751-F2B0-4D2F-B700-90C896733405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB1C2751-F2B0-4D2F-B700-90C896733405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB1C2751-F2B0-4D2F-B700-90C896733405}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CB1C2751-F2B0-4D2F-B700-90C896733405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB1C2751-F2B0-4D2F-B700-90C896733405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB1C2751-F2B0-4D2F-B700-90C896733405}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +66,8 @@ Global
 		{107C183F-E754-4D2F-8E39-CC4E0124EAA8} = {72DEBEA7-2F47-41D7-BC9E-61D9FC9B8DBC}
 		{7C27ECE8-A215-4DB5-80CF-94680BA93F19} = {521912D6-9F53-4826-9051-91036A33F43A}
 		{AD1438CE-CF7D-413C-AE3A-EA8A24BBAF81} = {C612071A-3BCA-4B0E-8662-3C86CCA7AD29}
+		{5B67449E-63A3-4B35-BDEB-59257C4972AC} = {72DEBEA7-2F47-41D7-BC9E-61D9FC9B8DBC}
+		{CB1C2751-F2B0-4D2F-B700-90C896733405} = {72DEBEA7-2F47-41D7-BC9E-61D9FC9B8DBC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED9A4A41-EB3C-44C6-B76B-61A5AAEBE41F}
