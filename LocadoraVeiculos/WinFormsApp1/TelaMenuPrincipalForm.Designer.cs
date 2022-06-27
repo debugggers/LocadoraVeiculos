@@ -34,6 +34,7 @@
             this.pessoaFísicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pessoaJurídicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.funcionárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.taxasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox = new System.Windows.Forms.ToolStrip();
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
@@ -43,7 +44,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
-            this.taxasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grupoDeVeiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -65,6 +66,7 @@
             this.clientesMenuItem,
             this.funcionárioToolStripMenuItem,
             this.taxasToolStripMenuItem,
+            this.grupoDeVeiculosToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
@@ -100,6 +102,13 @@
             this.funcionárioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.funcionárioToolStripMenuItem.Text = "Funcionário";
             this.funcionárioToolStripMenuItem.Click += new System.EventHandler(this.funcionariosMenuItem_Click);
+            // 
+            // taxasToolStripMenuItem
+            // 
+            this.taxasToolStripMenuItem.Name = "taxasToolStripMenuItem";
+            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.taxasToolStripMenuItem.Text = "Taxas";
+            this.taxasToolStripMenuItem.Click += new System.EventHandler(this.taxasToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
@@ -184,12 +193,12 @@
             this.panelRegistros.Size = new System.Drawing.Size(1009, 452);
             this.panelRegistros.TabIndex = 4;
             // 
-            // taxasToolStripMenuItem
+            // grupoDeVeiculosToolStripMenuItem
             // 
-            this.taxasToolStripMenuItem.Name = "taxasToolStripMenuItem";
-            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.taxasToolStripMenuItem.Text = "Taxas";
-            this.taxasToolStripMenuItem.Click += new System.EventHandler(this.taxasToolStripMenuItem_Click);
+            this.grupoDeVeiculosToolStripMenuItem.Name = "grupoDeVeiculosToolStripMenuItem";
+            this.grupoDeVeiculosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grupoDeVeiculosToolStripMenuItem.Text = "Grupo de veiculos";
+            this.grupoDeVeiculosToolStripMenuItem.Click += new System.EventHandler(this.grupoDeVeiculosToolStripMenuItem_Click);
             // 
             // TelaMenuPrincipalForm
             // 
@@ -235,5 +244,6 @@
         private System.Windows.Forms.ToolStripMenuItem pessoaFísicaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pessoaJurídicaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem taxasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem grupoDeVeiculosToolStripMenuItem;
     }
 }
