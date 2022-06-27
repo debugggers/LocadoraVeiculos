@@ -122,9 +122,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 300);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 15);
+            this.label5.Size = new System.Drawing.Size(209, 15);
             this.label5.TabIndex = 8;
-            this.label5.Text = "CNPJ da empresa:";
+            this.label5.Text = "CNPJ da empresa(00.000.000/0000-00):";
             // 
             // label6
             // 
