@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,11 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
     public partial class TelaCadastroGupoVeiculosForm : Form
     {
         GrupoVeiculos grupoVeiculos;
+        RepositorioGrupoVeiculosEmBancoDados repositorio;
         public TelaCadastroGupoVeiculosForm()
         {
             InitializeComponent();
+            repositorio = new RepositorioGrupoVeiculosEmBancoDados();
         }
 
         public Func<GrupoVeiculos, ValidationResult> GravarRegistro { get; set; }
@@ -43,17 +46,27 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 
             grupoVeiculos.Nome = txtNome.Text;
 
-            var resultadoValidacao = GravarRegistro(grupoVeiculos);
-
-            if (resultadoValidacao.IsValid == false)
+            if (repositorio.GrupoVeiculosJaExiste(grupoVeiculos.Nome))
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
-
+                MessageBox.Show("Grupo de veiculos já existente, não é possível adicionar.",
+                    "Cadastro de grupo de veiculos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
                 DialogResult = DialogResult.None;
             }
+            else
+            {
+                var resultadoValidacao = GravarRegistro(grupoVeiculos);
 
+                if (resultadoValidacao.IsValid == false)
+                {
+                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
+            }
         }
 
         private void TelaCadastroGrupoVeiculosForm_Load(object sender, EventArgs e)

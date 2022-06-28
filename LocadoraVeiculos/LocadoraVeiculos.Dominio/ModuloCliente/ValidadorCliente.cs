@@ -12,7 +12,8 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
             RuleFor(x => x.Nome)
                 .NotNull().WithMessage("O campo nome não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo nome não pode ficar vazio")
-                .MinimumLength(3).WithMessage("O Nome precisa ter mais do que três caracteres");
+                .MinimumLength(3).WithMessage("O Nome precisa ter mais do que três caracteres")
+                .Matches(@"^[a-zA-Z\s]+$").WithMessage("Não são permitidos caracteres especiais no nome"); ;
 
             RuleFor(x => x.Telefone)
                 .NotNull().WithMessage("O campo telefone não pode ficar vazio")

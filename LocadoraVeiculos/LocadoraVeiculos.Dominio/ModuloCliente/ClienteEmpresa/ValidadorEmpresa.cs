@@ -17,7 +17,8 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
             RuleFor(x => x.Nome)
                 .NotNull().WithMessage("O campo nome não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo nome não pode ficar vazio")
-                .MinimumLength(3).WithMessage("O Nome precia ter ao menos três caracteres");
+                .MinimumLength(3).WithMessage("O Nome precia ter ao menos três caracteres")
+                .Matches(@"^[a-zA-Z\s]+$").WithMessage("Não são permitidos caracteres especiais no nome");
 
             RuleFor(x => x.Telefone)
                 .NotNull().WithMessage("O campo telefone não pode ficar vazio")
@@ -38,6 +39,10 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
                 .NotNull().WithMessage("O campo CNPJ não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo CNPJ não pode ficar vazio")
                 .Matches(@"([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})").WithMessage("Formato de cnpj inválido");
+
+            RuleFor(x => x.Condutor)
+                .NotNull().WithMessage("O campo condutor não pode ficar vazio")
+                .NotEmpty().WithMessage("O campo condutor não pode ficar vazio");
         }
     }
 }
