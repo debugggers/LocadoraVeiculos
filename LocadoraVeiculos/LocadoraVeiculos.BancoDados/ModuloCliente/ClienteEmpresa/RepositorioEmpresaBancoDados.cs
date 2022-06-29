@@ -1,5 +1,6 @@
 ﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
+using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
 {
@@ -96,20 +97,34 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
                 ON 
 	                EMPRESA.CLIENTE_ID = CLIENTE.ID";
 
-        public bool VerificarSeExiste(Empresa empresa)
+        private const string sqlSelecionarPorNomeOuCnpj =
+            @"SELECT ID 
+                FROM 
+                    TBEMPRESA
+                WHERE
+                    (NOME = @NOME OR CNPJ = @CNPJ) AND ID != @ID";
+
+        public bool EmpresaJaExiste(Empresa empresa)
         {
+            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
-            var empresas = SelecionarTodos();
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNomeOuCnpj, conexaoComBanco);
 
-            foreach (Empresa item in empresas)
-            {
+            comandoSelecao.Parameters.AddWithValue("ID", empresa.Id);
+            comandoSelecao.Parameters.AddWithValue("NOME", empresa.Nome);
+            comandoSelecao.Parameters.AddWithValue("CNPJ", empresa.CNPJ);
 
-                if (item.Nome == empresa.Nome || item.CNPJ == empresa.CNPJ || item.Email == empresa.Email)
-                    return false;
+            conexaoComBanco.Open();
+            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
 
-            }
+            var empresaJaExiste = false;
 
-            return true;
+            if (leitorRegistro != null)
+                empresaJaExiste = leitorRegistro.HasRows;
+
+            conexaoComBanco.Close();
+
+            return empresaJaExiste;
         }
     }
 }
