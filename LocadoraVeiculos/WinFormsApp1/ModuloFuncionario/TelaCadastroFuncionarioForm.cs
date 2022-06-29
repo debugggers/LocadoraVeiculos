@@ -16,6 +16,7 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
             InitializeComponent();
 
             _repositorioFuncionario = repositorioFuncionario;
+            dtDataAdmissao.MaxDate = DateTime.Now.Date;
         }
 
         public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
@@ -33,7 +34,7 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
                 txtSenha.Text = _funcionario.Senha;
                 txtSalario.Text = _funcionario.Salario.ToString();
                 if (_funcionario.DataAdmissao == DateTime.MinValue)
-                    dtDataAdmissao.Value = DateTime.Now;
+                    dtDataAdmissao.Value = DateTime.Now.Date;
                 else
                     dtDataAdmissao.Value = _funcionario.DataAdmissao;
                 checkBoxAdmin.Checked = _funcionario.EhAdmin;

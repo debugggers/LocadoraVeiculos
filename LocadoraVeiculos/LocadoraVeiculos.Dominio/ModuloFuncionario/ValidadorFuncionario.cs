@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 {
@@ -9,7 +10,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
             RuleFor(x => x.Nome).NotNull()
                 .NotEmpty()
                 .MinimumLength(3)
-                .Matches(@"^[a-zA-Z\s]+$")
+                .Matches(@"^[a-zA-Záéíóúàèìòùâêîôûãõç\s]+$")
                 .WithMessage("Não são permitidos caracteres especiais.");
 
             RuleFor(x => x.Login).NotNull().NotEmpty();
@@ -18,7 +19,9 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 
             RuleFor(x => x.Salario).NotEmpty();
 
-            RuleFor(x => x.DataAdmissao).NotNull();
+            RuleFor(x => x.DataAdmissao).NotNull()
+                .LessThanOrEqualTo(DateTime.Now.Date)
+                .WithMessage("'Data' deve ser igual ou menor que a data atual.");
 
             RuleFor(x => x.EhAdmin).NotNull();
         }

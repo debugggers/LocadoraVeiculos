@@ -118,7 +118,7 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
 
             _listagemFuncionarios.AtualizarRegistros(funcionarios);
 
-            TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} Disciplina(s)");
+            TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} Funcionário(s)");
         }
     }
 }

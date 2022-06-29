@@ -89,11 +89,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(113, 255);
+            this.label5.Location = new System.Drawing.Point(50, 255);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 19);
+            this.label5.Size = new System.Drawing.Size(115, 19);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Salário:";
+            this.label5.Text = "Salário (0000,00):";
             // 
             // label6
             // 
@@ -109,14 +109,14 @@
             this.txtNome.Location = new System.Drawing.Point(185, 74);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(254, 26);
-            this.txtNome.TabIndex = 6;
+            this.txtNome.TabIndex = 2;
             // 
             // txtLogin
             // 
             this.txtLogin.Location = new System.Drawing.Point(185, 119);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(182, 26);
-            this.txtLogin.TabIndex = 7;
+            this.txtLogin.TabIndex = 3;
             // 
             // txtSenha
             // 
@@ -124,7 +124,7 @@
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(115, 26);
-            this.txtSenha.TabIndex = 8;
+            this.txtSenha.TabIndex = 4;
             // 
             // checkBoxAdmin
             // 
@@ -132,7 +132,7 @@
             this.checkBoxAdmin.Location = new System.Drawing.Point(185, 299);
             this.checkBoxAdmin.Name = "checkBoxAdmin";
             this.checkBoxAdmin.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxAdmin.TabIndex = 11;
+            this.checkBoxAdmin.TabIndex = 7;
             this.checkBoxAdmin.UseVisualStyleBackColor = true;
             // 
             // dtDataAdmissao
@@ -141,7 +141,7 @@
             this.dtDataAdmissao.Location = new System.Drawing.Point(185, 209);
             this.dtDataAdmissao.Name = "dtDataAdmissao";
             this.dtDataAdmissao.Size = new System.Drawing.Size(115, 26);
-            this.dtDataAdmissao.TabIndex = 9;
+            this.dtDataAdmissao.TabIndex = 5;
             // 
             // btnCancelar
             // 
@@ -149,7 +149,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(316, 385);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(95, 42);
-            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -159,7 +159,7 @@
             this.btnGravar.Location = new System.Drawing.Point(427, 385);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(95, 42);
-            this.btnGravar.TabIndex = 14;
+            this.btnGravar.TabIndex = 9;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -179,7 +179,7 @@
             this.txtId.Location = new System.Drawing.Point(185, 29);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(100, 26);
-            this.txtId.TabIndex = 16;
+            this.txtId.TabIndex = 1;
             // 
             // toolStrip1
             // 
@@ -210,7 +210,7 @@
             this.txtSalario.Location = new System.Drawing.Point(185, 255);
             this.txtSalario.Name = "txtSalario";
             this.txtSalario.Size = new System.Drawing.Size(100, 26);
-            this.txtSalario.TabIndex = 19;
+            this.txtSalario.TabIndex = 6;
             // 
             // TelaCadastroFuncionarioForm
             // 
