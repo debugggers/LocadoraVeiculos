@@ -8,9 +8,8 @@ using System.Data.SqlClient;
 
 namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
 {
-    public abstract class RepositorioBase<T, TValidador, TMapeador>
+    public abstract class RepositorioBase<T, TMapeador>
         where T : EntidadeBase<T>
-        where TValidador : AbstractValidator<T>, new()
         where TMapeador : MapeadorBase<T>, new()
     {
         protected string EnderecoBanco = EnderecoBancoConst.EnderecoBanco;
@@ -30,20 +29,14 @@ namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
 
         protected abstract string sqlSelecionarTodos { get; }
 
-        public ValidationResult Inserir(T registro)
+        public virtual void Inserir(T registro)
         {
-            var validador = new TValidador();
-
-            var resultadoValidacao = validador.Validate(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
             SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
             SqlCommand comandoInsercao = new SqlCommand(sqlInserir, conexaoComBanco);
 
             var mapeador = new TMapeador();
+
             mapeador.ConfigurarParametros(registro, comandoInsercao);
 
             conexaoComBanco.Open();
@@ -51,31 +44,21 @@ namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
             registro.Id = Convert.ToInt32(id);
 
             conexaoComBanco.Close();
-
-            return resultadoValidacao;
         }
 
-        public ValidationResult Editar(T registro)
+        public virtual void Editar(T registro)
         {
-            var validador = new TValidador();
-
-            var resultadoValidacao = validador.Validate(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
             SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
             SqlCommand comandoEdicao = new SqlCommand(sqlEditar, conexaoComBanco);
 
             var mapeador = new TMapeador();
+
             mapeador.ConfigurarParametros(registro, comandoEdicao);
 
             conexaoComBanco.Open();
             comandoEdicao.ExecuteNonQuery();
             conexaoComBanco.Close();
-
-            return resultadoValidacao;
         }
 
         public void Excluir(T registro)

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
 {
     public class RepositorioEmpresaBancoDados :
-        RepositorioBase<Empresa, ValidadorEmpresa, MapeadorEmpresa>
+        RepositorioBase<Empresa, MapeadorEmpresa>
     {
         protected override string sqlInserir =>
 

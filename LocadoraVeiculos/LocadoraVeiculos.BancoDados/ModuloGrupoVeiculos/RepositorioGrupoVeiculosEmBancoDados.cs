@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
 {
-    public class RepositorioGrupoVeiculosEmBancoDados : RepositorioBase<GrupoVeiculos, ValidadorGrupoVeiculos, MapeadorGrupoVeiculos>
+    public class RepositorioGrupoVeiculosEmBancoDados : RepositorioBase<GrupoVeiculos, MapeadorGrupoVeiculos>
     {
 
         #region SQL Queries

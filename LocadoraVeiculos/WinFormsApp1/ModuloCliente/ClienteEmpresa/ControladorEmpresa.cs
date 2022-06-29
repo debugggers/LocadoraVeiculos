@@ -51,7 +51,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm(repositorioClientes);
             tela.Empresa = new Empresa();
 
-            tela.GravarRegistro = repositorio.Inserir;
+            //tela.GravarRegistro = repositorio.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -76,7 +76,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
             tela.Empresa = empresaSelecionada;
             
-            tela.GravarRegistro = repositorio.Editar;
+            //tela.GravarRegistro = repositorio.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 

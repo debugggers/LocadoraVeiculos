@@ -34,7 +34,7 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 
             tela.GrupoVeiculos = grupoVeiculoSelecionada;
 
-            tela.GravarRegistro = repositorio.Editar;
+            //tela.GravarRegistro = repositorio.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -80,7 +80,7 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 
             tela.GrupoVeiculos = new GrupoVeiculos();
 
-            tela.GravarRegistro = repositorio.Inserir;
+            //tela.GravarRegistro = repositorio.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 

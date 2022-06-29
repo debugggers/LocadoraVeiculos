@@ -1,5 +1,11 @@
-﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
+﻿using LocadoraVeiculos.Aplicacao.ModuloCliente;
+using LocadoraVeiculos.Aplicacao.ModuloCliente.Empresa;
+using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
+using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Aplicacao.ModuloTaxa;
+using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculos.BancoDados.ModuloFuncionario;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.BancoDados.ModuloTaxa;
 using LocadoraVeiculosForm.Compartilhado;
@@ -150,14 +156,21 @@ namespace LocadoraVeiculosForm
             var repositorioEmpresa = new RepositorioEmpresaBancoDados();
             var repositorioTaxa = new RepositorioTaxaEmBancoDados();
             var repositorioGrupoveiculos = new RepositorioGrupoVeiculosEmBancoDados();
+            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
+
+            var servicoCliente = new ServicoCliente(repositorioClientes);
+            var servicoEmpresa = new ServicoEmpresa();
+            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
+            var servicoGrupoVeiculos = new ServicoGrupoVeiculos();
+            var servicoTaxa = new ServicoTaxa();
 
             controladores = new Dictionary<string, ControladorBase>();
 
-            controladores.Add("Funcionário", new ControladorFuncionario());
-            controladores.Add("Pessoa física", new ControladorCliente(repositorioClientes));
-            controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes));
-            controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
-            controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos));
+            //controladores.Add("Funcionário", new ControladorFuncionario());
+            //controladores.Add("Pessoa física", new ControladorCliente(repositorioClientes));
+            //controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes));
+            //controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
+            //controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos));
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)

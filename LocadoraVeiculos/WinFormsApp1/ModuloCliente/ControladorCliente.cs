@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
+﻿using LocadoraVeiculos.Aplicacao.ModuloCliente;
+using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculosForm.Compartilhado;
 using System;
@@ -14,14 +15,15 @@ namespace LocadoraVeiculosForm.ModuloCliente
     {
 
         private RepositorioClienteEmBancoDados repositorio;
+        private ServicoCliente servicoCliente;
         private ListagemClientesControl listagem;
 
-        public ControladorCliente(RepositorioClienteEmBancoDados repositorio)
+        public ControladorCliente(RepositorioClienteEmBancoDados repositorio, ServicoCliente servicoCliente)
         {
 
             this.repositorio = repositorio;
             listagem = new ListagemClientesControl();
-
+            this.servicoCliente = servicoCliente;
         }
 
         public override void Inserir()
@@ -30,7 +32,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
             TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
             tela.Cliente = new Cliente();
             
-            tela.GravarRegistro = repositorio.Inserir;
+            //tela.GravarRegistro = servicoCliente.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -57,7 +59,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
             tela.Cliente = clienteSelecionado;
             
-            tela.GravarRegistro = repositorio.Editar;
+            //tela.GravarRegistro = repositorio.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 

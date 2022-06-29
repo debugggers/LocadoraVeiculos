@@ -25,7 +25,7 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
                 TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm(_repositorioFuncionario);
                 tela.Funcionario = new Funcionario();
 
-                tela.GravarRegistro = _repositorioFuncionario.Inserir;
+                //tela.GravarRegistro = _repositorioFuncionario.Inserir;
 
                 DialogResult resultado = tela.ShowDialog();
 
@@ -53,7 +53,7 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
 
                 tela.Funcionario = funcionarioSelecionado;
 
-                tela.GravarRegistro = _repositorioFuncionario.Editar;
+                //tela.GravarRegistro = _repositorioFuncionario.Editar;
 
                 DialogResult resultado = tela.ShowDialog();
 

@@ -34,7 +34,7 @@ namespace LocadoraVeiculosForm.ModuloTaxa
 
             tela.Taxa = taxaSelecionada;
 
-            tela.GravarRegistro = repositorio.Editar;
+            //tela.GravarRegistro = repositorio.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -70,7 +70,7 @@ namespace LocadoraVeiculosForm.ModuloTaxa
             TelaCadastroTaxaForm tela = new TelaCadastroTaxaForm();
             tela.Taxa = new Taxa();
 
-            tela.GravarRegistro = repositorio.Inserir;
+            //tela.GravarRegistro = repositorio.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 

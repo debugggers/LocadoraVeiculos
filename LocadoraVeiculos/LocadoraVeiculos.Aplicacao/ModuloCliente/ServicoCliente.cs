@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using LocadoraVeiculos.BancoDados.ModuloCliente;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,13 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
     public class ServicoCliente
     {
 
-        public ValidationResult Inserir()
+        private RepositorioClienteEmBancoDados repositorioCliente;
+
+        public ServicoCliente(RepositorioClienteEmBancoDados repositorioCliente)
         {
-
-            return new ValidationResult();
-
+            this.repositorioCliente = repositorioCliente;
         }
+
 
     }
 }

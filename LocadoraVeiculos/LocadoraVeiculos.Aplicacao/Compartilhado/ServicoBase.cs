@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
+namespace LocadoraVeiculos.Aplicacao.Compartilhado
 {
-    public class ServicoTaxa
+    public class ServicoBase
     {
+
+
+
     }
 }
