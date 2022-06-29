@@ -73,24 +73,28 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
             }
 
-            if (!repositorio.VerificarSeExiste(empresa))
+            if (repositorio.EmpresaJaExiste(empresa))
             {
-
-                MessageBox.Show("Empresa ou dados já inseridos",
-               "Cadastro de Empresa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-
-            }
-
-            var resultadoValidacao = GravarRegistro(empresa);
-
-            if (resultadoValidacao.IsValid == false)
-            {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
-
+                MessageBox.Show("Empresa já existente, não é possível adicionar.",
+                    "Inserindo Empresa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
                 DialogResult = DialogResult.None;
+            }
+            else
+            {
+
+                var resultadoValidacao = GravarRegistro(empresa);
+
+                if (resultadoValidacao.IsValid == false)
+                {
+                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
+
             }
         }
 

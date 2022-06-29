@@ -1,5 +1,6 @@
 ﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente;
+using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloCliente
 {
@@ -84,20 +85,36 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
 	            FROM 
 		            [TBCLIENTE]";
 
-        public bool VerificarSeExiste(Cliente cliente)
+        private const string sqlSelecionarPorNomeOuCpfOuCnhNumero =
+            @"SELECT ID 
+                FROM 
+                    TBCLIENTE
+                WHERE
+                    (NOME = @NOME OR CPF = @CPF OR CNH_NUMERO = @CNH_NUMERO) AND ID != @ID";
+
+        public bool ClienteJaExiste(Cliente cliente)
         {
+            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
 
-            var clientes = SelecionarTodos();
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNomeOuCpfOuCnhNumero, conexaoComBanco);
 
-            foreach (Cliente item in clientes)
-            {
+            comandoSelecao.Parameters.AddWithValue("NOME", cliente.Nome);
+            comandoSelecao.Parameters.AddWithValue("CPF", cliente.CPF);
+            comandoSelecao.Parameters.AddWithValue("ID", cliente.Id);
+            comandoSelecao.Parameters.AddWithValue("CNH_NUMERO", cliente.CnhNumero);
 
-                if (item.Nome == cliente.Nome || item.CPF == cliente.CPF || item.CnhNumero == cliente.CnhNumero || cliente.Email == item.Email)
-                    return false;
 
-            }
+            conexaoComBanco.Open();
+            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
 
-            return true;
+            var clienteJaExiste = false;
+
+            if (leitorRegistro != null)
+                clienteJaExiste = leitorRegistro.HasRows;
+
+            conexaoComBanco.Close();
+
+            return clienteJaExiste;
         }
     }
 }

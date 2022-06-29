@@ -30,13 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtNomeEmpresa = new System.Windows.Forms.TextBox();
-            this.txtTelefoneEmpresa = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtEmailEmpresa = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtEnderecoEmpresa = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCnpjEmpresa = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -44,6 +42,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.comboBoxPessoasFisicas = new System.Windows.Forms.ComboBox();
+            this.txtTelefoneEmpresa = new System.Windows.Forms.MaskedTextBox();
+            this.txtCnpjEmpresa = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -61,13 +61,6 @@
             this.txtNomeEmpresa.Name = "txtNomeEmpresa";
             this.txtNomeEmpresa.Size = new System.Drawing.Size(292, 23);
             this.txtNomeEmpresa.TabIndex = 1;
-            // 
-            // txtTelefoneEmpresa
-            // 
-            this.txtTelefoneEmpresa.Location = new System.Drawing.Point(12, 136);
-            this.txtTelefoneEmpresa.Name = "txtTelefoneEmpresa";
-            this.txtTelefoneEmpresa.Size = new System.Drawing.Size(292, 23);
-            this.txtTelefoneEmpresa.TabIndex = 3;
             // 
             // label2
             // 
@@ -109,13 +102,6 @@
             this.label4.Size = new System.Drawing.Size(123, 15);
             this.label4.TabIndex = 6;
             this.label4.Text = "Endereço da empresa:";
-            // 
-            // txtCnpjEmpresa
-            // 
-            this.txtCnpjEmpresa.Location = new System.Drawing.Point(12, 318);
-            this.txtCnpjEmpresa.Name = "txtCnpjEmpresa";
-            this.txtCnpjEmpresa.Size = new System.Drawing.Size(292, 23);
-            this.txtCnpjEmpresa.TabIndex = 9;
             // 
             // label5
             // 
@@ -178,30 +164,47 @@
             // 
             // comboBoxPessoasFisicas
             // 
+            this.comboBoxPessoasFisicas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPessoasFisicas.FormattingEnabled = true;
             this.comboBoxPessoasFisicas.Location = new System.Drawing.Point(12, 375);
             this.comboBoxPessoasFisicas.Name = "comboBoxPessoasFisicas";
             this.comboBoxPessoasFisicas.Size = new System.Drawing.Size(292, 23);
             this.comboBoxPessoasFisicas.TabIndex = 16;
             // 
+            // txtTelefoneEmpresa
+            // 
+            this.txtTelefoneEmpresa.Location = new System.Drawing.Point(12, 136);
+            this.txtTelefoneEmpresa.Mask = "(00)00000-0000";
+            this.txtTelefoneEmpresa.Name = "txtTelefoneEmpresa";
+            this.txtTelefoneEmpresa.Size = new System.Drawing.Size(292, 23);
+            this.txtTelefoneEmpresa.TabIndex = 17;
+            // 
+            // txtCnpjEmpresa
+            // 
+            this.txtCnpjEmpresa.Location = new System.Drawing.Point(12, 318);
+            this.txtCnpjEmpresa.Mask = "00.000.000/0000-00";
+            this.txtCnpjEmpresa.Name = "txtCnpjEmpresa";
+            this.txtCnpjEmpresa.Size = new System.Drawing.Size(292, 23);
+            this.txtCnpjEmpresa.TabIndex = 18;
+            // 
             // TelaCadastroEmpresaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 470);
+            this.Controls.Add(this.txtCnpjEmpresa);
+            this.Controls.Add(this.txtTelefoneEmpresa);
             this.Controls.Add(this.comboBoxPessoasFisicas);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtCnpjEmpresa);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEnderecoEmpresa);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtEmailEmpresa);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtTelefoneEmpresa);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNomeEmpresa);
             this.Controls.Add(this.label1);
@@ -210,7 +213,7 @@
             this.MinimizeBox = false;
             this.Name = "TelaCadastroEmpresaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaCadastroEmpresa";
+            this.Text = "Cadastro de pessoas jurídicas";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,13 +223,11 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNomeEmpresa;
-        private System.Windows.Forms.TextBox txtTelefoneEmpresa;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtEmailEmpresa;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtEnderecoEmpresa;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCnpjEmpresa;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
@@ -234,5 +235,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.ComboBox comboBoxPessoasFisicas;
+        private System.Windows.Forms.MaskedTextBox txtTelefoneEmpresa;
+        private System.Windows.Forms.MaskedTextBox txtCnpjEmpresa;
     }
 }

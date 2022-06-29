@@ -38,7 +38,10 @@ namespace LocadoraVeiculosForm.ModuloCliente
                 txtEndereco.Text = cliente.Endereco;
                 txtNumeroCnh.Text = cliente.CnhNumero.ToString();
                 txtNomeCnh.Text = cliente.CnhNome;
-                monthCalendarVencimento.SelectionStart = cliente.CnhVencimento;
+                if (cliente.CnhVencimento == DateTime.MinValue)
+                    monthCalendarVencimento.Value = DateTime.Now.Date;
+                else
+                    monthCalendarVencimento.Value = cliente.CnhVencimento;
 
             }
         }
@@ -53,26 +56,30 @@ namespace LocadoraVeiculosForm.ModuloCliente
             cliente.CPF = txtCpf.Text;
             cliente.CnhNumero = Convert.ToInt32(txtNumeroCnh.Text);
             cliente.CnhNome = txtNomeCnh.Text;
-            cliente.CnhVencimento = monthCalendarVencimento.SelectionStart;
+            cliente.CnhVencimento = monthCalendarVencimento.Value;
 
-            if (!repositorio.VerificarSeExiste(cliente))
+            if (repositorio.ClienteJaExiste(cliente))
             {
-
-                MessageBox.Show("Cliente ou dados já inseridos",
-               "Cadastro de clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-
-            }
-
-            var resultadoValidacao = GravarRegistro(cliente);
-
-            if (resultadoValidacao.IsValid == false)
-            {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
-
+                MessageBox.Show("Cliente já existente, não é possível adicionar.",
+                    "Inserindo Cliente",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
                 DialogResult = DialogResult.None;
+            }
+            else
+            {
+
+                var resultadoValidacao = GravarRegistro(cliente);
+
+                if (resultadoValidacao.IsValid == false)
+                {
+                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
+
             }
         }
 

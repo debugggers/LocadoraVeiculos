@@ -13,13 +13,12 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
                 .NotNull().WithMessage("O campo nome não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo nome não pode ficar vazio")
                 .MinimumLength(3).WithMessage("O Nome precisa ter mais do que três caracteres")
-                .Matches(@"^[a-zA-Z\s]+$").WithMessage("Não são permitidos caracteres especiais no nome"); ;
+                .Matches(@"^[a-zA-Záéíóúàèìòùâêîôûãõç\s]+$").WithMessage("Não são permitidos caracteres especiais no nome"); ;
 
             RuleFor(x => x.Telefone)
                 .NotNull().WithMessage("O campo telefone não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo telefone não pode ficar vazio")
-                .MinimumLength(9).WithMessage("O telefone precisa deve ter 9 digitos")
-                .Matches(@"^(?:\+55)?\s?\(?0?[1-9][1-9]\)?\s?(?:9)?\s?\d{4}\-?\d{4}$").WithMessage("Formato de telefone inválido");
+                .MinimumLength(9).WithMessage("O telefone precisa deve ter 9 digitos");
 
             RuleFor(x => x.Email)
                 .NotNull().WithMessage("O campo email não pode ficar vazio")
@@ -32,8 +31,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
 
             RuleFor(x => x.CPF)
                 .NotNull().WithMessage("O campo CPF não pode ficar vazio")
-                .NotEmpty().WithMessage("O campo CPF não pode ficar vazio")
-                .Matches(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$").WithMessage("Formato inválido de CPF");
+                .NotEmpty().WithMessage("O campo CPF não pode ficar vazio");
 
             RuleFor(x => x.CnhNome)
                 .NotNull().WithMessage("O nome da CNH não pode ficar vazio")

@@ -32,7 +32,6 @@
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtTelefone = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,12 +39,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtNumeroCnh = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtNomeCnh = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonCadastrar = new System.Windows.Forms.Button();
-            this.monthCalendarVencimento = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendarVencimento = new System.Windows.Forms.DateTimePicker();
+            this.txtNomeCnh = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -79,13 +79,6 @@
             this.label2.Size = new System.Drawing.Size(39, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Email:";
-            // 
-            // txtTelefone
-            // 
-            this.txtTelefone.Location = new System.Drawing.Point(12, 137);
-            this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(253, 23);
-            this.txtTelefone.TabIndex = 5;
             // 
             // label3
             // 
@@ -144,22 +137,6 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Número da CNH:";
             // 
-            // txtNomeCnh
-            // 
-            this.txtNomeCnh.Location = new System.Drawing.Point(311, 82);
-            this.txtNomeCnh.Name = "txtNomeCnh";
-            this.txtNomeCnh.Size = new System.Drawing.Size(253, 23);
-            this.txtNomeCnh.TabIndex = 13;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(311, 64);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 15);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Nome da CNH:";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -172,7 +149,7 @@
             // buttonCancelar
             // 
             this.buttonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancelar.Location = new System.Drawing.Point(368, 338);
+            this.buttonCancelar.Location = new System.Drawing.Point(368, 235);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(95, 44);
             this.buttonCancelar.TabIndex = 16;
@@ -182,7 +159,7 @@
             // buttonCadastrar
             // 
             this.buttonCadastrar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonCadastrar.Location = new System.Drawing.Point(469, 338);
+            this.buttonCadastrar.Location = new System.Drawing.Point(469, 235);
             this.buttonCadastrar.Name = "buttonCadastrar";
             this.buttonCadastrar.Size = new System.Drawing.Size(95, 44);
             this.buttonCadastrar.TabIndex = 17;
@@ -192,28 +169,54 @@
             // 
             // monthCalendarVencimento
             // 
-            this.monthCalendarVencimento.Location = new System.Drawing.Point(337, 137);
+            this.monthCalendarVencimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.monthCalendarVencimento.Location = new System.Drawing.Point(311, 137);
             this.monthCalendarVencimento.Name = "monthCalendarVencimento";
-            this.monthCalendarVencimento.TabIndex = 18;
+            this.monthCalendarVencimento.Size = new System.Drawing.Size(253, 23);
+            this.monthCalendarVencimento.TabIndex = 19;
+            // 
+            // txtNomeCnh
+            // 
+            this.txtNomeCnh.Location = new System.Drawing.Point(311, 82);
+            this.txtNomeCnh.Name = "txtNomeCnh";
+            this.txtNomeCnh.Size = new System.Drawing.Size(253, 23);
+            this.txtNomeCnh.TabIndex = 21;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(311, 64);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(88, 15);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Nome da CNH:";
+            // 
+            // txtTelefone
+            // 
+            this.txtTelefone.Location = new System.Drawing.Point(12, 140);
+            this.txtTelefone.Mask = "(99)99999-9999";
+            this.txtTelefone.Name = "txtTelefone";
+            this.txtTelefone.Size = new System.Drawing.Size(253, 23);
+            this.txtTelefone.TabIndex = 22;
             // 
             // TelaCadastroClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 394);
+            this.ClientSize = new System.Drawing.Size(587, 295);
+            this.Controls.Add(this.txtTelefone);
+            this.Controls.Add(this.txtNomeCnh);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.monthCalendarVencimento);
             this.Controls.Add(this.buttonCadastrar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtNomeCnh);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtNumeroCnh);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label2);
@@ -224,7 +227,7 @@
             this.MinimizeBox = false;
             this.Name = "TelaCadastroClienteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaCadastroClienteForm";
+            this.Text = "Cadastro de pessoas físicas";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,7 +239,6 @@
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtTelefone;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.Label label4;
@@ -244,11 +246,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNumeroCnh;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtNomeCnh;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonCadastrar;
-        private System.Windows.Forms.MonthCalendar monthCalendarVencimento;
+        private System.Windows.Forms.DateTimePicker monthCalendarVencimento;
+        private System.Windows.Forms.TextBox txtNomeCnh;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.MaskedTextBox txtTelefone;
     }
 }
