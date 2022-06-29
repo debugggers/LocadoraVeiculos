@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxa
             RuleFor(x => x.Descricao).NotNull()
                 .NotEmpty()
                 .MinimumLength(3)
-                .Matches(@"^[a-zA-Z\s]+$")
+                .Matches(@"^[a-zA-Záéíóúàèìòùâêîôûãõç\s]+$")
                 .WithMessage("Não são permitidos caracteres especiais.");
 
             RuleFor(x => x.Valor).NotEmpty();
