@@ -41,7 +41,7 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
             }
         }
 
-        private void btnGravar_Click(object sender, EventArgs e)
+        private void btnCadastrar_Click(object sender, EventArgs e)
         {
             _funcionario.Nome = txtNome.Text;
             _funcionario.Login = txtLogin.Text;
@@ -50,11 +50,16 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
             decimal salario;
 
             if (decimal.TryParse(txtSalario.Text, out salario))
-            {
                 _funcionario.Salario = salario;
-            } else
+            else
             {
                 labelRodapeFuncionario.Text = "Campo salário está inválido.";
+                DialogResult = DialogResult.None;
+                return;
+            }
+            if (_funcionario.Salario < 0)
+            {
+                labelRodapeFuncionario.Text = "Valor deve ser maior que zero.";
                 DialogResult = DialogResult.None;
                 return;
             }

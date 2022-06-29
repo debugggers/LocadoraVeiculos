@@ -35,7 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.buttonCancelar = new System.Windows.Forms.Button();
-            this.btnInserir = new System.Windows.Forms.Button();
+            this.btnCadastrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGravar
@@ -71,7 +71,7 @@
             // 
             this.txtGrupoVeiculos.Location = new System.Drawing.Point(0, 0);
             this.txtGrupoVeiculos.Name = "txtGrupoVeiculos";
-            this.txtGrupoVeiculos.Size = new System.Drawing.Size(100, 23);
+            this.txtGrupoVeiculos.Size = new System.Drawing.Size(100, 26);
             this.txtGrupoVeiculos.TabIndex = 0;
             // 
             // label1
@@ -79,15 +79,15 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 15);
+            this.label1.Size = new System.Drawing.Size(49, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome:";
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(12, 27);
+            this.txtNome.Location = new System.Drawing.Point(12, 31);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(235, 23);
+            this.txtNome.Size = new System.Drawing.Size(289, 26);
             this.txtNome.TabIndex = 1;
             // 
             // buttonCancelar
@@ -100,28 +100,31 @@
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             // 
-            // btnInserir
+            // btnCadastrar
             // 
-            this.btnInserir.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnInserir.Location = new System.Drawing.Point(148, 75);
-            this.btnInserir.Name = "btnInserir";
-            this.btnInserir.Size = new System.Drawing.Size(99, 46);
-            this.btnInserir.TabIndex = 3;
-            this.btnInserir.Text = "Inserir";
-            this.btnInserir.UseVisualStyleBackColor = true;
-            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
+            this.btnCadastrar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnCadastrar.Location = new System.Drawing.Point(148, 75);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(99, 46);
+            this.btnCadastrar.TabIndex = 3;
+            this.btnCadastrar.Text = "Cadastrar";
+            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // TelaCadastroGupoVeiculosForm
             // 
-            this.ClientSize = new System.Drawing.Size(277, 138);
-            this.Controls.Add(this.btnInserir);
+            this.ClientSize = new System.Drawing.Size(366, 138);
+            this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroGupoVeiculosForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Tela de Cadastro de Grupo de Veículos";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +139,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Button buttonCancelar;
-        private System.Windows.Forms.Button btnInserir;
+        private System.Windows.Forms.Button btnCadastrar;
     }
 }

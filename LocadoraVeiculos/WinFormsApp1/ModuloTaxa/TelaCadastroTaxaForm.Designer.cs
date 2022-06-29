@@ -86,7 +86,7 @@
             this.comboBoxTipoCalculo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxTipoCalculo.Name = "comboBoxTipoCalculo";
             this.comboBoxTipoCalculo.Size = new System.Drawing.Size(179, 27);
-            this.comboBoxTipoCalculo.TabIndex = 5;
+            this.comboBoxTipoCalculo.TabIndex = 3;
             // 
             // btnCadastrar
             // 
@@ -95,7 +95,7 @@
             this.btnCadastrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(106, 51);
-            this.btnCadastrar.TabIndex = 6;
+            this.btnCadastrar.TabIndex = 5;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
@@ -107,7 +107,7 @@
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(106, 51);
-            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -116,7 +116,7 @@
             this.txtValor.Location = new System.Drawing.Point(14, 114);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(126, 26);
-            this.txtValor.TabIndex = 12;
+            this.txtValor.TabIndex = 2;
             // 
             // statusStrip1
             // 

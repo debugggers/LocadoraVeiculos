@@ -2,9 +2,6 @@
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
@@ -23,27 +20,20 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 
         public GrupoVeiculos GrupoVeiculos
         {
-
             get
             {
-
                 return grupoVeiculos;
-
             }
 
             set
             {
-
                 grupoVeiculos = value;
                 txtNome.Text = grupoVeiculos.Nome;
-
             }
-
         }
 
-        private void btnInserir_Click(object sender, EventArgs e)
+        private void btnCadastrar_Click(object sender, EventArgs e)
         {
-
             grupoVeiculos.Nome = txtNome.Text;
 
             if (repositorio.GrupoVeiculosJaExiste(grupoVeiculos.Nome))

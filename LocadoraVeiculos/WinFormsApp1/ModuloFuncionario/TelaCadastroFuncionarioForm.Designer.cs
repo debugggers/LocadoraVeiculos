@@ -40,7 +40,7 @@
             this.checkBoxAdmin = new System.Windows.Forms.CheckBox();
             this.dtDataAdmissao = new System.Windows.Forms.DateTimePicker();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGravar = new System.Windows.Forms.Button();
+            this.btnCadastrar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -153,16 +153,16 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // btnGravar
+            // btnCadastrar
             // 
-            this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(427, 385);
-            this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(95, 42);
-            this.btnGravar.TabIndex = 9;
-            this.btnGravar.Text = "Gravar";
-            this.btnGravar.UseVisualStyleBackColor = true;
-            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
+            this.btnCadastrar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnCadastrar.Location = new System.Drawing.Point(427, 385);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(95, 42);
+            this.btnCadastrar.TabIndex = 9;
+            this.btnCadastrar.Text = "Cadastrar";
+            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // label7
             // 
@@ -214,7 +214,7 @@
             // 
             // TelaCadastroFuncionarioForm
             // 
-            this.AcceptButton = this.btnGravar;
+            this.AcceptButton = this.btnCadastrar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
@@ -224,7 +224,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnGravar);
+            this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.dtDataAdmissao);
             this.Controls.Add(this.checkBoxAdmin);
@@ -266,7 +266,7 @@
         private System.Windows.Forms.CheckBox checkBoxAdmin;
         private System.Windows.Forms.DateTimePicker dtDataAdmissao;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnGravar;
+        private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.ToolStrip toolStrip1;

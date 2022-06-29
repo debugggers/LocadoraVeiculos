@@ -39,18 +39,19 @@ namespace LocadoraVeiculosForm.ModuloTaxa
 
             if (decimal.TryParse(txtValor.Text, out valor))
                 taxa.Valor = valor;
-            if (taxa.Valor < 0)
-            {
-                labelRodapeTaxa.Text = "Valor deve ser maior que zero.";
-                DialogResult = DialogResult.None;
-                return;
-            }
             else
             {
                 labelRodapeTaxa.Text = "Campo valor está inválido.";
                 DialogResult = DialogResult.None;
                 return;
             }
+            if (taxa.Valor < 0)
+            {
+                labelRodapeTaxa.Text = "Valor deve ser maior que zero.";
+                DialogResult = DialogResult.None;
+                return;
+            }
+            
             taxa.TipoCalculo = (TipoCalculoEnum)comboBoxTipoCalculo.SelectedIndex;
 
             if (!repositorio.VerificarSeExiste(taxa))
