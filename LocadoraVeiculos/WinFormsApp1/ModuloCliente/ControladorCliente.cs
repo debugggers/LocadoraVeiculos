@@ -2,11 +2,7 @@
 using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculosForm.Compartilhado;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm.ModuloCliente
@@ -29,13 +25,10 @@ namespace LocadoraVeiculosForm.ModuloCliente
         public override void Inserir()
         {
 
-            TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
+            var tela = new TelaCadastroClienteForm();
             tela.Cliente = new Cliente();
-            
-            //tela.GravarRegistro = servicoCliente.Inserir;
-
+            tela.GravarRegistro = servicoCliente.Inserir;
             DialogResult resultado = tela.ShowDialog();
-
             if (resultado == DialogResult.OK)
             {
                 CarregarClientes();
@@ -51,22 +44,20 @@ namespace LocadoraVeiculosForm.ModuloCliente
             if (clienteSelecionado == null)
             {
                 MessageBox.Show("Selecione um cliente primeiro",
-                "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Edição de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
 
             tela.Cliente = clienteSelecionado;
-            
-            //tela.GravarRegistro = repositorio.Editar;
+
+            tela.GravarRegistro = servicoCliente.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
-            {
                 CarregarClientes();
-            }
         }
 
         public override void Excluir()

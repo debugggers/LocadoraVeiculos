@@ -58,28 +58,15 @@ namespace LocadoraVeiculosForm.ModuloCliente
             cliente.CnhNome = txtNomeCnh.Text;
             cliente.CnhVencimento = monthCalendarVencimento.Value;
 
-            if (repositorio.ClienteJaExiste(cliente))
+            var resultadoValidacao = GravarRegistro(cliente);
+
+            if (resultadoValidacao.IsValid == false)
             {
-                MessageBox.Show("Cliente já existente, não é possível adicionar.",
-                    "Inserindo Cliente",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
                 DialogResult = DialogResult.None;
-            }
-            else
-            {
-
-                var resultadoValidacao = GravarRegistro(cliente);
-
-                if (resultadoValidacao.IsValid == false)
-                {
-                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
-                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
-
-                    DialogResult = DialogResult.None;
-                }
-
             }
         }
 
