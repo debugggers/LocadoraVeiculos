@@ -1,5 +1,5 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloCliente;
-using LocadoraVeiculos.Aplicacao.ModuloCliente.Empresa;
+using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
@@ -159,7 +159,7 @@ namespace LocadoraVeiculosForm
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
 
             var servicoCliente = new ServicoCliente(repositorioClientes);
-            var servicoEmpresa = new ServicoEmpresa();
+            var servicoEmpresa = new ServicoEmpresa(repositorioEmpresa);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             var servicoGrupoVeiculos = new ServicoGrupoVeiculos();
             var servicoTaxa = new ServicoTaxa();
@@ -168,7 +168,7 @@ namespace LocadoraVeiculosForm
 
             controladores.Add("Funcionário", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
             controladores.Add("Pessoa física", new ControladorCliente(repositorioClientes, servicoCliente));
-            //controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes));
+            controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes, servicoEmpresa));
             //controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
             //controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos));
         }

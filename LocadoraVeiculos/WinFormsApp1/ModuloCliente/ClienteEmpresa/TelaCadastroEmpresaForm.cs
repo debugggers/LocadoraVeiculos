@@ -19,14 +19,12 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
     {
 
         Empresa empresa;
-        RepositorioEmpresaBancoDados repositorio;
         List<Cliente> pessoasFisicas;
-        
+
 
         public TelaCadastroEmpresaForm(RepositorioClienteEmBancoDados repositorioCliente)
         {
             InitializeComponent();
-            repositorio = new RepositorioEmpresaBancoDados();
             pessoasFisicas = repositorioCliente.SelecionarTodos();
             foreach (var item in pessoasFisicas)
             {
@@ -73,28 +71,15 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
             }
 
-            if (repositorio.EmpresaJaExiste(empresa))
+            var resultadoValidacao = GravarRegistro(empresa);
+
+            if (resultadoValidacao.IsValid == false)
             {
-                MessageBox.Show("Empresa já existente, não é possível adicionar.",
-                    "Inserindo Empresa",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
                 DialogResult = DialogResult.None;
-            }
-            else
-            {
-
-                var resultadoValidacao = GravarRegistro(empresa);
-
-                if (resultadoValidacao.IsValid == false)
-                {
-                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
-                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
-
-                    DialogResult = DialogResult.None;
-                }
-
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.ModuloCliente;
+﻿using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculosForm.Compartilhado;
@@ -13,13 +14,15 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
         private RepositorioEmpresaBancoDados repositorio;
         private RepositorioClienteEmBancoDados repositorioClientes;
+        private ServicoEmpresa servicoEmpresa;
         private ListagemEmpresasControl listagem;
 
-        public ControladorEmpresa(RepositorioEmpresaBancoDados repositorio, RepositorioClienteEmBancoDados repositorioCliente)
+        public ControladorEmpresa(RepositorioEmpresaBancoDados repositorio, RepositorioClienteEmBancoDados repositorioClientes, ServicoEmpresa servicoEmpresa)
         {
 
             this.repositorio = repositorio;
-            this.repositorioClientes = repositorioCliente;
+            this.repositorioClientes = repositorioClientes;
+            this.servicoEmpresa = servicoEmpresa;
             listagem = new ListagemEmpresasControl();
 
         }
@@ -48,13 +51,11 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
         public override void Inserir()
         {
-            TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm(repositorioClientes);
+
+            var tela = new TelaCadastroEmpresaForm(repositorioClientes);
             tela.Empresa = new Empresa();
-
-            //tela.GravarRegistro = repositorio.Inserir;
-
+            tela.GravarRegistro = servicoEmpresa.Inserir;
             DialogResult resultado = tela.ShowDialog();
-
             if (resultado == DialogResult.OK)
             {
                 CarregarEmpresas();
@@ -67,23 +68,21 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
             if (empresaSelecionada == null)
             {
-                MessageBox.Show("Selecione uma empresa primeiro",
-                "Edição de empresa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um cliente primeiro",
+                "Edição de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm(repositorioClientes);
 
             tela.Empresa = empresaSelecionada;
-            
-            //tela.GravarRegistro = repositorio.Editar;
+
+            tela.GravarRegistro = servicoEmpresa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
-            {
                 CarregarEmpresas();
-            }
         }
 
         public override void Excluir()
