@@ -167,7 +167,7 @@ namespace LocadoraVeiculosForm
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Funcionário", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
-            //controladores.Add("Pessoa física", new ControladorCliente(repositorioClientes));
+            controladores.Add("Pessoa física", new ControladorCliente(repositorioClientes, servicoCliente));
             //controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes));
             //controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
             //controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos));

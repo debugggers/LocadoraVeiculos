@@ -35,7 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCpf = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNumeroCnh = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.txtNomeCnh = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
+            this.txtCpf = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -104,13 +104,6 @@
             this.label4.Size = new System.Drawing.Size(56, 15);
             this.label4.TabIndex = 6;
             this.label4.Text = "Endereço";
-            // 
-            // txtCpf
-            // 
-            this.txtCpf.Location = new System.Drawing.Point(12, 247);
-            this.txtCpf.Name = "txtCpf";
-            this.txtCpf.Size = new System.Drawing.Size(253, 23);
-            this.txtCpf.TabIndex = 9;
             // 
             // label5
             // 
@@ -199,11 +192,20 @@
             this.txtTelefone.Size = new System.Drawing.Size(253, 23);
             this.txtTelefone.TabIndex = 22;
             // 
+            // txtCpf
+            // 
+            this.txtCpf.Location = new System.Drawing.Point(12, 247);
+            this.txtCpf.Mask = "000.000.000-00";
+            this.txtCpf.Name = "txtCpf";
+            this.txtCpf.Size = new System.Drawing.Size(253, 23);
+            this.txtCpf.TabIndex = 23;
+            // 
             // TelaCadastroClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(587, 295);
+            this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtNomeCnh);
             this.Controls.Add(this.label7);
@@ -213,7 +215,6 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtNumeroCnh);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.label4);
@@ -242,7 +243,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCpf;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNumeroCnh;
         private System.Windows.Forms.Label label6;
@@ -253,5 +253,6 @@
         private System.Windows.Forms.TextBox txtNomeCnh;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.MaskedTextBox txtTelefone;
+        private System.Windows.Forms.MaskedTextBox txtCpf;
     }
 }
