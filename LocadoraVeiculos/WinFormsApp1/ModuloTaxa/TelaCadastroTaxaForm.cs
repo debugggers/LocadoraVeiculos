@@ -56,15 +56,6 @@ namespace LocadoraVeiculosForm.ModuloTaxa
             
             taxa.TipoCalculo = (TipoCalculoEnum)comboBoxTipoCalculo.SelectedIndex;
 
-            //if (!repositorio.VerificarSeExiste(taxa))
-            //{
-
-            //    MessageBox.Show("Taxa ou dados já inseridos",
-            //   "Taxa de clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-
-            //} 
-
             var resultadoValidacao = GravarRegistro(taxa);
 
             if (resultadoValidacao.IsValid == false)

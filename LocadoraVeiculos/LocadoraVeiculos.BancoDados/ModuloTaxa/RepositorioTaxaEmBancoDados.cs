@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloTaxa
              @"SELECT * FROM TBTAXA";
 
         public const string sqlSelecionarPorDescricao =
-            @"SELECT ID 
+            @"SELECT * 
                 FROM 
                     TBTAXA
                 WHERE
