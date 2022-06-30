@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.ModuloTaxa;
+﻿using LocadoraVeiculos.Aplicacao.ModuloTaxa;
+using LocadoraVeiculos.BancoDados.ModuloTaxa;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using LocadoraVeiculosForm.Compartilhado;
 using System;
@@ -10,13 +11,30 @@ namespace LocadoraVeiculosForm.ModuloTaxa
     public class ControladorTaxa : ControladorBase
     {
 
-        private RepositorioTaxaEmBancoDados repositorio;
-        private ListagemTaxasControl listagem;
+        private RepositorioTaxaEmBancoDados _repositorioTaxa;
+        private ListagemTaxasControl _listagemTaxa;
+        private ServicoTaxa _servicoTaxa;
 
-        public ControladorTaxa(RepositorioTaxaEmBancoDados repositorio)
+        public ControladorTaxa(RepositorioTaxaEmBancoDados repositorio, ServicoTaxa servicoTaxa)
         {
-            this.repositorio = repositorio;
-            listagem = new ListagemTaxasControl();
+            this._repositorioTaxa = repositorio;
+            _listagemTaxa = new ListagemTaxasControl();
+            _servicoTaxa = servicoTaxa;
+        }
+
+        public override void Inserir()
+        {
+            TelaCadastroTaxaForm tela = new TelaCadastroTaxaForm(_servicoTaxa);
+            tela.Taxa = new Taxa();
+
+            tela.GravarRegistro = _servicoTaxa.Inserir;
+
+            DialogResult resultado = tela.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                CarregarTaxas();
+            }
         }
 
         public override void Editar()
@@ -30,11 +48,11 @@ namespace LocadoraVeiculosForm.ModuloTaxa
                 return;
             }
 
-            TelaCadastroTaxaForm tela = new TelaCadastroTaxaForm();
+            TelaCadastroTaxaForm tela = new TelaCadastroTaxaForm(_servicoTaxa);
 
             tela.Taxa = taxaSelecionada;
 
-            //tela.GravarRegistro = repositorio.Editar;
+            tela.GravarRegistro = _servicoTaxa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -60,22 +78,7 @@ namespace LocadoraVeiculosForm.ModuloTaxa
 
             if (resultado == DialogResult.OK)
             {
-                repositorio.Excluir(taxaSelecionada);
-                CarregarTaxas();
-            }
-        }
-
-        public override void Inserir()
-        {
-            TelaCadastroTaxaForm tela = new TelaCadastroTaxaForm();
-            tela.Taxa = new Taxa();
-
-            //tela.GravarRegistro = repositorio.Inserir;
-
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
+                _repositorioTaxa.Excluir(taxaSelecionada);
                 CarregarTaxas();
             }
         }
@@ -87,26 +90,26 @@ namespace LocadoraVeiculosForm.ModuloTaxa
 
         public override UserControl ObtemListagem()
         {
-            if (listagem == null)
-                listagem = new ListagemTaxasControl();
+            if (_listagemTaxa == null)
+                _listagemTaxa = new ListagemTaxasControl();
 
             CarregarTaxas();
 
-            return listagem;
+            return _listagemTaxa;
         }
 
         private void CarregarTaxas()
         {
-            List<Taxa> taxas = repositorio.SelecionarTodos();
+            List<Taxa> taxas = _repositorioTaxa.SelecionarTodos();
 
-            listagem.AtualizarRegistros(taxas);
+            _listagemTaxa.AtualizarRegistros(taxas);
         }
 
         private Taxa ObtemTaxaSelecionada()
         {
-            int id = listagem.SelecionarNumeroTaxa();
+            int id = _listagemTaxa.SelecionarNumeroTaxa();
 
-            Taxa taxaSelecionada = repositorio.SelecionarPorId(id);
+            Taxa taxaSelecionada = _repositorioTaxa.SelecionarPorId(id);
 
             return taxaSelecionada;
         }
