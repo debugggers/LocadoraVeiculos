@@ -4,9 +4,9 @@ using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
 {
-    public class RepositorioGrupoVeiculosEmBancoDados : RepositorioBase<GrupoVeiculos, MapeadorGrupoVeiculos>
+    public class RepositorioGrupoVeiculosEmBancoDados : 
+        RepositorioBase<GrupoVeiculos, MapeadorGrupoVeiculos>
     {
-
         #region SQL Queries
         protected override string sqlInserir =>
             @"INSERT INTO [TBGRUPOVEICULO]
@@ -45,7 +45,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
             [TBGRUPOVEICULO]";
 
         private const string sqlSelecionarPorNome =
-            @"SELECT ID 
+            @"SELECT *
                 FROM 
                     TBGRUPOVEICULO
                 WHERE
@@ -53,26 +53,9 @@ namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
 
         #endregion
 
-
-        public bool GrupoVeiculosJaExiste(string nome)
+        public GrupoVeiculos SelecionarGrupoVeiculosPorNome(string nome)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
-
-            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNome, conexaoComBanco);
-
-            comandoSelecao.Parameters.AddWithValue("NOME", nome);
-
-            conexaoComBanco.Open();
-            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
-
-            var grupoveiculosJaExiste = false;
-
-            if (leitorRegistro != null)
-                grupoveiculosJaExiste = leitorRegistro.HasRows;
-
-            conexaoComBanco.Close();
-
-            return grupoveiculosJaExiste;
+            return SelecionarPorParametro(sqlSelecionarPorNome, new SqlParameter("NOME", nome));
         }
     }
 }

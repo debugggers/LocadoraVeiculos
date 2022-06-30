@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
+﻿using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
+using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculosForm.Compartilhado;
 using System;
@@ -9,19 +10,37 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 {
     public class ControladorGupoVeiculos : ControladorBase
     {
-        private RepositorioGrupoVeiculosEmBancoDados repositorio;
-        private ListagemGrupoveiculosControl listagem;
+        private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
+        private ListagemGrupoveiculosControl _listagemGrupoVeiculos;
+        private ServicoGrupoVeiculos _servicoGrupoVeiculos;
 
 
-        public ControladorGupoVeiculos(RepositorioGrupoVeiculosEmBancoDados repositorio)
+        public ControladorGupoVeiculos(RepositorioGrupoVeiculosEmBancoDados repositorio, ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
-            this.repositorio = repositorio;
-            listagem = new ListagemGrupoveiculosControl();
+            _repositorioGrupoVeiculos = repositorio;
+            _listagemGrupoVeiculos = new ListagemGrupoveiculosControl();
+            _servicoGrupoVeiculos = servicoGrupoVeiculos;
+        }
+
+        public override void Inserir()
+        {
+            TelaCadastroGupoVeiculosForm tela = new TelaCadastroGupoVeiculosForm();
+
+            tela.GrupoVeiculos = new GrupoVeiculos();
+
+            tela.GravarRegistro = _servicoGrupoVeiculos.Inserir;
+
+            DialogResult resultado = tela.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                CarregarGrupoVeiculos();
+            }
         }
 
         public override void Editar()
         {
-            GrupoVeiculos grupoVeiculoSelecionada = ObtemGrupoveiculoSelecionada();
+            GrupoVeiculos grupoVeiculoSelecionada = ObtemGrupoveiculoSelecionado();
 
             if (grupoVeiculoSelecionada == null)
             {
@@ -34,7 +53,7 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 
             tela.GrupoVeiculos = grupoVeiculoSelecionada;
 
-            //tela.GravarRegistro = repositorio.Editar;
+            tela.GravarRegistro = _servicoGrupoVeiculos.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -44,18 +63,9 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
             }
         }
 
-        private GrupoVeiculos ObtemGrupoveiculoSelecionada()
-        {
-            int id = listagem.SelecionarNumeroGrupoVeiculos();
-
-            GrupoVeiculos grupoVeiculosSelecionado = repositorio.SelecionarPorId(id);
-
-            return grupoVeiculosSelecionado;
-        }
-
         public override void Excluir()
         {
-            GrupoVeiculos grupoVeiculoSelecionada = ObtemGrupoveiculoSelecionada();
+            GrupoVeiculos grupoVeiculoSelecionada = ObtemGrupoveiculoSelecionado();
 
             if (grupoVeiculoSelecionada == null)
             {
@@ -69,48 +79,40 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 
             if (resultado == DialogResult.OK)
             {
-                repositorio.Excluir(grupoVeiculoSelecionada);
+                _repositorioGrupoVeiculos.Excluir(grupoVeiculoSelecionada);
                 CarregarGrupoVeiculos();
             }
         }
 
-        public override void Inserir()
-        {
-            TelaCadastroGupoVeiculosForm tela = new TelaCadastroGupoVeiculosForm();
-
-            tela.GrupoVeiculos = new GrupoVeiculos();
-
-            //tela.GravarRegistro = repositorio.Inserir;
-
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
-                CarregarGrupoVeiculos();
-            }
-        }
         public override UserControl ObtemListagem()
         {
-            if (listagem == null)
-                listagem = new ListagemGrupoveiculosControl();
+            if (_listagemGrupoVeiculos == null)
+                _listagemGrupoVeiculos = new ListagemGrupoveiculosControl();
 
             CarregarGrupoVeiculos();
 
-            return listagem;
+            return _listagemGrupoVeiculos;
         }
-
-        private void CarregarGrupoVeiculos()
-        {
-            List<GrupoVeiculos> grupoVeiculos = repositorio.SelecionarTodos();
-
-            listagem.AtualizarRegistros(grupoVeiculos);
-        }
-
-       
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolBoxGrupoVeiculos();
         }
+
+        private GrupoVeiculos ObtemGrupoveiculoSelecionado()
+        {
+            int id = _listagemGrupoVeiculos.SelecionarNumeroGrupoVeiculos();
+
+            GrupoVeiculos grupoVeiculosSelecionado = _repositorioGrupoVeiculos.SelecionarPorId(id);
+
+            return grupoVeiculosSelecionado;
+        }
+
+        private void CarregarGrupoVeiculos()
+        {
+            List<GrupoVeiculos> grupoVeiculos = _repositorioGrupoVeiculos.SelecionarTodos();
+
+            _listagemGrupoVeiculos.AtualizarRegistros(grupoVeiculos);
+        }        
     }
 }
