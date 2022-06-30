@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.ModuloFuncionario;
+﻿using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
+using LocadoraVeiculos.BancoDados.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculosForm.Compartilhado;
@@ -11,21 +12,23 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
     {
         private RepositorioFuncionarioEmBancoDados _repositorioFuncionario;
         private ListagemFuncionariosControl _listagemFuncionarios;
+        private ServicoFuncionario _servicoFuncionario;
 
-        public ControladorFuncionario()
+        public ControladorFuncionario(RepositorioFuncionarioEmBancoDados repositorioFuncionario, ServicoFuncionario servicoFuncionario)
         {
-            _repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
+            _repositorioFuncionario = repositorioFuncionario;
             _listagemFuncionarios = new ListagemFuncionariosControl();
+            _servicoFuncionario = servicoFuncionario;
         }
 
         public override void Inserir()
         {
             if (GerenciadorUsuario.EhAdmin())
             {
-                TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm(_repositorioFuncionario);
+                TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm(_servicoFuncionario);
                 tela.Funcionario = new Funcionario();
 
-                //tela.GravarRegistro = _repositorioFuncionario.Inserir;
+                tela.GravarRegistro = _servicoFuncionario.Inserir;
 
                 DialogResult resultado = tela.ShowDialog();
 
@@ -49,11 +52,11 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
                     return;
                 }
 
-                TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm(_repositorioFuncionario);
+                TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm(_servicoFuncionario);
 
                 tela.Funcionario = funcionarioSelecionado;
 
-                //tela.GravarRegistro = _repositorioFuncionario.Editar;
+                tela.GravarRegistro = _servicoFuncionario.Editar;
 
                 DialogResult resultado = tela.ShowDialog();
 
