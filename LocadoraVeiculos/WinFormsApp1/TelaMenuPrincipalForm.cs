@@ -161,7 +161,7 @@ namespace LocadoraVeiculosForm
             var servicoCliente = new ServicoCliente(repositorioClientes);
             var servicoEmpresa = new ServicoEmpresa(repositorioEmpresa);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
-            var servicoGrupoVeiculos = new ServicoGrupoVeiculos();
+            var servicoGrupoVeiculos = new ServicoGrupoVeiculos(repositorioGrupoveiculos);
             var servicoTaxa = new ServicoTaxa(repositorioTaxa);
 
             controladores = new Dictionary<string, ControladorBase>();
@@ -170,7 +170,7 @@ namespace LocadoraVeiculosForm
             controladores.Add("Pessoa física", new ControladorCliente(repositorioClientes, servicoCliente));
             controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes, servicoEmpresa));
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
-            //controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos));
+            controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos, servicoGrupoVeiculos));
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)

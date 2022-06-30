@@ -36,26 +36,15 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
         {
             grupoVeiculos.Nome = txtNome.Text;
 
-            if (repositorio.GrupoVeiculosJaExiste(grupoVeiculos.Nome))
+            var resultadoValidacao = GravarRegistro(grupoVeiculos);
+
+            if (resultadoValidacao.IsValid == false)
             {
-                MessageBox.Show("Grupo de veiculos já existente, não é possível adicionar.",
-                    "Cadastro de grupo de veiculos",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
                 DialogResult = DialogResult.None;
-            }
-            else
-            {
-                var resultadoValidacao = GravarRegistro(grupoVeiculos);
-
-                if (resultadoValidacao.IsValid == false)
-                {
-                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
-                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
-
-                    DialogResult = DialogResult.None;
-                }
             }
         }
 
