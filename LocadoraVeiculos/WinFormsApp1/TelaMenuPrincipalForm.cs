@@ -162,14 +162,14 @@ namespace LocadoraVeiculosForm
             var servicoEmpresa = new ServicoEmpresa();
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             var servicoGrupoVeiculos = new ServicoGrupoVeiculos();
-            var servicoTaxa = new ServicoTaxa();
+            var servicoTaxa = new ServicoTaxa(repositorioTaxa);
 
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Funcionário", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
             controladores.Add("Pessoa física", new ControladorCliente(repositorioClientes, servicoCliente));
             //controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes));
-            //controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
+            controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
             //controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos));
         }
 

@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.BancoDados.ModuloTaxa;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using System;
@@ -10,11 +11,12 @@ namespace LocadoraVeiculosForm.ModuloTaxa
     {
 
         Taxa taxa;
-        RepositorioTaxaEmBancoDados repositorio;
-        public TelaCadastroTaxaForm()
+        ServicoTaxa _servicoTaxa;
+        public TelaCadastroTaxaForm(ServicoTaxa servicoTaxa)
         {
             InitializeComponent();
-            repositorio = new RepositorioTaxaEmBancoDados();
+
+            _servicoTaxa = servicoTaxa;
         }
 
         public Func<Taxa, ValidationResult> GravarRegistro { get; set; }
@@ -54,14 +56,14 @@ namespace LocadoraVeiculosForm.ModuloTaxa
             
             taxa.TipoCalculo = (TipoCalculoEnum)comboBoxTipoCalculo.SelectedIndex;
 
-            if (!repositorio.VerificarSeExiste(taxa))
-            {
+            //if (!repositorio.VerificarSeExiste(taxa))
+            //{
 
-                MessageBox.Show("Taxa ou dados já inseridos",
-               "Taxa de clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+            //    MessageBox.Show("Taxa ou dados já inseridos",
+            //   "Taxa de clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    return;
 
-            }
+            //} 
 
             var resultadoValidacao = GravarRegistro(taxa);
 

@@ -7,12 +7,12 @@ namespace LocadoraVeiculos.BancoDados.ModuloTaxa
 {
     public class MapeadorTaxa : MapeadorBase<Taxa>
     {
-        public override Taxa ConverterRegistro(SqlDataReader leitorFuncionario)
+        public override Taxa ConverterRegistro(SqlDataReader leitorTaxa)
         {
-            var id = Convert.ToInt32(leitorFuncionario["ID"]);
-            var descricao = Convert.ToString(leitorFuncionario["DESCRICAO"]);
-            var valor = Convert.ToDecimal(leitorFuncionario["VALOR"]);
-            var tipoCalculo = (TipoCalculoEnum) leitorFuncionario["TIPOCALCULO"];
+            var id = Convert.ToInt32(leitorTaxa["ID"]);
+            var descricao = Convert.ToString(leitorTaxa["DESCRICAO"]);
+            var valor = Convert.ToDecimal(leitorTaxa["VALOR"]);
+            var tipoCalculo = (TipoCalculoEnum) leitorTaxa["TIPOCALCULO"];
 
             var taxa = new Taxa()
             {
