@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.BancoDados.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using System;
@@ -9,13 +10,13 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
     public partial class TelaCadastroFuncionarioForm : Form
     {
         private Funcionario _funcionario;
-        private RepositorioFuncionarioEmBancoDados _repositorioFuncionario;
+        private ServicoFuncionario _servicoFuncionario;
 
-        public TelaCadastroFuncionarioForm(RepositorioFuncionarioEmBancoDados repositorioFuncionario)
+        public TelaCadastroFuncionarioForm(ServicoFuncionario servicoFuncionario)
         {
             InitializeComponent();
 
-            _repositorioFuncionario = repositorioFuncionario;
+            _servicoFuncionario = servicoFuncionario;
             dtDataAdmissao.MaxDate = DateTime.Now.Date;
         }
 
@@ -63,31 +64,21 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
                 DialogResult = DialogResult.None;
                 return;
             }
-            
+
             _funcionario.DataAdmissao = Convert.ToDateTime(dtDataAdmissao.Text);
             _funcionario.EhAdmin = checkBoxAdmin.Checked;
 
-            if (_repositorioFuncionario.FuncionarioJaExiste(_funcionario.Login, _funcionario.Id))
+            var resultadoValidacao = GravarRegistro(_funcionario);
+
+            if (resultadoValidacao.IsValid == false)
             {
-                MessageBox.Show("Login já existente, não é possível adicionar.",
-                    "Inserindo Funcionário",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                labelRodapeFuncionario.Text = erro;
+
                 DialogResult = DialogResult.None;
             }
-            else
-            {
-                var resultadoValidacao = GravarRegistro(_funcionario);
 
-                if (resultadoValidacao.IsValid == false)
-                {
-                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
-                    labelRodapeFuncionario.Text = erro;
-
-                    DialogResult = DialogResult.None;
-                }
-            }
         }
     }
 }

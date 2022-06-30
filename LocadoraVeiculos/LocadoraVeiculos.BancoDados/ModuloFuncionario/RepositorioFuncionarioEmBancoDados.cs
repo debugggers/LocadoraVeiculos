@@ -1,5 +1,6 @@
 ﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
@@ -62,12 +63,19 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
         protected override string sqlSelecionarTodos =>
              @"SELECT * FROM TBFUNCIONARIO";
 
-        private const string sqlSelecionarPorLogin =
-            @"SELECT ID 
+        private const string sqlSelecionarPorNome =
+            @"SELECT * 
                 FROM 
                     TBFUNCIONARIO
                 WHERE
-                    LOGIN = @LOGIN AND ID != @ID";
+                    NOME = @NOME";
+
+        private const string sqlSelecionarPorLogin =
+            @"SELECT * 
+                FROM 
+                    TBFUNCIONARIO
+                WHERE
+                    LOGIN = @LOGIN";
 
         private const string sqlSelecionarPorLoginSenha =
             @"SELECT *
@@ -78,26 +86,14 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
 
         #endregion
 
-        public bool FuncionarioJaExiste(string login, int id)
+        public Funcionario SelecionarFuncionarioPorNome(string nome)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
+            return SelecionarPorParametro(sqlSelecionarPorNome, new SqlParameter("NOME", nome));
+        }
 
-            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorLogin, conexaoComBanco);
-
-            comandoSelecao.Parameters.AddWithValue("LOGIN", login);
-            comandoSelecao.Parameters.AddWithValue("ID", id);
-
-            conexaoComBanco.Open();
-            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
-
-            var funcionarioJaExiste = false;
-
-            if (leitorRegistro != null)
-                funcionarioJaExiste = leitorRegistro.HasRows;
-
-            conexaoComBanco.Close();
-
-            return funcionarioJaExiste;
+        public Funcionario SelecionarFuncionarioPorLogin(string login)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorLogin, new SqlParameter("LOGIN", login));
         }
 
         public Funcionario BuscarUsuarioPorLoginSenha(string login, string senha)
