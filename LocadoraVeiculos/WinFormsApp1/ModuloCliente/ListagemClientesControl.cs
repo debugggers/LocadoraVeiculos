@@ -22,7 +22,11 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
             foreach (Cliente c in clientes)
             {
-                grid.Rows.Add(c.Id, c.Nome, c.Email, c.Telefone, c.Endereco, c.CPF, c.CnhNumero, c.CnhNome, c.CnhVencimento.ToShortDateString());
+
+                if(c.Empresa != null)
+                    grid.Rows.Add(c.Id, c.Nome, c.Email, c.Telefone, c.Endereco, c.CPF, c.CnhNumero, c.CnhNome, c.CnhVencimento.ToShortDateString(), c.Empresa.Nome);
+                else
+                    grid.Rows.Add(c.Id, c.Nome, c.Email, c.Telefone, c.Endereco, c.CPF, c.CnhNumero, c.CnhNome, c.CnhVencimento.ToShortDateString());
             }
 
         }
@@ -47,7 +51,9 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "CnhNome", HeaderText = "Nome CNH"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "CnhVencimento", HeaderText = "Data de vencimento CNH"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "CnhVencimento", HeaderText = "Data de vencimento CNH"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "EmpresaNome", HeaderText = "Nome da empresa:"}
             };
 
             return colunas;

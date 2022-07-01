@@ -38,10 +38,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
-            this.comboBoxPessoasFisicas = new System.Windows.Forms.ComboBox();
             this.txtTelefoneEmpresa = new System.Windows.Forms.MaskedTextBox();
             this.txtCnpjEmpresa = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
@@ -132,19 +130,10 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "antes de realizar o cadastro da empresa.";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 357);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(184, 15);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Selecione o número do condutor:";
-            // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(318, 412);
+            this.btnCancelar.Location = new System.Drawing.Point(322, 374);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(98, 46);
             this.btnCancelar.TabIndex = 14;
@@ -154,22 +143,13 @@
             // btnCadastrar
             // 
             this.btnCadastrar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnCadastrar.Location = new System.Drawing.Point(422, 412);
+            this.btnCadastrar.Location = new System.Drawing.Point(426, 374);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(98, 46);
             this.btnCadastrar.TabIndex = 15;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
-            // 
-            // comboBoxPessoasFisicas
-            // 
-            this.comboBoxPessoasFisicas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPessoasFisicas.FormattingEnabled = true;
-            this.comboBoxPessoasFisicas.Location = new System.Drawing.Point(12, 375);
-            this.comboBoxPessoasFisicas.Name = "comboBoxPessoasFisicas";
-            this.comboBoxPessoasFisicas.Size = new System.Drawing.Size(292, 23);
-            this.comboBoxPessoasFisicas.TabIndex = 16;
             // 
             // txtTelefoneEmpresa
             // 
@@ -191,13 +171,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 470);
+            this.ClientSize = new System.Drawing.Size(532, 430);
             this.Controls.Add(this.txtCnpjEmpresa);
             this.Controls.Add(this.txtTelefoneEmpresa);
-            this.Controls.Add(this.comboBoxPessoasFisicas);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -231,10 +209,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnCadastrar;
-        private System.Windows.Forms.ComboBox comboBoxPessoasFisicas;
         private System.Windows.Forms.MaskedTextBox txtTelefoneEmpresa;
         private System.Windows.Forms.MaskedTextBox txtCnpjEmpresa;
     }

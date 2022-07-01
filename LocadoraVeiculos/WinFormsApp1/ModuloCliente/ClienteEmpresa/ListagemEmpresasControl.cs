@@ -25,7 +25,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             foreach (Empresa e in empresas)
             {
 
-                gridPessoaJuridica.Rows.Add(e.Id, e.Nome, e.Email, e.Telefone, e.Endereco, e.CNPJ, e.Condutor.Id);
+                gridPessoaJuridica.Rows.Add(e.Id, e.Nome, e.Email, e.Telefone, e.Endereco, e.CNPJ);
 
             }
 
@@ -47,8 +47,6 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
                 new DataGridViewTextBoxColumn { DataPropertyName = "Endereco", HeaderText = "Endereço"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Cnpj", HeaderText = "CNPJ"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cliente_Numero", HeaderText = "Número condutor"}
 
             };
 

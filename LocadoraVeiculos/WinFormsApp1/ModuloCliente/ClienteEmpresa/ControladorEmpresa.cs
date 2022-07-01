@@ -13,15 +13,13 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
     {
 
         private RepositorioEmpresaBancoDados repositorio;
-        private RepositorioClienteEmBancoDados repositorioClientes;
         private ServicoEmpresa servicoEmpresa;
         private ListagemEmpresasControl listagem;
 
-        public ControladorEmpresa(RepositorioEmpresaBancoDados repositorio, RepositorioClienteEmBancoDados repositorioClientes, ServicoEmpresa servicoEmpresa)
+        public ControladorEmpresa(RepositorioEmpresaBancoDados repositorio, ServicoEmpresa servicoEmpresa)
         {
 
             this.repositorio = repositorio;
-            this.repositorioClientes = repositorioClientes;
             this.servicoEmpresa = servicoEmpresa;
             listagem = new ListagemEmpresasControl();
 
@@ -52,7 +50,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
         public override void Inserir()
         {
 
-            var tela = new TelaCadastroEmpresaForm(repositorioClientes);
+            var tela = new TelaCadastroEmpresaForm();
             tela.Empresa = new Empresa();
             tela.GravarRegistro = servicoEmpresa.Inserir;
             DialogResult resultado = tela.ShowDialog();
@@ -73,7 +71,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
                 return;
             }
 
-            TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm(repositorioClientes);
+            TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm();
 
             tela.Empresa = empresaSelecionada;
 

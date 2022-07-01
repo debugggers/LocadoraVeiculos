@@ -16,7 +16,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
             comando.Parameters.AddWithValue("EMPRESA_EMAIL", empresa.Email);
             comando.Parameters.AddWithValue("EMPRESA_ENDERECO", empresa.Endereco);
             comando.Parameters.AddWithValue("EMPRESA_CNPJ", empresa.CNPJ);
-            comando.Parameters.AddWithValue("EMPRESA_CLIENTE_ID", empresa.Condutor.Id);
         }
 
         public override Empresa ConverterRegistro(SqlDataReader leitorEmpresa)
@@ -28,16 +27,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
             var endereco = Convert.ToString(leitorEmpresa["ENDERECO"]);
             var cnpj = Convert.ToString(leitorEmpresa["CNPJ"]);
 
-            var idCliente = Convert.ToInt32(leitorEmpresa["CLIENTE_ID"]);
-            var nomeCliente = Convert.ToString(leitorEmpresa["CLIENTE_NOME"]);
-            var telefoneCliente = Convert.ToString(leitorEmpresa["CLIENTE_TELEFONE"]);
-            var emailCliente = Convert.ToString(leitorEmpresa["CLIENTE_EMAIL"]);
-            var enderecoCliente = Convert.ToString(leitorEmpresa["CLIENTE_ENDERECO"]);
-            var cpfCliente = Convert.ToString(leitorEmpresa["CLIENTE_CPF"]);
-            var cnhNumeroCliente = Convert.ToInt32(leitorEmpresa["CLIENTE_CNH_NUMERO"]);
-            var cnhNomeCliente = Convert.ToString(leitorEmpresa["CLIENTE_CNH_NOME"]);
-            var cnhVencimentoCliente = Convert.ToDateTime(leitorEmpresa["CLIENTE_CNH_VENCIMENTO"]);
-
             Empresa empresa = new Empresa();
             empresa.Id = id;
             empresa.Nome = nome;
@@ -45,20 +34,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
             empresa.Email = email;
             empresa.Endereco = endereco;
             empresa.CNPJ = cnpj;
-            empresa.Condutor = new Cliente
-            {
-
-                Id = idCliente,
-                Nome = nomeCliente,
-                Telefone = telefoneCliente,
-                Email = emailCliente,
-                Endereco = enderecoCliente,
-                CPF = cpfCliente,
-                CnhNumero = cnhNumeroCliente,
-                CnhNome = cnhNomeCliente,
-                CnhVencimento = cnhVencimentoCliente,
-
-            };
 
             return empresa;
         }

@@ -5,8 +5,6 @@
     [Telefone]   VARCHAR (20)  NOT NULL,
     [Endereco]   VARCHAR (100) NOT NULL,
     [Cnpj]       VARCHAR (20)  NOT NULL,
-    [Cliente_Id] INT           NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_TBEmpresa_TBCliente] FOREIGN KEY ([Cliente_Id]) REFERENCES [dbo].[TBCliente] ([Id])
 );
 
