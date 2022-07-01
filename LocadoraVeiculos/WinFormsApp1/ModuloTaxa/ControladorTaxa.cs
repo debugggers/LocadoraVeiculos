@@ -2,7 +2,6 @@
 using LocadoraVeiculos.BancoDados.ModuloTaxa;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using LocadoraVeiculosForm.Compartilhado;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 

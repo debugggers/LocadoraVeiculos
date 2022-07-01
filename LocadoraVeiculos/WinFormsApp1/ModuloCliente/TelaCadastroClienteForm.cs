@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
+using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculosForm.ModuloCliente
 {
@@ -12,11 +15,16 @@ namespace LocadoraVeiculosForm.ModuloCliente
     {
 
         Cliente cliente;
+        List<Empresa> empresas;
         RepositorioClienteEmBancoDados repositorio;
-        public TelaCadastroClienteForm()
+        RepositorioEmpresaBancoDados repositorioEmpresa;
+        public TelaCadastroClienteForm(RepositorioEmpresaBancoDados repositorioEmpresa)
         {
             InitializeComponent();
+            comboBoxEmpresas.Enabled = false;
+            empresas = repositorioEmpresa.SelecionarTodos();
             repositorio = new RepositorioClienteEmBancoDados();
+            this.repositorioEmpresa = repositorioEmpresa;
         }
 
         public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
@@ -42,6 +50,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
                     monthCalendarVencimento.Value = DateTime.Now.Date;
                 else
                     monthCalendarVencimento.Value = cliente.CnhVencimento;
+                comboBoxEmpresas.SelectedItem = cliente.Empresa;
 
             }
         }
@@ -57,6 +66,14 @@ namespace LocadoraVeiculosForm.ModuloCliente
             cliente.CnhNumero = Convert.ToInt32(txtNumeroCnh.Text);
             cliente.CnhNome = txtNomeCnh.Text;
             cliente.CnhVencimento = monthCalendarVencimento.Value;
+            cliente.Empresa = null;
+            foreach (var item in empresas)
+            {
+
+                if (item.Nome.Equals(comboBoxEmpresas.SelectedItem))
+                    cliente.Empresa = item;
+
+            }
 
             var resultadoValidacao = GravarRegistro(cliente);
 
@@ -80,5 +97,35 @@ namespace LocadoraVeiculosForm.ModuloCliente
             TelaMenuPrincipalForm.Instancia.AtualizarRodape("");
         }
 
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxPessoasFisicas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if(comboBoxEmpresas.Items.Count == 0)
+            {
+
+                foreach (var empresa in empresas)
+                {
+
+                    comboBoxEmpresas.Items.Add(empresa.Nome);
+
+                }
+
+            }
+            
+            if (checkBoxCondutor.Checked)
+                comboBoxEmpresas.Enabled = true;
+            else
+                comboBoxEmpresas.Enabled = false;
+        }
     }
 }

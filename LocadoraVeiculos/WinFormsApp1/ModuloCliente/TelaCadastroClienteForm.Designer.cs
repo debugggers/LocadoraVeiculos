@@ -46,6 +46,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
             this.txtCpf = new System.Windows.Forms.MaskedTextBox();
+            this.comboBoxEmpresas = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.checkBoxCondutor = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -142,7 +145,7 @@
             // buttonCancelar
             // 
             this.buttonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancelar.Location = new System.Drawing.Point(368, 235);
+            this.buttonCancelar.Location = new System.Drawing.Point(369, 302);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(95, 44);
             this.buttonCancelar.TabIndex = 16;
@@ -152,7 +155,7 @@
             // buttonCadastrar
             // 
             this.buttonCadastrar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonCadastrar.Location = new System.Drawing.Point(469, 235);
+            this.buttonCadastrar.Location = new System.Drawing.Point(470, 302);
             this.buttonCadastrar.Name = "buttonCadastrar";
             this.buttonCadastrar.Size = new System.Drawing.Size(95, 44);
             this.buttonCadastrar.TabIndex = 17;
@@ -200,11 +203,45 @@
             this.txtCpf.Size = new System.Drawing.Size(253, 23);
             this.txtCpf.TabIndex = 23;
             // 
+            // comboBoxEmpresas
+            // 
+            this.comboBoxEmpresas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEmpresas.FormattingEnabled = true;
+            this.comboBoxEmpresas.Location = new System.Drawing.Point(311, 221);
+            this.comboBoxEmpresas.Name = "comboBoxEmpresas";
+            this.comboBoxEmpresas.Size = new System.Drawing.Size(253, 23);
+            this.comboBoxEmpresas.TabIndex = 25;
+            this.comboBoxEmpresas.SelectedIndexChanged += new System.EventHandler(this.comboBoxPessoasFisicas_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(311, 203);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(189, 15);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Selecione o nome de sua empresa:";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
+            // checkBoxCondutor
+            // 
+            this.checkBoxCondutor.AutoSize = true;
+            this.checkBoxCondutor.Location = new System.Drawing.Point(311, 175);
+            this.checkBoxCondutor.Name = "checkBoxCondutor";
+            this.checkBoxCondutor.Size = new System.Drawing.Size(151, 19);
+            this.checkBoxCondutor.TabIndex = 26;
+            this.checkBoxCondutor.Text = "Condutor para empresa";
+            this.checkBoxCondutor.UseVisualStyleBackColor = true;
+            this.checkBoxCondutor.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // TelaCadastroClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 295);
+            this.ClientSize = new System.Drawing.Size(587, 358);
+            this.Controls.Add(this.checkBoxCondutor);
+            this.Controls.Add(this.comboBoxEmpresas);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtNomeCnh);
@@ -254,5 +291,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.MaskedTextBox txtTelefone;
         private System.Windows.Forms.MaskedTextBox txtCpf;
+        private System.Windows.Forms.ComboBox comboBoxEmpresas;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox checkBoxCondutor;
     }
 }

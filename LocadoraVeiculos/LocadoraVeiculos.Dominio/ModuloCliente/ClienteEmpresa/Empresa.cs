@@ -15,7 +15,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
         public string Telefone { get; set; }
         public string Endereco { get; set; }
         public string CNPJ { get; set; }
-        public Cliente Condutor { get; set; }
+        public List<Cliente> Clientes { get; set; }
 
         public Empresa()
         {
@@ -33,13 +33,12 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
                   Email == empresa.Email &&
                   Endereco == empresa.Endereco &&
                   CNPJ == empresa.CNPJ &&
-                  Condutor.Id == empresa.Condutor.Id;
+                  Clientes == empresa.Clientes;
         }
 
         public override string ToString()
         {
-            return $"Id: {Id}, Nome: {Nome}, Telefone: {Telefone}, Email: {Email}, Endereco: {Endereco}, CNPJ: {CNPJ}," + "\n" +
-                $" Número do Condutor: {Condutor.Id}";
+            return $"Id: {Id}, Nome: {Nome}, Telefone: {Telefone}, Email: {Email}, Endereco: {Endereco}, CNPJ: {CNPJ}";
         }
 
     }

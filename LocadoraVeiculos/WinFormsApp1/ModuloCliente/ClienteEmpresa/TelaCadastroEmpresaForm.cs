@@ -19,19 +19,11 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
     {
 
         Empresa empresa;
-        List<Cliente> pessoasFisicas;
 
 
-        public TelaCadastroEmpresaForm(RepositorioClienteEmBancoDados repositorioCliente)
+        public TelaCadastroEmpresaForm()
         {
             InitializeComponent();
-            pessoasFisicas = repositorioCliente.SelecionarTodos();
-            foreach (var item in pessoasFisicas)
-            {
-
-                comboBoxPessoasFisicas.Items.Add(item.Id);
-
-            }
         }
 
         public Func<Empresa, ValidationResult> GravarRegistro { get; set; }
@@ -50,7 +42,6 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
                 txtTelefoneEmpresa.Text = empresa.Telefone;
                 txtCnpjEmpresa.Text = empresa.CNPJ;
                 txtEnderecoEmpresa.Text = empresa.Endereco;
-                comboBoxPessoasFisicas.SelectedItem = empresa.Condutor;
 
             }
         }
@@ -63,13 +54,6 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             empresa.Telefone = txtTelefoneEmpresa.Text;
             empresa.Endereco = txtEnderecoEmpresa.Text;
             empresa.CNPJ = txtCnpjEmpresa.Text;
-            foreach (var item in pessoasFisicas)
-            {
-
-                if (item.Id.Equals(comboBoxPessoasFisicas.SelectedItem))
-                    empresa.Condutor = item;
-
-            }
 
             var resultadoValidacao = GravarRegistro(empresa);
 
