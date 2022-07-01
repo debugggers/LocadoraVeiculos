@@ -10,23 +10,35 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
         protected override string sqlInserir =>
             @"INSERT INTO TBPLANOCOBRANCA
             (
-                    TIPOPLANO,
-                    VALOR,
-                    GRUPOVEICULOS_ID
+                   VALORDIARIO_DIARIO,
+                   VALORPORKM_DIARIO,
+                   VALORDIARIO_LIVRE,
+                   VALORDIARIO_CONTROLADO,
+                   VALORPORKM_CONTROLADO,
+                   CONTROLEKM_CONTROLADO,
+                   GRUPOVEICULOS_ID
             )
             VALUES
             (
-                    @TIPOPLANO,
-                    @VALOR,
-                    @GRUPOVEICULOS_ID
+                   @VALORDIARIO_DIARIO,
+                   @VALORPORKM_DIARIO,
+                   @VALORDIARIO_LIVRE,
+                   @VALORDIARIO_CONTROLADO,
+                   @VALORPORKM_CONTROLADO,
+                   @CONTROLEKM_CONTROLADO,
+                   @GRUPOVEICULOS_ID
             );SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar =>
            @"UPDATE TBPLANOCOBRANCA
 		        SET
-			        TIPOPLANO = @TIPOPLANO,
-                    VALOR = @VALOR,
-                    GRUPOVEICULOS_ID = @GRUPOVEICULOS_ID
+			       VALORDIARIO_DIARIO = @VALORDIARIO_DIARIO,
+                   VALORPORKM_DIARIO = @VALORPORKM_DIARIO,
+                   VALORDIARIO_LIVRE = @VALORDIARIO_LIVRE,
+                   VALORDIARIO_CONTROLADO = @VALORDIARIO_CONTROLADO,
+                   VALORPORKM_CONTROLADO = @VALORPORKM_CONTROLADO,
+                   CONTROLEKM_CONTROLADO = @CONTROLEKM_CONTROLADO,
+                   GRUPOVEICULOS_ID = @GRUPOVEICULOS_ID
 		        WHERE
 			        ID = @ID";
 
@@ -36,12 +48,19 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
 			        ID = @ID";
 
         protected override string sqlSelecionarPorId =>
-            @"SELECT * FROM TBPLANOCOBRANCA
-		        WHERE
-                    ID = @ID";
+            @"SELECT 
+                    PLANO.*, 
+                    GRUPO.NOME AS GRUPOVEICULOS_NOME
+               FROM TBPLANOCOBRANCA PLANO
+               INNER JOIN TBGRUPOVEICULO GRUPO ON GRUPO.ID = PLANO.GRUPOVEICULOS_ID
+		       WHERE plano.ID = @ID";
 
         protected override string sqlSelecionarTodos =>
-             @"SELECT * FROM TBPLANOCOBRANCA";
+             @"SELECT 
+                    PLANO.*, 
+                    GRUPO.NOME AS GRUPOVEICULOS_NOME
+               FROM TBPLANOCOBRANCA PLANO
+               INNER JOIN TBGRUPOVEICULO GRUPO ON GRUPO.ID = PLANO.GRUPOVEICULOS_ID";
 
         #endregion
     }

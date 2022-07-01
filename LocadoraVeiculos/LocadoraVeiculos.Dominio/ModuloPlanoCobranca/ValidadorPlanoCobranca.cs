@@ -6,11 +6,12 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
     {
         public ValidadorPlanoCobranca()
         {
-            RuleFor(x => x.TipoPlano).NotNull().NotEmpty();
-
-            RuleFor(x => x.Valor).NotNull().NotEmpty();
-
-            RuleFor(x => x.GrupoVeiculos).NotNull().NotEmpty();
+            RuleFor(x => x.ValorDiario_Diario).NotEmpty();
+            RuleFor(x => x.ValorPorKm_Diario).NotEmpty();
+            RuleFor(x => x.ValorDiario_Livre).NotEmpty();
+            RuleFor(x => x.ValorDiario_Controlado).NotEmpty();
+            RuleFor(x => x.ValorPorKm_Controlado).NotEmpty();
+            RuleFor(x => x.ControleKm).NotEmpty();
         }
     }
 }

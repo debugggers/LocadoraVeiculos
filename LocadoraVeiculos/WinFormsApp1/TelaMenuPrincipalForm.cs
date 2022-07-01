@@ -2,17 +2,20 @@
 using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.BancoDados.ModuloFuncionario;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
+using LocadoraVeiculos.BancoDados.ModuloPlanoCobranca;
 using LocadoraVeiculos.BancoDados.ModuloTaxa;
 using LocadoraVeiculosForm.Compartilhado;
 using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculosForm.ModuloFuncionario;
 using LocadoraVeiculosForm.ModuloGrupoVeiculos;
+using LocadoraVeiculosForm.ModuloPlanoCobranca;
 using LocadoraVeiculosForm.ModuloTaxa;
 using System;
 using System.Collections.Generic;
@@ -69,17 +72,7 @@ namespace LocadoraVeiculosForm
         public void AtualizarRodape(string mensagem)
         {
             labelRodape.Text = mensagem;
-        }
-
-        private void clientesMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void funcionariosMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
-        }
+        }       
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
@@ -157,12 +150,14 @@ namespace LocadoraVeiculosForm
             var repositorioTaxa = new RepositorioTaxaEmBancoDados();
             var repositorioGrupoveiculos = new RepositorioGrupoVeiculosEmBancoDados();
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
+            var repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmBancoDados();
 
             var servicoCliente = new ServicoCliente(repositorioClientes);
             var servicoEmpresa = new ServicoEmpresa(repositorioEmpresa);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             var servicoGrupoVeiculos = new ServicoGrupoVeiculos(repositorioGrupoveiculos);
             var servicoTaxa = new ServicoTaxa(repositorioTaxa);
+            var servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca);
 
             controladores = new Dictionary<string, ControladorBase>();
 
@@ -171,6 +166,7 @@ namespace LocadoraVeiculosForm
             controladores.Add("Pessoa jurídica", new ControladorEmpresa(repositorioEmpresa, repositorioClientes, servicoEmpresa));
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
             controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos, servicoGrupoVeiculos));
+            controladores.Add("Planos de Cobrança", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicoPlanoCobranca));
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -178,32 +174,39 @@ namespace LocadoraVeiculosForm
             this.Close();
         }
 
+        private void funcionariosMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
+
+        private void clientesMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
         private void pessoaFísicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
-
         }
 
         private void pessoaJurídicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
-
         }
 
         private void taxasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
-
         }
 
         private void grupoDeVeiculosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
-
         }
+
+        private void planoCobrancaMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
+
     }
 }

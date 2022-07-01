@@ -36,6 +36,7 @@
             this.funcionárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taxasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grupoDeVeiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.planosDeCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox = new System.Windows.Forms.ToolStrip();
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
@@ -68,6 +69,7 @@
             this.funcionárioToolStripMenuItem,
             this.taxasToolStripMenuItem,
             this.grupoDeVeiculosToolStripMenuItem,
+            this.planosDeCobrançaToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(82, 23);
@@ -79,7 +81,7 @@
             this.pessoaFísicaToolStripMenuItem,
             this.pessoaJurídicaToolStripMenuItem});
             this.clientesMenuItem.Name = "clientesMenuItem";
-            this.clientesMenuItem.Size = new System.Drawing.Size(188, 24);
+            this.clientesMenuItem.Size = new System.Drawing.Size(199, 24);
             this.clientesMenuItem.Text = "Clientes";
             this.clientesMenuItem.Click += new System.EventHandler(this.clientesMenuItem_Click);
             // 
@@ -100,28 +102,35 @@
             // funcionárioToolStripMenuItem
             // 
             this.funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
-            this.funcionárioToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+            this.funcionárioToolStripMenuItem.Size = new System.Drawing.Size(199, 24);
             this.funcionárioToolStripMenuItem.Text = "Funcionário";
             this.funcionárioToolStripMenuItem.Click += new System.EventHandler(this.funcionariosMenuItem_Click);
             // 
             // taxasToolStripMenuItem
             // 
             this.taxasToolStripMenuItem.Name = "taxasToolStripMenuItem";
-            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(199, 24);
             this.taxasToolStripMenuItem.Text = "Taxas";
             this.taxasToolStripMenuItem.Click += new System.EventHandler(this.taxasToolStripMenuItem_Click);
             // 
             // grupoDeVeiculosToolStripMenuItem
             // 
             this.grupoDeVeiculosToolStripMenuItem.Name = "grupoDeVeiculosToolStripMenuItem";
-            this.grupoDeVeiculosToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+            this.grupoDeVeiculosToolStripMenuItem.Size = new System.Drawing.Size(199, 24);
             this.grupoDeVeiculosToolStripMenuItem.Text = "Grupo de veiculos";
             this.grupoDeVeiculosToolStripMenuItem.Click += new System.EventHandler(this.grupoDeVeiculosToolStripMenuItem_Click);
+            // 
+            // planosDeCobrançaToolStripMenuItem
+            // 
+            this.planosDeCobrançaToolStripMenuItem.Name = "planosDeCobrançaToolStripMenuItem";
+            this.planosDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(199, 24);
+            this.planosDeCobrançaToolStripMenuItem.Text = "Planos de Cobrança";
+            this.planosDeCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planoCobrancaMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(199, 24);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -251,5 +260,6 @@
         private System.Windows.Forms.ToolStripMenuItem pessoaJurídicaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem taxasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grupoDeVeiculosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem planosDeCobrançaToolStripMenuItem;
     }
 }

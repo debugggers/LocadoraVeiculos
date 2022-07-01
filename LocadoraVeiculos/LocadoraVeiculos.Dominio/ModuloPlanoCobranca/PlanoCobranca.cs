@@ -9,21 +9,28 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         {
         }
 
-        public PlanoCobranca(decimal valor, GrupoVeiculos grupoVeiculos, int idGrupoVeiculos, TipoPlanoEnum tipoPlano)
+        public PlanoCobranca(GrupoVeiculos grupoVeiculos, int idGrupoVeiculos, 
+            decimal valorDiarioDiario, decimal valorPorKmDiario, decimal valorDiarioLivre, 
+            decimal valorDiarioControlado, decimal valorPorKmControlado, int controleKm)
         {
-            Valor = valor;
             GrupoVeiculos = grupoVeiculos;
             IdGrupoVeiculos = idGrupoVeiculos;
-            TipoPlano = tipoPlano;
+            ValorDiario_Diario = valorDiarioDiario;
+            ValorPorKm_Diario = valorPorKmDiario;
+            ValorDiario_Livre = valorDiarioLivre;
+            ValorDiario_Controlado = valorDiarioControlado;
+            ValorPorKm_Controlado = valorPorKmControlado;
+            ControleKm = controleKm;
         }
 
-        public TipoPlanoEnum TipoPlano { get; set; }
-
-        public decimal Valor { get; set; }
-
         public GrupoVeiculos GrupoVeiculos { get; set; }
-
         public int IdGrupoVeiculos { get; set; }
+        public decimal ValorDiario_Diario { get; set; }
+        public decimal ValorPorKm_Diario { get; set; }
+        public decimal ValorDiario_Livre { get; set; }
+        public decimal ValorDiario_Controlado { get; set; }
+        public decimal ValorPorKm_Controlado { get; set; }
+        public int ControleKm { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -34,8 +41,12 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
 
             return
                 planoCobranca.Id.Equals(Id) &&
-                planoCobranca.TipoPlano.Equals(TipoPlano) &&
-                planoCobranca.Valor.Equals(Valor) &&
+                planoCobranca.ValorDiario_Diario.Equals(ValorDiario_Diario) &&
+                planoCobranca.ValorPorKm_Diario.Equals(ValorPorKm_Diario) &&
+                planoCobranca.ValorDiario_Livre.Equals(ValorDiario_Livre) &&
+                planoCobranca.ValorDiario_Controlado.Equals(ValorDiario_Controlado) &&
+                planoCobranca.ValorPorKm_Controlado.Equals(ValorPorKm_Controlado) &&
+                planoCobranca.ControleKm.Equals(ControleKm) &&
                 planoCobranca.GrupoVeiculos.Equals(GrupoVeiculos);
         }
     }
