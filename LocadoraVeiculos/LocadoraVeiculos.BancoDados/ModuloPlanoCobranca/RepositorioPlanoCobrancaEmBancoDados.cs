@@ -1,6 +1,5 @@
 ﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
-using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
 {
@@ -44,18 +43,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
         protected override string sqlSelecionarTodos =>
              @"SELECT * FROM TBPLANOCOBRANCA";
 
-        private const string sqlSelecionarPorTipoPlano =
-            @"SELECT * 
-                FROM 
-                    TBPLANOCOBRANCA
-                WHERE
-                    TIPOPLANO = @TIPOPLANO";
-
         #endregion
-
-        public PlanoCobranca SelecionarPlanoCobrancaPorTipoPlano(string tipoPlano)
-        {
-            return SelecionarPorParametro(sqlSelecionarPorTipoPlano, new SqlParameter("TIPOPLANO", tipoPlano));
-        }
     }
 }
