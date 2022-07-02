@@ -15,8 +15,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
                     [TELEFONE], 
                     [EMAIL],                    
                     [ENDERECO],
-                    [CNPJ],
-                    [CLIENTE_ID]
+                    [CNPJ]
                 )
             VALUES
                 (
@@ -24,8 +23,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
                     @EMPRESA_TELEFONE,
                     @EMPRESA_EMAIL,
                     @EMPRESA_ENDERECO,
-                    @EMPRESA_CNPJ,
-                    @EMPRESA_CLIENTE_ID
+                    @EMPRESA_CNPJ
                 ); SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar =>
@@ -36,8 +34,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
                     [TELEFONE] = @EMPRESA_TELEFONE,
                     [EMAIL] = @EMPRESA_EMAIL,
                     [ENDERECO] = @EMPRESA_ENDERECO,
-                    [CNPJ] = @EMPRESA_CNPJ,
-                    [CLIENTE_ID] = @EMPRESA_CLIENTE_ID
+                    [CNPJ] = @EMPRESA_CNPJ
 		        WHERE
 			        [ID] = @ID";
 
@@ -50,52 +47,29 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
         protected override string sqlSelecionarPorId =>
 
              @"SELECT        
-	                EMPRESA.ID,
-	                EMPRESA.NOME, 
-	                EMPRESA.TELEFONE, 
-	                EMPRESA.EMAIL, 
-                    EMPRESA.ENDERECO,
- 	                EMPRESA.CNPJ,
+	                ID,
+	                NOME, 
+	                TELEFONE, 
+	                EMAIL, 
+                    ENDERECO,
+ 	                CNPJ
 	
-	                CLIENTE.ID CLIENTE_ID,
-	                CLIENTE.NOME CLIENTE_NOME, 
-	                CLIENTE.TELEFONE CLIENTE_TELEFONE, 
-	                CLIENTE.EMAIL CLIENTE_EMAIL, 
-                    CLIENTE.ENDERECO CLIENTE_ENDERECO,
-                    CLIENTE.CPF CLIENTE_CPF,
-                    CLIENTE.CNH_NUMERO CLIENTE_CNH_NUMERO,
-                    CLIENTE.CNH_NOME CLIENTE_CNH_NOME,
-                    CLIENTE.CNH_VENCIMENTO CLIENTE_CNH_VENCIMENTO
                 FROM  
-	                TBEMPRESA EMPRESA INNER JOIN TBCLIENTE CLIENTE
-                ON 
-	                EMPRESA.CLIENTE_ID = CLIENTE.ID
+	                [TBEMPRESA]
                 WHERE 
-	                EMPRESA.[ID] = @ID";
+	                [ID] = @ID";
 
         protected override string sqlSelecionarTodos =>
 
             @"SELECT        
-	                EMPRESA.ID,
-	                EMPRESA.NOME, 
-	                EMPRESA.TELEFONE, 
-	                EMPRESA.EMAIL, 
-                    EMPRESA.ENDERECO,
- 	                EMPRESA.CNPJ,
-	
-	                CLIENTE.ID CLIENTE_ID,
-	                CLIENTE.NOME CLIENTE_NOME, 
-	                CLIENTE.TELEFONE CLIENTE_TELEFONE, 
-	                CLIENTE.EMAIL CLIENTE_EMAIL, 
-                    CLIENTE.ENDERECO CLIENTE_ENDERECO,
-                    CLIENTE.CPF CLIENTE_CPF,
-                    CLIENTE.CNH_NUMERO CLIENTE_CNH_NUMERO,
-                    CLIENTE.CNH_NOME CLIENTE_CNH_NOME,
-                    CLIENTE.CNH_VENCIMENTO CLIENTE_CNH_VENCIMENTO
+	                [ID],
+	                [NOME], 
+	                [TELEFONE], 
+	                [EMAIL], 
+                    [ENDERECO],
+ 	                [CNPJ]
                 FROM  
-	                TBEMPRESA EMPRESA INNER JOIN TBCLIENTE CLIENTE
-                ON 
-	                EMPRESA.CLIENTE_ID = CLIENTE.ID";
+	                [TBEMPRESA]";
 
         private const string sqlSelecionarPorNomeOuCnpj =
             @"SELECT ID 

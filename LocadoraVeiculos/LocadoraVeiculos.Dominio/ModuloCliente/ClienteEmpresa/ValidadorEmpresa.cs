@@ -38,9 +38,6 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
                 .NotNull().WithMessage("O campo CNPJ não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo CNPJ não pode ficar vazio");
 
-            RuleFor(x => x.Condutor)
-                .NotNull().WithMessage("O campo condutor não pode ficar vazio")
-                .NotEmpty().WithMessage("O campo condutor não pode ficar vazio");
         }
     }
 }
