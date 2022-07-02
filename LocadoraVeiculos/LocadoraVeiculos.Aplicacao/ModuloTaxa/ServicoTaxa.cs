@@ -45,7 +45,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
             return resultadoValidacao;
         }
 
-        private bool DescricaoDuplicada(Taxa taxa)
+        public bool DescricaoDuplicada(Taxa taxa)
         {
             var taxaEncontrada = _repositorioTaxa.SelecionarTaxaPorDescricao(taxa.Descricao);
 
