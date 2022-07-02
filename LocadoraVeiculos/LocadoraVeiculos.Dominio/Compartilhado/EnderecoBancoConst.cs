@@ -8,7 +8,7 @@
                "Pooling=False";
 
         public const string EnderecoBancoTeste = "Data Source=(LocalDB)\\MSSqlLocalDB;" +
-               "Initial Catalog=locadoraVeiculosDbTeste;" +
+               "Initial Catalog=locadoraVeiculosTesteDb;" +
                "Integrated Security=True;" +
                "Pooling=False";
     }

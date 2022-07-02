@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
+using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
@@ -13,11 +14,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
     {
         private Funcionario _funcionario;
         private RepositorioFuncionarioEmBancoDados _repositorio;
+        private ServicoFuncionario _servicoFuncionario;
 
         public RepositorioFuncionarioEmBancoDadosTest()
         {
             _funcionario = new Funcionario("Tatiane Mossi", "tatimossi", "12345", new DateTime(2022,02,02), 2000.00m, true);
             _repositorio = new RepositorioFuncionarioEmBancoDados();
+            _servicoFuncionario = new ServicoFuncionario(_repositorio);
 
             _repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
 
@@ -34,7 +37,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         public void Deve_inserir_novo_funcionario()
         {
             //action
-            _repositorio.Inserir(_funcionario);
+            _servicoFuncionario.Inserir(_funcionario);
 
             //assert
             var funcionarioEncontrado = _repositorio.SelecionarPorId(_funcionario.Id);
@@ -47,7 +50,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         public void Deve_editar_informacoes_funcionario()
         {
             //arrange
-            _repositorio.Inserir(_funcionario);
+            _servicoFuncionario.Inserir(_funcionario);
 
             //action
             _funcionario.Nome = "Thiago Souza";
@@ -56,7 +59,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             _funcionario.DataAdmissao = new DateTime(2022, 02, 02);
             _funcionario.Salario = 5500.00m;
             _funcionario.EhAdmin = false;
-            _repositorio.Editar(_funcionario);
+            _servicoFuncionario.Editar(_funcionario);
 
             //assert
             var funcionarioEncontrado = _repositorio.SelecionarPorId(_funcionario.Id);
@@ -69,7 +72,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         public void Deve_excluir_funcionario()
         {
             //arrange
-            _repositorio.Inserir(_funcionario);
+            _servicoFuncionario.Inserir(_funcionario);
 
             //action
             _repositorio.Excluir(_funcionario);
@@ -84,7 +87,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         public void Deve_selecionar_apenas_um_funcionario()
         {
             //arrange
-            _repositorio.Inserir(_funcionario);
+            _servicoFuncionario.Inserir(_funcionario);
 
             //action
             var funcionarioEncontrado = _repositorio.SelecionarPorId(_funcionario.Id);
@@ -102,9 +105,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             var funcionario2 = new Funcionario("Rosimeri Morais", "merimorais", "13579", new DateTime(2022, 02, 04), 4000.00m, true);
             var funcionario3 = new Funcionario("Ademir Jaco Mossi", "milamossi", "24680", new DateTime(2022, 02, 05), 5000.00m, false);
 
-            _repositorio.Inserir(funcionario1);
-            _repositorio.Inserir(funcionario2);
-            _repositorio.Inserir(funcionario3);
+            _servicoFuncionario.Inserir(funcionario1);
+            _servicoFuncionario.Inserir(funcionario2);
+            _servicoFuncionario.Inserir(funcionario3);
 
             //action
             var funcionarios = _repositorio.SelecionarTodos();
@@ -120,13 +123,18 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         public void Deve_retornar_true_quando_login_funcionario_ja_existir()
         {
             //arrange
-            _repositorio.Inserir(_funcionario);
+            _servicoFuncionario.Inserir(_funcionario);
+
+            var novoFuncionario = new Funcionario
+            {
+                Nome = "Tatiane Mossi"
+            };
 
             //action
-            //var funcionarioExiste = _repositorio.FuncionarioJaExiste("tatimossi", 2);
+            var funcionarioExiste = _servicoFuncionario.NomeDuplicado(novoFuncionario);
 
             //assert
-            //Assert.AreEqual(funcionarioExiste, true);
+            Assert.AreEqual(funcionarioExiste, true);
         }
 
         [TestMethod]
@@ -136,10 +144,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             _repositorio.Inserir(_funcionario);
 
             //action
-            //var funcionarioExiste = _repositorio.FuncionarioJaExiste("thiagosouza", 1);
+            var funcionarioExiste = _servicoFuncionario.LoginDuplicado(_funcionario);
 
             //assert
-            //Assert.AreEqual(funcionarioExiste, false);
+            Assert.AreEqual(funcionarioExiste, false);
         }
 
         [TestMethod]
@@ -149,7 +157,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             var funcionario = new Funcionario("Ha", "tatimossi", "12345", new DateTime(2022, 06, 24), 2200.00m, false);
 
             //action
-            _repositorio.Inserir(funcionario);
+            _servicoFuncionario.Inserir(funcionario);
 
             //assert
             var funcionarioEncontrado = _repositorio.SelecionarPorId(funcionario.Id);
@@ -165,7 +173,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
             var funcionario = new Funcionario("T@ti4ne", "tatimossi", "12345", new DateTime(2022, 06, 24), 2200.00m, false);
 
             //action
-            _repositorio.Inserir(funcionario);
+            _servicoFuncionario.Inserir(funcionario);
 
             //assert
             var funcionarioEncontrado = _repositorio.SelecionarPorId(funcionario.Id);
