@@ -1,113 +1,119 @@
-USE [LocadoraVeiculosDbTeste]
+USE [locadoraVeiculosTesteDb]
 GO
-ALTER TABLE [dbo].[TBEmpresa] DROP CONSTRAINT [FK_TBEmpresa_TBCliente]
+ALTER TABLE [dbo].[TBPlanoCobranca] DROP CONSTRAINT [FK_TBPlanoCobranca_TBGrupoVeiculo]
 GO
-/****** Object:  Table [dbo].[TBTaxa]    Script Date: 27/06/2022 15:51:48 ******/
+ALTER TABLE [dbo].[TBCliente] DROP CONSTRAINT [FK_TBCliente_TBEmpresa]
+GO
+/****** Object:  Table [dbo].[TBTaxa]    Script Date: 02/07/2022 11:42:18 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBTaxa]') AND type in (N'U'))
 DROP TABLE [dbo].[TBTaxa]
 GO
-/****** Object:  Table [dbo].[TBGrupoVeiculo]    Script Date: 27/06/2022 15:51:48 ******/
+/****** Object:  Table [dbo].[TBPlanoCobranca]    Script Date: 02/07/2022 11:42:18 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBPlanoCobranca]') AND type in (N'U'))
+DROP TABLE [dbo].[TBPlanoCobranca]
+GO
+/****** Object:  Table [dbo].[TBGrupoVeiculo]    Script Date: 02/07/2022 11:42:18 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBGrupoVeiculo]') AND type in (N'U'))
 DROP TABLE [dbo].[TBGrupoVeiculo]
 GO
-/****** Object:  Table [dbo].[TBFuncionario]    Script Date: 27/06/2022 15:51:48 ******/
+/****** Object:  Table [dbo].[TBFuncionario]    Script Date: 02/07/2022 11:42:18 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBFuncionario]') AND type in (N'U'))
 DROP TABLE [dbo].[TBFuncionario]
 GO
-/****** Object:  Table [dbo].[TBEmpresa]    Script Date: 27/06/2022 15:51:48 ******/
+/****** Object:  Table [dbo].[TBEmpresa]    Script Date: 02/07/2022 11:42:18 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBEmpresa]') AND type in (N'U'))
 DROP TABLE [dbo].[TBEmpresa]
 GO
-/****** Object:  Table [dbo].[TBCliente]    Script Date: 27/06/2022 15:51:48 ******/
+/****** Object:  Table [dbo].[TBCliente]    Script Date: 02/07/2022 11:42:18 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBCliente]') AND type in (N'U'))
 DROP TABLE [dbo].[TBCliente]
 GO
 USE [master]
 GO
-/****** Object:  Database [LocadoraVeiculosDbTeste]    Script Date: 27/06/2022 15:51:48 ******/
-DROP DATABASE [LocadoraVeiculosDbTeste]
+/****** Object:  Database [locadoraVeiculosTesteDb]    Script Date: 02/07/2022 11:42:18 ******/
+DROP DATABASE [locadoraVeiculosTesteDb]
 GO
-/****** Object:  Database [LocadoraVeiculosDbTeste]    Script Date: 27/06/2022 15:51:48 ******/
-CREATE DATABASE [LocadoraVeiculosDbTeste]
+/****** Object:  Database [locadoraVeiculosTesteDb]    Script Date: 02/07/2022 11:42:18 ******/
+CREATE DATABASE [locadoraVeiculosTesteDb]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'LocadoraVeiculosDbTeste', FILENAME = N'C:\Users\mossi\LocadoraVeiculosDbTeste.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+( NAME = N'locadoraVeiculosTesteDb', FILENAME = N'C:\Users\mossi\locadoraVeiculosTesteDb.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
-( NAME = N'LocadoraVeiculosDbTeste_log', FILENAME = N'C:\Users\mossi\LocadoraVeiculosDbTeste_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+( NAME = N'locadoraVeiculosTesteDb_log', FILENAME = N'C:\Users\mossi\locadoraVeiculosTesteDb_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
  WITH CATALOG_COLLATION = DATABASE_DEFAULT
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET COMPATIBILITY_LEVEL = 150
+ALTER DATABASE [locadoraVeiculosTesteDb] SET COMPATIBILITY_LEVEL = 150
 GO
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
-EXEC [LocadoraVeiculosDbTeste].[dbo].[sp_fulltext_database] @action = 'enable'
+EXEC [locadoraVeiculosTesteDb].[dbo].[sp_fulltext_database] @action = 'enable'
 end
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET ANSI_NULL_DEFAULT OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET ANSI_NULL_DEFAULT ON 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET ANSI_NULLS OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET ANSI_NULLS ON 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET ANSI_PADDING OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET ANSI_PADDING ON 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET ANSI_WARNINGS OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET ANSI_WARNINGS ON 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET ARITHABORT OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET ARITHABORT ON 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET AUTO_CLOSE OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET AUTO_CLOSE OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET AUTO_SHRINK OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET AUTO_SHRINK OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET AUTO_UPDATE_STATISTICS ON 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET AUTO_UPDATE_STATISTICS ON 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET CURSOR_CLOSE_ON_COMMIT OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET CURSOR_CLOSE_ON_COMMIT OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET CURSOR_DEFAULT  GLOBAL 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET CURSOR_DEFAULT  LOCAL 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET CONCAT_NULL_YIELDS_NULL OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET CONCAT_NULL_YIELDS_NULL ON 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET NUMERIC_ROUNDABORT OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET NUMERIC_ROUNDABORT OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET QUOTED_IDENTIFIER OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET QUOTED_IDENTIFIER ON 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET RECURSIVE_TRIGGERS OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET RECURSIVE_TRIGGERS OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET  DISABLE_BROKER 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET  DISABLE_BROKER 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET DATE_CORRELATION_OPTIMIZATION OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET DATE_CORRELATION_OPTIMIZATION OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET TRUSTWORTHY OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET TRUSTWORTHY OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET ALLOW_SNAPSHOT_ISOLATION OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET PARAMETERIZATION SIMPLE 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET PARAMETERIZATION SIMPLE 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET READ_COMMITTED_SNAPSHOT OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET READ_COMMITTED_SNAPSHOT OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET HONOR_BROKER_PRIORITY OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET HONOR_BROKER_PRIORITY OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET RECOVERY SIMPLE 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET RECOVERY SIMPLE 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET  MULTI_USER 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET  MULTI_USER 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET PAGE_VERIFY CHECKSUM  
+ALTER DATABASE [locadoraVeiculosTesteDb] SET PAGE_VERIFY NONE  
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET DB_CHAINING OFF 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET DB_CHAINING OFF 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET TARGET_RECOVERY_TIME = 0 SECONDS 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET DELAYED_DURABILITY = DISABLED 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET DELAYED_DURABILITY = DISABLED 
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+ALTER DATABASE [locadoraVeiculosTesteDb] SET ACCELERATED_DATABASE_RECOVERY = OFF  
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET QUERY_STORE = OFF
+ALTER DATABASE [locadoraVeiculosTesteDb] SET QUERY_STORE = OFF
 GO
-USE [LocadoraVeiculosDbTeste]
+USE [locadoraVeiculosTesteDb]
 GO
-/****** Object:  Table [dbo].[TBCliente]    Script Date: 27/06/2022 15:51:48 ******/
+/****** Object:  Table [dbo].[TBCliente]    Script Date: 02/07/2022 11:42:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -122,13 +128,14 @@ CREATE TABLE [dbo].[TBCliente](
 	[Cnh_Numero] [int] NOT NULL,
 	[Cnh_Nome] [varchar](50) NOT NULL,
 	[Cnh_Vencimento] [date] NOT NULL,
+	[Empresa_Id] [int] NULL,
  CONSTRAINT [PK__TBClient__3214EC07C0ED1C37] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TBEmpresa]    Script Date: 27/06/2022 15:51:48 ******/
+/****** Object:  Table [dbo].[TBEmpresa]    Script Date: 02/07/2022 11:42:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,14 +147,13 @@ CREATE TABLE [dbo].[TBEmpresa](
 	[Telefone] [varchar](20) NOT NULL,
 	[Endereco] [varchar](100) NOT NULL,
 	[Cnpj] [varchar](20) NOT NULL,
-	[Cliente_Id] [int] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TBFuncionario]    Script Date: 27/06/2022 15:51:48 ******/
+/****** Object:  Table [dbo].[TBFuncionario]    Script Date: 02/07/2022 11:42:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -166,7 +172,7 @@ CREATE TABLE [dbo].[TBFuncionario](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TBGrupoVeiculo]    Script Date: 27/06/2022 15:51:49 ******/
+/****** Object:  Table [dbo].[TBGrupoVeiculo]    Script Date: 02/07/2022 11:42:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -180,7 +186,27 @@ CREATE TABLE [dbo].[TBGrupoVeiculo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TBTaxa]    Script Date: 27/06/2022 15:51:49 ******/
+/****** Object:  Table [dbo].[TBPlanoCobranca]    Script Date: 02/07/2022 11:42:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TBPlanoCobranca](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ValorDiario_Diario] [decimal](5, 2) NOT NULL,
+	[ValorPorKm_Diario] [decimal](5, 2) NOT NULL,
+	[ValorDiario_Livre] [decimal](5, 2) NOT NULL,
+	[ValorDiario_Controlado] [decimal](5, 2) NOT NULL,
+	[ValorPorKm_Controlado] [decimal](5, 2) NOT NULL,
+	[ControleKm_Controlado] [int] NOT NULL,
+	[GrupoVeiculos_Id] [int] NOT NULL,
+ CONSTRAINT [PK_TBPlanoCobranca] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TBTaxa]    Script Date: 02/07/2022 11:42:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -196,12 +222,17 @@ CREATE TABLE [dbo].[TBTaxa](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[TBEmpresa]  WITH CHECK ADD  CONSTRAINT [FK_TBEmpresa_TBCliente] FOREIGN KEY([Cliente_Id])
-REFERENCES [dbo].[TBCliente] ([Id])
+ALTER TABLE [dbo].[TBCliente]  WITH CHECK ADD  CONSTRAINT [FK_TBCliente_TBEmpresa] FOREIGN KEY([Empresa_Id])
+REFERENCES [dbo].[TBEmpresa] ([Id])
 GO
-ALTER TABLE [dbo].[TBEmpresa] CHECK CONSTRAINT [FK_TBEmpresa_TBCliente]
+ALTER TABLE [dbo].[TBCliente] CHECK CONSTRAINT [FK_TBCliente_TBEmpresa]
+GO
+ALTER TABLE [dbo].[TBPlanoCobranca]  WITH CHECK ADD  CONSTRAINT [FK_TBPlanoCobranca_TBGrupoVeiculo] FOREIGN KEY([GrupoVeiculos_Id])
+REFERENCES [dbo].[TBGrupoVeiculo] ([Id])
+GO
+ALTER TABLE [dbo].[TBPlanoCobranca] CHECK CONSTRAINT [FK_TBPlanoCobranca_TBGrupoVeiculo]
 GO
 USE [master]
 GO
-ALTER DATABASE [LocadoraVeiculosDbTeste] SET  READ_WRITE 
+ALTER DATABASE [locadoraVeiculosTesteDb] SET  READ_WRITE 
 GO
