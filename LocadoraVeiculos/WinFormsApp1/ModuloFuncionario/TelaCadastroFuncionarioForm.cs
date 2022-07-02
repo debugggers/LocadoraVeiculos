@@ -1,6 +1,5 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
-using LocadoraVeiculos.BancoDados.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using System;
 using System.Windows.Forms;
@@ -78,7 +77,6 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
 
                 DialogResult = DialogResult.None;
             }
-
         }
     }
 }
