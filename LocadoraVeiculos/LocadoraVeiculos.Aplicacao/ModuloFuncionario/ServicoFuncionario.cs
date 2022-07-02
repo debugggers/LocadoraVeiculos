@@ -33,7 +33,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             return resultadoValidacao;
         }
 
-        private ValidationResult Validar(Funcionario funcionario)
+        public ValidationResult Validar(Funcionario funcionario)
         {
             var validador = new ValidadorFuncionario();
 
@@ -48,7 +48,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             return resultadoValidacao;
         }
 
-        private bool NomeDuplicado(Funcionario funcionario)
+        public bool NomeDuplicado(Funcionario funcionario)
         {
             var funcionarioEncontrado = _repositorioFuncionario.SelecionarFuncionarioPorNome(funcionario.Nome);
 
