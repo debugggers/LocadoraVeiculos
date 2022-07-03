@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ModuloVeiculo\**" />
-    <EmbeddedResource Remove="ModuloVeiculo\**" />
-    <None Remove="ModuloVeiculo\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.1.0" />
   </ItemGroup>
 

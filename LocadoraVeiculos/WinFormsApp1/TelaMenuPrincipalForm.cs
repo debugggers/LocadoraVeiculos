@@ -4,12 +4,14 @@ using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
+using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.BancoDados.ModuloFuncionario;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.BancoDados.ModuloPlanoCobranca;
 using LocadoraVeiculos.BancoDados.ModuloTaxa;
+using LocadoraVeiculos.BancoDados.ModuloVeiculo;
 using LocadoraVeiculosForm.Compartilhado;
 using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
@@ -17,6 +19,7 @@ using LocadoraVeiculosForm.ModuloFuncionario;
 using LocadoraVeiculosForm.ModuloGrupoVeiculos;
 using LocadoraVeiculosForm.ModuloPlanoCobranca;
 using LocadoraVeiculosForm.ModuloTaxa;
+using LocadoraVeiculosForm.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -151,6 +154,7 @@ namespace LocadoraVeiculosForm
             var repositorioGrupoveiculos = new RepositorioGrupoVeiculosEmBancoDados();
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
             var repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmBancoDados();
+            var repositorioVeiculo = new RepositorioVeiculoEmBancoDados();
 
             var servicoCliente = new ServicoCliente(repositorioClientes);
             var servicoEmpresa = new ServicoEmpresa(repositorioEmpresa);
@@ -158,6 +162,7 @@ namespace LocadoraVeiculosForm
             var servicoGrupoVeiculos = new ServicoGrupoVeiculos(repositorioGrupoveiculos);
             var servicoTaxa = new ServicoTaxa(repositorioTaxa);
             var servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca);
+            var servicoVeiculo = new ServicoVeiculo(repositorioVeiculo);
 
             controladores = new Dictionary<string, ControladorBase>();
 
@@ -167,6 +172,7 @@ namespace LocadoraVeiculosForm
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
             controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos, servicoGrupoVeiculos));
             controladores.Add("Planos de Cobrança", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicoPlanoCobranca));
+            controladores.Add("Veiculo", new ControladorVeiculo(repositorioVeiculo, repositorioGrupoveiculos, servicoVeiculo));
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -208,5 +214,9 @@ namespace LocadoraVeiculosForm
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
+        private void veiculoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
     }
 }
