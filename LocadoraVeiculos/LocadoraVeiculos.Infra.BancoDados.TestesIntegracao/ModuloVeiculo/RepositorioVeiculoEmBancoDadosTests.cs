@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
 {
-    internal class RepositorioVeiculoEmBancoDadosTests
+    public class RepositorioVeiculoEmBancoDadosTests
     {
+
+
+
     }
 }
