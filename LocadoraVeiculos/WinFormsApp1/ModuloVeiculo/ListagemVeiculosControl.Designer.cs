@@ -28,10 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.gridVeiculos = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gridVeiculos)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // gridVeiculos
+            // 
+            this.gridVeiculos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridVeiculos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridVeiculos.Location = new System.Drawing.Point(0, 0);
+            this.gridVeiculos.Name = "gridVeiculos";
+            this.gridVeiculos.RowTemplate.Height = 25;
+            this.gridVeiculos.Size = new System.Drawing.Size(993, 535);
+            this.gridVeiculos.TabIndex = 0;
+            // 
+            // ListagemVeiculosControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gridVeiculos);
+            this.Name = "ListagemVeiculosControl";
+            this.Size = new System.Drawing.Size(993, 535);
+            ((System.ComponentModel.ISupportInitialize)(this.gridVeiculos)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView gridVeiculos;
     }
 }

@@ -99,7 +99,18 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
             if (resultado == DialogResult.OK)
             {
-                repositorio.Excluir(empresaSelecionada);
+                try
+                {
+                    repositorio.Excluir(empresaSelecionada);
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message,
+                        "Exclusão de empresa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                
                 CarregarEmpresas();
             }
         }
