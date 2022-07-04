@@ -21,10 +21,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         {
 
             string sql =
-               @"DELETE FROM TBEMPRESA;
-                  DBCC CHECKIDENT (TBEMPRESA, RESEED, 0)
-                DELETE FROM TBCLIENTE;
+               @"DELETE FROM TBCLIENTE;
                   DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)
+                 DELETE FROM TBEMPRESA;
+                  DBCC CHECKIDENT (TBEMPRESA, RESEED, 0)
                 ";
 
             Db.ExecutarSql(sql);
