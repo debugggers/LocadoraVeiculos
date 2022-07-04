@@ -35,7 +35,8 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
                 Ano == veiculo.Ano &&
                 QuilometragemPercorrida == veiculo.QuilometragemPercorrida &&
                 TipoCombustivel == veiculo.TipoCombustivel &&
-                GrupoVeiculo == veiculo.GrupoVeiculo;
+                GrupoVeiculo == veiculo.GrupoVeiculo &&
+                Foto == veiculo.Foto;
         }
 
         public override string ToString()
