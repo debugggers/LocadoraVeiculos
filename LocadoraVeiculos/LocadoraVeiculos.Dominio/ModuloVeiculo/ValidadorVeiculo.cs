@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
                 .NotNull().WithMessage("O campo placa não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo placa não pode ficar vazio")
                 .Matches(@"[a-zA-Z0-9]").WithMessage("Não são permitidos caracteres especiais na placa")
-                .MinimumLength(6).WithMessage("A placa precisa ter pelo menos 5 caracteres");
+                .MinimumLength(6).WithMessage("A placa precisa ter pelo menos 6 caracteres");
 
             RuleFor(x => x.Cor)
                 .NotNull().WithMessage("O campo cor não pode ficar vazio")
