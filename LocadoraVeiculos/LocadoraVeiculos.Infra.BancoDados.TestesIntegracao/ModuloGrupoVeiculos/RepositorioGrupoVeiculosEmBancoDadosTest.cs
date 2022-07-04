@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
+using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
@@ -12,12 +13,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
     {
         private GrupoVeiculos _grupoVeiculos;
         private RepositorioGrupoVeiculosEmBancoDados _repositorio;
+        private ServicoGrupoVeiculos servico;
 
         public RepositorioGrupoVeiculosEmBancoDadosTest()
         {
             _grupoVeiculos = new GrupoVeiculos("Uber");
             _repositorio = new RepositorioGrupoVeiculosEmBancoDados();
-
+            servico = new ServicoGrupoVeiculos(_repositorio);
             _repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
 
             Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
@@ -33,7 +35,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         public void Deve_inserir_novo_grupo_veiculos()
         {
             //action
-            _repositorio.Inserir(_grupoVeiculos);
+            servico.Inserir(_grupoVeiculos);
        
             //assert
             var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(_grupoVeiculos.Id);
@@ -46,11 +48,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         public void Deve_editar_informacoes_grupoVeiculos()
         {
             //arrange
-            _repositorio.Inserir(_grupoVeiculos);
+            servico.Inserir(_grupoVeiculos);
 
             //action
             _grupoVeiculos.Nome = "Suv";
-            _repositorio.Editar(_grupoVeiculos);
+            servico.Editar(_grupoVeiculos);
 
             //assert
             var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(_grupoVeiculos.Id);
@@ -63,7 +65,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         public void Deve_excluir_grupoVeiculo()
         {
             //arrange
-            _repositorio.Inserir(_grupoVeiculos);
+            servico.Inserir(_grupoVeiculos);
 
             //action
             _repositorio.Excluir(_grupoVeiculos);
@@ -78,7 +80,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         public void Deve_selecionar_apenas_um_grupoVeiculos()
         {
             //arrange
-            _repositorio.Inserir(_grupoVeiculos);
+            servico.Inserir(_grupoVeiculos);
 
             //action
             var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(_grupoVeiculos.Id);
@@ -96,9 +98,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
             var grupoVeiculos2 = new GrupoVeiculos("Popular");
             var grupoVeiculos3 = new GrupoVeiculos("Esportivo");
 
-            _repositorio.Inserir(grupoVeiculos1);
-            _repositorio.Inserir(grupoVeiculos2);
-            _repositorio.Inserir(grupoVeiculos3);
+            servico.Inserir(grupoVeiculos1);
+            servico.Inserir(grupoVeiculos2);
+            servico.Inserir(grupoVeiculos3);
 
             //action
             var grupoVeiculos = _repositorio.SelecionarTodos();
@@ -114,26 +116,26 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         public void Deve_retornar_true_quando_grupoVeiculos_ja_existir()
         {
             //arrange
-            _repositorio.Inserir(_grupoVeiculos);
+            servico.Inserir(_grupoVeiculos);
 
             //action
-            //var grupoVeiculosExiste = _repositorio.GrupoVeiculosJaExiste("Uber");
+            var grupoVeiculosExiste = _repositorio.SelecionarGrupoVeiculosPorNome("Uber");
 
-            ////assert
-            //Assert.AreEqual(grupoVeiculosExiste, true);
+            //assert
+            Assert.AreEqual(grupoVeiculosExiste, true);
         }
 
         [TestMethod]
         public void Deve_retornar_false_quando_funcionario_nao_existir()
         {
             //arrange
-            _repositorio.Inserir(_grupoVeiculos);
+            servico.Inserir(_grupoVeiculos);
 
             //action
-            //var grupoVeiculosExiste = _repositorio.GrupoVeiculosJaExiste("Sedan");
+            var grupoVeiculosExiste = _repositorio.SelecionarGrupoVeiculosPorNome("Sedan");
 
-            ////assert
-            //Assert.AreEqual(grupoVeiculosExiste, false);
+            //assert
+            Assert.AreEqual(grupoVeiculosExiste, false);
         }
 
         [TestMethod]
@@ -143,7 +145,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
             var grupoVeiculos = new GrupoVeiculos("Ha");
 
             //action
-            _repositorio.Inserir(grupoVeiculos);
+            servico.Inserir(grupoVeiculos);
 
             //assert
             var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(grupoVeiculos.Id);
@@ -159,7 +161,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
             var grupoVeiculos = new GrupoVeiculos("Eco4@sdv");
 
             //action
-            _repositorio.Inserir(grupoVeiculos);
+            servico.Inserir(grupoVeiculos);
 
             //assert
             var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(grupoVeiculos.Id);

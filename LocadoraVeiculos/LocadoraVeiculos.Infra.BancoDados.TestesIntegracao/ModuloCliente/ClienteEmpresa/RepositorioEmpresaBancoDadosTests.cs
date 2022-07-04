@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente;
@@ -13,20 +14,16 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
     {
 
         private Empresa empresa;
-        Cliente cliente;
         private RepositorioEmpresaBancoDados repositorio;
-        private RepositorioClienteEmBancoDados repositorioCliente;
+        private ServicoEmpresa servico;
 
         public RepositorioEmpresaBancoDadosTests()
         {
-
-            repositorioCliente = new RepositorioClienteEmBancoDados();
-
             string sql =
-               @"DELETE FROM TBEMPRESA;
-                  DBCC CHECKIDENT (TBEMPRESA, RESEED, 0)
-                DELETE FROM TBCLIENTE;
+               @"DELETE FROM TBCLIENTE;
                   DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)
+                 DELETE FROM TBEMPRESA;
+                  DBCC CHECKIDENT (TBEMPRESA, RESEED, 0)
                 ";
 
             Db.ExecutarSql(sql);
@@ -39,9 +36,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
             empresa.Endereco = "123, rua 123, 123";
             empresa.CNPJ = "12.123.123/0001-12";
 
-            //empresa.Condutor = cliente;
-
             repositorio = new RepositorioEmpresaBancoDados();
+            servico = new ServicoEmpresa(repositorio);
 
         }
 
@@ -49,8 +45,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
         public void Deve_Inserir_Empresa()
         {
 
-            repositorioCliente.Inserir(cliente);
-            repositorio.Inserir(empresa);
+            servico.Inserir(empresa);
 
             var empresaEncontrada = repositorio.SelecionarPorId(empresa.Id);
 
@@ -63,16 +58,14 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
         public void Deve_Editar_Empresa()
         {
 
-            repositorioCliente.Inserir(cliente);
-            repositorio.Inserir(empresa);
+            servico.Inserir(empresa);
 
             empresa.Nome = "PedroEmpresa";
             empresa.Email = "EmpresaPedro@teste.com";
             empresa.Telefone = "987654321";
             empresa.Endereco = "321, rua 321, 321";
             empresa.CNPJ = "12.321.123/0001-12";
-            //empresa.Condutor = cliente;
-            repositorio.Editar(empresa);
+            servico.Editar(empresa);
 
             var empresaEncontrada = repositorio.SelecionarPorId(empresa.Id);
 
@@ -85,9 +78,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
         public void Deve_Excluir_Empresa()
         {
 
-            repositorioCliente.Inserir(cliente);
-
-            repositorio.Inserir(empresa);
+            servico.Inserir(empresa);
 
             repositorio.Excluir(empresa);
 
@@ -100,9 +91,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
         public void Deve_Selecionar_Empresa()
         {
 
-            repositorioCliente.Inserir(cliente);
-
-            repositorio.Inserir(empresa);
+            servico.Inserir(empresa);
 
             var empresaEncontrada = repositorio.SelecionarPorId(empresa.Id);
 
