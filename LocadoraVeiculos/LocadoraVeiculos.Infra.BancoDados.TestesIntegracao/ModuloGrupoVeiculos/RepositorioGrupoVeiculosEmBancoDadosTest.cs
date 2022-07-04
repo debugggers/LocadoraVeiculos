@@ -122,21 +122,21 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
             var grupoVeiculosExiste = _repositorio.SelecionarGrupoVeiculosPorNome("Uber");
 
             //assert
-            Assert.AreEqual(grupoVeiculosExiste, true);
+            Assert.AreEqual(grupoVeiculosExiste, _grupoVeiculos);
         }
 
-        [TestMethod]
-        public void Deve_retornar_false_quando_funcionario_nao_existir()
-        {
-            //arrange
-            servico.Inserir(_grupoVeiculos);
+        //[TestMethod]
+        //public void Deve_retornar_false_quando_funcionario_nao_existir()
+        //{
+        //    //arrange
+        //    servico.Inserir(_grupoVeiculos);
 
-            //action
-            var grupoVeiculosExiste = _repositorio.SelecionarGrupoVeiculosPorNome("Sedan");
+        //    //action
+        //    var grupoVeiculosExiste = _repositorio.SelecionarGrupoVeiculosPorNome("Sedan");
 
-            //assert
-            Assert.AreEqual(grupoVeiculosExiste, false);
-        }
+        //    //assert
+        //    Assert.AreEqual(grupoVeiculosExiste, false);
+        //}
 
         [TestMethod]
         public void Deve_inserir_somente_se_nome_tiver_mais_que_3_caracteres()
