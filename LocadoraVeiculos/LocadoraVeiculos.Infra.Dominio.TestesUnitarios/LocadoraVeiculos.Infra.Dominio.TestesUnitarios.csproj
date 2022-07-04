@@ -4,8 +4,6 @@
     <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
-
-    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,8 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
-    <ProjectReference Include="..\LocadoraVeiculos.BancoDados\LocadoraVeiculos.BancoDados.csproj" />
+    <Folder Include="ModuloCliente\" />
+    <Folder Include="ModuloGrupoVeiculos\" />
+    <Folder Include="ModuloPlanoCobranca\" />
+    <Folder Include="ModuloTaxa\" />
+    <Folder Include="ModuloVeiculo\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
   </ItemGroup>
 
