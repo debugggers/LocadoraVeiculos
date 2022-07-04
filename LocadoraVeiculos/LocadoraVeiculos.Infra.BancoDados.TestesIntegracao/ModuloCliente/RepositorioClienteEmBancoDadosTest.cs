@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.Aplicacao.ModuloCliente;
+using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente;
@@ -14,6 +15,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
 
         private Cliente cliente;
         private RepositorioClienteEmBancoDados repositorio;
+        private ServicoCliente servico;
 
         public RepositorioClienteEmBancoDadosTest()
         {
@@ -39,7 +41,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
             cliente.CnhVencimento = DateTime.Now.Date.AddMonths(6);
 
             repositorio = new RepositorioClienteEmBancoDados();
-
+            servico = new ServicoCliente(repositorio);
             repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
 
             Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
@@ -50,7 +52,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         public void Deve_Inserir_Cliente()
         {
 
-            repositorio.Inserir(cliente);
+            servico.Inserir(cliente);
 
             var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
 
@@ -63,7 +65,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         public void Deve_Editar_Cliente()
         {
                      
-            repositorio.Inserir(cliente);
+            servico.Inserir(cliente);
 
             cliente.Nome = "Pedro";
             cliente.Email = "Pedro@teste.com";
@@ -73,7 +75,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
             cliente.CnhNumero = 321;
             cliente.CnhNome = "Pedro";
             cliente.CnhVencimento = DateTime.Now.Date.AddMonths(6);
-            repositorio.Editar(cliente);
+            servico.Editar(cliente);
 
             var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
 
@@ -86,7 +88,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         public void Deve_Excluir_Cliente()
         {
            
-            repositorio.Inserir(cliente);
+            servico.Inserir(cliente);
           
             repositorio.Excluir(cliente);
 
@@ -99,7 +101,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         public void Deve_Selecionar_Cliente()
         {
 
-            repositorio.Inserir(cliente);
+            servico.Inserir(cliente);
 
             var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
 
