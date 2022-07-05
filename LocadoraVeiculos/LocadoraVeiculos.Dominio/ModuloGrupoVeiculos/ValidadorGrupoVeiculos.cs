@@ -6,9 +6,9 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
     {
         public ValidadorGrupoVeiculos()
         {
-            RuleFor(x => x.Nome).NotNull()
-                .NotEmpty()
-                .MinimumLength(3)
+            RuleFor(x => x.Nome).NotNull().WithMessage("O campo nome não pode ficar vazio")
+                .NotEmpty().WithMessage("O campo nome não pode ficar vazio")
+                .MinimumLength(3).WithMessage("O campo nome precisa ter pelo menos três caracteres")
                 .Matches(@"^[a-zA-Záéíóúàèìòùâêîôûãõç\s]+$")
                 .WithMessage("Não são permitidos caracteres especiais.");
         }
