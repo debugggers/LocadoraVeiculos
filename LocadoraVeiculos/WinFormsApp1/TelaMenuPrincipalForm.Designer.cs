@@ -37,6 +37,7 @@
             this.taxasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grupoDeVeiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planosDeCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.veiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox = new System.Windows.Forms.ToolStrip();
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
@@ -46,7 +47,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
-            this.veiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -82,7 +82,7 @@
             this.pessoaFísicaToolStripMenuItem,
             this.pessoaJurídicaToolStripMenuItem});
             this.clientesMenuItem.Name = "clientesMenuItem";
-            this.clientesMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientesMenuItem.Size = new System.Drawing.Size(179, 22);
             this.clientesMenuItem.Text = "Clientes";
             this.clientesMenuItem.Click += new System.EventHandler(this.clientesMenuItem_Click);
             // 
@@ -103,35 +103,42 @@
             // funcionárioToolStripMenuItem
             // 
             this.funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
-            this.funcionárioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.funcionárioToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.funcionárioToolStripMenuItem.Text = "Funcionário";
             this.funcionárioToolStripMenuItem.Click += new System.EventHandler(this.funcionariosMenuItem_Click);
             // 
             // taxasToolStripMenuItem
             // 
             this.taxasToolStripMenuItem.Name = "taxasToolStripMenuItem";
-            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.taxasToolStripMenuItem.Text = "Taxas";
             this.taxasToolStripMenuItem.Click += new System.EventHandler(this.taxasToolStripMenuItem_Click);
             // 
             // grupoDeVeiculosToolStripMenuItem
             // 
             this.grupoDeVeiculosToolStripMenuItem.Name = "grupoDeVeiculosToolStripMenuItem";
-            this.grupoDeVeiculosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grupoDeVeiculosToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.grupoDeVeiculosToolStripMenuItem.Text = "Grupo de veiculos";
             this.grupoDeVeiculosToolStripMenuItem.Click += new System.EventHandler(this.grupoDeVeiculosToolStripMenuItem_Click);
             // 
             // planosDeCobrançaToolStripMenuItem
             // 
             this.planosDeCobrançaToolStripMenuItem.Name = "planosDeCobrançaToolStripMenuItem";
-            this.planosDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.planosDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.planosDeCobrançaToolStripMenuItem.Text = "Planos de Cobrança";
             this.planosDeCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planoCobrancaMenuItem_Click);
+            // 
+            // veiculoToolStripMenuItem
+            // 
+            this.veiculoToolStripMenuItem.Name = "veiculoToolStripMenuItem";
+            this.veiculoToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.veiculoToolStripMenuItem.Text = "Veiculo";
+            this.veiculoToolStripMenuItem.Click += new System.EventHandler(this.veiculoToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -150,33 +157,36 @@
             // 
             // btnInserir
             // 
-            this.btnInserir.Image = global::LocadoraVeiculosForm.Properties.Resources.person_add_FILL0_wght400_GRAD0_opsz48;
+            this.btnInserir.Image = global::LocadoraVeiculosForm.Properties.Resources.add_circle_FILL0_wght400_GRAD0_opsz24;
+            this.btnInserir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnInserir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Padding = new System.Windows.Forms.Padding(5);
-            this.btnInserir.Size = new System.Drawing.Size(69, 30);
+            this.btnInserir.Size = new System.Drawing.Size(77, 38);
             this.btnInserir.Text = "Inserir";
             this.btnInserir.Visible = false;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // btnEditar
             // 
-            this.btnEditar.Image = global::LocadoraVeiculosForm.Properties.Resources.manage_accounts_FILL0_wght400_GRAD0_opsz48;
+            this.btnEditar.Image = global::LocadoraVeiculosForm.Properties.Resources.edit_FILL0_wght400_GRAD0_opsz24;
+            this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Padding = new System.Windows.Forms.Padding(5);
-            this.btnEditar.Size = new System.Drawing.Size(67, 30);
+            this.btnEditar.Size = new System.Drawing.Size(75, 38);
             this.btnEditar.Text = "Editar";
             this.btnEditar.Visible = false;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Image = global::LocadoraVeiculosForm.Properties.Resources.person_remove_FILL0_wght400_GRAD0_opsz48;
+            this.btnExcluir.Image = global::LocadoraVeiculosForm.Properties.Resources.delete_FILL0_wght400_GRAD0_opsz24;
+            this.btnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Padding = new System.Windows.Forms.Padding(5);
-            this.btnExcluir.Size = new System.Drawing.Size(72, 30);
+            this.btnExcluir.Size = new System.Drawing.Size(80, 38);
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.Visible = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
@@ -206,17 +216,11 @@
             // 
             // panelRegistros
             // 
-            this.panelRegistros.Location = new System.Drawing.Point(12, 52);
+            this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRegistros.Location = new System.Drawing.Point(0, 49);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(1009, 452);
+            this.panelRegistros.Size = new System.Drawing.Size(1032, 458);
             this.panelRegistros.TabIndex = 4;
-            // 
-            // veiculoToolStripMenuItem
-            // 
-            this.veiculoToolStripMenuItem.Name = "veiculoToolStripMenuItem";
-            this.veiculoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.veiculoToolStripMenuItem.Text = "Veiculo";
-            this.veiculoToolStripMenuItem.Click += new System.EventHandler(this.veiculoToolStripMenuItem_Click);
             // 
             // TelaMenuPrincipalForm
             // 
