@@ -79,7 +79,18 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 
             if (resultado == DialogResult.OK)
             {
-                _repositorioGrupoVeiculos.Excluir(grupoVeiculoSelecionada);
+                try
+                {
+                    _repositorioGrupoVeiculos.Excluir(grupoVeiculoSelecionada);
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message,
+                        "Exclusão de grupo de veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                
                 CarregarGrupoVeiculos();
             }
         }

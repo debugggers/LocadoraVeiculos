@@ -3,6 +3,7 @@ using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.BancoDados.ModuloVeiculo;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculosForm.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -63,7 +64,18 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
             if (resultado == DialogResult.OK)
             {
-                repositorio.Excluir(veiculoSelecionado);
+                try
+                {
+                    repositorio.Excluir(veiculoSelecionado);
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message,
+                        "Exclusão de veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                
                 CarregarVeiculos();
             }
         }
