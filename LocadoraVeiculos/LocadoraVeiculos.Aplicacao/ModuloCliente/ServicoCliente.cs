@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
+using Serilog;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 {
@@ -18,10 +19,29 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
         public  ValidationResult Inserir(Cliente cliente)
         {
 
+            Log.Logger.Debug("Tentando inserir cliente... {@c}", cliente);
+
             ValidationResult resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
+            {
+
                 repositorioCliente.Inserir(cliente);
+                Log.Logger.Debug("Cliente {ClienteNome} inserido com sucesso", cliente.Nome);
+
+            }
+            else
+            {
+
+                foreach (var item in resultadoValidacao.Errors)
+                {
+
+                    Log.Logger.Warning("Falha ao inserir o cliente {ClienteNome} - {Motivo}", cliente.Nome, item.ErrorMessage);
+
+                }
+
+            }
+                
 
             return resultadoValidacao;
 
@@ -30,10 +50,29 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
         public ValidationResult Editar(Cliente cliente)
         {
 
+            Log.Logger.Debug("Tentando editar cliente... {@c}", cliente);
+
             ValidationResult resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
+            {
+
                 repositorioCliente.Editar(cliente);
+                Log.Logger.Debug("Cliente {ClienteNome} editado com sucesso", cliente.Nome);
+
+            }
+            else
+            {
+
+                foreach (var item in resultadoValidacao.Errors)
+                {
+
+                    Log.Logger.Warning("Falha ao editar o cliente {ClienteNome} - {Motivo}", cliente.Nome, item.ErrorMessage);
+
+                }
+
+            }
+                
 
             return resultadoValidacao;
 
