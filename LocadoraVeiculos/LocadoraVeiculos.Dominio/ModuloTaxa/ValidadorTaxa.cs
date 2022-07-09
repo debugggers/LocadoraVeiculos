@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxa
 
             RuleFor(x => x.Valor).NotEmpty();
 
-            RuleFor(x => x.TipoCalculo).NotEmpty();
+            RuleFor(x => x.TipoCalculo).NotNull();
         }
     }
 }

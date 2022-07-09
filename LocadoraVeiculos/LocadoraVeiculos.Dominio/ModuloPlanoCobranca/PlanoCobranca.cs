@@ -25,6 +25,7 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
 
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public int IdGrupoVeiculos { get; set; }
+        
         public decimal ValorDiario_Diario { get; set; }
         public decimal ValorPorKm_Diario { get; set; }
         public decimal ValorDiario_Livre { get; set; }

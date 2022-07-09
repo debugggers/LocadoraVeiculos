@@ -91,7 +91,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             var grupoVeiculosEncontrado = _repositorioGrupoVeiculos.SelecionarGrupoVeiculosPorNome(grupoVeiculos.Nome);
 
             return grupoVeiculosEncontrado != null &&
-                   grupoVeiculosEncontrado.Nome == grupoVeiculos.Nome &&
+                   grupoVeiculosEncontrado.Nome.ToLower() == grupoVeiculos.Nome.ToLower() &&
                    grupoVeiculosEncontrado.Id != grupoVeiculos.Id;
         }
     }

@@ -1,5 +1,7 @@
 ﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
+using System;
+using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
 {
@@ -53,7 +55,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
                     GRUPO.NOME AS GRUPOVEICULOS_NOME
                FROM TBPLANOCOBRANCA PLANO
                INNER JOIN TBGRUPOVEICULO GRUPO ON GRUPO.ID = PLANO.GRUPOVEICULOS_ID
-		       WHERE plano.ID = @ID";
+		       WHERE PLANO.ID = @ID";
 
         protected override string sqlSelecionarTodos =>
              @"SELECT 
@@ -62,6 +64,37 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
                FROM TBPLANOCOBRANCA PLANO
                INNER JOIN TBGRUPOVEICULO GRUPO ON GRUPO.ID = PLANO.GRUPOVEICULOS_ID";
 
+        private const string sqlSelecionarPorGrupoVeiculos =
+            @"SELECT * 
+                FROM 
+                    TBPLANOCOBRANCA
+                WHERE
+                    GRUPOVEICULOS_ID = @GRUPOVEICULOS_ID";
+
         #endregion
+
+        public bool GrupoVeiculosDuplicado(int idGrupoVeiculos)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorGrupoVeiculos, conexaoComBanco);
+
+            comandoSelecao.Parameters.Add(new SqlParameter("GRUPOVEICULOS_ID", idGrupoVeiculos));
+
+            conexaoComBanco.Open();
+            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
+
+            var grupoVeiculoDuplicado = false;
+            if (leitorRegistro.Read())
+            {
+                var id = Convert.ToInt32(leitorRegistro["ID"]);
+                if (id > 0)
+                    grupoVeiculoDuplicado = true;
+            }
+
+            conexaoComBanco.Close();
+
+            return grupoVeiculoDuplicado;
+        }
     }
 }
