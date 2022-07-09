@@ -3,6 +3,7 @@ using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -35,7 +36,7 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
             set
             {
                 _planoCobranca = value;
-
+                 
                 txtId.Text = _planoCobranca.Id.ToString();
                 comboBoxGrupoVeiculos.SelectedItem = _planoCobranca.GrupoVeiculos;
 
@@ -90,18 +91,28 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
             decimal valorDiario;
 
             if (decimal.TryParse(txtValorDiarioString, out valorDiario))
-                return true;
+            {
+                if (valorDiario < 1)
+                {
+                    var mensagemErro = $"Campo '{nomeCampo}' da aba '{nomeAba}' deve ser maior que zero.";
+
+                    labelRodapePlanoCobranca.Text = mensagemErro;
+                    DialogResult = DialogResult.None;
+
+                    Log.Logger.Warning(mensagemErro);
+
+                    return false;
+                }
+            }
             else
             {
-                labelRodapePlanoCobranca.Text = $"Campo '{nomeCampo}' da aba '{nomeAba}' está inválido.";
+                var mensagemErro = $"Campo '{nomeCampo}' da aba '{nomeAba}' está inválido.";
+                
+                labelRodapePlanoCobranca.Text = mensagemErro;
                 DialogResult = DialogResult.None;
-                return false;
-            }
 
-            if (_planoCobranca.ValorDiario_Diario < 0)
-            {
-                labelRodapePlanoCobranca.Text = $"Campo '{nomeCampo}' da aba '{nomeAba}' deve ser maior que zero.";
-                DialogResult = DialogResult.None;
+                Log.Logger.Warning(mensagemErro);
+
                 return false;
             }
 
@@ -130,9 +141,9 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
                 txtValorDiario_Diario.Text = _planoCobranca.ValorDiario_Diario.ToString();
                 txtValorPorKm_Diario.Text = _planoCobranca.ValorPorKm_Diario.ToString();
 
-                txtValorDiario_Livre.Text = _planoCobranca.ValorDiario_Diario.ToString();
+                txtValorDiario_Livre.Text = _planoCobranca.ValorDiario_Livre.ToString();
 
-                txtValorDiario_Controlado.Text = _planoCobranca.ValorDiario_Diario.ToString();
+                txtValorDiario_Controlado.Text = _planoCobranca.ValorDiario_Controlado.ToString();
                 txtValorPorKm_Controlado.Text = _planoCobranca.ValorPorKm_Diario.ToString();
                 txtControleKm.Text = _planoCobranca.ControleKm.ToString();
             }

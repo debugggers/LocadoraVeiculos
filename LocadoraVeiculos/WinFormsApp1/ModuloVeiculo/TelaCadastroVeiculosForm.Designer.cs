@@ -58,9 +58,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(14, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 15);
+            this.label1.Size = new System.Drawing.Size(122, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Grupo de veiculos:";
             // 
@@ -68,74 +68,78 @@
             // 
             this.comboBoxGrupoVeiculos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGrupoVeiculos.FormattingEnabled = true;
-            this.comboBoxGrupoVeiculos.Location = new System.Drawing.Point(12, 27);
+            this.comboBoxGrupoVeiculos.Location = new System.Drawing.Point(14, 34);
+            this.comboBoxGrupoVeiculos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxGrupoVeiculos.Name = "comboBoxGrupoVeiculos";
-            this.comboBoxGrupoVeiculos.Size = new System.Drawing.Size(373, 23);
+            this.comboBoxGrupoVeiculos.Size = new System.Drawing.Size(426, 27);
             this.comboBoxGrupoVeiculos.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 70);
+            this.label2.Location = new System.Drawing.Point(14, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 15);
+            this.label2.Size = new System.Drawing.Size(59, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "Modelo:";
             // 
             // txtModelo
             // 
-            this.txtModelo.Location = new System.Drawing.Point(12, 88);
+            this.txtModelo.Location = new System.Drawing.Point(14, 111);
+            this.txtModelo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(176, 23);
+            this.txtModelo.Size = new System.Drawing.Size(201, 26);
             this.txtModelo.TabIndex = 3;
             // 
             // txtMarca
             // 
-            this.txtMarca.Location = new System.Drawing.Point(209, 88);
+            this.txtMarca.Location = new System.Drawing.Point(239, 111);
+            this.txtMarca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(176, 23);
+            this.txtMarca.Size = new System.Drawing.Size(201, 26);
             this.txtMarca.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(209, 70);
+            this.label3.Location = new System.Drawing.Point(239, 89);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 15);
+            this.label3.Size = new System.Drawing.Size(50, 19);
             this.label3.TabIndex = 4;
             this.label3.Text = "Marca:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 132);
+            this.label4.Location = new System.Drawing.Point(14, 167);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 15);
+            this.label4.Size = new System.Drawing.Size(43, 19);
             this.label4.TabIndex = 6;
             this.label4.Text = "Placa:";
             // 
             // txtCor
             // 
-            this.txtCor.Location = new System.Drawing.Point(209, 150);
+            this.txtCor.Location = new System.Drawing.Point(239, 190);
+            this.txtCor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCor.Name = "txtCor";
-            this.txtCor.Size = new System.Drawing.Size(176, 23);
+            this.txtCor.Size = new System.Drawing.Size(201, 26);
             this.txtCor.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(209, 132);
+            this.label5.Location = new System.Drawing.Point(239, 167);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 15);
+            this.label5.Size = new System.Drawing.Size(34, 19);
             this.label5.TabIndex = 8;
             this.label5.Text = "Cor:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 194);
+            this.label6.Location = new System.Drawing.Point(14, 246);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 15);
+            this.label6.Size = new System.Drawing.Size(118, 19);
             this.label6.TabIndex = 10;
             this.label6.Text = "Tipo Combustivel:";
             // 
@@ -143,82 +147,88 @@
             // 
             this.comboBoxCombustivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCombustivel.FormattingEnabled = true;
-            this.comboBoxCombustivel.Location = new System.Drawing.Point(12, 212);
+            this.comboBoxCombustivel.Location = new System.Drawing.Point(14, 269);
+            this.comboBoxCombustivel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxCombustivel.Name = "comboBoxCombustivel";
-            this.comboBoxCombustivel.Size = new System.Drawing.Size(176, 23);
+            this.comboBoxCombustivel.Size = new System.Drawing.Size(201, 27);
             this.comboBoxCombustivel.TabIndex = 11;
             // 
             // txtCapacidadeTanque
             // 
-            this.txtCapacidadeTanque.Location = new System.Drawing.Point(209, 212);
+            this.txtCapacidadeTanque.Location = new System.Drawing.Point(239, 269);
+            this.txtCapacidadeTanque.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCapacidadeTanque.Name = "txtCapacidadeTanque";
-            this.txtCapacidadeTanque.Size = new System.Drawing.Size(176, 23);
+            this.txtCapacidadeTanque.Size = new System.Drawing.Size(201, 26);
             this.txtCapacidadeTanque.TabIndex = 13;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(209, 194);
+            this.label7.Location = new System.Drawing.Point(239, 246);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(129, 15);
+            this.label7.Size = new System.Drawing.Size(149, 19);
             this.label7.TabIndex = 12;
             this.label7.Text = "Capacidade do tanque:";
             // 
             // txtAno
             // 
-            this.txtAno.Location = new System.Drawing.Point(12, 271);
+            this.txtAno.Location = new System.Drawing.Point(14, 343);
+            this.txtAno.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAno.Name = "txtAno";
-            this.txtAno.Size = new System.Drawing.Size(176, 23);
+            this.txtAno.Size = new System.Drawing.Size(201, 26);
             this.txtAno.TabIndex = 15;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 253);
+            this.label8.Location = new System.Drawing.Point(14, 320);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 15);
+            this.label8.Size = new System.Drawing.Size(37, 19);
             this.label8.TabIndex = 14;
             this.label8.Text = "Ano:";
             // 
             // txtKm
             // 
-            this.txtKm.Location = new System.Drawing.Point(209, 271);
+            this.txtKm.Location = new System.Drawing.Point(239, 343);
+            this.txtKm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtKm.Name = "txtKm";
-            this.txtKm.Size = new System.Drawing.Size(176, 23);
+            this.txtKm.Size = new System.Drawing.Size(201, 26);
             this.txtKm.TabIndex = 17;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(209, 253);
+            this.label9.Location = new System.Drawing.Point(239, 320);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 15);
+            this.label9.Size = new System.Drawing.Size(105, 19);
             this.label9.TabIndex = 16;
             this.label9.Text = "Km percorridos:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 341);
+            this.label10.Location = new System.Drawing.Point(14, 432);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 15);
+            this.label10.Size = new System.Drawing.Size(40, 19);
             this.label10.TabIndex = 18;
             this.label10.Text = "Foto:";
             // 
             // pictureBoxVeiculo
             // 
-            this.pictureBoxVeiculo.Location = new System.Drawing.Point(12, 359);
+            this.pictureBoxVeiculo.Location = new System.Drawing.Point(14, 455);
+            this.pictureBoxVeiculo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBoxVeiculo.Name = "pictureBoxVeiculo";
-            this.pictureBoxVeiculo.Size = new System.Drawing.Size(373, 165);
+            this.pictureBoxVeiculo.Size = new System.Drawing.Size(426, 209);
             this.pictureBoxVeiculo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxVeiculo.TabIndex = 19;
             this.pictureBoxVeiculo.TabStop = false;
             // 
             // btnImagem
             // 
-            this.btnImagem.Location = new System.Drawing.Point(266, 330);
+            this.btnImagem.Location = new System.Drawing.Point(304, 418);
+            this.btnImagem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnImagem.Name = "btnImagem";
-            this.btnImagem.Size = new System.Drawing.Size(119, 23);
+            this.btnImagem.Size = new System.Drawing.Size(136, 29);
             this.btnImagem.TabIndex = 20;
             this.btnImagem.Text = "Escolher imagem";
             this.btnImagem.UseVisualStyleBackColor = true;
@@ -227,9 +237,10 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(201, 545);
+            this.btnCancelar.Location = new System.Drawing.Point(230, 690);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(89, 40);
+            this.btnCancelar.Size = new System.Drawing.Size(102, 51);
             this.btnCancelar.TabIndex = 21;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -237,9 +248,10 @@
             // btnCadastrar
             // 
             this.btnCadastrar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnCadastrar.Location = new System.Drawing.Point(296, 545);
+            this.btnCadastrar.Location = new System.Drawing.Point(338, 690);
+            this.btnCadastrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(89, 40);
+            this.btnCadastrar.Size = new System.Drawing.Size(102, 51);
             this.btnCadastrar.TabIndex = 22;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
@@ -251,16 +263,17 @@
             // 
             // maskedTxtPlaca
             // 
-            this.maskedTxtPlaca.Location = new System.Drawing.Point(12, 150);
+            this.maskedTxtPlaca.Location = new System.Drawing.Point(14, 190);
+            this.maskedTxtPlaca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.maskedTxtPlaca.Name = "maskedTxtPlaca";
-            this.maskedTxtPlaca.Size = new System.Drawing.Size(173, 23);
+            this.maskedTxtPlaca.Size = new System.Drawing.Size(197, 26);
             this.maskedTxtPlaca.TabIndex = 23;
             // 
             // TelaCadastroVeiculosForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 597);
+            this.ClientSize = new System.Drawing.Size(472, 749);
             this.Controls.Add(this.maskedTxtPlaca);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnCancelar);
@@ -284,10 +297,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBoxGrupoVeiculos);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroVeiculosForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cadastro de veiculos";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVeiculo)).EndInit();
             this.ResumeLayout(false);
