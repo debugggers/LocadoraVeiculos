@@ -5,6 +5,8 @@ using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm.ModuloVeiculo
@@ -81,7 +83,7 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message,
+                MessageBox.Show("Caminho de imagem vazio! Por favor selecione uma imagem",
                 "Inserção de imagem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 DialogResult = DialogResult.None;
 
