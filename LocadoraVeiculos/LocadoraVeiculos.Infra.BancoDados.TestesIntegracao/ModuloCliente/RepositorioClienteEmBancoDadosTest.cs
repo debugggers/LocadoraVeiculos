@@ -42,10 +42,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
 
             repositorio = new RepositorioClienteEmBancoDados();
             servico = new ServicoCliente(repositorio);
-            repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
-
-            Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
-
         }
 
         [TestMethod]
@@ -64,7 +60,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         [TestMethod]
         public void Deve_Editar_Cliente()
         {
-                     
+
             servico.Inserir(cliente);
 
             cliente.Nome = "Pedro";
@@ -87,9 +83,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         [TestMethod]
         public void Deve_Excluir_Cliente()
         {
-           
+
             servico.Inserir(cliente);
-          
+
             repositorio.Excluir(cliente);
 
             var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);

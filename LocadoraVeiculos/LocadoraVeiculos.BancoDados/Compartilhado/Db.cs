@@ -6,7 +6,8 @@ namespace LocadoraVeiculos.BancoDados.Compartilhado
     public static class Db
     {
         #region Endereço do Banco de Dados
-        private static string _enderecoBanco = EnderecoBancoConst.EnderecoBanco;
+        private static string _enderecoBanco =
+            @"Data Source=(LocalDB)\\MSSQLLOCALDB;Initial Catalog=locadoraVeiculosDb;Integrated Security=True";
         #endregion
 
         public static void ExecutarSql(string sql)
@@ -18,11 +19,6 @@ namespace LocadoraVeiculos.BancoDados.Compartilhado
             conexaoComBanco.Open();
             comando.ExecuteNonQuery();
             conexaoComBanco.Close();
-        }
-
-        public static void SetEnderecoBanco(string enderecoBanco)
-        {
-            _enderecoBanco = enderecoBanco;
         }
     }
 }

@@ -8,6 +8,12 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
     public class RepositorioVeiculoEmBancoDados : 
         RepositorioBase<Veiculo, MapeadorVeiculo>
     {
+        #region Sql Queries
+
+        public const string enderecoBanco = "Data Source = (LocalDB)\\MSSqlLocalDB;" +
+               "Initial Catalog=locadoraVeiculosDb;" +
+               "Integrated Security=True;" +
+               "Pooling=False";
         protected override string sqlInserir =>
 
             @"INSERT INTO [TBVEICULO]
@@ -108,17 +114,17 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
 	               VEICULO.GRUPO_VEICULO_ID = GRUPO.ID";
 
         private const string sqlSelecionarPorPlaca =
-
             @"SELECT ID 
                 FROM 
                     TBVEICULO
                 WHERE
                     PLACA = @PLACA AND ID != @ID";
+        #endregion
 
         public bool VeiculoJaExiste(Veiculo veiculo)
         {
 
-            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorPlaca, conexaoComBanco);
 

@@ -34,7 +34,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
                 Nome = "Grupo"
 
             };
-            
+
             veiculo = new Veiculo
             {
 
@@ -53,11 +53,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
 
             repositorio = new RepositorioVeiculoEmBancoDados();
             servico = new ServicoVeiculo(repositorio);
-
-            repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
-            repositorioGrupo.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
-
-            Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
         }
 
         [TestCleanup()]
