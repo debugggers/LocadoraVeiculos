@@ -22,15 +22,15 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
 
             if (resultadoValidacao.IsValid)
             {
-                Log.Logger.Debug("Taxa {TaxaDescricao} inserida com sucesso", taxa.Descricao);
+                Log.Logger.Debug("Taxa {TaxaId} inserida com sucesso", taxa.Id);
                 _repositorioTaxa.Inserir(taxa);
             }
             else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir Taxa {TaxaDescricao} - {Motivo}",
-                        taxa.Descricao, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir Taxa {TaxaId} - {Motivo}",
+                        taxa.Id, erro.ErrorMessage);
                 }
             }
             return resultadoValidacao;
@@ -44,15 +44,15 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
 
             if (resultadoValidacao.IsValid)
             {
-                Log.Logger.Debug("Taxa {TaxaDescricao} editada com sucesso", taxa.Descricao);
+                Log.Logger.Debug("Taxa {TaxaId} editada com sucesso", taxa.Id);
                 _repositorioTaxa.Editar(taxa);
             }
             else
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar Taxa {TaxaDescricao} - {Motivo}",
-                        taxa.Descricao, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar Taxa {TaxaId} - {Motivo}",
+                        taxa.Id, erro.ErrorMessage);
                 }
             }
 

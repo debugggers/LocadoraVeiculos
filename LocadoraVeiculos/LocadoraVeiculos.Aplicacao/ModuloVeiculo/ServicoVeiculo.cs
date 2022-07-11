@@ -8,73 +8,57 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
     public class ServicoVeiculo
     {
 
-        private RepositorioVeiculoEmBancoDados repositorioVeiculo;
+        private RepositorioVeiculoEmBancoDados _repositorioVeiculo;
 
         public ServicoVeiculo(RepositorioVeiculoEmBancoDados repositorioVeiculo)
         {
-            this.repositorioVeiculo = repositorioVeiculo;
+            _repositorioVeiculo = repositorioVeiculo;
         }
 
         public ValidationResult Inserir(Veiculo veiculo)
         {
-
             Log.Logger.Debug("Tentando inserir veículo... {@v}", veiculo);
 
             ValidationResult resultadoValidacao = Validar(veiculo);
 
-            if (resultadoValidacao.IsValid){
-
-                repositorioVeiculo.Inserir(veiculo);
-                Log.Logger.Debug("Veículo {VeiculoModelo} inserido com sucesso", veiculo.Modelo);
-
+            if (resultadoValidacao.IsValid)
+            {
+                _repositorioVeiculo.Inserir(veiculo);
+                Log.Logger.Debug("Veículo {VeiculoId} inserido com sucesso", veiculo.Id);
             }
             else
             {
-
                 foreach (var item in resultadoValidacao.Errors)
                 {
-
-                    Log.Logger.Warning("Falha ao inserir o veículo {VeiculoModelo} - {Motivo}", veiculo.Modelo, item.ErrorMessage);
-
+                    Log.Logger.Warning("Falha ao inserir o veículo {VeiculoId} - {Motivo}", 
+                        veiculo.Id, item.ErrorMessage);
                 }
-
             }
-                
-
 
             return resultadoValidacao;
-
         }
 
         public ValidationResult Editar(Veiculo veiculo)
         {
-
             Log.Logger.Debug("Tentando editar veículo... {@v}", veiculo);
 
             ValidationResult resultadoValidacao = Validar(veiculo);
 
             if (resultadoValidacao.IsValid)
             {
-
-                repositorioVeiculo.Editar(veiculo);
-                Log.Logger.Debug("Veículo {VeiculoModelo} editado com sucesso", veiculo.Modelo);
-
+                _repositorioVeiculo.Editar(veiculo);
+                Log.Logger.Debug("Veículo {VeiculoId} editado com sucesso", veiculo.Id);
             }
             else
             {
-
                 foreach (var item in resultadoValidacao.Errors)
                 {
-
-                    Log.Logger.Warning("Falha ao editar o veículo {VeiculoModelo} - {Motivo}", veiculo.Modelo, item.ErrorMessage);
-
+                    Log.Logger.Warning("Falha ao editar o veículo {VeiculoId} - {Motivo}", 
+                        veiculo.Id, item.ErrorMessage);
                 }
-
             }
-                
 
             return resultadoValidacao;
-
         }
 
         private ValidationResult Validar(Veiculo veiculo)
@@ -90,10 +74,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
 
         private bool VeiculoDuplicado(Veiculo veiculo)
         {
-            var veiculoEncontrado = repositorioVeiculo.VeiculoJaExiste(veiculo);
+            var veiculoEncontrado = _repositorioVeiculo.VeiculoJaExiste(veiculo);
 
             return veiculoEncontrado;
         }
-
     }
 }

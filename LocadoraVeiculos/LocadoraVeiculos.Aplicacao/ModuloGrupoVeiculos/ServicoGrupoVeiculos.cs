@@ -16,60 +16,46 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
 
         public ValidationResult Inserir(GrupoVeiculos grupoVeiculos)
         {
-
             Log.Logger.Debug("Tentando inserir grupo de veículos... {@g}", grupoVeiculos);
 
             var resultadoValidacao = Validar(grupoVeiculos);
 
             if (resultadoValidacao.IsValid)
             {
-
                 _repositorioGrupoVeiculos.Inserir(grupoVeiculos);
-                Log.Logger.Debug("Grupo de veículos {VeiculoNome} inserido com sucesso", grupoVeiculos.Nome);
-
+                Log.Logger.Debug("Grupo de veículos {GrupoVeiculosId} inserido com sucesso", grupoVeiculos.Id);
             }
             else
             {
-
                 foreach (var item in resultadoValidacao.Errors)
                 {
-
-                    Log.Logger.Warning("Falha ao inserir o grupo de veículos {GrupoVeiculoNome} - {Motivo}", grupoVeiculos.Nome, item.ErrorMessage);
-
+                    Log.Logger.Warning("Falha ao inserir o grupo de veículos {GrupoVeiculosId} - {Motivo}",
+                        grupoVeiculos.Id, item.ErrorMessage);
                 }
-
             }
-                
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(GrupoVeiculos grupoVeiculos)
         {
-
             Log.Logger.Debug("Tentando editar grupo de veículos... {@g}", grupoVeiculos);
 
             var resultadoValidacao = Validar(grupoVeiculos);
 
             if (resultadoValidacao.IsValid)
             {
-
                 _repositorioGrupoVeiculos.Editar(grupoVeiculos);
-                Log.Logger.Debug("Grupo de veículos {VeiculoNome} editado com sucesso", grupoVeiculos.Nome);
-
+                Log.Logger.Debug("Grupo de veículos {GrupoVeiculosId} editado com sucesso", grupoVeiculos.Id);
             }
             else
             {
-
                 foreach (var item in resultadoValidacao.Errors)
                 {
-
-                    Log.Logger.Warning("Falha ao editar o grupo de veículos {GrupoVeiculoNome} - {Motivo}", grupoVeiculos.Nome, item.ErrorMessage);
-
+                    Log.Logger.Warning("Falha ao editar o grupo de veículos {GrupoVeiculosId} - {Motivo}", 
+                        grupoVeiculos.Id, item.ErrorMessage);
                 }
-
             }
-                
 
             return resultadoValidacao;
         }

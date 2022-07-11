@@ -8,22 +8,14 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
     [TestClass]
     public class VeiculoTeste
     {
-
         [TestMethod]
         public void Campos_Nao_Devem_Ficar_Vazios()
         {
-
-            Veiculo veiculo = new Veiculo
-            {
-
-
-
-            };
+            Veiculo veiculo = new Veiculo();
 
             ValidadorVeiculo validador = new ValidadorVeiculo();
 
             var resultadoValidacao = validador.Validate(veiculo);
-
 
             Assert.AreEqual("O campo modelo não pode ficar vazio", resultadoValidacao.Errors[0].ErrorMessage);
             Assert.AreEqual("O campo marca não pode ficar vazio", resultadoValidacao.Errors[2].ErrorMessage);
@@ -40,17 +32,13 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
         [TestMethod]
         public void Campos_Devem_Contem_Quantidade_Minima_De_Caracteres()
         {
-
             GrupoVeiculos grupo = new GrupoVeiculos
             {
-
                 Nome = "Grupo"
-
             };
 
             Veiculo veiculo = new Veiculo
             {
-
                 Marca = "Fo",
                 Placa = "abc12",
                 Modelo = "Ra",
@@ -59,9 +47,8 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
                 CapacidadeTanque = 200,
                 QuilometragemPercorrida = 1,
                 TipoCombustivel = 0,
-                Foto = new Bitmap(@"C:\Users\paulo\Downloads\download.jpg"),
+                //Foto = new Bitmap(@"C:\Users\paulo\Downloads\download.jpg"),
                 GrupoVeiculo = grupo
-
             };
 
             ValidadorVeiculo validador = new ValidadorVeiculo();
@@ -71,23 +58,18 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
             Assert.AreEqual("O modelo precisa ter pelo menos três caracteres", resultadoValidacao.Errors[0].ErrorMessage);
             Assert.AreEqual("A marca precisa ter pelo menos três caracteres", resultadoValidacao.Errors[1].ErrorMessage);
             Assert.AreEqual("A placa precisa ter pelo menos 6 caracteres", resultadoValidacao.Errors[2].ErrorMessage);
-
         }
 
         [TestMethod]
         public void Campos_Nao_Podem_Conter_Caracteres_Especiais()
         {
-
             GrupoVeiculos grupo = new GrupoVeiculos
             {
-
                 Nome = "Grupo"
-
             };
 
             Veiculo veiculo = new Veiculo
             {
-
                 Marca = "Ford",
                 Placa = "@@@@@@@@@",
                 Modelo = "Ranger",
@@ -96,9 +78,8 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
                 CapacidadeTanque = 200,
                 QuilometragemPercorrida = 1,
                 TipoCombustivel = 0,
-                Foto = new Bitmap(@"C:\Users\paulo\Downloads\download.jpg"),
+                //Foto = new Bitmap(@"C:\Users\paulo\Downloads\download.jpg"),
                 GrupoVeiculo = grupo
-
             };
 
             ValidadorVeiculo validador = new ValidadorVeiculo();
@@ -107,23 +88,18 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
 
             Assert.AreEqual("Não são permitidos caracteres especiais na placa", resultadoValidacao.Errors[0].ErrorMessage);
             Assert.AreEqual("O campo cor não pode ter caracteres especiais", resultadoValidacao.Errors[1].ErrorMessage);
-
         }
 
         [TestMethod]
         public void Quilometragem_Nao_Pode_Ser_Negativa()
         {
-
             GrupoVeiculos grupo = new GrupoVeiculos
             {
-
                 Nome = "Grupo"
-
             };
 
             Veiculo veiculo = new Veiculo
             {
-
                 Marca = "Ford",
                 Placa = "abc123",
                 Modelo = "Ranger",
@@ -132,9 +108,8 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
                 CapacidadeTanque = 200,
                 QuilometragemPercorrida = -100,
                 TipoCombustivel = 0,
-                Foto = new Bitmap(@"C:\Users\paulo\Downloads\download.jpg"),
+                //Foto = new Bitmap(@"C:\Users\paulo\Downloads\download.jpg"),
                 GrupoVeiculo = grupo
-
             };
 
             ValidadorVeiculo validador = new ValidadorVeiculo();
@@ -142,8 +117,6 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
             var resultadoValidacao = validador.Validate(veiculo);
 
             Assert.AreEqual("A quilometragem percorrida não pode ser vazia", resultadoValidacao.Errors[0].ErrorMessage);
-
         }
-
     }
 }
