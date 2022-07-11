@@ -20,10 +20,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
             _taxa = new Taxa("Cadeira de bebe", 50.00m, TipoCalculoEnum.CalculoDiario);
             _repositorio = new RepositorioTaxaEmBancoDados();
             _servicoTaxa = new ServicoTaxa(_repositorio);
-
-            _repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
-
-            Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
         }
 
         [TestCleanup()]

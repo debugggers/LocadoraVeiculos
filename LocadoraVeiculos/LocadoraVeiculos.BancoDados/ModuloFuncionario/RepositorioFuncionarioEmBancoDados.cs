@@ -9,6 +9,11 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
         RepositorioBase<Funcionario, MapeadorFuncionario>
     {
         #region SQL Queries
+
+        public const string enderecoBanco = "Data Source = (LocalDB)\\MSSqlLocalDB;" +
+               "Initial Catalog=locadoraVeiculosDb;" +
+               "Integrated Security=True;" +
+               "Pooling=False";
         protected override string sqlInserir =>
             @"INSERT INTO TBFUNCIONARIO
             (
@@ -98,7 +103,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
 
         public Funcionario BuscarUsuarioPorLoginSenha(string login, string senha)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorLoginSenha, conexaoComBanco);
 

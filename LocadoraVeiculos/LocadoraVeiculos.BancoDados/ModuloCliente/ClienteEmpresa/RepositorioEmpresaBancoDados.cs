@@ -7,6 +7,8 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
     public class RepositorioEmpresaBancoDados :
         RepositorioBase<Empresa, MapeadorEmpresa>
     {
+        #region Sql Queries
+
         protected override string sqlInserir =>
 
             @"INSERT INTO [TBEMPRESA]
@@ -78,9 +80,11 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
                 WHERE
                     (NOME = @NOME OR CNPJ = @CNPJ) AND ID != @ID";
 
+        #endregion
+
         public bool EmpresaJaExiste(Empresa empresa)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection();
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNomeOuCnpj, conexaoComBanco);
 

@@ -9,6 +9,11 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
         RepositorioBase<PlanoCobranca, MapeadorPlanoCobranca>
     {
         #region SQL Queries
+
+        public const string enderecoBanco = "Data Source = (LocalDB)\\MSSqlLocalDB;" +
+               "Initial Catalog=locadoraVeiculosDb;" +
+               "Integrated Security=True;" +
+               "Pooling=False";
         protected override string sqlInserir =>
             @"INSERT INTO TBPLANOCOBRANCA
             (
@@ -75,7 +80,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
 
         public bool GrupoVeiculosDuplicado(int idGrupoVeiculos)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorGrupoVeiculos, conexaoComBanco);
 

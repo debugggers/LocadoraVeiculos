@@ -18,13 +18,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
 
         public RepositorioFuncionarioEmBancoDadosTest()
         {
-            _funcionario = new Funcionario("Tatiane Mossi", "tatimossi", "12345", new DateTime(2022,02,02), 2000.00m, true);
+            _funcionario = new Funcionario("Tatiane Mossi", "tatimossi", "12345", new DateTime(2022, 02, 02), 2000.00m, true);
             _repositorio = new RepositorioFuncionarioEmBancoDados();
             _servicoFuncionario = new ServicoFuncionario(_repositorio);
-
-            _repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
-
-            Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
         }
 
         [TestCleanup()]

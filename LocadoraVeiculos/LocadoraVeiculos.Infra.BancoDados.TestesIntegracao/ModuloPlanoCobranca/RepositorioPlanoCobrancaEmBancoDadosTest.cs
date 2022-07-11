@@ -24,7 +24,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
         public RepositorioPlanoCobrancaEmBancoDadosTest()
         {
             _repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
-            _repositorioGrupoVeiculos.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
             _grupoVeiculos = new GrupoVeiculos("Uber");
             _repositorioGrupoVeiculos.Inserir(_grupoVeiculos);
             _grupoVeiculos2 = new GrupoVeiculos("Taxi");
@@ -35,10 +34,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
             _planoCobranca = new PlanoCobranca(_grupoVeiculos, _grupoVeiculos.Id, 50.00m, 5.00m, 100.00m, 50.00m, 3.00m, 54667);
             _repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmBancoDados();
             _servicoPlanoCobranca = new ServicoPlanoCobranca(_repositorioPlanoCobranca);
-
-            _repositorioPlanoCobranca.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
-
-            Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
         }
 
         [TestCleanup()]

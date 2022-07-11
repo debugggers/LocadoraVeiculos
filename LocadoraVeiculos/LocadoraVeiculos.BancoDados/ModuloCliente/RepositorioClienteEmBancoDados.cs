@@ -7,6 +7,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
     public class RepositorioClienteEmBancoDados :
         RepositorioBase<Cliente, MapeadorCliente>
     {
+        #region Sql Queries
         protected override string sqlInserir =>
 
              @"INSERT INTO [TBCLIENTE]
@@ -115,10 +116,11 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
                     TBCLIENTE
                 WHERE
                     (NOME = @NOME OR CPF = @CPF OR CNH_NUMERO = @CNH_NUMERO) AND ID != @ID";
+        #endregion
 
         public bool ClienteJaExiste(Cliente cliente)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(EnderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection();
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNomeOuCpfOuCnhNumero, conexaoComBanco);
 
