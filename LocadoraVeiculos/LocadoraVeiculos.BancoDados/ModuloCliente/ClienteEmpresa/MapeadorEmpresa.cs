@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
 
         public override Empresa ConverterRegistro(SqlDataReader leitorEmpresa)
         {
-            var id = Convert.ToInt32(leitorEmpresa["ID"]);
+            var id = Guid.Parse(leitorEmpresa["ID"].ToString());
             var nome = Convert.ToString(leitorEmpresa["NOME"]);
             var telefone = Convert.ToString(leitorEmpresa["TELEFONE"]);
             var email = Convert.ToString(leitorEmpresa["EMAIL"]);

@@ -106,12 +106,11 @@ namespace LocadoraVeiculosForm.ModuloTaxa
 
         private Taxa ObtemTaxaSelecionada()
         {
-            int id = _listagemTaxa.SelecionarNumeroTaxa();
+            var id = _listagemTaxa.SelecionarIdTaxa();
 
             Taxa taxaSelecionada = _repositorioTaxa.SelecionarPorId(id);
 
             return taxaSelecionada;
         }
-
     }
 }

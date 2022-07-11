@@ -30,28 +30,22 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
             return colunas;
         }
 
-        public int SelecionarNumeroGrupoVeiculos()
+        public Guid SelecionarIdGrupoVeiculos()
         {
-
-            return gridGrupoVeiculos.SelecionarId<int>();
-
+            return gridGrupoVeiculos.SelecionarId<Guid>();
         }
         internal void AtualizarRegistros(List<GrupoVeiculos> grupoVeiculos)
         {
-
             gridGrupoVeiculos.Rows.Clear();
 
             foreach (GrupoVeiculos t in grupoVeiculos)
             {
-
                 gridGrupoVeiculos.Rows.Add(t.Id, t.Nome);
-
             }
         }
 
         private void gridFuncionarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
     }
 }

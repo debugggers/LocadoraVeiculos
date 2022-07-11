@@ -30,7 +30,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
             empresa.CNPJ = "12.123.123/0001-12";
 
             repositorio = new RepositorioEmpresaBancoDados();
-            repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
             servico = new ServicoEmpresa(repositorio);
 
         }

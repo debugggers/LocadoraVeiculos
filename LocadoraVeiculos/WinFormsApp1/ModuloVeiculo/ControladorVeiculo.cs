@@ -11,20 +11,31 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 {
     public class ControladorVeiculo : ControladorBase
     {
-
-        private ServicoVeiculo servico;
-        private ListagemVeiculosControl listagem;
-        private RepositorioVeiculoEmBancoDados repositorio;
-        private RepositorioGrupoVeiculosEmBancoDados repositorioGrupoVeiculos;
+        private ServicoVeiculo _servico;
+        private ListagemVeiculosControl _listagem;
+        private RepositorioVeiculoEmBancoDados _repositorio;
+        private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
 
         public ControladorVeiculo(RepositorioVeiculoEmBancoDados repositorio, RepositorioGrupoVeiculosEmBancoDados repositorioGrupoVeiculos, ServicoVeiculo servico)
         {
-
-            listagem = new ListagemVeiculosControl();
-            this.repositorio = repositorio;
-            this.repositorioGrupoVeiculos = repositorioGrupoVeiculos;
-            this.servico = servico;
+            _listagem = new ListagemVeiculosControl();
+            _repositorio = repositorio;
+            _repositorioGrupoVeiculos = repositorioGrupoVeiculos;
+            _servico = servico;
         }
+
+        public override void Inserir()
+        {
+            var tela = new TelaCadastroVeiculosForm(_repositorioGrupoVeiculos);
+            tela.Veiculo = new Veiculo();
+            tela.GravarRegistro = _servico.Inserir;
+            DialogResult resultado = tela.ShowDialog();
+            if (resultado == DialogResult.OK)
+            {
+                CarregarVeiculos();
+            }
+        }
+
         public override void Editar()
         {
             Veiculo veiculoSelecionado = ObtemVeiculoSelecionado();
@@ -36,11 +47,11 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
                 return;
             }
 
-            TelaCadastroVeiculosForm tela = new TelaCadastroVeiculosForm(repositorioGrupoVeiculos);
+            TelaCadastroVeiculosForm tela = new TelaCadastroVeiculosForm(_repositorioGrupoVeiculos);
 
             tela.Veiculo = veiculoSelecionado;
 
-            tela.GravarRegistro = servico.Editar;
+            tela.GravarRegistro = _servico.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -66,7 +77,7 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
             {
                 try
                 {
-                    repositorio.Excluir(veiculoSelecionado);
+                    _repositorio.Excluir(veiculoSelecionado);
                 }
                 catch (Exception e)
                 {
@@ -80,23 +91,11 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
             }
         }
 
-        public override void Inserir()
-        {
-            var tela = new TelaCadastroVeiculosForm(repositorioGrupoVeiculos);
-            tela.Veiculo = new Veiculo();
-            tela.GravarRegistro = servico.Inserir;
-            DialogResult resultado = tela.ShowDialog();
-            if (resultado == DialogResult.OK)
-            {
-                CarregarVeiculos();
-            }
-        }
-
         private Veiculo ObtemVeiculoSelecionado()
         {
-            int id = listagem.SelecionarNumeroVeiculo();
+            var id = _listagem.SelecionarNumeroVeiculo();
 
-            Veiculo veiculoSelecionado = repositorio.SelecionarPorId(id);
+            Veiculo veiculoSelecionado = _repositorio.SelecionarPorId(id);
 
             return veiculoSelecionado;
         }
@@ -108,19 +107,19 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
         public override UserControl ObtemListagem()
         {
-            if (listagem == null)
-                listagem = new ListagemVeiculosControl();
+            if (_listagem == null)
+                _listagem = new ListagemVeiculosControl();
 
             CarregarVeiculos();
 
-            return listagem;
+            return _listagem;
         }
 
         private void CarregarVeiculos()
         {
-            List<Veiculo> veiculos = repositorio.SelecionarTodos();
+            List<Veiculo> veiculos = _repositorio.SelecionarTodos();
 
-            listagem.AtualizarRegistros(veiculos);
+            _listagem.AtualizarRegistros(veiculos);
         }
     }
 }

@@ -80,7 +80,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
 
         #endregion
 
-        public bool GrupoVeiculosDuplicado(int idGrupoVeiculos)
+        public bool GrupoVeiculosDuplicado(Guid idGrupoVeiculos)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 

@@ -136,7 +136,7 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
 
         private void CarregarFormularioTipoPlano()
         {
-            if (_planoCobranca.Id > 0)
+            if (_planoCobranca.Id != Guid.Empty)
             {
                 txtValorDiario_Diario.Text = _planoCobranca.ValorDiario_Diario.ToString();
                 txtValorPorKm_Diario.Text = _planoCobranca.ValorPorKm_Diario.ToString();

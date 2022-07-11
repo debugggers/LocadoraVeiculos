@@ -76,7 +76,7 @@ namespace LocadoraVeiculos.BancoDados.Compartilhado
             conexaoComBanco.Close();
         }
 
-        public T SelecionarPorId(int id)
+        public T SelecionarPorId(Guid id)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
