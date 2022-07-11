@@ -2,12 +2,8 @@
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
 {
@@ -37,7 +33,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
 
         public override Veiculo ConverterRegistro(SqlDataReader leitorVeiculo)
         {
-            var id = Convert.ToInt32(leitorVeiculo["ID"]);
+            var id = Guid.Parse(leitorVeiculo["ID"].ToString());
             var modelo = Convert.ToString(leitorVeiculo["MODELO"]);
             var placa = Convert.ToString(leitorVeiculo["PLACA"]);
             var marca = Convert.ToString(leitorVeiculo["MARCA"]);
@@ -49,7 +45,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             byte[] data = (byte[])leitorVeiculo["FOTO"];
             var foto = Image.FromStream(new System.IO.MemoryStream(data));
 
-            var idGrupo = Convert.ToInt32(leitorVeiculo["GRUPO_ID"]);
+            var idGrupo = Guid.Parse(leitorVeiculo["GRUPO_ID"].ToString());
             var nomeGrupo = Convert.ToString(leitorVeiculo["GRUPO_NOME"]);
 
             Veiculo veiculo = new Veiculo();
@@ -65,10 +61,8 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             veiculo.Foto = (Bitmap)foto;
             veiculo.GrupoVeiculo = new GrupoVeiculos
             {
-
                 Id = idGrupo,
                 Nome = nomeGrupo
-
             };
 
             return veiculo;

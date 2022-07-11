@@ -7,10 +7,10 @@ namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
 {
     public class MapeadorGrupoVeiculos : MapeadorBase<GrupoVeiculos>
     {
-        public override GrupoVeiculos ConverterRegistro(SqlDataReader leitorRegistro)
+        public override GrupoVeiculos ConverterRegistro(SqlDataReader leitorGrupoVeiculos)
         {
-            var id = Convert.ToInt32(leitorRegistro["ID"]);
-            var nome = Convert.ToString(leitorRegistro["NOME"]);
+            var id = Guid.Parse(leitorGrupoVeiculos["ID"].ToString());
+            var nome = Convert.ToString(leitorGrupoVeiculos["NOME"]);
 
             var grupoveiculos = new GrupoVeiculos()
             {
@@ -20,7 +20,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
 
             return grupoveiculos;
         }
-
      
         public override void ConfigurarParametros(GrupoVeiculos novoGrupoVeiculos, SqlCommand comando)
         {

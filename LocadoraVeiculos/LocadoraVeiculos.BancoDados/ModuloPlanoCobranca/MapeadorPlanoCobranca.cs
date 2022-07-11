@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
     {
         public override PlanoCobranca ConverterRegistro(SqlDataReader leitorPlanoCobranca)
         {
-            var id = Convert.ToInt32(leitorPlanoCobranca["ID"]);
+            var id = Guid.Parse(leitorPlanoCobranca["ID"].ToString());
             var valorDiarioDiario = Convert.ToDecimal(leitorPlanoCobranca["VALORDIARIO_DIARIO"]);
             var valorPorKmDiario = Convert.ToDecimal(leitorPlanoCobranca["VALORPORKM_DIARIO"]);
             var valorDiarioLivre = Convert.ToDecimal(leitorPlanoCobranca["VALORDIARIO_LIVRE"]);
@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
             var valorPorKmControlado = Convert.ToDecimal(leitorPlanoCobranca["VALORPORKM_CONTROLADO"]);
             var controleKm = Convert.ToInt32(leitorPlanoCobranca["CONTROLEKM_CONTROLADO"]);
 
-            var grupoVeiculos_Id = Convert.ToInt32(leitorPlanoCobranca["GRUPOVEICULOS_ID"]);
+            var grupoVeiculos_Id = Guid.Parse(leitorPlanoCobranca["GRUPOVEICULOS_ID"].ToString());
             var grupoVeiculos_Nome = Convert.ToString(leitorPlanoCobranca["GRUPOVEICULOS_NOME"]);
 
             var planoCobranca = new PlanoCobranca()
