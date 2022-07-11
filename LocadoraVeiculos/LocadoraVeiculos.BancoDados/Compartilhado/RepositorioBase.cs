@@ -1,12 +1,11 @@
-﻿using LocadoraVeiculos.BancoDados.Compartilhado;
-using LocadoraVeiculos.Dominio.Compartilhado;
+﻿using LocadoraVeiculos.Dominio.Compartilhado;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 
-namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
+namespace LocadoraVeiculos.BancoDados.Compartilhado
 {
     public abstract class RepositorioBase<T, TMapeador>
         where T : EntidadeBase<T>
@@ -45,9 +44,7 @@ namespace ControleMedicamentos.Infra.BancoDados.Compartilhado
             mapeador.ConfigurarParametros(registro, comandoInsercao);
 
             conexaoComBanco.Open();
-            var id = comandoInsercao.ExecuteScalar();
-            registro.Id = Convert.ToInt32(id);
-
+            var id = comandoInsercao.ExecuteNonQuery();
             conexaoComBanco.Close();
         }
 

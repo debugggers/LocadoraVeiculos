@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -17,6 +17,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
         protected override string sqlInserir =>
             @"INSERT INTO TBFUNCIONARIO
             (
+                    ID,
                     NOME,
                     LOGIN,
                     SENHA,
@@ -26,13 +27,14 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
             )
             VALUES
             (
+                    @ID,
                     @NOME,
                     @LOGIN,
                     @SENHA,
                     @DATA_ADMISSAO,
                     @SALARIO,
                     @EHADMIN
-            );SELECT SCOPE_IDENTITY();";
+            );";
 
         protected override string sqlEditar =>
            @"UPDATE TBFUNCIONARIO

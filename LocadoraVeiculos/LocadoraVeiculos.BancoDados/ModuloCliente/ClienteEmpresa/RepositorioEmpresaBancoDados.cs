@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using System.Data.SqlClient;
 
@@ -7,12 +7,13 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
     public class RepositorioEmpresaBancoDados :
         RepositorioBase<Empresa, MapeadorEmpresa>
     {
-        #region Sql Queries
+        #region SQL Queries
 
         protected override string sqlInserir =>
 
             @"INSERT INTO [TBEMPRESA]
                 (
+                    [ID],
                     [NOME],       
                     [TELEFONE], 
                     [EMAIL],                    
@@ -20,13 +21,14 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
                     [CNPJ]
                 )
             VALUES
-                (
+                (   
+                    @EMPRESA_ID,
                     @EMPRESA_NOME,
                     @EMPRESA_TELEFONE,
                     @EMPRESA_EMAIL,
                     @EMPRESA_ENDERECO,
                     @EMPRESA_CNPJ
-                ); SELECT SCOPE_IDENTITY();";
+                );";
 
         protected override string sqlEditar =>
 

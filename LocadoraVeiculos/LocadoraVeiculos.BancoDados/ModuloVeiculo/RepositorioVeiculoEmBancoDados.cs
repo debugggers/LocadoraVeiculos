@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
 using System.Data.SqlClient;
@@ -8,16 +8,16 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
     public class RepositorioVeiculoEmBancoDados : 
         RepositorioBase<Veiculo, MapeadorVeiculo>
     {
-        #region Sql Queries
+        #region SQL Queries
 
         public const string enderecoBanco = "Data Source = (LocalDB)\\MSSqlLocalDB;" +
                "Initial Catalog=locadoraVeiculosDb;" +
                "Integrated Security=True;" +
                "Pooling=False";
         protected override string sqlInserir =>
-
             @"INSERT INTO [TBVEICULO]
                 (
+                    [ID],
                     [MODELO],                    
                     [MARCA],
                     [PLACA],
@@ -31,6 +31,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
 	            )
 	            VALUES
                 (
+                    @ID,
                     @VEICULO_MODELO,                    
                     @VEICULO_MARCA,
                     @VEICULO_PLACA,
@@ -41,10 +42,9 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
                     @VEICULO_QUILOMETRAGEM,
                     @VEICULO_FOTO,
                     @VEICULO_GRUPO_VEICULO_ID
-                );SELECT SCOPE_IDENTITY();";
+                );";
 
         protected override string sqlEditar =>
-
             @"UPDATE [TBVEICULO]	
 		        SET
                     [MODELO] = @VEICULO_MODELO,
@@ -61,13 +61,11 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
 			        [ID] = @ID";
 
         protected override string sqlExcluir =>
-
              @"DELETE FROM [TBVEICULO]
 		        WHERE
 			        [ID] = @ID";
 
         protected override string sqlSelecionarPorId =>
-
             @"SELECT
                     VEICULO.ID,
                     VEICULO.MODELO,                    
@@ -91,8 +89,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
                 VEICULO.[ID] = @ID";
 
         protected override string sqlSelecionarTodos =>
-
-
             @"SELECT   
                     VEICULO.ID,
                     VEICULO.MODELO,                    
@@ -107,7 +103,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
 
 	                GRUPO.ID GRUPO_ID,
 	                GRUPO.NOME GRUPO_NOME
-	
             FROM  
 	               TBVEICULO VEICULO INNER JOIN TBGRUPOVEICULO GRUPO
             ON 
@@ -123,7 +118,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
 
         public bool VeiculoJaExiste(Veiculo veiculo)
         {
-
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorPlaca, conexaoComBanco);
@@ -142,7 +136,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             conexaoComBanco.Close();
 
             return veiculoJaExiste;
-
         }
     }
 }
