@@ -2,6 +2,7 @@
 using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -29,6 +30,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
             empresa.CNPJ = "12.123.123/0001-12";
 
             repositorio = new RepositorioEmpresaBancoDados();
+            repositorio.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
             servico = new ServicoEmpresa(repositorio);
 
         }
