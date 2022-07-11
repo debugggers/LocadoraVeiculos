@@ -25,8 +25,6 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 
             return grupoVeiculos.Id.Equals(Id) &&
                    grupoVeiculos.Nome.Equals(Nome);
-
         }
-
     }
 }

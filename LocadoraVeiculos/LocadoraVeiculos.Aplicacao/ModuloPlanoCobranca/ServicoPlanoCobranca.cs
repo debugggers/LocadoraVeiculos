@@ -67,7 +67,16 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
 
             var resultadoValidacao = validador.Validate(planoCobranca);
 
+            if (GrupoVeiculosDuplicado(planoCobranca))
+                resultadoValidacao.Errors.Add(new ValidationFailure
+                    ("GrupoVeiculos", "Grupo de Veiculos duplicado"));
+
             return resultadoValidacao;
+        }
+
+        private bool GrupoVeiculosDuplicado(PlanoCobranca planoCobranca)
+        {
+            return _repositorioPlanoCobranca.GrupoVeiculosDuplicado(planoCobranca.GrupoVeiculos.Id);
         }
     }
 }

@@ -52,12 +52,6 @@ namespace LocadoraVeiculosForm
                 telaLoginForm.ShowDialog();
             }
 
-            if (telaLoginForm.DialogResult == DialogResult.Cancel)
-            {
-                MessageBox.Show(this, "Aplicação será encerrada!");
-                Close();
-            }
-
             Instancia = this;
 
             labelRodape.Text = string.Empty;

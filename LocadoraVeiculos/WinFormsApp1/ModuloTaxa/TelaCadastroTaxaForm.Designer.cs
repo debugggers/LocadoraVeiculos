@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.comboBoxTipoCalculo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxTipoCalculo = new System.Windows.Forms.ComboBox();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtValor = new System.Windows.Forms.TextBox();
@@ -40,6 +40,19 @@
             this.labelRodapeTaxa = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // comboBoxTipoCalculo
+            // 
+            this.comboBoxTipoCalculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTipoCalculo.FormattingEnabled = true;
+            this.comboBoxTipoCalculo.Items.AddRange(new object[] {
+            "Fixo",
+            "Diário"});
+            this.comboBoxTipoCalculo.Location = new System.Drawing.Point(14, 177);
+            this.comboBoxTipoCalculo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBoxTipoCalculo.Name = "comboBoxTipoCalculo";
+            this.comboBoxTipoCalculo.Size = new System.Drawing.Size(179, 27);
+            this.comboBoxTipoCalculo.TabIndex = 3;
             // 
             // label1
             // 
@@ -75,18 +88,6 @@
             this.label3.Size = new System.Drawing.Size(102, 19);
             this.label3.TabIndex = 4;
             this.label3.Text = "Tipo de calculo:";
-            // 
-            // comboBoxTipoCalculo
-            // 
-            this.comboBoxTipoCalculo.FormattingEnabled = true;
-            this.comboBoxTipoCalculo.Items.AddRange(new object[] {
-            "Fixo",
-            "Diário"});
-            this.comboBoxTipoCalculo.Location = new System.Drawing.Point(14, 177);
-            this.comboBoxTipoCalculo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBoxTipoCalculo.Name = "comboBoxTipoCalculo";
-            this.comboBoxTipoCalculo.Size = new System.Drawing.Size(179, 27);
-            this.comboBoxTipoCalculo.TabIndex = 3;
             // 
             // btnCadastrar
             // 
