@@ -15,6 +15,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
     {
         private PlanoCobranca _planoCobranca;
         private GrupoVeiculos _grupoVeiculos;
+        private GrupoVeiculos _grupoVeiculos2;
+        private GrupoVeiculos _grupoVeiculos3;
         private RepositorioPlanoCobrancaEmBancoDados _repositorioPlanoCobranca;
         private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
         private ServicoPlanoCobranca _servicoPlanoCobranca;
@@ -25,6 +27,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
             _repositorioGrupoVeiculos.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
             _grupoVeiculos = new GrupoVeiculos("Uber");
             _repositorioGrupoVeiculos.Inserir(_grupoVeiculos);
+            _grupoVeiculos2 = new GrupoVeiculos("Taxi");
+            _repositorioGrupoVeiculos.Inserir(_grupoVeiculos2);
+            _grupoVeiculos3 = new GrupoVeiculos("Esportivo");
+            _repositorioGrupoVeiculos.Inserir(_grupoVeiculos3);
 
             _planoCobranca = new PlanoCobranca(_grupoVeiculos, _grupoVeiculos.Id, 50.00m, 5.00m, 100.00m, 50.00m, 3.00m, 54667);
             _repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmBancoDados();
@@ -63,8 +69,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
             _servicoPlanoCobranca.Inserir(_planoCobranca);
 
             //action
-            _planoCobranca.GrupoVeiculos = _grupoVeiculos;
-            _planoCobranca.IdGrupoVeiculos = _grupoVeiculos.Id;
+            _planoCobranca.GrupoVeiculos = _grupoVeiculos2;
+            _planoCobranca.IdGrupoVeiculos = _grupoVeiculos2.Id;
             _planoCobranca.ValorDiario_Diario = 60.00m;
             _planoCobranca.ValorPorKm_Diario = 6.00m;
             _planoCobranca.ValorDiario_Livre = 70.00m;
@@ -115,8 +121,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
         {
             //arrange
             var planoCobranca1 = new PlanoCobranca(_grupoVeiculos, _grupoVeiculos.Id, 60.00m, 6.00m, 600.00m, 60.00m, 6.00m, 64667);
-            var planoCobranca2 = new PlanoCobranca(_grupoVeiculos, _grupoVeiculos.Id, 70.00m, 7.00m, 700.00m, 70.00m, 7.00m, 74667);
-            var planoCobranca3 = new PlanoCobranca(_grupoVeiculos, _grupoVeiculos.Id, 80.00m, 8.00m, 800.00m, 80.00m, 8.00m, 84667);
+            var planoCobranca2 = new PlanoCobranca(_grupoVeiculos2, _grupoVeiculos2.Id, 70.00m, 7.00m, 700.00m, 70.00m, 7.00m, 74667);
+            var planoCobranca3 = new PlanoCobranca(_grupoVeiculos3, _grupoVeiculos3.Id, 80.00m, 8.00m, 800.00m, 80.00m, 8.00m, 84667);
 
             _servicoPlanoCobranca.Inserir(planoCobranca1);
             _servicoPlanoCobranca.Inserir(planoCobranca2);

@@ -20,15 +20,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         public RepositorioClienteEmBancoDadosTest()
         {
 
-            string sql =
-               @"DELETE FROM TBCLIENTE;
-                  DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)
-                 DELETE FROM TBEMPRESA;
-                  DBCC CHECKIDENT (TBEMPRESA, RESEED, 0)
-                ";
-
-            Db.ExecutarSql(sql);
-
             cliente = new Cliente();
 
             cliente.Nome = "Paulo";
@@ -46,6 +37,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
 
             Db.SetEnderecoBanco(EnderecoBancoConst.EnderecoBancoTeste);
 
+        }
+
+        [TestCleanup()]
+        public void Cleanup()
+        {
+            Db.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT(TBCLIENTE, RESEED, 0)");
+            Db.ExecutarSql("DELETE FROM TBEMPRESA; DBCC CHECKIDENT (TBEMPRESA, RESEED, 0)");
         }
 
         [TestMethod]
@@ -89,7 +87,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         {
            
             servico.Inserir(cliente);
-          
+            
+            
+
             repositorio.Excluir(cliente);
 
             var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
