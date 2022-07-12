@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using System.Data.SqlClient;
 
@@ -7,11 +7,12 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
     public class RepositorioClienteEmBancoDados :
         RepositorioBase<Cliente, MapeadorCliente>
     {
-        #region Sql Queries
+        #region SQL Queries
         protected override string sqlInserir =>
 
              @"INSERT INTO [TBCLIENTE]
                 (
+                    [ID],
                     [NOME],       
                     [TELEFONE], 
                     [EMAIL],                    
@@ -21,10 +22,10 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
                     [CNH_NOME],
                     [CNH_VENCIMENTO],
                     [EMPRESA_ID]
-
                 )
             VALUES
                 (
+                    @CLIENTE_ID,
                     @CLIENTE_NOME,
                     @CLIENTE_TELEFONE,
                     @CLIENTE_EMAIL,
@@ -34,7 +35,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
                     @CLIENTE_CNH_NOME,
                     @CLIENTE_CNH_VENCIMENTO,
                     @CLIENTE_EMPRESA_ID
-                ); SELECT SCOPE_IDENTITY();";
+                );";
 
         protected override string sqlEditar =>
 
@@ -50,7 +51,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
                     [CNH_VENCIMENTO] = @CLIENTE_CNH_VENCIMENTO,
                     [EMPRESA_ID] = @CLIENTE_EMPRESA_ID
 		        WHERE
-			        [ID] = @ID";
+			        [ID] = @CLIENTE_ID";
 
         protected override string sqlExcluir =>
 
@@ -120,7 +121,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
 
         public bool ClienteJaExiste(Cliente cliente)
         {
-            SqlConnection conexaoComBanco = new SqlConnection();
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNomeOuCpfOuCnhNumero, conexaoComBanco);
 
@@ -128,7 +129,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
             comandoSelecao.Parameters.AddWithValue("CPF", cliente.CPF);
             comandoSelecao.Parameters.AddWithValue("ID", cliente.Id);
             comandoSelecao.Parameters.AddWithValue("CNH_NUMERO", cliente.CnhNumero);
-
 
             conexaoComBanco.Open();
             SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();

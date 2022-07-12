@@ -12,32 +12,29 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
     public class ControladorEmpresa : ControladorBase
     {
 
-        private RepositorioEmpresaBancoDados repositorio;
-        private ServicoEmpresa servicoEmpresa;
-        private ListagemEmpresasControl listagem;
+        private RepositorioEmpresaBancoDados _repositorio;
+        private ServicoEmpresa _servicoEmpresa;
+        private ListagemEmpresasControl _listagem;
 
         public ControladorEmpresa(RepositorioEmpresaBancoDados repositorio, ServicoEmpresa servicoEmpresa)
         {
-
-            this.repositorio = repositorio;
-            this.servicoEmpresa = servicoEmpresa;
-            listagem = new ListagemEmpresasControl();
-
+            _repositorio = repositorio;
+            _servicoEmpresa = servicoEmpresa;
+            _listagem = new ListagemEmpresasControl();
         }
 
         private void CarregarEmpresas()
         {
-            List<Empresa> empresas = repositorio.SelecionarTodos();
+            List<Empresa> empresas = _repositorio.SelecionarTodos();
 
-            listagem.AtualizarRegistrosPessoaJuridica(empresas);
+            _listagem.AtualizarRegistrosPessoaJuridica(empresas);
         }
-
 
         private Empresa ObtemEmpresaSelecionada()
         {
-            int id = listagem.SelecionarNumeroEmpresa();
+            var id = _listagem.SelecionarIdEmpresa();
 
-            Empresa empresaSelecionada = repositorio.SelecionarPorId(id);
+            Empresa empresaSelecionada = _repositorio.SelecionarPorId(id);
 
             return empresaSelecionada;
         }
@@ -49,10 +46,9 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
         public override void Inserir()
         {
-
             var tela = new TelaCadastroEmpresaForm();
             tela.Empresa = new Empresa();
-            tela.GravarRegistro = servicoEmpresa.Inserir;
+            tela.GravarRegistro = _servicoEmpresa.Inserir;
             DialogResult resultado = tela.ShowDialog();
             if (resultado == DialogResult.OK)
             {
@@ -75,7 +71,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
             tela.Empresa = empresaSelecionada;
 
-            tela.GravarRegistro = servicoEmpresa.Editar;
+            tela.GravarRegistro = _servicoEmpresa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -101,7 +97,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             {
                 try
                 {
-                    repositorio.Excluir(empresaSelecionada);
+                    _repositorio.Excluir(empresaSelecionada);
                 }
                 catch (Exception e)
                 {
@@ -117,12 +113,12 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
         public override UserControl ObtemListagem()
         {
-            if (listagem == null)
-                listagem = new ListagemEmpresasControl();
+            if (_listagem == null)
+                _listagem = new ListagemEmpresasControl();
 
             CarregarEmpresas();
 
-            return listagem;
+            return _listagem;
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()

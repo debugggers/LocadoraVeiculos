@@ -2,44 +2,44 @@ USE [locadoraVeiculosDb]
 GO
 ALTER TABLE [dbo].[TBVeiculo] DROP CONSTRAINT [FK_TBVeiculo_TBGrupoVeiculo]
 GO
-ALTER TABLE [dbo].[TBPlanoCobranca] DROP CONSTRAINT [FK_TBPlanoCobranca_TBGrupoVeiculo]
+ALTER TABLE [dbo].[TBPlanoCobranca] DROP CONSTRAINT [FK_TBPlanoCobranca_TBGrupoVeiculos]
 GO
 ALTER TABLE [dbo].[TBCliente] DROP CONSTRAINT [FK_TBCliente_TBEmpresa]
 GO
-/****** Object:  Table [dbo].[TBVeiculo]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBVeiculo]    Script Date: 12/07/2022 12:29:06 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBVeiculo]') AND type in (N'U'))
 DROP TABLE [dbo].[TBVeiculo]
 GO
-/****** Object:  Table [dbo].[TBTaxa]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBTaxa]    Script Date: 12/07/2022 12:29:06 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBTaxa]') AND type in (N'U'))
 DROP TABLE [dbo].[TBTaxa]
 GO
-/****** Object:  Table [dbo].[TBPlanoCobranca]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBPlanoCobranca]    Script Date: 12/07/2022 12:29:06 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBPlanoCobranca]') AND type in (N'U'))
 DROP TABLE [dbo].[TBPlanoCobranca]
 GO
-/****** Object:  Table [dbo].[TBGrupoVeiculo]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBGrupoVeiculo]    Script Date: 12/07/2022 12:29:06 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBGrupoVeiculo]') AND type in (N'U'))
 DROP TABLE [dbo].[TBGrupoVeiculo]
 GO
-/****** Object:  Table [dbo].[TBFuncionario]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBFuncionario]    Script Date: 12/07/2022 12:29:06 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBFuncionario]') AND type in (N'U'))
 DROP TABLE [dbo].[TBFuncionario]
 GO
-/****** Object:  Table [dbo].[TBEmpresa]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBEmpresa]    Script Date: 12/07/2022 12:29:06 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBEmpresa]') AND type in (N'U'))
 DROP TABLE [dbo].[TBEmpresa]
 GO
-/****** Object:  Table [dbo].[TBCliente]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBCliente]    Script Date: 12/07/2022 12:29:06 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBCliente]') AND type in (N'U'))
 DROP TABLE [dbo].[TBCliente]
 GO
 USE [master]
 GO
-/****** Object:  Database [locadoraVeiculosDb]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Database [locadoraVeiculosDb]    Script Date: 12/07/2022 12:29:06 ******/
 DROP DATABASE [locadoraVeiculosDb]
 GO
-/****** Object:  Database [locadoraVeiculosDb]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Database [locadoraVeiculosDb]    Script Date: 12/07/2022 12:29:06 ******/
 CREATE DATABASE [locadoraVeiculosDb]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -119,13 +119,13 @@ ALTER DATABASE [locadoraVeiculosDb] SET QUERY_STORE = OFF
 GO
 USE [locadoraVeiculosDb]
 GO
-/****** Object:  Table [dbo].[TBCliente]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBCliente]    Script Date: 12/07/2022 12:29:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[TBCliente](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [uniqueidentifier] NOT NULL,
 	[Nome] [varchar](50) NOT NULL,
 	[Email] [varchar](50) NOT NULL,
 	[Telefone] [varchar](20) NOT NULL,
@@ -134,107 +134,107 @@ CREATE TABLE [dbo].[TBCliente](
 	[Cnh_Numero] [int] NOT NULL,
 	[Cnh_Nome] [varchar](50) NOT NULL,
 	[Cnh_Vencimento] [date] NOT NULL,
-	[Empresa_Id] [int] NULL,
- CONSTRAINT [PK__TBClient__3214EC078CA466E7] PRIMARY KEY CLUSTERED 
+	[Empresa_Id] [uniqueidentifier] NULL,
+ CONSTRAINT [PK_TBCliente] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TBEmpresa]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBEmpresa]    Script Date: 12/07/2022 12:29:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[TBEmpresa](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [uniqueidentifier] NOT NULL,
 	[Nome] [varchar](50) NOT NULL,
 	[Email] [varchar](50) NOT NULL,
 	[Telefone] [varchar](20) NOT NULL,
 	[Endereco] [varchar](100) NOT NULL,
 	[Cnpj] [varchar](20) NOT NULL,
-PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_TBEmpresa] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TBFuncionario]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBFuncionario]    Script Date: 12/07/2022 12:29:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[TBFuncionario](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [uniqueidentifier] NOT NULL,
 	[Nome] [varchar](50) NOT NULL,
 	[Login] [varchar](50) NOT NULL,
 	[Senha] [varchar](50) NOT NULL,
 	[Data_Admissao] [varchar](50) NOT NULL,
 	[Salario] [decimal](10, 2) NOT NULL,
 	[EhAdmin] [bit] NOT NULL,
- CONSTRAINT [PK_TBFuncionario] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_TBFuncionario_1] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TBGrupoVeiculo]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBGrupoVeiculo]    Script Date: 12/07/2022 12:29:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[TBGrupoVeiculo](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [uniqueidentifier] NOT NULL,
 	[Nome] [varchar](50) NOT NULL,
- CONSTRAINT [PK_TBCategoriaVeiculo] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_TBGrupoVeiculo] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TBPlanoCobranca]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBPlanoCobranca]    Script Date: 12/07/2022 12:29:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[TBPlanoCobranca](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [uniqueidentifier] NOT NULL,
 	[ValorDiario_Diario] [decimal](5, 2) NOT NULL,
 	[ValorPorKm_Diario] [decimal](5, 2) NOT NULL,
 	[ValorDiario_Livre] [decimal](5, 2) NOT NULL,
 	[ValorDiario_Controlado] [decimal](5, 2) NOT NULL,
 	[ValorPorKm_Controlado] [decimal](5, 2) NOT NULL,
 	[ControleKm_Controlado] [int] NOT NULL,
-	[GrupoVeiculos_Id] [int] NOT NULL,
- CONSTRAINT [PK_TBPlanoCobranca] PRIMARY KEY CLUSTERED 
+	[GrupoVeiculos_Id] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_TBPlanoCobranca_1] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TBTaxa]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBTaxa]    Script Date: 12/07/2022 12:29:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[TBTaxa](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [uniqueidentifier] NOT NULL,
 	[Descricao] [varchar](100) NOT NULL,
 	[Valor] [decimal](5, 2) NOT NULL,
 	[TipoCalculo] [int] NOT NULL,
- CONSTRAINT [PK_TBTaxa] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_TBTaxa_1] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TBVeiculo]    Script Date: 02/07/2022 11:43:11 ******/
+/****** Object:  Table [dbo].[TBVeiculo]    Script Date: 12/07/2022 12:29:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[TBVeiculo](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [uniqueidentifier] NOT NULL,
 	[Modelo] [varchar](40) NOT NULL,
 	[Marca] [varchar](40) NOT NULL,
 	[Placa] [varchar](20) NOT NULL,
@@ -244,8 +244,8 @@ CREATE TABLE [dbo].[TBVeiculo](
 	[Ano] [int] NOT NULL,
 	[Quilometragem] [int] NOT NULL,
 	[Foto] [varbinary](max) NOT NULL,
-	[Grupo_Veiculo_Id] [int] NOT NULL,
-PRIMARY KEY CLUSTERED 
+	[Grupo_Veiculo_Id] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_TBVeiculo] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
@@ -256,10 +256,10 @@ REFERENCES [dbo].[TBEmpresa] ([Id])
 GO
 ALTER TABLE [dbo].[TBCliente] CHECK CONSTRAINT [FK_TBCliente_TBEmpresa]
 GO
-ALTER TABLE [dbo].[TBPlanoCobranca]  WITH CHECK ADD  CONSTRAINT [FK_TBPlanoCobranca_TBGrupoVeiculo] FOREIGN KEY([GrupoVeiculos_Id])
+ALTER TABLE [dbo].[TBPlanoCobranca]  WITH CHECK ADD  CONSTRAINT [FK_TBPlanoCobranca_TBGrupoVeiculos] FOREIGN KEY([GrupoVeiculos_Id])
 REFERENCES [dbo].[TBGrupoVeiculo] ([Id])
 GO
-ALTER TABLE [dbo].[TBPlanoCobranca] CHECK CONSTRAINT [FK_TBPlanoCobranca_TBGrupoVeiculo]
+ALTER TABLE [dbo].[TBPlanoCobranca] CHECK CONSTRAINT [FK_TBPlanoCobranca_TBGrupoVeiculos]
 GO
 ALTER TABLE [dbo].[TBVeiculo]  WITH CHECK ADD  CONSTRAINT [FK_TBVeiculo_TBGrupoVeiculo] FOREIGN KEY([Grupo_Veiculo_Id])
 REFERENCES [dbo].[TBGrupoVeiculo] ([Id])

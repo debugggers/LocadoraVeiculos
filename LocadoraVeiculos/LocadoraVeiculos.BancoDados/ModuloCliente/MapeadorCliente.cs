@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
     {
         public override void ConfigurarParametros(Cliente cliente, SqlCommand comando)
         {
-            comando.Parameters.AddWithValue("ID", cliente.Id);
+            comando.Parameters.AddWithValue("CLIENTE_ID", cliente.Id);
             comando.Parameters.AddWithValue("CLIENTE_NOME", cliente.Nome);
             comando.Parameters.AddWithValue("CLIENTE_TELEFONE", cliente.Telefone);
             comando.Parameters.AddWithValue("CLIENTE_EMAIL", cliente.Email);
@@ -25,8 +25,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
 
         public override Cliente ConverterRegistro(SqlDataReader leitorCliente)
         {
-
-            var id = Convert.ToInt32(leitorCliente["ID"]);
+            var id = Guid.Parse(leitorCliente["ID"].ToString());
             var nome = Convert.ToString(leitorCliente["NOME"]);
             var telefone = Convert.ToString(leitorCliente["TELEFONE"]);
             var email = Convert.ToString(leitorCliente["EMAIL"]);
@@ -49,7 +48,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
 
             if (leitorCliente["EMPRESA_ID"] != DBNull.Value)
             {
-                var idEmpresa = Convert.ToInt32(leitorCliente["EMPRESA_ID"]);
+                var idEmpresa = Guid.Parse(leitorCliente["EMPRESA_ID"].ToString());
                 var nomeEmpresa = Convert.ToString(leitorCliente["EMPRESA_NOME"]);
                 var telefoneEmpresa = Convert.ToString(leitorCliente["EMPRESA_TELEFONE"]);
                 var emailEmpresa = Convert.ToString(leitorCliente["EMPRESA_EMAIL"]);
@@ -66,6 +65,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
                     CNPJ = cnpj,
                 };
             }
+
             return cliente;
         }
     }

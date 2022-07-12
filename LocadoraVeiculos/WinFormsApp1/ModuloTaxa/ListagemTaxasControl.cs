@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloTaxa;
 using LocadoraVeiculosForm.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -31,9 +32,9 @@ namespace LocadoraVeiculosForm.ModuloTaxa
             return colunas;
         }
 
-        public int SelecionarNumeroTaxa()
+        public Guid SelecionarIdTaxa()
         {
-            return gridTaxas.SelecionarId<int>();
+            return gridTaxas.SelecionarId<Guid>();
         }
 
         public void AtualizarRegistros(List<Taxa> taxas)

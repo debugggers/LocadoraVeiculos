@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using System;
 using System.Data.SqlClient;
@@ -9,14 +9,10 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
         RepositorioBase<PlanoCobranca, MapeadorPlanoCobranca>
     {
         #region SQL Queries
-
-        public const string enderecoBanco = "Data Source = (LocalDB)\\MSSqlLocalDB;" +
-               "Initial Catalog=locadoraVeiculosDb;" +
-               "Integrated Security=True;" +
-               "Pooling=False";
         protected override string sqlInserir =>
             @"INSERT INTO TBPLANOCOBRANCA
             (
+                   ID,
                    VALORDIARIO_DIARIO,
                    VALORPORKM_DIARIO,
                    VALORDIARIO_LIVRE,
@@ -27,6 +23,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
             )
             VALUES
             (
+                   @ID,
                    @VALORDIARIO_DIARIO,
                    @VALORPORKM_DIARIO,
                    @VALORDIARIO_LIVRE,
@@ -34,7 +31,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
                    @VALORPORKM_CONTROLADO,
                    @CONTROLEKM_CONTROLADO,
                    @GRUPOVEICULOS_ID
-            );SELECT SCOPE_IDENTITY();";
+            );";
 
         protected override string sqlEditar =>
            @"UPDATE TBPLANOCOBRANCA
@@ -78,7 +75,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
 
         #endregion
 
-        public bool GrupoVeiculosDuplicado(int idGrupoVeiculos)
+        public bool GrupoVeiculosDuplicado(Guid idGrupoVeiculos)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 

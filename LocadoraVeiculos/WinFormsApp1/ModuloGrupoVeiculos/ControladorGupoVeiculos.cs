@@ -85,7 +85,6 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
                 }
                 catch (Exception e)
                 {
-
                     MessageBox.Show(e.Message,
                         "Exclusão de grupo de veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
@@ -112,8 +111,7 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 
         private GrupoVeiculos ObtemGrupoveiculoSelecionado()
         {
-            int id = _listagemGrupoVeiculos.SelecionarNumeroGrupoVeiculos();
-
+            var id = _listagemGrupoVeiculos.SelecionarIdGrupoVeiculos();
             GrupoVeiculos grupoVeiculosSelecionado = _repositorioGrupoVeiculos.SelecionarPorId(id);
 
             return grupoVeiculosSelecionado;
@@ -122,7 +120,6 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
         private void CarregarGrupoVeiculos()
         {
             List<GrupoVeiculos> grupoVeiculos = _repositorioGrupoVeiculos.SelecionarTodos();
-
             _listagemGrupoVeiculos.AtualizarRegistros(grupoVeiculos);
         }        
     }

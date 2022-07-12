@@ -7,75 +7,55 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 {
     public class ServicoCliente
     {
-
-        private RepositorioClienteEmBancoDados repositorioCliente;
+        private RepositorioClienteEmBancoDados _repositorioCliente;
 
         public ServicoCliente(RepositorioClienteEmBancoDados repositorioCliente)
         {
-            this.repositorioCliente = repositorioCliente;
+            _repositorioCliente = repositorioCliente;
         }
-
 
         public  ValidationResult Inserir(Cliente cliente)
         {
-
             Log.Logger.Debug("Tentando inserir cliente... {@c}", cliente);
 
             ValidationResult resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
             {
-
-                repositorioCliente.Inserir(cliente);
-                Log.Logger.Debug("Cliente {ClienteNome} inserido com sucesso", cliente.Nome);
-
+                _repositorioCliente.Inserir(cliente);
+                Log.Logger.Debug("Cliente {ClienteId} inserido com sucesso", cliente.Id);
             }
             else
             {
-
                 foreach (var item in resultadoValidacao.Errors)
                 {
-
-                    Log.Logger.Warning("Falha ao inserir o cliente {ClienteNome} - {Motivo}", cliente.Nome, item.ErrorMessage);
-
+                    Log.Logger.Warning("Falha ao inserir o cliente {ClienteId} - {Motivo}", cliente.Id, item.ErrorMessage);
                 }
-
-            }
-                
+            }                
 
             return resultadoValidacao;
-
         }
 
         public ValidationResult Editar(Cliente cliente)
         {
-
             Log.Logger.Debug("Tentando editar cliente... {@c}", cliente);
 
             ValidationResult resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
             {
-
-                repositorioCliente.Editar(cliente);
-                Log.Logger.Debug("Cliente {ClienteNome} editado com sucesso", cliente.Nome);
-
+                _repositorioCliente.Editar(cliente);
+                Log.Logger.Debug("Cliente {ClienteId} editado com sucesso", cliente.Id);
             }
             else
             {
-
                 foreach (var item in resultadoValidacao.Errors)
                 {
-
-                    Log.Logger.Warning("Falha ao editar o cliente {ClienteNome} - {Motivo}", cliente.Nome, item.ErrorMessage);
-
+                    Log.Logger.Warning("Falha ao editar o cliente {ClienteId} - {Motivo}", cliente.Id, item.ErrorMessage);
                 }
-
             }
                 
-
             return resultadoValidacao;
-
         }
 
         private ValidationResult Validar(Cliente cliente)
@@ -91,7 +71,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 
         private bool ClienteDuplicado(Cliente cliente)
         {
-            var clienteEncontrado = repositorioCliente.ClienteJaExiste(cliente);
+            var clienteEncontrado = _repositorioCliente.ClienteJaExiste(cliente);
 
             return clienteEncontrado;
         }

@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using System.Data.SqlClient;
 
@@ -7,12 +7,13 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
     public class RepositorioEmpresaBancoDados :
         RepositorioBase<Empresa, MapeadorEmpresa>
     {
-        #region Sql Queries
+        #region SQL Queries        
 
         protected override string sqlInserir =>
 
             @"INSERT INTO [TBEMPRESA]
                 (
+                    [ID],
                     [NOME],       
                     [TELEFONE], 
                     [EMAIL],                    
@@ -20,23 +21,24 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
                     [CNPJ]
                 )
             VALUES
-                (
-                    @EMPRESA_NOME,
-                    @EMPRESA_TELEFONE,
-                    @EMPRESA_EMAIL,
-                    @EMPRESA_ENDERECO,
-                    @EMPRESA_CNPJ
-                ); SELECT SCOPE_IDENTITY();";
+                (   
+                    @ID,
+                    @NOME,
+                    @TELEFONE,
+                    @EMAIL,
+                    @ENDERECO,
+                    @CNPJ
+                );";
 
         protected override string sqlEditar =>
 
             @"UPDATE [TBEMPRESA]	
 		        SET
-                    [NOME] = @EMPRESA_NOME,
-                    [TELEFONE] = @EMPRESA_TELEFONE,
-                    [EMAIL] = @EMPRESA_EMAIL,
-                    [ENDERECO] = @EMPRESA_ENDERECO,
-                    [CNPJ] = @EMPRESA_CNPJ
+                    [NOME] = @NOME,
+                    [TELEFONE] = @TELEFONE,
+                    [EMAIL] = @EMAIL,
+                    [ENDERECO] = @ENDERECO,
+                    [CNPJ] = @CNPJ
 		        WHERE
 			        [ID] = @ID";
 
@@ -84,7 +86,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
 
         public bool EmpresaJaExiste(Empresa empresa)
         {
-            SqlConnection conexaoComBanco = new SqlConnection();
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNomeOuCnpj, conexaoComBanco);
 

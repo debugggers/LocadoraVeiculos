@@ -167,7 +167,7 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloFuncionario
             //arrange
             var funcionario = new Funcionario
             {
-                DataAdmissao = new DateTime(2022, 7, 12)
+                DataAdmissao = DateTime.Now.AddDays(1)
             };
 
             var validador = new ValidadorFuncionario();

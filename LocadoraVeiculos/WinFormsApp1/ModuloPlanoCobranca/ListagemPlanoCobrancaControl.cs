@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculosForm.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -33,9 +34,9 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
             return colunas;
         }
 
-        public int ObtemIdPlanoCobrancaSelecionado()
+        public Guid ObtemIdPlanoCobrancaSelecionado()
         {
-            return gridPlanoCobranca.SelecionarId<int>();
+            return gridPlanoCobranca.SelecionarId<Guid>();
         }
 
         public void AtualizarRegistros(List<PlanoCobranca> planosCobranca)

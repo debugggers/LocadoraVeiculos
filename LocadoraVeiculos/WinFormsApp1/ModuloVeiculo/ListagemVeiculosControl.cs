@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculosForm.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -23,7 +24,6 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
             {
                 gridVeiculos.Rows.Add(v.Id, v.Marca, v.Modelo, v.Cor, v.Placa, v.Ano, v.TipoCombustivel, v.CapacidadeTanque, v.QuilometragemPercorrida, v.GrupoVeiculo.Nome);
             }
-
         }
 
         private DataGridViewColumn[] ObterColunas()
@@ -54,10 +54,9 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
             return colunas;
         }
 
-        public int SelecionarNumeroVeiculo()
+        public Guid SelecionarNumeroVeiculo()
         {
-            return gridVeiculos.SelecionarId<int>();
+            return gridVeiculos.SelecionarId<Guid>();
         }
-
     }
 }

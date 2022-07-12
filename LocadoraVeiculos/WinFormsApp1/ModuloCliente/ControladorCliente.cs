@@ -10,38 +10,33 @@ namespace LocadoraVeiculosForm.ModuloCliente
 {
     public class ControladorCliente : ControladorBase
     {
-
-        private RepositorioClienteEmBancoDados repositorio;
-        private RepositorioEmpresaBancoDados repositorioEmpresa;
-        private ServicoCliente servicoCliente;
-        private ListagemClientesControl listagem;
+        private RepositorioClienteEmBancoDados _repositorio;
+        private RepositorioEmpresaBancoDados _repositorioEmpresa;
+        private ServicoCliente _servicoCliente;
+        private ListagemClientesControl _listagem;
 
         public ControladorCliente(RepositorioClienteEmBancoDados repositorio, RepositorioEmpresaBancoDados repositorioEmpresa, ServicoCliente servicoCliente)
         {
-
-            this.repositorio = repositorio;
-            this.repositorioEmpresa = repositorioEmpresa;
-            listagem = new ListagemClientesControl();
-            this.servicoCliente = servicoCliente;
+            _repositorio = repositorio;
+            _repositorioEmpresa = repositorioEmpresa;
+            _listagem = new ListagemClientesControl();
+            _servicoCliente = servicoCliente;
         }
 
         public override void Inserir()
         {
-
-            var tela = new TelaCadastroClienteForm(repositorioEmpresa);
+            var tela = new TelaCadastroClienteForm(_repositorioEmpresa);
             tela.Cliente = new Cliente();
-            tela.GravarRegistro = servicoCliente.Inserir;
+            tela.GravarRegistro = _servicoCliente.Inserir;
             DialogResult resultado = tela.ShowDialog();
             if (resultado == DialogResult.OK)
             {
                 CarregarClientes();
             }
-
         }
 
         public override void Editar()
         {
-
             Cliente clienteSelecionado = ObtemClienteSelecionado();
 
             if (clienteSelecionado == null)
@@ -51,11 +46,11 @@ namespace LocadoraVeiculosForm.ModuloCliente
                 return;
             }
 
-            TelaCadastroClienteForm tela = new TelaCadastroClienteForm(repositorioEmpresa);
+            TelaCadastroClienteForm tela = new TelaCadastroClienteForm(_repositorioEmpresa);
 
             tela.Cliente = clienteSelecionado;
 
-            tela.GravarRegistro = servicoCliente.Editar;
+            tela.GravarRegistro = _servicoCliente.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -65,7 +60,6 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
         public override void Excluir()
         {
-
             Cliente cleienteSelecionado = ObtemClienteSelecionado();
 
             if (cleienteSelecionado == null)
@@ -80,34 +74,33 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
             if (resultado == DialogResult.OK)
             {
-                repositorio.Excluir(cleienteSelecionado);
+                _repositorio.Excluir(cleienteSelecionado);
                 CarregarClientes();
             }
-
         }
 
         private void CarregarClientes()
         {
-            List<Cliente> clientes = repositorio.SelecionarTodos();
+            List<Cliente> clientes = _repositorio.SelecionarTodos();
 
-            listagem.AtualizarRegistros(clientes);
+            _listagem.AtualizarRegistros(clientes);
         }
 
         public override UserControl ObtemListagem()
         {
-            if (listagem == null)
-                listagem = new ListagemClientesControl();
+            if (_listagem == null)
+                _listagem = new ListagemClientesControl();
 
             CarregarClientes();
 
-            return listagem;
+            return _listagem;
         }
 
         private Cliente ObtemClienteSelecionado()
         {
-            int id = listagem.SelecionarNumeroCliente();
+            var id = _listagem.SelecionarIdCliente();
 
-            Cliente clienteSelecionado = repositorio.SelecionarPorId(id);
+            Cliente clienteSelecionado = _repositorio.SelecionarPorId(id);
 
             return clienteSelecionado;
         }
@@ -116,6 +109,5 @@ namespace LocadoraVeiculosForm.ModuloCliente
         {
             return new ConfiguracaoToolBoxCliente();
         }
-
     }
 }

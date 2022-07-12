@@ -2,10 +2,8 @@
 {
     public enum CombustivelEnum
     {
-
-        Gasolina,
-        Etanol,
-        Diesel
-
+        Gasolina = 0,
+        Etanol = 1,
+        Diesel = 2
     }
 }

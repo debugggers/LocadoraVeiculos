@@ -59,9 +59,9 @@ namespace LocadoraVeiculosForm.ModuloCliente
             return colunas;
         }
 
-        public int SelecionarNumeroCliente()
+        public Guid SelecionarIdCliente()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
 
         private void tabPage1_Click(object sender, EventArgs e)

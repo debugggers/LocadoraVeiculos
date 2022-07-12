@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
 {
@@ -9,7 +10,7 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         {
         }
 
-        public PlanoCobranca(GrupoVeiculos grupoVeiculos, int idGrupoVeiculos, 
+        public PlanoCobranca(GrupoVeiculos grupoVeiculos, Guid idGrupoVeiculos, 
             decimal valorDiarioDiario, decimal valorPorKmDiario, decimal valorDiarioLivre, 
             decimal valorDiarioControlado, decimal valorPorKmControlado, int controleKm)
         {
@@ -24,8 +25,7 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         }
 
         public GrupoVeiculos GrupoVeiculos { get; set; }
-        public int IdGrupoVeiculos { get; set; }
-        
+        public Guid IdGrupoVeiculos { get; set; }
         public decimal ValorDiario_Diario { get; set; }
         public decimal ValorPorKm_Diario { get; set; }
         public decimal ValorDiario_Livre { get; set; }

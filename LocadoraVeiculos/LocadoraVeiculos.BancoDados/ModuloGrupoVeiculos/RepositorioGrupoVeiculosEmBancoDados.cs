@@ -1,4 +1,4 @@
-﻿using ControleMedicamentos.Infra.BancoDados.Compartilhado;
+﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using System.Data.SqlClient;
 
@@ -11,12 +11,14 @@ namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
         protected override string sqlInserir =>
             @"INSERT INTO [TBGRUPOVEICULO]
            (
-		   [Nome]
+            [ID],
+		    [NOME]
 		   )
         VALUES
            (
+            @ID,
             @NOME
-		   );SELECT SCOPE_IDENTITY();";
+		   );";
 
         protected override string sqlEditar =>
         @"UPDATE [TBGRUPOVEICULO]
