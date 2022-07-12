@@ -9,7 +9,6 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
 {
     public class Empresa : EntidadeBase<Empresa>
     {
-
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
@@ -19,9 +18,16 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
 
         public Empresa()
         {
+        }
 
-
-
+        public Empresa(string nome, string email, string telefone, 
+            string endereco, string cnpj)
+        {
+            Nome = nome;
+            Email = email;
+            Telefone = telefone;
+            Endereco = endereco;
+            CNPJ = cnpj;
         }
 
         public override bool Equals(object obj)
@@ -40,6 +46,5 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
         {
             return $"Id: {Id}, Nome: {Nome}, Telefone: {Telefone}, Email: {Email}, Endereco: {Endereco}, CNPJ: {CNPJ}";
         }
-
     }
 }

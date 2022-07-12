@@ -16,18 +16,18 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
     {
 
         private Veiculo _veiculo;
-        private GrupoVeiculos _grupo;
+        private GrupoVeiculos _grupoVeiculos;
         private RepositorioVeiculoEmBancoDados _repositorioVeiculo;
         private ServicoVeiculo _servicoVeiculo;
-        private ServicoGrupoVeiculos _servicoGrupo;
-        private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupo;
+        private ServicoGrupoVeiculos _servicoGrupoVeiculos;
+        private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
 
         public RepositorioVeiculoEmBancoDadosTests()
         {
-            _repositorioGrupo = new RepositorioGrupoVeiculosEmBancoDados();
-            _servicoGrupo = new ServicoGrupoVeiculos(_repositorioGrupo);
+            _repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
+            _servicoGrupoVeiculos = new ServicoGrupoVeiculos(_repositorioGrupoVeiculos);
 
-            _grupo = new GrupoVeiculos
+            _grupoVeiculos = new GrupoVeiculos
             {
                 Nome = "Grupo"
             };
@@ -43,7 +43,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
                 QuilometragemPercorrida = 1,
                 TipoCombustivel = 0,
                 Foto = new Bitmap(@"C:\temp\download.jpg"),
-                GrupoVeiculo = _grupo
+                GrupoVeiculo = _grupoVeiculos
             };
 
             _repositorioVeiculo = new RepositorioVeiculoEmBancoDados();
@@ -61,7 +61,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
         [TestMethod]
         public void Deve_Inserir_Veiculo()
         {
-            _servicoGrupo.Inserir(_grupo);
+            _servicoGrupoVeiculos.Inserir(_grupoVeiculos);
             _servicoVeiculo.Inserir(_veiculo);
 
             var veiculoEncontrado = _repositorioVeiculo.SelecionarPorId(_veiculo.Id);
@@ -81,7 +81,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
         [TestMethod]
         public void Deve_Editar_Veiculo()
         {
-            _servicoGrupo.Inserir(_grupo);
+            _servicoGrupoVeiculos.Inserir(_grupoVeiculos);
             _servicoVeiculo.Inserir(_veiculo);
 
             _veiculo.Marca = "drof";
@@ -114,7 +114,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
         [TestMethod]
         public void Deve_Excluir_Veiculo()
         {
-            _servicoGrupo.Inserir(_grupo);
+            _servicoGrupoVeiculos.Inserir(_grupoVeiculos);
             _servicoVeiculo.Inserir(_veiculo);
 
             _repositorioVeiculo.Excluir(_veiculo);
@@ -127,7 +127,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
         [TestMethod]
         public void Deve_Selecionar_Veiculo()
         {
-            _servicoGrupo.Inserir(_grupo);
+            _servicoGrupoVeiculos.Inserir(_grupoVeiculos);
             _servicoVeiculo.Inserir(_veiculo);
 
             var veiculoEncontrado = _repositorioVeiculo.SelecionarPorId(_veiculo.Id);
@@ -148,7 +148,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
         [TestMethod]
         public void Deve_Selecionar_Todos_Veiculos()
         {
-            _servicoGrupo.Inserir(_grupo);
+            _servicoGrupoVeiculos.Inserir(_grupoVeiculos);
             _servicoVeiculo.Inserir(_veiculo);
 
             Veiculo veiculo1 = new Veiculo
@@ -162,7 +162,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
                 QuilometragemPercorrida = 150,
                 TipoCombustivel = 0,
                 Foto = new Bitmap(@"C:\temp\download.jpg"),
-                GrupoVeiculo = _grupo
+                GrupoVeiculo = _grupoVeiculos
             };
 
             _servicoVeiculo.Inserir(veiculo1);
@@ -170,6 +170,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
             var veiculosEncontrados = _repositorioVeiculo.SelecionarTodos();
 
             Assert.AreEqual(2, veiculosEncontrados.Count);
+            Assert.AreEqual(_veiculo.Id, veiculosEncontrados[0].Id);
+            Assert.AreEqual(veiculo1.Id, veiculosEncontrados[1].Id);
         }
     }
 }

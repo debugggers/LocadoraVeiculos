@@ -1,7 +1,6 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
-using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,14 +11,14 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
     public class RepositorioGrupoVeiculosEmBancoDadosTest
     {
         private GrupoVeiculos _grupoVeiculos;
-        private RepositorioGrupoVeiculosEmBancoDados _repositorio;
-        private ServicoGrupoVeiculos servico;
+        private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
+        private ServicoGrupoVeiculos servicoGrupoVeiculos;
 
         public RepositorioGrupoVeiculosEmBancoDadosTest()
         {
             _grupoVeiculos = new GrupoVeiculos("Uber");
-            _repositorio = new RepositorioGrupoVeiculosEmBancoDados();
-            servico = new ServicoGrupoVeiculos(_repositorio);
+            _repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
+            servicoGrupoVeiculos = new ServicoGrupoVeiculos(_repositorioGrupoVeiculos);
         }
 
         [TestCleanup()]
@@ -32,10 +31,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         public void Deve_inserir_novo_grupo_veiculos()
         {
             //action
-            servico.Inserir(_grupoVeiculos);
+            servicoGrupoVeiculos.Inserir(_grupoVeiculos);
        
             //assert
-            var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(_grupoVeiculos.Id);
+            var grupoVeiculosEncontrado = _repositorioGrupoVeiculos.SelecionarPorId(_grupoVeiculos.Id);
        
             Assert.IsNotNull(grupoVeiculosEncontrado);
             Assert.AreEqual(_grupoVeiculos, grupoVeiculosEncontrado);
@@ -45,14 +44,14 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         public void Deve_editar_informacoes_grupoVeiculos()
         {
             //arrange
-            servico.Inserir(_grupoVeiculos);
+            servicoGrupoVeiculos.Inserir(_grupoVeiculos);
 
             //action
             _grupoVeiculos.Nome = "Suv";
-            servico.Editar(_grupoVeiculos);
+            servicoGrupoVeiculos.Editar(_grupoVeiculos);
 
             //assert
-            var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(_grupoVeiculos.Id);
+            var grupoVeiculosEncontrado = _repositorioGrupoVeiculos.SelecionarPorId(_grupoVeiculos.Id);
 
             Assert.IsNotNull(grupoVeiculosEncontrado);
             Assert.AreEqual(_grupoVeiculos, grupoVeiculosEncontrado);
@@ -62,13 +61,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         public void Deve_excluir_grupoVeiculo()
         {
             //arrange
-            servico.Inserir(_grupoVeiculos);
+            servicoGrupoVeiculos.Inserir(_grupoVeiculos);
 
             //action
-            _repositorio.Excluir(_grupoVeiculos);
+            _repositorioGrupoVeiculos.Excluir(_grupoVeiculos);
 
             //assert
-            var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(_grupoVeiculos.Id);
+            var grupoVeiculosEncontrado = _repositorioGrupoVeiculos.SelecionarPorId(_grupoVeiculos.Id);
 
             Assert.IsNull(grupoVeiculosEncontrado);
         }
@@ -77,10 +76,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         public void Deve_selecionar_apenas_um_grupoVeiculos()
         {
             //arrange
-            servico.Inserir(_grupoVeiculos);
+            servicoGrupoVeiculos.Inserir(_grupoVeiculos);
 
             //action
-            var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(_grupoVeiculos.Id);
+            var grupoVeiculosEncontrado = _repositorioGrupoVeiculos.SelecionarPorId(_grupoVeiculos.Id);
 
             //assert
             Assert.IsNotNull(grupoVeiculosEncontrado);
@@ -95,25 +94,28 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
             var grupoVeiculos2 = new GrupoVeiculos("Popular");
             var grupoVeiculos3 = new GrupoVeiculos("Esportivo");
 
-            servico.Inserir(grupoVeiculos1);
-            servico.Inserir(grupoVeiculos2);
-            servico.Inserir(grupoVeiculos3);
+            servicoGrupoVeiculos.Inserir(grupoVeiculos1);
+            servicoGrupoVeiculos.Inserir(grupoVeiculos2);
+            servicoGrupoVeiculos.Inserir(grupoVeiculos3);
 
             //action
-            var grupoVeiculos = _repositorio.SelecionarTodos();
+            var grupoVeiculos = _repositorioGrupoVeiculos.SelecionarTodos();
 
             //assert
             Assert.AreEqual(3, grupoVeiculos.Count);
+            Assert.AreEqual(grupoVeiculos1, grupoVeiculos[0]);
+            Assert.AreEqual(grupoVeiculos2, grupoVeiculos[1]);
+            Assert.AreEqual(grupoVeiculos3, grupoVeiculos[2]);
         }
 
         [TestMethod]
         public void Deve_retornar_true_quando_grupoVeiculos_ja_existir()
         {
             //arrange
-            servico.Inserir(_grupoVeiculos);
+            servicoGrupoVeiculos.Inserir(_grupoVeiculos);
 
             //action
-            var grupoVeiculosExiste = _repositorio.SelecionarGrupoVeiculosPorNome("Uber");
+            var grupoVeiculosExiste = _repositorioGrupoVeiculos.SelecionarGrupoVeiculosPorNome("Uber");
 
             //assert
             Assert.AreEqual(grupoVeiculosExiste, _grupoVeiculos);
@@ -126,10 +128,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
             var grupoVeiculos = new GrupoVeiculos("Ha");
 
             //action
-            servico.Inserir(grupoVeiculos);
+            servicoGrupoVeiculos.Inserir(grupoVeiculos);
 
             //assert
-            var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(grupoVeiculos.Id);
+            var grupoVeiculosEncontrado = _repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
 
             Assert.IsNull(grupoVeiculosEncontrado);
             Assert.AreEqual(grupoVeiculosEncontrado, null);
@@ -142,14 +144,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
             var grupoVeiculos = new GrupoVeiculos("Eco4@sdv");
 
             //action
-            servico.Inserir(grupoVeiculos);
+            servicoGrupoVeiculos.Inserir(grupoVeiculos);
 
             //assert
-            var grupoVeiculosEncontrado = _repositorio.SelecionarPorId(grupoVeiculos.Id);
+            var grupoVeiculosEncontrado = _repositorioGrupoVeiculos.SelecionarPorId(grupoVeiculos.Id);
 
             Assert.IsNull(grupoVeiculosEncontrado);
             Assert.AreEqual(grupoVeiculosEncontrado, null);
         }
-
     }
 }
