@@ -1,7 +1,6 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloFuncionario;
-using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -26,7 +25,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         [TestCleanup()]
         public void Cleanup()
         {
-            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBFUNCIONARIO, RESEED, 0)");
+            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO");
         }
 
         [TestMethod]
@@ -110,9 +109,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
 
             //assert
             Assert.AreEqual(3, funcionarios.Count);
-            Assert.AreEqual(funcionario1, funcionarios[0]);
-            Assert.AreEqual(funcionario2, funcionarios[1]);
-            Assert.AreEqual(funcionario3, funcionarios[2]);
         }
 
         [TestMethod]

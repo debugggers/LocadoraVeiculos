@@ -38,7 +38,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             var placa = Convert.ToString(leitorVeiculo["PLACA"]);
             var marca = Convert.ToString(leitorVeiculo["MARCA"]);
             var cor = Convert.ToString(leitorVeiculo["COR"]);
-            var tipoCombustivel = (CombustivelEnum)leitorVeiculo["TIPO_COMBUSTIVEL"];
+            var tipoCombustivel = (CombustivelEnum)Convert.ToInt32(leitorVeiculo["TIPO_COMBUSTIVEL"]);
             var capacidadeTanque = Convert.ToInt32(leitorVeiculo["CAPACIDADE_TANQUE"]);
             var ano = Convert.ToInt32(leitorVeiculo["ANO"]);
             var quilometragem = Convert.ToInt32(leitorVeiculo["QUILOMETRAGEM"]);

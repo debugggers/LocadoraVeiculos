@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
                     [CNH_VENCIMENTO] = @CLIENTE_CNH_VENCIMENTO,
                     [EMPRESA_ID] = @CLIENTE_EMPRESA_ID
 		        WHERE
-			        [ID] = @ID";
+			        [ID] = @CLIENTE_ID";
 
         protected override string sqlExcluir =>
 
@@ -121,7 +121,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
 
         public bool ClienteJaExiste(Cliente cliente)
         {
-            SqlConnection conexaoComBanco = new SqlConnection();
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorNomeOuCpfOuCnhNumero, conexaoComBanco);
 

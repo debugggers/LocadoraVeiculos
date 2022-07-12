@@ -11,11 +11,11 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
         public override void ConfigurarParametros(Empresa empresa, SqlCommand comando)
         {
             comando.Parameters.AddWithValue("ID", empresa.Id);
-            comando.Parameters.AddWithValue("EMPRESA_NOME", empresa.Nome);
-            comando.Parameters.AddWithValue("EMPRESA_TELEFONE", empresa.Telefone);
-            comando.Parameters.AddWithValue("EMPRESA_EMAIL", empresa.Email);
-            comando.Parameters.AddWithValue("EMPRESA_ENDERECO", empresa.Endereco);
-            comando.Parameters.AddWithValue("EMPRESA_CNPJ", empresa.CNPJ);
+            comando.Parameters.AddWithValue("NOME", empresa.Nome);
+            comando.Parameters.AddWithValue("TELEFONE", empresa.Telefone);
+            comando.Parameters.AddWithValue("EMAIL", empresa.Email);
+            comando.Parameters.AddWithValue("ENDERECO", empresa.Endereco);
+            comando.Parameters.AddWithValue("CNPJ", empresa.CNPJ);
         }
 
         public override Empresa ConverterRegistro(SqlDataReader leitorEmpresa)

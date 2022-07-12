@@ -14,90 +14,81 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
     public class RepositorioEmpresaBancoDadosTests
     {
 
-        private Empresa empresa;
-        private RepositorioEmpresaBancoDados repositorio;
-        private ServicoEmpresa servico;
+        private Empresa _empresa;
+        private RepositorioEmpresaBancoDados _repositorio;
+        private ServicoEmpresa _servico;
 
         public RepositorioEmpresaBancoDadosTests()
         {
+            _empresa = new Empresa
+            {
+                Nome = "EmpresaPaulo",
+                Email = "EmpresaPaulo@teste.com",
+                Telefone = "123456789",
+                Endereco = "123, rua 123, 123",
+                CNPJ = "12.123.123/0001-12"
+            };
 
-            empresa = new Empresa();
-
-            empresa.Nome = "EmpresaPaulo";
-            empresa.Email = "EmpresaPaulo@teste.com";
-            empresa.Telefone = "123456789";
-            empresa.Endereco = "123, rua 123, 123";
-            empresa.CNPJ = "12.123.123/0001-12";
-
-            repositorio = new RepositorioEmpresaBancoDados();
-            servico = new ServicoEmpresa(repositorio);
-
+            _repositorio = new RepositorioEmpresaBancoDados();
+            _servico = new ServicoEmpresa(_repositorio);
         }
 
         [TestCleanup()]
         public void Cleanup()
         {
-            Db.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT(TBCLIENTE, RESEED, 0)");
-            Db.ExecutarSql("DELETE FROM TBEMPRESA; DBCC CHECKIDENT (TBEMPRESA, RESEED, 0)");
+            Db.ExecutarSql("DELETE FROM TBCLIENTE;");
+            Db.ExecutarSql("DELETE FROM TBEMPRESA;");
         }
 
         [TestMethod]
         public void Deve_Inserir_Empresa()
         {
+            _servico.Inserir(_empresa);
 
-            servico.Inserir(empresa);
-
-            var empresaEncontrada = repositorio.SelecionarPorId(empresa.Id);
+            var empresaEncontrada = _repositorio.SelecionarPorId(_empresa.Id);
 
             Assert.IsNotNull(empresaEncontrada);
-            Assert.AreEqual(empresa, empresaEncontrada);
-
+            Assert.AreEqual(_empresa, empresaEncontrada);
         }
 
         [TestMethod]
         public void Deve_Editar_Empresa()
         {
+            _servico.Inserir(_empresa);
 
-            servico.Inserir(empresa);
+            _empresa.Nome = "PedroEmpresa";
+            _empresa.Email = "EmpresaPedro@teste.com";
+            _empresa.Telefone = "987654321";
+            _empresa.Endereco = "321, rua 321, 321";
+            _empresa.CNPJ = "12.321.123/0001-12";
+            _servico.Editar(_empresa);
 
-            empresa.Nome = "PedroEmpresa";
-            empresa.Email = "EmpresaPedro@teste.com";
-            empresa.Telefone = "987654321";
-            empresa.Endereco = "321, rua 321, 321";
-            empresa.CNPJ = "12.321.123/0001-12";
-            servico.Editar(empresa);
-
-            var empresaEncontrada = repositorio.SelecionarPorId(empresa.Id);
+            var empresaEncontrada = _repositorio.SelecionarPorId(_empresa.Id);
 
             Assert.IsNotNull(empresaEncontrada);
-            Assert.AreEqual(empresa, empresaEncontrada);
-
+            Assert.AreEqual(_empresa, empresaEncontrada);
         }
 
         [TestMethod]
         public void Deve_Excluir_Empresa()
         {
+            _servico.Inserir(_empresa);
 
-            servico.Inserir(empresa);
+            _repositorio.Excluir(_empresa);
 
-            repositorio.Excluir(empresa);
-
-            var empresaEncontrada = repositorio.SelecionarPorId(empresa.Id);
+            var empresaEncontrada = _repositorio.SelecionarPorId(_empresa.Id);
             Assert.IsNull(empresaEncontrada);
-
         }
 
         [TestMethod]
         public void Deve_Selecionar_Empresa()
         {
+            _servico.Inserir(_empresa);
 
-            servico.Inserir(empresa);
-
-            var empresaEncontrada = repositorio.SelecionarPorId(empresa.Id);
+            var empresaEncontrada = _repositorio.SelecionarPorId(_empresa.Id);
 
             Assert.IsNotNull(empresaEncontrada);
-            Assert.AreEqual(empresa, empresaEncontrada);
-
+            Assert.AreEqual(_empresa, empresaEncontrada);
         }
     }
 }

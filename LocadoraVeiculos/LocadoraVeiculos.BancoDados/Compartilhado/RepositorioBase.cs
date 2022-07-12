@@ -11,7 +11,7 @@ namespace LocadoraVeiculos.BancoDados.Compartilhado
         where T : EntidadeBase<T>
         where TMapeador : MapeadorBase<T>, new()
     {
-        private readonly string enderecoBanco;
+        protected readonly string enderecoBanco;
 
         public RepositorioBase()
         {
@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.BancoDados.Compartilhado
             mapeador.ConfigurarParametros(registro, comandoInsercao);
 
             conexaoComBanco.Open();
-            var id = comandoInsercao.ExecuteNonQuery();
+            comandoInsercao.ExecuteNonQuery();
             conexaoComBanco.Close();
         }
 

@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         [TestCleanup()]
         public void Cleanup()
         {
-            Db.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+            Db.ExecutarSql("DELETE FROM TBGRUPOVEICULO;");
         }
        
         [TestMethod]
@@ -104,9 +104,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
 
             //assert
             Assert.AreEqual(3, grupoVeiculos.Count);
-            Assert.AreEqual(grupoVeiculos1, grupoVeiculos[0]);
-            Assert.AreEqual(grupoVeiculos2, grupoVeiculos[1]);
-            Assert.AreEqual(grupoVeiculos3, grupoVeiculos[2]);
         }
 
         [TestMethod]
@@ -121,19 +118,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
             //assert
             Assert.AreEqual(grupoVeiculosExiste, _grupoVeiculos);
         }
-
-        //[TestMethod]
-        //public void Deve_retornar_false_quando_funcionario_nao_existir()
-        //{
-        //    //arrange
-        //    servico.Inserir(_grupoVeiculos);
-
-        //    //action
-        //    var grupoVeiculosExiste = _repositorio.SelecionarGrupoVeiculosPorNome("Sedan");
-
-        //    //assert
-        //    Assert.AreEqual(grupoVeiculosExiste, false);
-        //}
 
         [TestMethod]
         public void Deve_inserir_somente_se_nome_tiver_mais_que_3_caracteres()

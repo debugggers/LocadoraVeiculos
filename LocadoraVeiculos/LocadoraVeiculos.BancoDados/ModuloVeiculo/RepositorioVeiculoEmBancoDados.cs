@@ -9,11 +9,6 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
         RepositorioBase<Veiculo, MapeadorVeiculo>
     {
         #region SQL Queries
-
-        public const string enderecoBanco = "Data Source = (LocalDB)\\MSSqlLocalDB;" +
-               "Initial Catalog=locadoraVeiculosDb;" +
-               "Integrated Security=True;" +
-               "Pooling=False";
         protected override string sqlInserir =>
             @"INSERT INTO [TBVEICULO]
                 (

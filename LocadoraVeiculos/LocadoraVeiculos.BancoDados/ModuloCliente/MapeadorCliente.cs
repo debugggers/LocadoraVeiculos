@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloCliente
     {
         public override void ConfigurarParametros(Cliente cliente, SqlCommand comando)
         {
-            comando.Parameters.AddWithValue("ID", cliente.Id);
+            comando.Parameters.AddWithValue("CLIENTE_ID", cliente.Id);
             comando.Parameters.AddWithValue("CLIENTE_NOME", cliente.Nome);
             comando.Parameters.AddWithValue("CLIENTE_TELEFONE", cliente.Telefone);
             comando.Parameters.AddWithValue("CLIENTE_EMAIL", cliente.Email);

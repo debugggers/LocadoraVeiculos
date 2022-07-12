@@ -1,18 +1,22 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace LocadoraVeiculos.BancoDados.Compartilhado
 {
     public static class Db
     {
-        #region Endereço do Banco de Dados
-        private static string _enderecoBanco =
-            @"Data Source=(LocalDB)\\MSSQLLOCALDB;Initial Catalog=locadoraVeiculosDb;Integrated Security=True";
-        #endregion
-
         public static void ExecutarSql(string sql)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(_enderecoBanco);
+            var configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
+
+            var enderecoBanco = configuracao.GetConnectionString("SqlServer");
+
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comando = new SqlCommand(sql, conexaoComBanco);
 

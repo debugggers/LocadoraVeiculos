@@ -12,14 +12,12 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
 
     public class RepositorioClienteEmBancoDadosTest
     {
-
         private Cliente cliente;
         private RepositorioClienteEmBancoDados repositorio;
         private ServicoCliente servico;
 
         public RepositorioClienteEmBancoDadosTest()
         {
-
             cliente = new Cliente();
 
             cliente.Nome = "Paulo";
@@ -38,27 +36,24 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         [TestCleanup()]
         public void Cleanup()
         {
-            Db.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT(TBCLIENTE, RESEED, 0)");
-            Db.ExecutarSql("DELETE FROM TBEMPRESA; DBCC CHECKIDENT (TBEMPRESA, RESEED, 0)");
+            Db.ExecutarSql("DELETE FROM TBCLIENTE;");
+            Db.ExecutarSql("DELETE FROM TBEMPRESA;");
         }
 
         [TestMethod]
         public void Deve_Inserir_Cliente()
         {
-
             servico.Inserir(cliente);
 
             var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
 
             Assert.IsNotNull(clienteEncontrado);
             Assert.AreEqual(cliente, clienteEncontrado);
-
         }
 
         [TestMethod]
         public void Deve_Editar_Cliente()
         {
-
             servico.Inserir(cliente);
 
             cliente.Nome = "Pedro";
@@ -75,33 +70,28 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
 
             Assert.IsNotNull(clienteEncontrado);
             Assert.AreEqual(cliente, clienteEncontrado);
-
         }
 
         [TestMethod]
         public void Deve_Excluir_Cliente()
         {
-           
             servico.Inserir(cliente);
-          
+
             repositorio.Excluir(cliente);
 
             var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
             Assert.IsNull(clienteEncontrado);
-
         }
 
         [TestMethod]
         public void Deve_Selecionar_Cliente()
         {
-
             servico.Inserir(cliente);
 
             var clienteEncontrado = repositorio.SelecionarPorId(cliente.Id);
 
             Assert.IsNotNull(clienteEncontrado);
             Assert.AreEqual(cliente, clienteEncontrado);
-
         }
 
     }

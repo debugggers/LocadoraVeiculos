@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
         [TestCleanup()]
         public void Cleanup()
         {
-            Db.ExecutarSql("DELETE FROM TBTAXA; DBCC CHECKIDENT (TBTAXA, RESEED, 0)");
+            Db.ExecutarSql("DELETE FROM TBTAXA;");
         }
 
         [TestMethod]
@@ -106,9 +106,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
 
             //assert
             Assert.AreEqual(3, taxas.Count);
-            Assert.AreEqual(taxa1, taxas[0]);
-            Assert.AreEqual(taxa2, taxas[1]);
-            Assert.AreEqual(taxa3, taxas[2]);
         }
 
         [TestMethod]
