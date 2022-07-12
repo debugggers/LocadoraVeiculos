@@ -42,19 +42,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
                 CapacidadeTanque = 200,
                 QuilometragemPercorrida = 1,
                 TipoCombustivel = 0,
-                //Foto = new Bitmap(@"C:\temp\download.jpg"),
+                Foto = new Bitmap(@"C:\temp\download.jpg"),
                 GrupoVeiculo = _grupo
             };
-
-            try
-            {
-                _veiculo.Foto = new Bitmap(@"C:\temp\download.jpg");
-            }
-            catch (System.Exception ex)
-            {
-
-                throw;
-            }
 
             _repositorioVeiculo = new RepositorioVeiculoEmBancoDados();
             _servicoVeiculo = new ServicoVeiculo(_repositorioVeiculo);
