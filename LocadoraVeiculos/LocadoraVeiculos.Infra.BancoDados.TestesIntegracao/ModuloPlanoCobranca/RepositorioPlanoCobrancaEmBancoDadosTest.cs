@@ -10,7 +10,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
 {
     [TestClass]
-
     public class RepositorioPlanoCobrancaEmBancoDadosTest
     {
         private PlanoCobranca _planoCobranca;
@@ -128,6 +127,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
 
             //assert
             Assert.AreEqual(3, planosCobranca.Count);
+            Assert.AreEqual(planoCobranca1, planosCobranca[0]);
+            Assert.AreEqual(planoCobranca2, planosCobranca[1]);
+            Assert.AreEqual(planoCobranca3, planosCobranca[2]);
         }
     }
 }

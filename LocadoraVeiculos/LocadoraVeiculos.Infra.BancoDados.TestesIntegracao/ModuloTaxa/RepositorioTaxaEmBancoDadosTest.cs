@@ -12,14 +12,14 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
     public class RepositorioTaxaEmBancoDadosTest
     {
         private Taxa _taxa;
-        private RepositorioTaxaEmBancoDados _repositorio;
+        private RepositorioTaxaEmBancoDados _repositorioTaxa;
         private ServicoTaxa _servicoTaxa;
 
         public RepositorioTaxaEmBancoDadosTest()
         {
             _taxa = new Taxa("Cadeira de bebe", 50.00m, TipoCalculoEnum.CalculoDiario);
-            _repositorio = new RepositorioTaxaEmBancoDados();
-            _servicoTaxa = new ServicoTaxa(_repositorio);
+            _repositorioTaxa = new RepositorioTaxaEmBancoDados();
+            _servicoTaxa = new ServicoTaxa(_repositorioTaxa);
         }
 
         [TestCleanup()]
@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
             _servicoTaxa.Inserir(_taxa);
 
             //assert
-            var taxaEncontrada = _repositorio.SelecionarPorId(_taxa.Id);
+            var taxaEncontrada = _repositorioTaxa.SelecionarPorId(_taxa.Id);
 
             Assert.IsNotNull(taxaEncontrada);
             Assert.AreEqual(_taxa, taxaEncontrada);
@@ -54,7 +54,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
             _servicoTaxa.Editar(_taxa);
 
             //assert
-            var taxaEncontrada = _repositorio.SelecionarPorId(_taxa.Id);
+            var taxaEncontrada = _repositorioTaxa.SelecionarPorId(_taxa.Id);
 
             Assert.IsNotNull(taxaEncontrada);
             Assert.AreEqual(_taxa, taxaEncontrada);
@@ -67,10 +67,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
             _servicoTaxa.Inserir(_taxa);
 
             //action
-            _repositorio.Excluir(_taxa);
+            _repositorioTaxa.Excluir(_taxa);
 
             //assert
-            var taxaEncontrada = _repositorio.SelecionarPorId(_taxa.Id);
+            var taxaEncontrada = _repositorioTaxa.SelecionarPorId(_taxa.Id);
 
             Assert.IsNull(taxaEncontrada);
         }
@@ -82,7 +82,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
             _servicoTaxa.Inserir(_taxa);
 
             //action
-            var taxaEncontrada = _repositorio.SelecionarPorId(_taxa.Id);
+            var taxaEncontrada = _repositorioTaxa.SelecionarPorId(_taxa.Id);
 
             //assert
             Assert.IsNotNull(taxaEncontrada);
@@ -102,10 +102,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
             _servicoTaxa.Inserir(taxa3);
 
             //action
-            var taxas = _repositorio.SelecionarTodos();
+            var taxas = _repositorioTaxa.SelecionarTodos();
 
             //assert
             Assert.AreEqual(3, taxas.Count);
+            Assert.AreEqual(taxa1, taxas[0]);
+            Assert.AreEqual(taxa2, taxas[1]);
+            Assert.AreEqual(taxa3, taxas[2]);
         }
 
         [TestMethod]
@@ -130,7 +133,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
         public void Deve_retornar_false_quando_descricao_taxa_nao_existir()
         {
             //arrange
-            _repositorio.Inserir(_taxa);
+            _repositorioTaxa.Inserir(_taxa);
 
             //action
             var taxaExiste = _servicoTaxa.DescricaoDuplicada(_taxa);
@@ -149,7 +152,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
             _servicoTaxa.Inserir(taxa);
 
             //assert
-            var taxaEncontrada = _repositorio.SelecionarPorId(taxa.Id);
+            var taxaEncontrada = _repositorioTaxa.SelecionarPorId(taxa.Id);
 
             Assert.IsNull(taxaEncontrada);
             Assert.AreEqual(taxaEncontrada, null);
@@ -165,7 +168,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
             _servicoTaxa.Inserir(taxa);
 
             //assert
-            var taxaEncontrada = _repositorio.SelecionarPorId(taxa.Id);
+            var taxaEncontrada = _repositorioTaxa.SelecionarPorId(taxa.Id);
 
             Assert.IsNull(taxaEncontrada);
             Assert.AreEqual(taxaEncontrada, null);
