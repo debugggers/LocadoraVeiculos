@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[TBEmpresa] (
-    [Id]       INT           IDENTITY (1, 1) NOT NULL,
+    [Id]       uniqueidentifier NOT NULL,
     [Nome]     VARCHAR (50)  NOT NULL,
     [Email]    VARCHAR (50)  NOT NULL,
     [Telefone] VARCHAR (20)  NOT NULL,

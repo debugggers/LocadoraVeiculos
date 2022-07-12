@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[TBFuncionario] (
-    [Id]            INT             IDENTITY (1, 1) NOT NULL,
+    [Id]            uniqueidentifier NOT NULL,
     [Nome]          VARCHAR (50)    NOT NULL,
     [Login]         VARCHAR (50)    NOT NULL,
     [Senha]         VARCHAR (50)    NOT NULL,
