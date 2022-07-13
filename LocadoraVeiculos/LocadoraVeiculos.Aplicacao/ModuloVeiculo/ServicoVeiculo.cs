@@ -61,6 +61,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             return resultadoValidacao;
         }
 
+
         private ValidationResult Validar(Veiculo veiculo)
         {
             var validador = new ValidadorVeiculo();
