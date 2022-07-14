@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.BancoDados.ModuloVeiculo;
+using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculosForm.Compartilhado;
 using System;
@@ -13,13 +14,11 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
     {
         private ServicoVeiculo _servico;
         private ListagemVeiculosControl _listagem;
-        private RepositorioVeiculoEmBancoDados _repositorio;
         private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
 
-        public ControladorVeiculo(RepositorioVeiculoEmBancoDados repositorio, RepositorioGrupoVeiculosEmBancoDados repositorioGrupoVeiculos, ServicoVeiculo servico)
+        public ControladorVeiculo(RepositorioGrupoVeiculosEmBancoDados repositorioGrupoVeiculos, ServicoVeiculo servico)
         {
             _listagem = new ListagemVeiculosControl();
-            _repositorio = repositorio;
             _repositorioGrupoVeiculos = repositorioGrupoVeiculos;
             _servico = servico;
         }
@@ -38,66 +37,69 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
         public override void Editar()
         {
-            Veiculo veiculoSelecionado = ObtemVeiculoSelecionado();
+            var id = _listagem.SelecionarNumeroVeiculo();
 
-            if (veiculoSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um veiculo primeiro",
-                "Edição de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um funcionário primeiro",
+                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaCadastroVeiculosForm tela = new TelaCadastroVeiculosForm(_repositorioGrupoVeiculos);
+            var resultado = _servico.SelecionarPorId(id);
 
-            tela.Veiculo = veiculoSelecionado;
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var veiculoSelecionado = resultado.Value;
+
+            var tela = new TelaCadastroVeiculosForm(_repositorioGrupoVeiculos);
+
+            tela.Veiculo = veiculoSelecionado.Clone();
 
             tela.GravarRegistro = _servico.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
                 CarregarVeiculos();
         }
 
         public override void Excluir()
         {
-            Veiculo veiculoSelecionado = ObtemVeiculoSelecionado();
+            var id = _listagem.SelecionarNumeroVeiculo();
 
-            if (veiculoSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um veiculo primeiro",
-                "Exclusão de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um veículo primeiro",
+                    "Exclusão de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o veiculo?",
-                "Exclusão de veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var resultadoSelecao = _servico.SelecionarPorId(id);
 
-            if (resultado == DialogResult.OK)
+            if (resultadoSelecao.IsFailed)
             {
-                try
-                {
-                    _repositorio.Excluir(veiculoSelecionado);
-                }
-                catch (Exception e)
-                {
-
-                    MessageBox.Show(e.Message,
-                        "Exclusão de veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                CarregarVeiculos();
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-        }
 
-        private Veiculo ObtemVeiculoSelecionado()
-        {
-            var id = _listagem.SelecionarNumeroVeiculo();
+            var veiculoSelecionado = resultadoSelecao.Value;
 
-            Veiculo veiculoSelecionado = _repositorio.SelecionarPorId(id);
+            if (MessageBox.Show("Deseja realmente excluir o veículo?", "Exclusão de Veículo",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = _servico.Excluir(veiculoSelecionado);
 
-            return veiculoSelecionado;
+                if (resultadoExclusao.IsSuccess)
+                    CarregarVeiculos();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
@@ -117,9 +119,22 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
         private void CarregarVeiculos()
         {
-            List<Veiculo> veiculos = _repositorio.SelecionarTodos();
 
-            _listagem.AtualizarRegistros(veiculos);
+            var resultado = _servico.SelecionarTodos();
+
+            if (resultado.IsSuccess)
+            {
+                List<Veiculo> veiculos = resultado.Value;
+
+                _listagem.AtualizarRegistros(veiculos);
+
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} veículo(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Carregar listagem",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
