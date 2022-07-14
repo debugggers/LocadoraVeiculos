@@ -1,7 +1,11 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
 {
@@ -14,62 +18,153 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             _repositorioGrupoVeiculos = repositorioGrupoVeiculos;
         }
 
-        public ValidationResult Inserir(GrupoVeiculos grupoVeiculos)
+        public Result<GrupoVeiculos> Inserir(GrupoVeiculos grupoVeiculos)
         {
             Log.Logger.Debug("Tentando inserir grupo de veículos... {@g}", grupoVeiculos);
 
-            var resultadoValidacao = Validar(grupoVeiculos);
+            Result resultadoValidacao = Validar(grupoVeiculos);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir o Grupo de Veículos {GrupoId} - {Motivo}",
+                       grupoVeiculos.Id, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 _repositorioGrupoVeiculos.Inserir(grupoVeiculos);
-                Log.Logger.Debug("Grupo de veículos {GrupoVeiculosId} inserido com sucesso", grupoVeiculos.Id);
-            }
-            else
-            {
-                foreach (var item in resultadoValidacao.Errors)
-                {
-                    Log.Logger.Warning("Falha ao inserir o grupo de veículos {GrupoVeiculosId} - {Motivo}",
-                        grupoVeiculos.Id, item.ErrorMessage);
-                }
-            }
 
-            return resultadoValidacao;
+                Log.Logger.Information("Grupo de Veículos {GrupoId} inserido com sucesso", grupoVeiculos.Id);
+
+                return Result.Ok(grupoVeiculos);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar inserir o grupo de veículos";
+
+                Log.Logger.Error(ex, msgErro + "{GrupoId}", grupoVeiculos.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public ValidationResult Editar(GrupoVeiculos grupoVeiculos)
+        public Result<GrupoVeiculos> Editar(GrupoVeiculos grupoVeiculos)
         {
-            Log.Logger.Debug("Tentando editar grupo de veículos... {@g}", grupoVeiculos);
+            Log.Logger.Debug("Tentando editar o grupo de veículos... {@g}", grupoVeiculos);
 
-            var resultadoValidacao = Validar(grupoVeiculos);
+            Result resultadoValidacao = Validar(grupoVeiculos);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar o Grupo de Veículos {GrupoId} - {Motivo}",
+                       grupoVeiculos.Id, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 _repositorioGrupoVeiculos.Editar(grupoVeiculos);
-                Log.Logger.Debug("Grupo de veículos {GrupoVeiculosId} editado com sucesso", grupoVeiculos.Id);
-            }
-            else
-            {
-                foreach (var item in resultadoValidacao.Errors)
-                {
-                    Log.Logger.Warning("Falha ao editar o grupo de veículos {GrupoVeiculosId} - {Motivo}", 
-                        grupoVeiculos.Id, item.ErrorMessage);
-                }
-            }
 
-            return resultadoValidacao;
+                Log.Logger.Information("Grupo de Veículos {GrupoId} editado com sucesso", grupoVeiculos.Id);
+
+                return Result.Ok(grupoVeiculos);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar editar o Grupo de veículos";
+
+                Log.Logger.Error(ex, msgErro + "{GrupoId}", grupoVeiculos.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        private ValidationResult Validar(GrupoVeiculos grupoVeiculos)
+        public Result Excluir(GrupoVeiculos grupo)
+        {
+            Log.Logger.Debug("Tentando excluir grupo de veículos... {@g}", grupo);
+
+            try
+            {
+                _repositorioGrupoVeiculos.Excluir(grupo);
+
+                Log.Logger.Information("Grupo de Veículos {GrupoId} excluído com sucesso", grupo.Id);
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar excluir o grupo veículos";
+
+                Log.Logger.Error(ex, msgErro + "{GrupoId}", grupo.Id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result<GrupoVeiculos> SelecionarPorId(Guid id)
+        {
+
+            try
+            {
+
+                return Result.Ok(_repositorioGrupoVeiculos.SelecionarPorId(id));
+
+            }
+            catch (Exception ex)
+            {
+
+                string msgErro = "Falha no sistema ao tentar selecionar grupo de veículos";
+
+                Log.Logger.Error(ex, msgErro + "{GrupoVeiculosId}", id);
+
+                return Result.Fail(msgErro);
+
+            }
+        }
+
+        public Result<List<GrupoVeiculos>> SelecionarTodos()
+        {
+            try
+            {
+                return Result.Ok(_repositorioGrupoVeiculos.SelecionarTodos());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar todos os grupos de veículos";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        private Result Validar(GrupoVeiculos grupoVeiculos)
         {
             var validador = new ValidadorGrupoVeiculos();
 
             var resultadoValidacao = validador.Validate(grupoVeiculos);
 
-            if (NomeDuplicado(grupoVeiculos))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Nome", "Nome duplicado"));
+            List<Error> erros = new List<Error>();
 
-            return resultadoValidacao;
+            foreach (ValidationFailure item in resultadoValidacao.Errors)
+                erros.Add(new Error(item.ErrorMessage));
+
+            if (NomeDuplicado(grupoVeiculos))
+                erros.Add(new Error("Nome duplicado"));
+
+            if (erros.Any())
+                return Result.Fail(erros);
+
+            return Result.Ok();
         }
 
         private bool NomeDuplicado(GrupoVeiculos grupoVeiculos)

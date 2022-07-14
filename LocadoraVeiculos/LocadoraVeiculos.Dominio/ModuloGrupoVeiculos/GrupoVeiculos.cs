@@ -16,6 +16,13 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
 
         public string Nome { get; set; }
 
+        public GrupoVeiculos Clone()
+        {
+
+            return MemberwiseClone() as GrupoVeiculos;
+
+        }
+
         public override bool Equals(object obj)
         {
             GrupoVeiculos grupoVeiculos = obj as GrupoVeiculos;
