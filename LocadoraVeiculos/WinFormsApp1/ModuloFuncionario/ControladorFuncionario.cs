@@ -69,7 +69,6 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
 
                 if (tela.ShowDialog() == DialogResult.OK)
                     CarregarFuncionarios();
-
             }
             else
                 MessageBox.Show("Somente usuários 'Admin' podem gerenciar funcionários.");
