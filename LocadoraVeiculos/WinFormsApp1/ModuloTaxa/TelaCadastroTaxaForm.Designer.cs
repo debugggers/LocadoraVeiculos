@@ -45,9 +45,6 @@
             // 
             this.comboBoxTipoCalculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoCalculo.FormattingEnabled = true;
-            this.comboBoxTipoCalculo.Items.AddRange(new object[] {
-            "Fixo",
-            "Diário"});
             this.comboBoxTipoCalculo.Location = new System.Drawing.Point(14, 177);
             this.comboBoxTipoCalculo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxTipoCalculo.Name = "comboBoxTipoCalculo";

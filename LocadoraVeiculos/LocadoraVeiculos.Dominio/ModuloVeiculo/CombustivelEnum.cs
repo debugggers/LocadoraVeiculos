@@ -1,9 +1,9 @@
 ﻿namespace LocadoraVeiculos.Dominio.ModuloVeiculo
 {
-    public enum CombustivelEnum
+    public enum CombustivelEnum 
     {
-        Gasolina = 0,
-        Etanol = 1,
-        Diesel = 2
+        Gasolina = 1,
+        Etanol = 2,
+        Diesel = 3
     }
 }
