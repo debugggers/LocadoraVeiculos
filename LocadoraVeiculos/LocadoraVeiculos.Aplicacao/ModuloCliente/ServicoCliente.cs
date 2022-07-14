@@ -1,7 +1,11 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 {
@@ -14,59 +18,153 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             _repositorioCliente = repositorioCliente;
         }
 
-        public  ValidationResult Inserir(Cliente cliente)
+        public  Result<Cliente> Inserir(Cliente cliente)
         {
             Log.Logger.Debug("Tentando inserir cliente... {@c}", cliente);
 
-            ValidationResult resultadoValidacao = Validar(cliente);
+            Result resultadoValidacao = Validar(cliente);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir o Cliente {ClienteId} - {Motivo}",
+                       cliente.Id, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 _repositorioCliente.Inserir(cliente);
-                Log.Logger.Debug("Cliente {ClienteId} inserido com sucesso", cliente.Id);
-            }
-            else
-            {
-                foreach (var item in resultadoValidacao.Errors)
-                {
-                    Log.Logger.Warning("Falha ao inserir o cliente {ClienteId} - {Motivo}", cliente.Id, item.ErrorMessage);
-                }
-            }                
 
-            return resultadoValidacao;
+                Log.Logger.Information("Cliente {ClienteId} inserido com sucesso", cliente.Id);
+
+                return Result.Ok(cliente);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar inserir o cliente";
+
+                Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public ValidationResult Editar(Cliente cliente)
+        public Result<Cliente> Editar(Cliente cliente)
         {
             Log.Logger.Debug("Tentando editar cliente... {@c}", cliente);
 
-            ValidationResult resultadoValidacao = Validar(cliente);
+            Result resultadoValidacao = Validar(cliente);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar o Cliente {ClienteId} - {Motivo}",
+                       cliente.Id, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 _repositorioCliente.Editar(cliente);
-                Log.Logger.Debug("Cliente {ClienteId} editado com sucesso", cliente.Id);
+
+                Log.Logger.Information("Cliente {ClienteId} editado com sucesso", cliente.Id);
+
+                return Result.Ok(cliente);
             }
-            else
+            catch (Exception ex)
             {
-                foreach (var item in resultadoValidacao.Errors)
-                {
-                    Log.Logger.Warning("Falha ao editar o cliente {ClienteId} - {Motivo}", cliente.Id, item.ErrorMessage);
-                }
+                string msgErro = "Falha no sistema ao tentar editar o cliente";
+
+                Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
+
+                return Result.Fail(msgErro);
             }
-                
-            return resultadoValidacao;
         }
 
-        private ValidationResult Validar(Cliente cliente)
+        public Result Excluir(Cliente cliente)
+        {
+            Log.Logger.Debug("Tentando excluir cliente... {@c}", cliente);
+
+            try
+            {
+                _repositorioCliente.Excluir(cliente);
+
+                Log.Logger.Information("Cliente {ClienteId} excluído com sucesso", cliente.Id);
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar excluir o cliente";
+
+                Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result<Cliente> SelecionarPorId(Guid id)
+        {
+
+            try
+            {
+
+                return Result.Ok(_repositorioCliente.SelecionarPorId(id));
+
+            }
+            catch (Exception ex)
+            {
+
+                string msgErro = "Falha no sistema ao tentar selecionar o cliente";
+
+                Log.Logger.Error(ex, msgErro + "{ClienteId}", id);
+
+                return Result.Fail(msgErro);
+
+            }
+        }
+
+        public Result<List<Cliente>> SelecionarTodos()
+        {
+            try
+            {
+                return Result.Ok(_repositorioCliente.SelecionarTodos());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar todos os clientes";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        private Result Validar(Cliente cliente)
         {
             var validador = new ValidadorCliente();
 
             var resultadoValidacao = validador.Validate(cliente);
 
+            List<Error> erros = new List<Error>();
+
+            foreach (ValidationFailure item in resultadoValidacao.Errors)
+                erros.Add(new Error(item.ErrorMessage));
+
             if (ClienteDuplicado(cliente))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Cliente", "Cliente duplicado"));
-            return resultadoValidacao;
+                erros.Add(new Error("Cliente duplicado"));
+
+            if (erros.Any())
+                return Result.Fail(erros);
+
+            return Result.Ok();
         }
 
         private bool ClienteDuplicado(Cliente cliente)

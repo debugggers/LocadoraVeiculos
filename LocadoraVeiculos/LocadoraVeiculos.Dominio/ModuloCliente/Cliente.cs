@@ -20,6 +20,13 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
         {
         }
 
+        public Cliente Clone()
+        {
+
+            return MemberwiseClone() as Cliente;
+
+        }
+
         public Cliente(string nome, string email, string telefone, string endereco, 
             string cPF, int cnhNumero, string cnhNome, DateTime cnhVencimento)
         {
