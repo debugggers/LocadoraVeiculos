@@ -202,6 +202,7 @@
             this.txtCpf.Name = "txtCpf";
             this.txtCpf.Size = new System.Drawing.Size(253, 23);
             this.txtCpf.TabIndex = 23;
+            this.txtCpf.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // comboBoxEmpresas
             // 
