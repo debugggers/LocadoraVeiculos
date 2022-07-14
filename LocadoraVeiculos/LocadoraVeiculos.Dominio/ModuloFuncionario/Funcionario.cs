@@ -43,5 +43,15 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
                 funcionario.Salario.Equals(Salario);
                 funcionario.EhAdmin.Equals(EhAdmin);
         }
+
+        public Funcionario Clone()
+        {
+            return MemberwiseClone() as Funcionario;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Nome, Login, Senha, DataAdmissao, Salario, EhAdmin);
+        }
     }
 }
