@@ -1,6 +1,4 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
-using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using System;
 using System.Windows.Forms;
@@ -10,13 +8,11 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
     public partial class TelaCadastroFuncionarioForm : Form
     {
         private Funcionario _funcionario;
-        private ServicoFuncionario _servicoFuncionario;
 
-        public TelaCadastroFuncionarioForm(ServicoFuncionario servicoFuncionario)
+        public TelaCadastroFuncionarioForm()
         {
             InitializeComponent();
 
-            _servicoFuncionario = servicoFuncionario;
             dtDataAdmissao.MaxDate = DateTime.Now.Date;
         }
 

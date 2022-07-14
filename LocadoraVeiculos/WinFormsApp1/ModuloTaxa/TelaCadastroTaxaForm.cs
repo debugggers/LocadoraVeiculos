@@ -1,6 +1,4 @@
-﻿using FluentValidation.Results;
-using LocadoraVeiculos.Aplicacao.ModuloTaxa;
-using LocadoraVeiculos.BancoDados.ModuloTaxa;
+﻿using FluentResults;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using System;
 using System.Windows.Forms;
@@ -9,17 +7,14 @@ namespace LocadoraVeiculosForm.ModuloTaxa
 {
     public partial class TelaCadastroTaxaForm : Form
     {
+        private Taxa taxa;
 
-        Taxa taxa;
-        ServicoTaxa _servicoTaxa;
-        public TelaCadastroTaxaForm(ServicoTaxa servicoTaxa)
+        public TelaCadastroTaxaForm()
         {
             InitializeComponent();
-
-            _servicoTaxa = servicoTaxa;
         }
 
-        public Func<Taxa, ValidationResult> GravarRegistro { get; set; }
+        public Func<Taxa, Result<Taxa>> GravarRegistro { get; set; }
 
         public Taxa Taxa
         {
@@ -58,13 +53,21 @@ namespace LocadoraVeiculosForm.ModuloTaxa
 
             var resultadoValidacao = GravarRegistro(taxa);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                labelRodapeTaxa.Text = erro;
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro, "Inserção de Taxa",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    labelRodapeTaxa.Text = erro;
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 
