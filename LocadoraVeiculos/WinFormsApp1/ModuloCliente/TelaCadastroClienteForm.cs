@@ -8,6 +8,7 @@ using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using System.Collections.Generic;
+using FluentResults;
 
 namespace LocadoraVeiculosForm.ModuloCliente
 {
@@ -27,7 +28,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
             this.repositorioEmpresa = repositorioEmpresa;
         }
 
-        public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
+        public Func<Cliente, Result<Cliente>> GravarRegistro { get; set; }
 
 
         public Cliente Cliente
@@ -77,13 +78,22 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
             var resultadoValidacao = GravarRegistro(cliente);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
+
             }
         }
 
