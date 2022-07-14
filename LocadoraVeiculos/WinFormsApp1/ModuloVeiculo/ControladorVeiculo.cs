@@ -41,8 +41,8 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um funcionário primeiro",
-                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um veículo primeiro",
+                    "Edição de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
             if (resultado.IsFailed)
             {
                 MessageBox.Show(resultado.Errors[0].Message,
-                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Edição de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
