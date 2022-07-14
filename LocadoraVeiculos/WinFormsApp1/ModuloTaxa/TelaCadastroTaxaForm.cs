@@ -12,19 +12,20 @@ namespace LocadoraVeiculosForm.ModuloTaxa
         public TelaCadastroTaxaForm()
         {
             InitializeComponent();
+            CarregarTipoCalculo();
         }
 
         public Func<Taxa, Result<Taxa>> GravarRegistro { get; set; }
 
         public Taxa Taxa
         {
-            get { return taxa;}
+            get { return taxa; }
             set
             {
                 taxa = value;
                 txtDescricao.Text = taxa.Descricao;
                 txtValor.Text = taxa.Valor.ToString();
-                comboBoxTipoCalculo.SelectedIndex = (int)taxa.TipoCalculo;
+                comboBoxTipoCalculo.SelectedItem = taxa.TipoCalculo;
             }
         }
 
@@ -48,8 +49,8 @@ namespace LocadoraVeiculosForm.ModuloTaxa
                 DialogResult = DialogResult.None;
                 return;
             }
-            
-            taxa.TipoCalculo = (TipoCalculoEnum)comboBoxTipoCalculo.SelectedIndex;
+
+            taxa.TipoCalculo = (TipoCalculoEnum)comboBoxTipoCalculo.SelectedItem;
 
             var resultadoValidacao = GravarRegistro(taxa);
 
@@ -79,6 +80,16 @@ namespace LocadoraVeiculosForm.ModuloTaxa
         private void TelaCadastroTaasForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             TelaMenuPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
+        private void CarregarTipoCalculo()
+        {
+            var tipoCalculo = Enum.GetValues(typeof(TipoCalculoEnum));
+
+            foreach (var item in tipoCalculo)
+            {
+                comboBoxTipoCalculo.Items.Add(item);
+            }
         }
     }
 }
