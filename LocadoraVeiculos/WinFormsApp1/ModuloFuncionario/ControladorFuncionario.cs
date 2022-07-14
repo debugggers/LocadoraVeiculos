@@ -23,7 +23,7 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
         {
             if (GerenciadorUsuario.EhAdmin())
             {
-                TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm(_servicoFuncionario);
+                TelaCadastroFuncionarioForm tela = new TelaCadastroFuncionarioForm();
                 tela.Funcionario = new Funcionario();
 
                 tela.GravarRegistro = _servicoFuncionario.Inserir;
@@ -61,7 +61,7 @@ namespace LocadoraVeiculosForm.ModuloFuncionario
 
                 var funcionarioSelecionado = resultado.Value;
 
-                var tela = new TelaCadastroFuncionarioForm(_servicoFuncionario);
+                var tela = new TelaCadastroFuncionarioForm();
 
                 tela.Funcionario = funcionarioSelecionado.Clone();
 

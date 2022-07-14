@@ -34,5 +34,10 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxa
                 taxa.Valor.Equals(Valor) &&
                 taxa.TipoCalculo.Equals(TipoCalculo);
         }
+
+        public Taxa Clone()
+        {
+            return MemberwiseClone() as Taxa;
+        }
     }
 }

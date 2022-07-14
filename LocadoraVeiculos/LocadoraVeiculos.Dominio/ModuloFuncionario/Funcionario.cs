@@ -26,7 +26,6 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
         public decimal Salario { get; set; }
         public bool EhAdmin { get; set; }
        
-
         public override bool Equals(object obj)
         {
             Funcionario funcionario = obj as Funcionario;
@@ -47,11 +46,6 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
         public Funcionario Clone()
         {
             return MemberwiseClone() as Funcionario;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Id, Nome, Login, Senha, DataAdmissao, Salario, EhAdmin);
         }
     }
 }
