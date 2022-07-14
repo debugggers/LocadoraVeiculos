@@ -166,7 +166,7 @@ namespace LocadoraVeiculosForm
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
             controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(repositorioGrupoveiculos, servicoGrupoVeiculos));
             controladores.Add("Planos de Cobrança", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicoPlanoCobranca));
-            controladores.Add("Veiculo", new ControladorVeiculo(repositorioVeiculo, repositorioGrupoveiculos, servicoVeiculo));
+            controladores.Add("Veiculo", new ControladorVeiculo(repositorioGrupoveiculos, servicoVeiculo));
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)

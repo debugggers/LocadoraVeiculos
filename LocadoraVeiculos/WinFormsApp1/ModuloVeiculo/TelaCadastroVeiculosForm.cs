@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
@@ -27,7 +28,7 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
         }
 
-        public Func<Veiculo, ValidationResult> GravarRegistro { get; set; }
+        public Func<Veiculo, Result<Veiculo>> GravarRegistro { get; set; }
 
         public Veiculo Veiculo
         {
@@ -111,13 +112,22 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
             var resultadoValidacao = GravarRegistro(veiculo);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
+
             }
 
         }

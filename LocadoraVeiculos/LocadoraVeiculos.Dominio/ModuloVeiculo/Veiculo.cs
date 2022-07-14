@@ -23,6 +23,13 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
 
         }
 
+        public Veiculo Clone()
+        {
+
+            return MemberwiseClone() as Veiculo;
+
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Veiculo veiculo &&
