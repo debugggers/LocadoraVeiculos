@@ -31,7 +31,8 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
 
             RuleFor(x => x.CPF)
                 .NotNull().WithMessage("O campo CPF não pode ficar vazio")
-                .NotEmpty().WithMessage("O campo CPF não pode ficar vazio");
+                .NotEmpty().WithMessage("O campo CPF não pode ficar vazio")
+                .MinimumLength(11).WithMessage("O CPF precisa deve ter 11 digitos");
 
             RuleFor(x => x.CnhNome)
                 .NotNull().WithMessage("O nome da CNH não pode ficar vazio")

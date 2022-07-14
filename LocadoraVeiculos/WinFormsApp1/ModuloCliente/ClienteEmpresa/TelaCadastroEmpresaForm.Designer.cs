@@ -158,6 +158,7 @@
             this.txtTelefoneEmpresa.Name = "txtTelefoneEmpresa";
             this.txtTelefoneEmpresa.Size = new System.Drawing.Size(292, 23);
             this.txtTelefoneEmpresa.TabIndex = 17;
+            this.txtTelefoneEmpresa.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // txtCnpjEmpresa
             // 
@@ -166,6 +167,7 @@
             this.txtCnpjEmpresa.Name = "txtCnpjEmpresa";
             this.txtCnpjEmpresa.Size = new System.Drawing.Size(292, 23);
             this.txtCnpjEmpresa.TabIndex = 18;
+            this.txtCnpjEmpresa.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // TelaCadastroEmpresaForm
             // 
