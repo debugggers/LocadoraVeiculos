@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
+﻿using FluentResults;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
@@ -13,22 +12,19 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
     public partial class TelaCadastroPlanoCobrancaForm : Form
     {
         private PlanoCobranca _planoCobranca;
-        private ServicoPlanoCobranca _servicoPlanoCobranca;
         private List<GrupoVeiculos> _gruposVeiculos;
         private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos = new();
 
-        public TelaCadastroPlanoCobrancaForm(ServicoPlanoCobranca servicoPlanoCobranca)
+        public TelaCadastroPlanoCobrancaForm()
         {
             InitializeComponent();
-
-            _servicoPlanoCobranca = servicoPlanoCobranca;
 
             _gruposVeiculos = _repositorioGrupoVeiculos.SelecionarTodos();
 
             CarregarGrupoVeiculos();
         }
 
-        public Func<PlanoCobranca, ValidationResult> GravarRegistro { get; set; }
+        public Func<PlanoCobranca, Result<PlanoCobranca>> GravarRegistro { get; set; }
 
         public PlanoCobranca PlanoCobranca
         {
@@ -52,13 +48,21 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
 
                 var resultadoValidacao = GravarRegistro(_planoCobranca);
 
-                if (resultadoValidacao.IsValid == false)
+                if (resultadoValidacao.IsFailed)
                 {
-                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                    string erro = resultadoValidacao.Errors[0].Message;
 
-                    labelRodapePlanoCobranca.Text = erro;
+                    if (erro.StartsWith("Falha no sistema"))
+                    {
+                        MessageBox.Show(erro, "Inserção de Planos de Cobrança",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        labelRodapePlanoCobranca.Text = erro;
 
-                    DialogResult = DialogResult.None;
+                        DialogResult = DialogResult.None;
+                    }
                 }
             }
         }

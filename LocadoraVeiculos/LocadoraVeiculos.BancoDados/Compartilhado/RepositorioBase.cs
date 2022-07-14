@@ -71,9 +71,17 @@ namespace LocadoraVeiculos.BancoDados.Compartilhado
 
             comandoExclusao.Parameters.AddWithValue("ID", registro.Id);
 
-            conexaoComBanco.Open();
-            comandoExclusao.ExecuteNonQuery();
-            conexaoComBanco.Close();
+            try
+            {
+                conexaoComBanco.Open();
+                comandoExclusao.ExecuteNonQuery();
+                conexaoComBanco.Close();
+            }
+            catch (Exception ex)
+            {
+                if (ex != null && ex.Message.Contains("The DELETE statement conflicted with the REFERENCE constraint"))
+                    throw new NaoPodeExcluirEsteRegistroException(ex);
+            }            
         }
 
         public T SelecionarPorId(Guid id)

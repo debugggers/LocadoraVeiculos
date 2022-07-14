@@ -165,7 +165,7 @@ namespace LocadoraVeiculosForm
             controladores.Add("Pessoa jurídica", new ControladorEmpresa(servicoEmpresa));
             controladores.Add("Taxas", new ControladorTaxa(servicoTaxa));
             controladores.Add("Grupo de veiculos", new ControladorGupoVeiculos(servicoGrupoVeiculos));
-            controladores.Add("Planos de Cobrança", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicoPlanoCobranca));
+            controladores.Add("Planos de Cobrança", new ControladorPlanoCobranca(servicoPlanoCobranca));
             controladores.Add("Veiculo", new ControladorVeiculo(repositorioGrupoveiculos, servicoVeiculo));
         }
 
