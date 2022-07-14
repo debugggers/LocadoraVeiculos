@@ -1,7 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
-using LocadoraVeiculos.BancoDados.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculosForm.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -9,19 +9,17 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
 {
     public class ControladorPlanoCobranca : ControladorBase
     {
-        private RepositorioPlanoCobrancaEmBancoDados _repositorioPlanoCobranca;
         private ListagemPlanoCobrancaControl _listagemPlanoCobranca;
         private ServicoPlanoCobranca _servicoPlanoCobranca;
 
-        public ControladorPlanoCobranca(RepositorioPlanoCobrancaEmBancoDados repositorioPlanoCobranca, ServicoPlanoCobranca servicoPlanoCobranca)
+        public ControladorPlanoCobranca(ServicoPlanoCobranca servicoPlanoCobranca)
         {
-            _repositorioPlanoCobranca = repositorioPlanoCobranca;
             _listagemPlanoCobranca = new ListagemPlanoCobrancaControl();
             _servicoPlanoCobranca = servicoPlanoCobranca;
         }
         public override void Inserir()
         {
-            TelaCadastroPlanoCobrancaForm tela = new TelaCadastroPlanoCobrancaForm(_servicoPlanoCobranca);
+            TelaCadastroPlanoCobrancaForm tela = new TelaCadastroPlanoCobrancaForm();
             tela.PlanoCobranca = new PlanoCobranca();
 
             tela.GravarRegistro = _servicoPlanoCobranca.Inserir;
@@ -34,45 +32,70 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
 
         public override void Editar()
         {
-            PlanoCobranca planoCobrancaSelecionado = ObtemPlanoCobrancaSelecionado();
+            var id = _listagemPlanoCobranca.ObtemIdPlanoCobrancaSelecionado();
 
-            if (planoCobrancaSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um Plano de Cobrança primeiro",
-                "Edição de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um plano de cobrança primeiro", "Edição de planos de cobrança",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaCadastroPlanoCobrancaForm tela = new TelaCadastroPlanoCobrancaForm(_servicoPlanoCobranca);
+            var resultado = _servicoPlanoCobranca.SelecionarPorId(id);
 
-            tela.PlanoCobranca = planoCobrancaSelecionado;
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Edição de planos de cobrança",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var planoCobrancaSelecionado = resultado.Value;
+
+            var tela = new TelaCadastroPlanoCobrancaForm();
+
+            tela.PlanoCobranca = planoCobrancaSelecionado.Clone();
 
             tela.GravarRegistro = _servicoPlanoCobranca.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
                 CarregarPlanosCobranca();
         }
 
         public override void Excluir()
         {
-            PlanoCobranca planoCobrancaSelecionado = ObtemPlanoCobrancaSelecionado();
+            var id = _listagemPlanoCobranca.ObtemIdPlanoCobrancaSelecionado();
 
-            if (planoCobrancaSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um Plano de Cobrança primeiro",
-                "Exclusão de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um plano de cobrança primeiro", "Exclusão de planos de cobrança",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Plano de Cobrança?",
-                "Exclusão de Plano de Cobrança", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var resultadoSelecao = _servicoPlanoCobranca.SelecionarPorId(id);
 
-            if (resultado == DialogResult.OK)
+            if (resultadoSelecao.IsFailed)
             {
-                _repositorioPlanoCobranca.Excluir(planoCobrancaSelecionado);
-                CarregarPlanosCobranca();
+                MessageBox.Show(resultadoSelecao.Errors[0].Message, "Exclusão de planos de cobrança",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var planoCobrancaSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir o plano de cobrança?", "Exclusão de planos de cobrança",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = _servicoPlanoCobranca.Excluir(planoCobrancaSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarPlanosCobranca();
+                else
+                {
+                    MessageBox.Show(resultadoSelecao.Errors[0].Message, "Exclusão de planos de cobrança",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -91,20 +114,23 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
             return new ConfiguracaoToolboxPlanoCobranca();
         }
 
-        private PlanoCobranca ObtemPlanoCobrancaSelecionado()
-        {
-            var id = _listagemPlanoCobranca.ObtemIdPlanoCobrancaSelecionado();
-
-            return _repositorioPlanoCobranca.SelecionarPorId(id);
-        }
-
         private void CarregarPlanosCobranca()
         {
-            List<PlanoCobranca> planosCobranca = _repositorioPlanoCobranca.SelecionarTodos();
+            var resultado = _servicoPlanoCobranca.SelecionarTodos();
 
-            _listagemPlanoCobranca.AtualizarRegistros(planosCobranca);
+            if (resultado.IsSuccess)
+            {
+                List<PlanoCobranca> planosCobranca = resultado.Value;
 
-            TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {planosCobranca.Count} Planos de Cobrança(s)");
+                _listagemPlanoCobranca.AtualizarRegistros(planosCobranca);
+
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {planosCobranca.Count} Plano(s) de Cobrança");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Seleção de Planos de Cobrança",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

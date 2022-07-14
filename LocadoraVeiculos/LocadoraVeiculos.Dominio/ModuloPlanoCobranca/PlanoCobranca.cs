@@ -50,5 +50,10 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
                 planoCobranca.ControleKm.Equals(ControleKm) &&
                 planoCobranca.GrupoVeiculos.Equals(GrupoVeiculos);
         }
+
+        public PlanoCobranca Clone()
+        {
+            return MemberwiseClone() as PlanoCobranca;
+        }
     }
 }
