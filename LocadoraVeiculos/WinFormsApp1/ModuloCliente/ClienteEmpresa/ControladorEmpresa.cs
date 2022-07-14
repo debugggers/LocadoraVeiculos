@@ -1,5 +1,4 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
-using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculosForm.Compartilhado;
@@ -12,31 +11,32 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
     public class ControladorEmpresa : ControladorBase
     {
 
-        private RepositorioEmpresaBancoDados _repositorio;
         private ServicoEmpresa _servicoEmpresa;
         private ListagemEmpresasControl _listagem;
 
-        public ControladorEmpresa(RepositorioEmpresaBancoDados repositorio, ServicoEmpresa servicoEmpresa)
+        public ControladorEmpresa(ServicoEmpresa servicoEmpresa)
         {
-            _repositorio = repositorio;
             _servicoEmpresa = servicoEmpresa;
             _listagem = new ListagemEmpresasControl();
         }
 
         private void CarregarEmpresas()
         {
-            List<Empresa> empresas = _repositorio.SelecionarTodos();
+            var resultado = _servicoEmpresa.SelecionarTodos();
 
-            _listagem.AtualizarRegistrosPessoaJuridica(empresas);
-        }
+            if (resultado.IsSuccess)
+            {
+                List<Empresa> empresas = resultado.Value;
 
-        private Empresa ObtemEmpresaSelecionada()
-        {
-            var id = _listagem.SelecionarIdEmpresa();
+                _listagem.AtualizarRegistrosPessoaJuridica(empresas);
 
-            Empresa empresaSelecionada = _repositorio.SelecionarPorId(id);
-
-            return empresaSelecionada;
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {empresas.Count} empresa(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Carregar listagem",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void Dispose()
@@ -58,56 +58,68 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
         public override void Editar()
         {
-            Empresa empresaSelecionada = ObtemEmpresaSelecionada();
+            var id = _listagem.SelecionarIdEmpresa();
 
-            if (empresaSelecionada == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um cliente primeiro",
-                "Edição de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione uma empresa primeiro",
+                    "Edição de Empresas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaCadastroEmpresaForm tela = new TelaCadastroEmpresaForm();
+            var resultado = _servicoEmpresa.SelecionarPorId(id);
 
-            tela.Empresa = empresaSelecionada;
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Empresas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var empresaSelecionada = resultado.Value;
+
+            var tela = new TelaCadastroEmpresaForm();
+
+            tela.Empresa = empresaSelecionada.Clone();
 
             tela.GravarRegistro = _servicoEmpresa.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
                 CarregarEmpresas();
         }
 
         public override void Excluir()
         {
-            Empresa empresaSelecionada = ObtemEmpresaSelecionada();
+            var id = _listagem.SelecionarIdEmpresa();
 
-            if (empresaSelecionada == null)
+            if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione uma empresa primeiro",
-                "Exclusão de empresa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    "Exclusão de Empresa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir a empresa?",
-                "Exclusão de empresa", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var resultadoSelecao = _servicoEmpresa.SelecionarPorId(id);
 
-            if (resultado == DialogResult.OK)
+            if (resultadoSelecao.IsFailed)
             {
-                try
-                {
-                    _repositorio.Excluir(empresaSelecionada);
-                }
-                catch (Exception e)
-                {
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Empresas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                    MessageBox.Show(e.Message,
-                        "Exclusão de empresa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                
-                CarregarEmpresas();
+            var empresaSelecionada = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir a empresa?", "Exclusão de Empresa",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = _servicoEmpresa.Excluir(empresaSelecionada);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarEmpresas();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Empresas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

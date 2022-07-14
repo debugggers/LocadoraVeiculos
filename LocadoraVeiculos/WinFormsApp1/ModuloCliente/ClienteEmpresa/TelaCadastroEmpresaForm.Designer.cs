@@ -162,7 +162,7 @@
             // txtCnpjEmpresa
             // 
             this.txtCnpjEmpresa.Location = new System.Drawing.Point(12, 318);
-            this.txtCnpjEmpresa.Mask = "00.000.000/0000-00";
+            this.txtCnpjEmpresa.Mask = "99.999.999/9999-99";
             this.txtCnpjEmpresa.Name = "txtCnpjEmpresa";
             this.txtCnpjEmpresa.Size = new System.Drawing.Size(292, 23);
             this.txtCnpjEmpresa.TabIndex = 18;

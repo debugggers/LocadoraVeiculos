@@ -10,8 +10,6 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
     public class ValidadorEmpresa : AbstractValidator<Empresa>
     {
 
-        string t = @"";
-
         public ValidadorEmpresa()
         {
             RuleFor(x => x.Nome)
@@ -36,7 +34,8 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
 
             RuleFor(x => x.CNPJ)
                 .NotNull().WithMessage("O campo CNPJ não pode ficar vazio")
-                .NotEmpty().WithMessage("O campo CNPJ não pode ficar vazio");
+                .NotEmpty().WithMessage("O campo CNPJ não pode ficar vazio")
+                .MinimumLength(14).WithMessage("O campo CNPJ não pode ficar vazio ou incompleto");
 
         }
     }

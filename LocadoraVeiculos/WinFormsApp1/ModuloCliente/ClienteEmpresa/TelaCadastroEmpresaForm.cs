@@ -1,16 +1,6 @@
-﻿using FluentValidation.Results;
-using LocadoraVeiculos.BancoDados.ModuloCliente;
-using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
-using LocadoraVeiculos.Dominio.ModuloCliente;
+﻿using FluentResults;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
@@ -26,7 +16,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
             InitializeComponent();
         }
 
-        public Func<Empresa, ValidationResult> GravarRegistro { get; set; }
+        public Func<Empresa, Result<Empresa>> GravarRegistro { get; set; }
 
         public Empresa Empresa
         {
@@ -57,13 +47,22 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
             var resultadoValidacao = GravarRegistro(empresa);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Empresa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
+
             }
         }
 

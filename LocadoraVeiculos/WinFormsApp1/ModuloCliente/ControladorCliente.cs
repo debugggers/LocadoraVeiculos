@@ -54,11 +54,11 @@ namespace LocadoraVeiculosForm.ModuloCliente
                 return;
             }
 
-            var veiculoSelecionado = resultado.Value;
+            var clienteSelecionado = resultado.Value;
 
             var tela = new TelaCadastroClienteForm(_repositorioEmpresa);
 
-            tela.Cliente = veiculoSelecionado.Clone();
+            tela.Cliente = clienteSelecionado.Clone();
 
             tela.GravarRegistro = _servicoCliente.Editar;
 
@@ -86,12 +86,12 @@ namespace LocadoraVeiculosForm.ModuloCliente
                 return;
             }
 
-            var veiculoSelecionado = resultadoSelecao.Value;
+            var clienteSelecionado = resultadoSelecao.Value;
 
             if (MessageBox.Show("Deseja realmente excluir o cliente?", "Exclusão de Cliente",
                  MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                var resultadoExclusao = _servicoCliente.Excluir(veiculoSelecionado);
+                var resultadoExclusao = _servicoCliente.Excluir(clienteSelecionado);
 
                 if (resultadoExclusao.IsSuccess)
                     CarregarClientes();

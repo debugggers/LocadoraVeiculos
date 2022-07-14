@@ -1,7 +1,11 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa
 {
@@ -14,59 +18,153 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa
             _repositorioEmpresa = repositorioEmpresa;
         }
 
-        public ValidationResult Inserir(Empresa empresa)
+        public Result<Empresa> Inserir(Empresa empresa)
         {
             Log.Logger.Debug("Tentando inserir empresa... {@e}", empresa);
 
-            ValidationResult resultadoValidacao = Validar(empresa);
+            Result resultadoValidacao = Validar(empresa);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir a Empresa {EmpresaId} - {Motivo}",
+                       empresa.Id, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 _repositorioEmpresa.Inserir(empresa);
-                Log.Logger.Debug("Empresa {EmpresaId} inserida com sucesso", empresa.Id);
-            }
-            else
-            {
-                foreach (var item in resultadoValidacao.Errors)
-                {
-                    Log.Logger.Warning("Falha ao inserir a empresa {EmpresaId} - {Motivo}", empresa.Id, item.ErrorMessage);
-                }
-            }                
 
-            return resultadoValidacao;
+                Log.Logger.Information("Empresa {EmpresaId} inserida com sucesso", empresa.Id);
+
+                return Result.Ok(empresa);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar inserir a empresa";
+
+                Log.Logger.Error(ex, msgErro + "{EmpresaId}", empresa.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public ValidationResult Editar(Empresa empresa)
+        public Result<Empresa> Editar(Empresa empresa)
         {
             Log.Logger.Debug("Tentando editar empresa... {@e}", empresa);
 
-            ValidationResult resultadoValidacao = Validar(empresa);
+            Result resultadoValidacao = Validar(empresa);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar a Empresa {EmpresaId} - {Motivo}",
+                       empresa.Id, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 _repositorioEmpresa.Editar(empresa);
-                Log.Logger.Debug("Empresa {EmpresaId} editada com sucesso", empresa.Id);
+
+                Log.Logger.Information("Empresa {EmpresaId} editada com sucesso", empresa.Id);
+
+                return Result.Ok(empresa);
             }
-            else
+            catch (Exception ex)
             {
-                foreach (var item in resultadoValidacao.Errors)
-                {
-                    Log.Logger.Warning("Falha ao editar a empresa {EmpresaId} - {Motivo}", empresa.Id, item.ErrorMessage);
-                }
+                string msgErro = "Falha no sistema ao tentar editar a empresa";
+
+                Log.Logger.Error(ex, msgErro + "{EmpresaId}", empresa.Id);
+
+                return Result.Fail(msgErro);
             }
-                
-            return resultadoValidacao;
         }
 
-        private ValidationResult Validar(Empresa empresa)
+        public Result Excluir(Empresa empresa)
+        {
+            Log.Logger.Debug("Tentando excluir empresa... {@e}", empresa);
+
+            try
+            {
+                _repositorioEmpresa.Excluir(empresa);
+
+                Log.Logger.Information("Empresa {EmpresaId} excluída com sucesso", empresa.Id);
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar excluir a empresa";
+
+                Log.Logger.Error(ex, msgErro + "{EmpresaId}", empresa.Id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result<Empresa> SelecionarPorId(Guid id)
+        {
+
+            try
+            {
+
+                return Result.Ok(_repositorioEmpresa.SelecionarPorId(id));
+
+            }
+            catch (Exception ex)
+            {
+
+                string msgErro = "Falha no sistema ao tentar selecionar a empresa";
+
+                Log.Logger.Error(ex, msgErro + "{EmpresaId}", id);
+
+                return Result.Fail(msgErro);
+
+            }
+        }
+
+        public Result<List<Empresa>> SelecionarTodos()
+        {
+            try
+            {
+                return Result.Ok(_repositorioEmpresa.SelecionarTodos());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar todas as empresas";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        private Result Validar(Empresa empresa)
         {
             var validador = new ValidadorEmpresa();
 
             var resultadoValidacao = validador.Validate(empresa);
 
+            List<Error> erros = new List<Error>();
+
+            foreach (ValidationFailure item in resultadoValidacao.Errors)
+                erros.Add(new Error(item.ErrorMessage));
+
             if (EmpresaDuplicada(empresa))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Empresa", "Empresa encontrada"));
-            return resultadoValidacao;
+                erros.Add(new Error("Empresa duplicada"));
+
+            if (erros.Any())
+                return Result.Fail(erros);
+
+            return Result.Ok();
         }
 
         private bool EmpresaDuplicada(Empresa empresa)
