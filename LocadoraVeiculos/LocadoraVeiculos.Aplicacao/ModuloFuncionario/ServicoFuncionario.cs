@@ -11,9 +11,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
 {
     public class ServicoFuncionario
     {
-        private RepositorioFuncionarioEmBancoDados _repositorioFuncionario;
+        private IRepositorioFuncionario _repositorioFuncionario;
 
-        public ServicoFuncionario(RepositorioFuncionarioEmBancoDados repositorioFuncionario)
+        public ServicoFuncionario(IRepositorioFuncionario repositorioFuncionario)
         {
             _repositorioFuncionario = repositorioFuncionario;
         }

@@ -1,6 +1,5 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
-using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using Serilog;
 using System;
@@ -11,9 +10,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 {
     public class ServicoCliente
     {
-        private RepositorioClienteEmBancoDados _repositorioCliente;
+        private IRepositorioCliente _repositorioCliente;
 
-        public ServicoCliente(RepositorioClienteEmBancoDados repositorioCliente)
+        public ServicoCliente(IRepositorioCliente repositorioCliente)
         {
             _repositorioCliente = repositorioCliente;
         }

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 namespace LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos
 {
     public class RepositorioGrupoVeiculosEmBancoDados : 
-        RepositorioBase<GrupoVeiculos, MapeadorGrupoVeiculos>
+        RepositorioBase<GrupoVeiculos, MapeadorGrupoVeiculos>, IRepositorioGrupoVeiculos
     {
         #region SQL Queries
         protected override string sqlInserir =>

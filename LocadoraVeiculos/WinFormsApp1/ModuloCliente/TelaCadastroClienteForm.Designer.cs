@@ -49,6 +49,9 @@
             this.comboBoxEmpresas = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.checkBoxCondutor = new System.Windows.Forms.CheckBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.labelRodapeCliente = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -235,11 +238,29 @@
             this.checkBoxCondutor.UseVisualStyleBackColor = true;
             this.checkBoxCondutor.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelRodapeCliente});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 369);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(587, 22);
+            this.statusStrip1.TabIndex = 27;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // labelRodapeCliente
+            // 
+            this.labelRodapeCliente.Name = "labelRodapeCliente";
+            this.labelRodapeCliente.Size = new System.Drawing.Size(52, 17);
+            this.labelRodapeCliente.Text = "[rodapé]";
+            // 
             // TelaCadastroClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 358);
+            this.ClientSize = new System.Drawing.Size(587, 391);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.checkBoxCondutor);
             this.Controls.Add(this.comboBoxEmpresas);
             this.Controls.Add(this.label9);
@@ -267,6 +288,8 @@
             this.Name = "TelaCadastroClienteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de pessoas físicas";
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +318,7 @@
         private System.Windows.Forms.ComboBox comboBoxEmpresas;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox checkBoxCondutor;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel labelRodapeCliente;
     }
 }

@@ -11,9 +11,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
 {
     public class ServicoTaxa
     {
-        private RepositorioTaxaEmBancoDados _repositorioTaxa;
+        private IRepositorioTaxa _repositorioTaxa;
 
-        public ServicoTaxa(RepositorioTaxaEmBancoDados repositorioTaxa)
+        public ServicoTaxa(IRepositorioTaxa repositorioTaxa)
         {
             _repositorioTaxa = repositorioTaxa;
         }

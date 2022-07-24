@@ -125,6 +125,8 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
                 {
                     TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
+                    labelRodapeVeiculo.Text = erro;
+
                     DialogResult = DialogResult.None;
                 }
 

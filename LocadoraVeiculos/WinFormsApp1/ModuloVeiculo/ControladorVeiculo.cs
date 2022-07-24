@@ -1,7 +1,5 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
-using LocadoraVeiculos.BancoDados.ModuloVeiculo;
-using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculosForm.Compartilhado;
 using System;
@@ -14,12 +12,11 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
     {
         private ServicoVeiculo _servico;
         private ListagemVeiculosControl _listagem;
-        private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
+        private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
 
-        public ControladorVeiculo(RepositorioGrupoVeiculosEmBancoDados repositorioGrupoVeiculos, ServicoVeiculo servico)
+        public ControladorVeiculo(ServicoVeiculo servico)
         {
             _listagem = new ListagemVeiculosControl();
-            _repositorioGrupoVeiculos = repositorioGrupoVeiculos;
             _servico = servico;
         }
 

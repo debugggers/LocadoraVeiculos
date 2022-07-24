@@ -1,10 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloCliente;
 using System;
-using FluentValidation.Results;
-using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
-using ValidationResult = FluentValidation.Results.ValidationResult;
-using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using System.Collections.Generic;
@@ -17,15 +13,11 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
         Cliente cliente;
         List<Empresa> empresas;
-        RepositorioClienteEmBancoDados repositorio;
-        RepositorioEmpresaBancoDados repositorioEmpresa;
         public TelaCadastroClienteForm(RepositorioEmpresaBancoDados repositorioEmpresa)
         {
             InitializeComponent();
             comboBoxEmpresas.Enabled = false;
             empresas = repositorioEmpresa.SelecionarTodos();
-            repositorio = new RepositorioClienteEmBancoDados();
-            this.repositorioEmpresa = repositorioEmpresa;
         }
 
         public Func<Cliente, Result<Cliente>> GravarRegistro { get; set; }
@@ -90,6 +82,8 @@ namespace LocadoraVeiculosForm.ModuloCliente
                 else
                 {
                     TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    labelRodapeCliente.Text = erro;
 
                     DialogResult = DialogResult.None;
                 }

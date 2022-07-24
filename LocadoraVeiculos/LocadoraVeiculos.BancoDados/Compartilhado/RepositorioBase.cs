@@ -7,7 +7,7 @@ using System.IO;
 
 namespace LocadoraVeiculos.BancoDados.Compartilhado
 {
-    public abstract class RepositorioBase<T, TMapeador>
+    public abstract class RepositorioBase<T, TMapeador> : IRepositorio<T>
         where T : EntidadeBase<T>
         where TMapeador : MapeadorBase<T>, new()
     {

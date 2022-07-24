@@ -1,5 +1,4 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloCliente;
-using LocadoraVeiculos.BancoDados.ModuloCliente;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculosForm.Compartilhado;
@@ -11,20 +10,19 @@ namespace LocadoraVeiculosForm.ModuloCliente
 {
     public class ControladorCliente : ControladorBase
     {
-        private RepositorioEmpresaBancoDados _repositorioEmpresa;
+        private RepositorioEmpresaBancoDados repositorioEmpresa = new RepositorioEmpresaBancoDados();
         private ServicoCliente _servicoCliente;
         private ListagemClientesControl _listagem;
 
-        public ControladorCliente(RepositorioEmpresaBancoDados repositorioEmpresa, ServicoCliente servicoCliente)
+        public ControladorCliente(ServicoCliente servicoCliente)
         {
-            _repositorioEmpresa = repositorioEmpresa;
             _listagem = new ListagemClientesControl();
             _servicoCliente = servicoCliente;
         }
 
         public override void Inserir()
         {
-            var tela = new TelaCadastroClienteForm(_repositorioEmpresa);
+            var tela = new TelaCadastroClienteForm(repositorioEmpresa);
             tela.Cliente = new Cliente();
             tela.GravarRegistro = _servicoCliente.Inserir;
             DialogResult resultado = tela.ShowDialog();
@@ -56,7 +54,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
             var clienteSelecionado = resultado.Value;
 
-            var tela = new TelaCadastroClienteForm(_repositorioEmpresa);
+            var tela = new TelaCadastroClienteForm(repositorioEmpresa);
 
             tela.Cliente = clienteSelecionado.Clone();
 

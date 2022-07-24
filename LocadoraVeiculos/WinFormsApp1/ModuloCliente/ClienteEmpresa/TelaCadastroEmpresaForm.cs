@@ -60,6 +60,8 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
                 {
                     TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
+                    labelRodapeEmpresa.Text = erro; 
+
                     DialogResult = DialogResult.None;
                 }
 

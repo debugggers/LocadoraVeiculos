@@ -12,9 +12,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
 {
     public class ServicoGrupoVeiculos
     {
-        private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
+        private IRepositorioGrupoVeiculos _repositorioGrupoVeiculos;
 
-        public ServicoGrupoVeiculos(RepositorioGrupoVeiculosEmBancoDados repositorioGrupoVeiculos)
+        public ServicoGrupoVeiculos(IRepositorioGrupoVeiculos repositorioGrupoVeiculos)
         {
             _repositorioGrupoVeiculos = repositorioGrupoVeiculos;
         }

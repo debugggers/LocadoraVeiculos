@@ -50,6 +50,8 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
                 {
                     TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
+                    labelRodapeGrupoVeiculos.Text = erro;
+
                     DialogResult = DialogResult.None;
                 }
 

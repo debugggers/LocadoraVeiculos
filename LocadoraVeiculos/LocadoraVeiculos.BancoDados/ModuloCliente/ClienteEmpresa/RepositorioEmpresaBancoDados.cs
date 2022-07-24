@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 namespace LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa
 {
     public class RepositorioEmpresaBancoDados :
-        RepositorioBase<Empresa, MapeadorEmpresa>
+        RepositorioBase<Empresa, MapeadorEmpresa>, IRepositorioEmpresa
     {
         #region SQL Queries        
 

@@ -42,6 +42,9 @@
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.txtTelefoneEmpresa = new System.Windows.Forms.MaskedTextBox();
             this.txtCnpjEmpresa = new System.Windows.Forms.MaskedTextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.labelRodapeEmpresa = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -169,11 +172,29 @@
             this.txtCnpjEmpresa.TabIndex = 18;
             this.txtCnpjEmpresa.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelRodapeEmpresa});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 450);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(532, 22);
+            this.statusStrip1.TabIndex = 28;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // labelRodapeEmpresa
+            // 
+            this.labelRodapeEmpresa.Name = "labelRodapeEmpresa";
+            this.labelRodapeEmpresa.Size = new System.Drawing.Size(52, 17);
+            this.labelRodapeEmpresa.Text = "[rodapé]";
+            // 
             // TelaCadastroEmpresaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 430);
+            this.ClientSize = new System.Drawing.Size(532, 472);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.txtCnpjEmpresa);
             this.Controls.Add(this.txtTelefoneEmpresa);
             this.Controls.Add(this.btnCadastrar);
@@ -194,6 +215,8 @@
             this.Name = "TelaCadastroEmpresaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de pessoas jurídicas";
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +238,7 @@
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.MaskedTextBox txtTelefoneEmpresa;
         private System.Windows.Forms.MaskedTextBox txtCnpjEmpresa;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel labelRodapeEmpresa;
     }
 }
