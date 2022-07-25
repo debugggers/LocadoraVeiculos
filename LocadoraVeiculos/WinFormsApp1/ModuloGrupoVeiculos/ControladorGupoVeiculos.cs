@@ -60,7 +60,7 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
 
             var tela = new TelaCadastroGupoVeiculosForm();
 
-            tela.GrupoVeiculos = grupodeVeiculosSelecionado.Clone();
+            tela.GrupoVeiculos = grupodeVeiculosSelecionado;
 
             tela.GravarRegistro = _servicoGrupoVeiculos.Editar;
 

@@ -56,7 +56,7 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
             var tela = new TelaCadastroVeiculosForm(_repositorioGrupoVeiculos);
 
-            tela.Veiculo = veiculoSelecionado.Clone();
+            tela.Veiculo = veiculoSelecionado;
 
             tela.GravarRegistro = _servico.Editar;
 

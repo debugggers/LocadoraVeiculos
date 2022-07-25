@@ -50,10 +50,6 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
                 .NotNull().WithMessage("O campo grupo de veiculos não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo grupo de veiculos não pode ficar vazio");
 
-            RuleFor(x => x.TipoCombustivel)
-                .NotNull().WithMessage("O campo tipo combustivel não pode ficar vazio")
-                .NotEmpty().WithMessage("O campo tipo combustivel não pode ficar vazio");
-
         }
     }
 }

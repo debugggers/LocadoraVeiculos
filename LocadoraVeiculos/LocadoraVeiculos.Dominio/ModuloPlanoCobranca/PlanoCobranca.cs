@@ -10,12 +10,12 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         {
         }
 
-        public PlanoCobranca(GrupoVeiculos grupoVeiculos, Guid idGrupoVeiculos, 
+        public PlanoCobranca(GrupoVeiculos grupoVeiculos, Guid grupoVeiculosId, 
             decimal valorDiarioDiario, decimal valorPorKmDiario, decimal valorDiarioLivre, 
             decimal valorDiarioControlado, decimal valorPorKmControlado, int controleKm)
         {
             GrupoVeiculos = grupoVeiculos;
-            IdGrupoVeiculos = idGrupoVeiculos;
+            GrupoVeiculosId = grupoVeiculosId;
             ValorDiario_Diario = valorDiarioDiario;
             ValorPorKm_Diario = valorPorKmDiario;
             ValorDiario_Livre = valorDiarioLivre;
@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
         }
 
         public GrupoVeiculos GrupoVeiculos { get; set; }
-        public Guid IdGrupoVeiculos { get; set; }
+        public Guid GrupoVeiculosId { get; set; }
         public decimal ValorDiario_Diario { get; set; }
         public decimal ValorPorKm_Diario { get; set; }
         public decimal ValorDiario_Livre { get; set; }
@@ -49,11 +49,6 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
                 planoCobranca.ValorPorKm_Controlado.Equals(ValorPorKm_Controlado) &&
                 planoCobranca.ControleKm.Equals(ControleKm) &&
                 planoCobranca.GrupoVeiculos.Equals(GrupoVeiculos);
-        }
-
-        public PlanoCobranca Clone()
-        {
-            return MemberwiseClone() as PlanoCobranca;
         }
     }
 }

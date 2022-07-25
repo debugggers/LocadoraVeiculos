@@ -55,7 +55,7 @@ namespace LocadoraVeiculosForm.ModuloTaxa
 
             var tela = new TelaCadastroTaxaForm();
 
-            tela.Taxa = taxaSelecionada.Clone();
+            tela.Taxa = taxaSelecionada;
 
             tela.GravarRegistro = _servicoTaxa.Editar;
 

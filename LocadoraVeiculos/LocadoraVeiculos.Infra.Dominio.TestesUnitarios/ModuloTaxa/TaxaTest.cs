@@ -78,20 +78,5 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloTaxa
             //assert
             Assert.AreEqual("'Valor' deve ser informado.", resultado.Errors[2].ErrorMessage);
         }
-
-        [TestMethod]
-        public void Tipo_de_calculo_da_taxa_deve_ser_obrigatorio()
-        {
-            //arrange
-            var taxa = new Taxa();
-
-            var validador = new ValidadorTaxa();
-
-            //action
-            var resultado = validador.Validate(taxa);
-
-            //assert
-            Assert.AreEqual("'Tipo Calculo' deve ser informado.", resultado.Errors[3].ErrorMessage);
-        }
     }
 }

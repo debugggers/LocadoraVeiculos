@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using System;
 using System.Drawing;
 
 namespace LocadoraVeiculos.Dominio.ModuloVeiculo
@@ -17,16 +18,10 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
         public int QuilometragemPercorrida { get; set; }
         public Bitmap Foto { get; set; }
         public GrupoVeiculos GrupoVeiculo { get; set; }
+        public Guid? GrupoVeiculoId { get; set; }
 
         public Veiculo()
         {
-
-        }
-
-        public Veiculo Clone()
-        {
-
-            return MemberwiseClone() as Veiculo;
 
         }
 

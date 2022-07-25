@@ -15,16 +15,10 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
         public string CnhNome { get; set; }
         public DateTime CnhVencimento { get; set; }
         public Empresa Empresa { get; set; }
+        public Guid? EmpresaId { get; set; }
 
         public Cliente()
         {
-        }
-
-        public Cliente Clone()
-        {
-
-            return MemberwiseClone() as Cliente;
-
         }
 
         public Cliente(string nome, string email, string telefone, string endereco, 

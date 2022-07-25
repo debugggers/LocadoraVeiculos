@@ -64,7 +64,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
 
             //action
             _planoCobranca.GrupoVeiculos = _grupoVeiculos2;
-            _planoCobranca.IdGrupoVeiculos = _grupoVeiculos2.Id;
+            _planoCobranca.GrupoVeiculosId = _grupoVeiculos2.Id;
             _planoCobranca.ValorDiario_Diario = 60.00m;
             _planoCobranca.ValorPorKm_Diario = 6.00m;
             _planoCobranca.ValorDiario_Livre = 70.00m;

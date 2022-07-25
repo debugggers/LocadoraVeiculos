@@ -80,7 +80,7 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
 
             var tela = new TelaCadastroEmpresaForm();
 
-            tela.Empresa = empresaSelecionada.Clone();
+            tela.Empresa = empresaSelecionada;
 
             tela.GravarRegistro = _servicoEmpresa.Editar;
 

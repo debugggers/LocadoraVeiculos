@@ -135,7 +135,7 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
             _planoCobranca.ControleKm = Convert.ToInt32(txtControleKm.Text);
 
             _planoCobranca.GrupoVeiculos = (GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem;
-            _planoCobranca.IdGrupoVeiculos = _planoCobranca.GrupoVeiculos.Id;
+            _planoCobranca.GrupoVeiculosId = _planoCobranca.GrupoVeiculos.Id;
         }
 
         private void CarregarFormularioTipoPlano()

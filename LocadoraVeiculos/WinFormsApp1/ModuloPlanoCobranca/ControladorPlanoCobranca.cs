@@ -54,7 +54,7 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
 
             var tela = new TelaCadastroPlanoCobrancaForm();
 
-            tela.PlanoCobranca = planoCobrancaSelecionado.Clone();
+            tela.PlanoCobranca = planoCobrancaSelecionado;
 
             tela.GravarRegistro = _servicoPlanoCobranca.Editar;
 

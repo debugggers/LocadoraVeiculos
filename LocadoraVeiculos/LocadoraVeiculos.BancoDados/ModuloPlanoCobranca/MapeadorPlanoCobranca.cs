@@ -31,7 +31,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
                 ValorPorKm_Controlado = valorPorKmControlado,
                 ControleKm = controleKm,
 
-                IdGrupoVeiculos = grupoVeiculos_Id,
+                GrupoVeiculosId = grupoVeiculos_Id,
                 GrupoVeiculos = new GrupoVeiculos
                 {
                     Id = grupoVeiculos_Id,
@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
             comando.Parameters.AddWithValue("VALORDIARIO_CONTROLADO", novoPlanoCobranca.ValorDiario_Controlado);
             comando.Parameters.AddWithValue("VALORPORKM_CONTROLADO", novoPlanoCobranca.ValorPorKm_Controlado);
             comando.Parameters.AddWithValue("CONTROLEKM_CONTROLADO", novoPlanoCobranca.ControleKm);
-            comando.Parameters.AddWithValue("GRUPOVEICULOS_ID", novoPlanoCobranca.IdGrupoVeiculos);
+            comando.Parameters.AddWithValue("GRUPOVEICULOS_ID", novoPlanoCobranca.GrupoVeiculosId);
         }
     }
 }

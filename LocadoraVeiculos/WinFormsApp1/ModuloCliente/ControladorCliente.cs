@@ -56,7 +56,7 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
             var tela = new TelaCadastroClienteForm(repositorioEmpresa);
 
-            tela.Cliente = clienteSelecionado.Clone();
+            tela.Cliente = clienteSelecionado; 
 
             tela.GravarRegistro = _servicoCliente.Editar;
 

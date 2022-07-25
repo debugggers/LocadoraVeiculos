@@ -37,7 +37,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Banco de Dados", "Banco de 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{7BF1B753-6931-42EA-87AB-55DF84F2D624}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Infra.Logging", "LocadoraVeiculos.Infra.Logging\LocadoraVeiculos.Infra.Logging.csproj", "{0161C3C8-2AA2-410D-9CA2-B06743D58F10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Infra.Logging", "LocadoraVeiculos.Infra.Logging\LocadoraVeiculos.Infra.Logging.csproj", "{0161C3C8-2AA2-410D-9CA2-B06743D58F10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orm", "Orm", "{927AFFF4-8FA2-427A-AF56-0741A21B84A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Infra.Orm", "LocadoraVeiculos.Infra.Orm\LocadoraVeiculos.Infra.Orm.csproj", "{644A1CC9-78DD-4268-9979-4447C19C470E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +89,10 @@ Global
 		{0161C3C8-2AA2-410D-9CA2-B06743D58F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0161C3C8-2AA2-410D-9CA2-B06743D58F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0161C3C8-2AA2-410D-9CA2-B06743D58F10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{644A1CC9-78DD-4268-9979-4447C19C470E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{644A1CC9-78DD-4268-9979-4447C19C470E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{644A1CC9-78DD-4268-9979-4447C19C470E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{644A1CC9-78DD-4268-9979-4447C19C470E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +111,8 @@ Global
 		{94261DB7-59AF-449E-80B7-9CB22209F392} = {72DEBEA7-2F47-41D7-BC9E-61D9FC9B8DBC}
 		{7BF1B753-6931-42EA-87AB-55DF84F2D624} = {72DEBEA7-2F47-41D7-BC9E-61D9FC9B8DBC}
 		{0161C3C8-2AA2-410D-9CA2-B06743D58F10} = {7BF1B753-6931-42EA-87AB-55DF84F2D624}
+		{927AFFF4-8FA2-427A-AF56-0741A21B84A9} = {94261DB7-59AF-449E-80B7-9CB22209F392}
+		{644A1CC9-78DD-4268-9979-4447C19C470E} = {927AFFF4-8FA2-427A-AF56-0741A21B84A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED9A4A41-EB3C-44C6-B76B-61A5AAEBE41F}
