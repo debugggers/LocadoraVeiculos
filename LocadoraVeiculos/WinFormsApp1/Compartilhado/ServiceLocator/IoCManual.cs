@@ -15,6 +15,7 @@ using LocadoraVeiculosForm.ModuloGrupoVeiculos;
 using LocadoraVeiculosForm.ModuloPlanoCobranca;
 using LocadoraVeiculosForm.ModuloTaxa;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -22,7 +23,6 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
 {
     public class IoCManual : IServiceLocator
     {
-
         private Dictionary<string, ControladorBase> controladores;
 
         public IoCManual()
@@ -34,7 +34,6 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
 
         private void ConfigurarControladores()
         {
-
             var configuracao = new ConfigurationBuilder()
                  .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile("ConfiguracaoAplicacao.json")
@@ -47,23 +46,23 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
             //var repositorioDisciplina = new RepositorioDisciplinaEmArquivo(contextoDados);
             var repositorioEmpresa = new RepositorioEmpresaOrm(contextoDadosOrm);
             var servicoEmpresa = new ServicoEmpresa(repositorioEmpresa, contextoDadosOrm);
-            controladores.Add("ControladorEmpresa", new ControladorEmpresa(servicoEmpresa));
+            controladores.Add(typeof(ControladorEmpresa).Name, new ControladorEmpresa(servicoEmpresa));
 
             var repositorioFuncionario = new RepositorioFuncionarioOrm(contextoDadosOrm);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, contextoDadosOrm);
-            controladores.Add("ControladorFuncionario", new ControladorFuncionario(servicoFuncionario));
+            controladores.Add(typeof(ControladorFuncionario).Name, new ControladorFuncionario(servicoFuncionario));
 
             var repositorioTaxa = new RepositorioTaxaOrm(contextoDadosOrm);
             var servicoTaxa = new ServicoTaxa(repositorioTaxa, contextoDadosOrm);
-            controladores.Add("ControladorTaxa", new ControladorTaxa(servicoTaxa));
+            controladores.Add(typeof(ControladorTaxa).Name, new ControladorTaxa(servicoTaxa));
 
             var repositorioGrupoVeiculos = new RepositorioGrupoVeiculoOrm(contextoDadosOrm);
             var servicoGrupoVeiculo = new ServicoGrupoVeiculos(repositorioGrupoVeiculos, contextoDadosOrm);
-            controladores.Add("ControladorGupoVeiculos", new ControladorGupoVeiculos(servicoGrupoVeiculo));
+            controladores.Add(typeof(ControladorGupoVeiculos).Name, new ControladorGupoVeiculos(servicoGrupoVeiculo));
 
             var repositorioPlanoCobranca = new RepositorioPlanoCobrancaOrm(contextoDadosOrm);
             var servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, contextoDadosOrm);
-            controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(servicoPlanoCobranca));
+            controladores.Add(typeof(ControladorPlanoCobranca).Name, new ControladorPlanoCobranca(servicoPlanoCobranca, servicoGrupoVeiculo));
         }
 
         public T Get<T>() where T : ControladorBase

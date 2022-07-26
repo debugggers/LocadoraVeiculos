@@ -1,7 +1,9 @@
 ﻿using FluentResults;
-using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
+using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
+using LocadoraVeiculosForm.Compartilhado.ServiceLocator;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -13,13 +15,14 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
     {
         private PlanoCobranca _planoCobranca;
         private List<GrupoVeiculos> _gruposVeiculos;
-        private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos = new();
+        private ServicoGrupoVeiculos _servicoGrupoVeiculos;
 
-        public TelaCadastroPlanoCobrancaForm()
+        public TelaCadastroPlanoCobrancaForm(ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
             InitializeComponent();
 
-            _gruposVeiculos = _repositorioGrupoVeiculos.SelecionarTodos();
+            _servicoGrupoVeiculos = servicoGrupoVeiculos;
+            _gruposVeiculos = _servicoGrupoVeiculos.SelecionarTodos().Value;
 
             CarregarGrupoVeiculos();
         }
