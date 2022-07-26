@@ -6,7 +6,6 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloFuncionario
 {
     public class MapeadorFuncionarioOrm : IEntityTypeConfiguration<Funcionario>
     {
-
         public DbSet<Funcionario> Funcionarios { get; set; }
 
         public void Configure(EntityTypeBuilder<Funcionario> builder)
