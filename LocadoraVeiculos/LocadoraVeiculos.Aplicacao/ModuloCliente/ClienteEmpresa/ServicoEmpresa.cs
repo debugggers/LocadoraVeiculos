@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using Serilog;
 using System;
@@ -11,10 +12,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa
     public class ServicoEmpresa
     {
         private IRepositorioEmpresa _repositorioEmpresa;
+        private IContext context;
 
-        public ServicoEmpresa(IRepositorioEmpresa repositorioEmpresa)
+        public ServicoEmpresa(IRepositorioEmpresa repositorioEmpresa, IContext context)
         {
             _repositorioEmpresa = repositorioEmpresa;
+            this.context = context;
         }
 
         public Result<Empresa> Inserir(Empresa empresa)
@@ -37,6 +40,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa
             try
             {
                 _repositorioEmpresa.Inserir(empresa);
+
+                context.GravarDados();
 
                 Log.Logger.Information("Empresa {EmpresaId} inserida com sucesso", empresa.Id);
 
@@ -73,6 +78,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa
             {
                 _repositorioEmpresa.Editar(empresa);
 
+                context.GravarDados();
+
                 Log.Logger.Information("Empresa {EmpresaId} editada com sucesso", empresa.Id);
 
                 return Result.Ok(empresa);
@@ -94,6 +101,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa
             try
             {
                 _repositorioEmpresa.Excluir(empresa);
+
+                context.GravarDados();
 
                 Log.Logger.Information("Empresa {EmpresaId} excluída com sucesso", empresa.Id);
 

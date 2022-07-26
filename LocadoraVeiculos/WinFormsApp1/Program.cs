@@ -21,7 +21,7 @@ namespace LocadoraVeiculosForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var serviceLocator = new IoCAutoFac();
+            var serviceLocator = new IoCManual();
 
             Application.Run(new TelaMenuPrincipalForm(serviceLocator));
         }

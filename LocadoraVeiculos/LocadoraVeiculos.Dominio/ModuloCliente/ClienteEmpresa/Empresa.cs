@@ -14,7 +14,6 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
         public string Telefone { get; set; }
         public string Endereco { get; set; }
         public string CNPJ { get; set; }
-        public List<Cliente> Clientes { get; set; }
 
         public Empresa()
         {
@@ -38,8 +37,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
                   Telefone == empresa.Telefone &&
                   Email == empresa.Email &&
                   Endereco == empresa.Endereco &&
-                  CNPJ == empresa.CNPJ &&
-                  Clientes == empresa.Clientes;
+                  CNPJ == empresa.CNPJ;
         }
 
         public override string ToString()

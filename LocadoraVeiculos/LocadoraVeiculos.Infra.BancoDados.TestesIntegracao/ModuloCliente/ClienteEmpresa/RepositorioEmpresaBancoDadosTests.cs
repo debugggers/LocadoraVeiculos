@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,6 +13,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
         private Empresa _empresa;
         private RepositorioEmpresaBancoDados _repositorioEmpresa;
         private ServicoEmpresa _servicoEmpresa;
+        private IContext contexto;
 
         public RepositorioEmpresaBancoDadosTests()
         {
@@ -25,7 +27,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente.Clien
             };
 
             _repositorioEmpresa = new RepositorioEmpresaBancoDados();
-            _servicoEmpresa = new ServicoEmpresa(_repositorioEmpresa);
+            _servicoEmpresa = new ServicoEmpresa(_repositorioEmpresa, contexto);
         }
 
         [TestCleanup()]

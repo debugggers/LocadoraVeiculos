@@ -29,8 +29,6 @@ namespace LocadoraVeiculos.Infra.Orm.Compartilhado
 
         //public DbSet<Cliente> Clientes { get; set; }
 
-        //public DbSet<Empresa> Empresas { get; set; }
-
         //public DbSet<GrupoVeiculos> Grupos { get; set; }
 
         //public DbSet<PlanoCobranca> PlanoCobrancas { get; set; }
@@ -74,20 +72,6 @@ namespace LocadoraVeiculos.Infra.Orm.Compartilhado
             //    entidade.HasOne(x => x.Empresa);
 
             //});
-
-            //modelBuilder.Entity<Empresa>(entidade =>
-            //{
-
-            //    entidade.ToTable("TBEmpresa");
-            //    entidade.Property(x => x.Id).ValueGeneratedNever();
-            //    entidade.Property(x => x.Nome).HasColumnType("Varchar(100)").IsRequired();
-            //    entidade.Property(x => x.Email).HasColumnType("Varchar(100)").IsRequired();
-            //    entidade.Property(x => x.Telefone).HasColumnType("Varchar(20)").IsRequired();
-            //    entidade.Property(x => x.Endereco).HasColumnType("Varchar(100)").IsRequired();
-            //    entidade.Property(x => x.CNPJ).HasColumnType("Varchar(20)").IsRequired();
-
-            //});
-
 
             //modelBuilder.Entity<GrupoVeiculos>(entidade =>
             //{
