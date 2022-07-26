@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
 {
-    public class MapeadorGrupoVeiculoOrm : IEntityTypeConfiguration<GrupoVeiculos>
+    public class MapeadorGrupoVeiculoOrm //: IEntityTypeConfiguration<GrupoVeiculos>
     {
-        public void Configure(EntityTypeBuilder<GrupoVeiculos> builder)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public void Configure(EntityTypeBuilder<GrupoVeiculos> builder)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
     }
 }
