@@ -14,12 +14,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloTaxa
         private Taxa _taxa;
         private RepositorioTaxaEmBancoDados _repositorioTaxa;
         private ServicoTaxa _servicoTaxa;
+        private IContext contexto;
 
         public RepositorioTaxaEmBancoDadosTest()
         {
             _taxa = new Taxa("Cadeira de bebe", 50.00m, TipoCalculoEnum.CalculoDiario);
             _repositorioTaxa = new RepositorioTaxaEmBancoDados();
-            _servicoTaxa = new ServicoTaxa(_repositorioTaxa);
+            _servicoTaxa = new ServicoTaxa(_repositorioTaxa, contexto);
         }
 
         [TestCleanup()]

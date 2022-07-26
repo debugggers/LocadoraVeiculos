@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloFuncionario;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -13,12 +14,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         private Funcionario _funcionario;
         private RepositorioFuncionarioEmBancoDados _repositorioFuncionario;
         private ServicoFuncionario _servicoFuncionario;
+        private IContext contexto;
 
         public RepositorioFuncionarioEmBancoDadosTest()
         {
             _funcionario = new Funcionario("Tatiane Mossi", "tatimossi", "12345", new DateTime(2022, 02, 02), 2000.00m, true);
             _repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
-            _servicoFuncionario = new ServicoFuncionario(_repositorioFuncionario);
+            _servicoFuncionario = new ServicoFuncionario(_repositorioFuncionario, contexto);
         }
 
         [TestCleanup()]
