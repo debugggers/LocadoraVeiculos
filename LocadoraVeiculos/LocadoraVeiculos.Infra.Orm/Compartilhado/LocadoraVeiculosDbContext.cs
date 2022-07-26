@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloCliente;
+﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
@@ -11,7 +12,7 @@ using Serilog;
 
 namespace LocadoraVeiculos.Infra.Orm.Compartilhado
 {
-    public class LocadoraVeiculosDbContext : DbContext
+    public class LocadoraVeiculosDbContext : DbContext, IContext
     {
 
         private string connectionString;
