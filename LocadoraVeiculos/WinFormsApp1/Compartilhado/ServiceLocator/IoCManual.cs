@@ -1,10 +1,13 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
+using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente.ModuloEmpresa;
 using LocadoraVeiculos.Infra.Orm.ModuloFuncionario;
+using LocadoraVeiculos.Infra.Orm.ModuloTaxa;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculosForm.ModuloFuncionario;
+using LocadoraVeiculosForm.ModuloTaxa;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
@@ -44,6 +47,9 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, contextoDadosOrm);
             controladores.Add("ControladorFuncionario", new ControladorFuncionario(servicoFuncionario));
 
+            var repositorioTaxa = new RepositorioTaxaOrm(contextoDadosOrm);
+            var servicoTaxa = new ServicoTaxa(repositorioTaxa, contextoDadosOrm);
+            controladores.Add("ControladorTaxa", new ControladorTaxa(servicoTaxa));
         }
 
         public T Get<T>() where T : ControladorBase

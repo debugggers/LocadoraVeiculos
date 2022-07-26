@@ -1,39 +1,51 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloTaxa;
+using LocadoraVeiculos.Infra.Orm.Compartilhado;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraVeiculos.Infra.Orm.ModuloTaxa
 {
     public class RepositorioTaxaOrm : IRepositorioTaxa
     {
-        public void Editar(Taxa registro)
-        {
-            throw new NotImplementedException();
-        }
+        private DbSet<Taxa> _taxas;
+        private readonly LocadoraVeiculosDbContext _dbContext;
 
-        public void Excluir(Taxa registro)
+        public RepositorioTaxaOrm(LocadoraVeiculosDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+            _taxas = dbContext.Set<Taxa>();
         }
 
         public void Inserir(Taxa novoRegistro)
         {
-            throw new NotImplementedException();
+            _taxas.Add(novoRegistro);
         }
 
-        public Taxa SelecionarPorId(Guid id)
+        public void Editar(Taxa registro)
         {
-            throw new NotImplementedException();
+            _taxas.Update(registro);
+        }
+
+        public void Excluir(Taxa registro)
+        {
+            _taxas.Remove(registro);
         }
 
         public Taxa SelecionarTaxaPorDescricao(string descricao)
         {
-            throw new NotImplementedException();
+            return _taxas.FirstOrDefault(x => x.Descricao == descricao);
+        }
+
+        public Taxa SelecionarPorId(Guid id)
+        {
+            return _taxas.SingleOrDefault(x => x.Id == id);
         }
 
         public List<Taxa> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return _taxas.ToList();
         }
     }
 }
