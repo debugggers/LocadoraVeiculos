@@ -3,6 +3,6 @@
     "DiretorioSaida": "C:\\logs"
   },
   "ConnectionStrings": {
-    "SqlServer": "Data Source=(LocalDB)\\MSSQLLOCALDB;Initial Catalog=locadoraVeiculosDb;Integrated Security=True" //Produção
+    "SqlServer": "Data Source=(LocalDB)\\MSSQLLOCALDB;Initial Catalog=locadoraVeiculosOrmDb;Integrated Security=True" //Produção
   }
 }
