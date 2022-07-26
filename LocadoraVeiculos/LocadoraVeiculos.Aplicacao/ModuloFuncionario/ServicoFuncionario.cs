@@ -1,6 +1,6 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
-using LocadoraVeiculos.BancoDados.ModuloFuncionario;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using Serilog;
 using System;
@@ -12,10 +12,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
     public class ServicoFuncionario
     {
         private IRepositorioFuncionario _repositorioFuncionario;
+        private IContext _context;
 
-        public ServicoFuncionario(IRepositorioFuncionario repositorioFuncionario)
+        public ServicoFuncionario(IRepositorioFuncionario repositorioFuncionario, IContext context)
         {
             _repositorioFuncionario = repositorioFuncionario;
+            _context = context;
         }
 
         public Result<Funcionario> Inserir(Funcionario funcionario)
@@ -37,6 +39,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             try
             {
                 _repositorioFuncionario.Inserir(funcionario);
+
+                _context.GravarDados();
+
                 Log.Logger.Information("Funcionário {FuncionarioId} inserido com sucesso", funcionario.Id);
 
                 return Result.Ok(funcionario);
@@ -70,6 +75,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             try
             {
                 _repositorioFuncionario.Editar(funcionario);
+
+                _context.GravarDados();
+
                 Log.Logger.Information("Funcionário {FuncionarioId} editado com sucesso", funcionario.Id);
 
                 return Result.Ok(funcionario);
@@ -91,6 +99,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             try
             {
                 _repositorioFuncionario.Excluir(funcionario);
+
+                _context.GravarDados();
+
                 Log.Logger.Information("Funcionário {FuncionarioId} excluído com sucesso", funcionario.Id);
 
                 return Result.Ok();
@@ -148,7 +159,6 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
             foreach (ValidationFailure item in resultadoValidacao.Errors)
             {
                 Log.Logger.Warning(item.ErrorMessage);
-
                 erros.Add(new Error(item.ErrorMessage));
             }
 

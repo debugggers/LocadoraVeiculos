@@ -1,7 +1,10 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente.ModuloEmpresa;
+using LocadoraVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculosForm.ModuloFuncionario;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
@@ -36,6 +39,10 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
             var repositorioEmpresa = new RepositorioEmpresaOrm(contextoDadosOrm);
             var servicoEmpresa = new ServicoEmpresa(repositorioEmpresa, contextoDadosOrm);
             controladores.Add("ControladorEmpresa", new ControladorEmpresa(servicoEmpresa));
+
+            var repositorioFuncionario = new RepositorioFuncionarioOrm(contextoDadosOrm);
+            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, contextoDadosOrm);
+            controladores.Add("ControladorFuncionario", new ControladorFuncionario(servicoFuncionario));
 
         }
 
