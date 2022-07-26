@@ -1,6 +1,6 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
-using LocadoraVeiculos.BancoDados.ModuloPlanoCobranca;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using Serilog;
 using System;
@@ -12,10 +12,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
     public class ServicoPlanoCobranca
     {
         private IRepositorioPlanoCobranca _repositorioPlanoCobranca;
+        private IContext _context;
 
-        public ServicoPlanoCobranca(IRepositorioPlanoCobranca repositorioPlanoCobranca)
+        public ServicoPlanoCobranca(IRepositorioPlanoCobranca repositorioPlanoCobranca, IContext context)
         {
             _repositorioPlanoCobranca = repositorioPlanoCobranca;
+            _context = context;
         }
 
         public Result<PlanoCobranca> Inserir(PlanoCobranca planoCobranca)
@@ -37,6 +39,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             try
             {
                 _repositorioPlanoCobranca.Inserir(planoCobranca);
+
+                _context.GravarDados();
+
                 Log.Logger.Information("Plano de Cobrança {PlanoCobrancaId} inserido com sucesso", planoCobranca.Id);
 
                 return Result.Ok(planoCobranca);
@@ -70,6 +75,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             try
             {
                 _repositorioPlanoCobranca.Editar(planoCobranca);
+
+                _context.GravarDados();
+
                 Log.Logger.Information("Plano de Cobrança {PlanoCobrancaId} editado com sucesso", planoCobranca.Id);
 
                 return Result.Ok(planoCobranca);
@@ -91,6 +99,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
             try
             {
                 _repositorioPlanoCobranca.Excluir(planoCobranca);
+
+                _context.GravarDados();
+
                 Log.Logger.Information("Plano de Cobrança {PlanoCobrancaId} excluído com sucesso", planoCobranca.Id);
 
                 return Result.Ok();

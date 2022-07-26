@@ -19,6 +19,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
         private RepositorioPlanoCobrancaEmBancoDados _repositorioPlanoCobranca;
         private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
         private ServicoPlanoCobranca _servicoPlanoCobranca;
+        private IContext _contexto;
 
         public RepositorioPlanoCobrancaEmBancoDadosTest()
         {
@@ -32,7 +33,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloPlanoCobranca
 
             _planoCobranca = new PlanoCobranca(_grupoVeiculos, _grupoVeiculos.Id, 50.00m, 5.00m, 100.00m, 50.00m, 3.00m, 54667);
             _repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmBancoDados();
-            _servicoPlanoCobranca = new ServicoPlanoCobranca(_repositorioPlanoCobranca);
+            _servicoPlanoCobranca = new ServicoPlanoCobranca(_repositorioPlanoCobranca, _contexto);
         }
 
         [TestCleanup()]
