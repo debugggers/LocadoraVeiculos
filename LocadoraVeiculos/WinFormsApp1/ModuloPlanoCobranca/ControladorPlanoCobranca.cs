@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
+﻿using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculosForm.Compartilhado;
 using System;
@@ -11,15 +12,18 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
     {
         private ListagemPlanoCobrancaControl _listagemPlanoCobranca;
         private ServicoPlanoCobranca _servicoPlanoCobranca;
+        private ServicoGrupoVeiculos _servicoGrupoVeiculos;
 
-        public ControladorPlanoCobranca(ServicoPlanoCobranca servicoPlanoCobranca)
+        public ControladorPlanoCobranca(ServicoPlanoCobranca servicoPlanoCobranca, ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
             _listagemPlanoCobranca = new ListagemPlanoCobrancaControl();
             _servicoPlanoCobranca = servicoPlanoCobranca;
+            _servicoGrupoVeiculos = servicoGrupoVeiculos;
         }
+
         public override void Inserir()
         {
-            TelaCadastroPlanoCobrancaForm tela = new TelaCadastroPlanoCobrancaForm();
+            TelaCadastroPlanoCobrancaForm tela = new TelaCadastroPlanoCobrancaForm(_servicoGrupoVeiculos);
             tela.PlanoCobranca = new PlanoCobranca();
 
             tela.GravarRegistro = _servicoPlanoCobranca.Inserir;
@@ -52,7 +56,7 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
 
             var planoCobrancaSelecionado = resultado.Value;
 
-            var tela = new TelaCadastroPlanoCobrancaForm();
+            var tela = new TelaCadastroPlanoCobrancaForm(_servicoGrupoVeiculos);
 
             tela.PlanoCobranca = planoCobrancaSelecionado;
 
