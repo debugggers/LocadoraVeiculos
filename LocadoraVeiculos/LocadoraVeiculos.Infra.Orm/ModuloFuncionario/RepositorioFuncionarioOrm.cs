@@ -1,44 +1,60 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloFuncionario;
+using LocadoraVeiculos.Infra.Orm.Compartilhado;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraVeiculos.Infra.Orm.ModuloFuncionario
 {
     public class RepositorioFuncionarioOrm : IRepositorioFuncionario
     {
-        public void Editar(Funcionario registro)
-        {
-            throw new NotImplementedException();
-        }
+        private DbSet<Funcionario> _funcionarios;
+        private readonly LocadoraVeiculosDbContext _dbContext;
 
-        public void Excluir(Funcionario registro)
+        public RepositorioFuncionarioOrm(LocadoraVeiculosDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+            _funcionarios = dbContext.Set<Funcionario>();
         }
 
         public void Inserir(Funcionario novoRegistro)
         {
-            throw new NotImplementedException();
+            _funcionarios.Add(novoRegistro);
+        }
+
+        public void Editar(Funcionario registro)
+        {
+            _funcionarios.Update(registro);
+        }
+
+        public void Excluir(Funcionario registro)
+        {
+            _funcionarios.Remove(registro);
         }
 
         public Funcionario SelecionarFuncionarioPorLogin(string login)
         {
-            throw new NotImplementedException();
+            return _funcionarios.FirstOrDefault(x => x.Login == login);
         }
 
         public Funcionario SelecionarFuncionarioPorNome(string nome)
         {
-            throw new NotImplementedException();
+            return _funcionarios.FirstOrDefault(x => x.Nome == nome);
         }
 
         public Funcionario SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            //cache
+            //return disciplinas.Find(id);
+
+            //executa a query no banco
+            return _funcionarios.SingleOrDefault(x => x.Id == id);
         }
 
         public List<Funcionario> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return _funcionarios.ToList();
         }
     }
 }
