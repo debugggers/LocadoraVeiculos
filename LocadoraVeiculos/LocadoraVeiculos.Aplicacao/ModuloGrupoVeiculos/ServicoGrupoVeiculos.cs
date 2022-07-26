@@ -13,10 +13,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
     public class ServicoGrupoVeiculos
     {
         private IRepositorioGrupoVeiculos _repositorioGrupoVeiculos;
+        private IContext context;
 
-        public ServicoGrupoVeiculos(IRepositorioGrupoVeiculos repositorioGrupoVeiculos)
+        public ServicoGrupoVeiculos(IRepositorioGrupoVeiculos repositorioGrupoVeiculos, IContext context)
         {
             _repositorioGrupoVeiculos = repositorioGrupoVeiculos;
+            this.context = context;
         }
 
         public Result<GrupoVeiculos> Inserir(GrupoVeiculos grupoVeiculos)
@@ -39,6 +41,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             try
             {
                 _repositorioGrupoVeiculos.Inserir(grupoVeiculos);
+
+                context.GravarDados();
 
                 Log.Logger.Information("Grupo de Veículos {GrupoId} inserido com sucesso", grupoVeiculos.Id);
 
@@ -75,6 +79,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             {
                 _repositorioGrupoVeiculos.Editar(grupoVeiculos);
 
+                context.GravarDados();
+
                 Log.Logger.Information("Grupo de Veículos {GrupoId} editado com sucesso", grupoVeiculos.Id);
 
                 return Result.Ok(grupoVeiculos);
@@ -96,6 +102,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             try
             {
                 _repositorioGrupoVeiculos.Excluir(grupo);
+
+                context.GravarDados();
 
                 Log.Logger.Information("Grupo de Veículos {GrupoId} excluído com sucesso", grupo.Id);
 

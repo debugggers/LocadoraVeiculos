@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,12 +14,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloGrupoVeiculos
         private GrupoVeiculos _grupoVeiculos;
         private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
         private ServicoGrupoVeiculos servicoGrupoVeiculos;
-
+        IContext contexto;
+ 
         public RepositorioGrupoVeiculosEmBancoDadosTest()
         {
             _grupoVeiculos = new GrupoVeiculos("Uber");
             _repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
-            servicoGrupoVeiculos = new ServicoGrupoVeiculos(_repositorioGrupoVeiculos);
+            servicoGrupoVeiculos = new ServicoGrupoVeiculos(_repositorioGrupoVeiculos, contexto);
         }
 
         [TestCleanup()]

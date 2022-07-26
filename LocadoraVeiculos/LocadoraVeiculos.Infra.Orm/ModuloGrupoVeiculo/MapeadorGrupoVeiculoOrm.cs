@@ -4,11 +4,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
 {
-    public class MapeadorGrupoVeiculoOrm //: IEntityTypeConfiguration<GrupoVeiculos>
+    public class MapeadorGrupoVeiculoOrm : IEntityTypeConfiguration<GrupoVeiculos>
     {
-        //public void Configure(EntityTypeBuilder<GrupoVeiculos> builder)
-        //{
-        //    throw new System.NotImplementedException();
-        //}
+
+        public DbSet<GrupoVeiculos> Grupos { get; set; }
+
+        public void Configure(EntityTypeBuilder<GrupoVeiculos> builder)
+        {
+                builder.ToTable("TBGrupoVeiculos");
+                builder.Property(x => x.Id).ValueGeneratedNever();
+                builder.Property(x => x.Nome).IsRequired().HasColumnType("Varchar(100)");
+        }
     }
 }

@@ -1,39 +1,52 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Infra.Orm.Compartilhado;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
 {
     public class RepositorioGrupoVeiculoOrm : IRepositorioGrupoVeiculos
     {
+
+        public DbSet<GrupoVeiculos> grupos { get; set; }
+        private readonly LocadoraVeiculosDbContext dbContext;
+
+        public RepositorioGrupoVeiculoOrm(LocadoraVeiculosDbContext dbContext)
+        {
+            grupos = dbContext.Set<GrupoVeiculos>();
+            this.dbContext = dbContext;
+        }
+
         public void Editar(GrupoVeiculos registro)
         {
-            throw new NotImplementedException();
+            grupos.Update(registro);
         }
 
         public void Excluir(GrupoVeiculos registro)
         {
-            throw new NotImplementedException();
+            grupos.Remove(registro);
         }
 
         public void Inserir(GrupoVeiculos novoRegistro)
         {
-            throw new NotImplementedException();
+            grupos.Add(novoRegistro);
         }
 
         public GrupoVeiculos SelecionarGrupoVeiculosPorNome(string nome)
         {
-            throw new NotImplementedException();
+            return grupos.FirstOrDefault(x => x.Nome == nome);
         }
 
         public GrupoVeiculos SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return grupos.SingleOrDefault(x => x.Id == id);
         }
 
         public List<GrupoVeiculos> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return grupos.ToList();
         }
     }
 }

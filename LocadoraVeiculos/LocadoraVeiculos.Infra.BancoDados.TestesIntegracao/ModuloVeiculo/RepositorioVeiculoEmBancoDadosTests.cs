@@ -21,11 +21,12 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
         private ServicoVeiculo _servicoVeiculo;
         private ServicoGrupoVeiculos _servicoGrupoVeiculos;
         private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos;
+        IContext context;
 
         public RepositorioVeiculoEmBancoDadosTests()
         {
             _repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
-            _servicoGrupoVeiculos = new ServicoGrupoVeiculos(_repositorioGrupoVeiculos);
+            _servicoGrupoVeiculos = new ServicoGrupoVeiculos(_repositorioGrupoVeiculos, context);
 
             _grupoVeiculos = new GrupoVeiculos
             {
