@@ -6,12 +6,25 @@ using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using Microsoft.EntityFrameworkCore;
-using System;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
-namespace LocadoraVeiculos.Infra.Orm
+namespace LocadoraVeiculos.Infra.Orm.Compartilhado
 {
     public class LocadoraVeiculosDbContext : DbContext
     {
+
+        private string connectionString;
+
+        public LocadoraVeiculosDbContext(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
+        public void GravarDados()
+        {
+            SaveChanges();
+        }
 
         public DbSet<Cliente> Clientes { get; set; }
 
@@ -30,9 +43,16 @@ namespace LocadoraVeiculos.Infra.Orm
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            var enderecoConexao = @"Data Source=(localDB)\MSSqlLocalDb;Initial Catalog=locadoraVeiculosOrmDb;Integrated Security=True;Pooling=False";
+            optionsBuilder.UseSqlServer(connectionString);
 
-            optionsBuilder.UseSqlServer(enderecoConexao);
+            ILoggerFactory loggerFactory = LoggerFactory.Create((x) =>
+            {
+                x.AddSerilog(Log.Logger);
+            });
+
+            optionsBuilder.UseLoggerFactory(loggerFactory);
+
+            optionsBuilder.EnableSensitiveDataLogging();
 
         }
 
@@ -138,6 +158,10 @@ namespace LocadoraVeiculos.Infra.Orm
 
 
             });
+
+            var dllComConfiguracoesOrm = typeof(LocadoraVeiculosDbContext).Assembly;
+
+            modelBuilder.ApplyConfigurationsFromAssembly(dllComConfiguracoesOrm);
 
         }
     }
