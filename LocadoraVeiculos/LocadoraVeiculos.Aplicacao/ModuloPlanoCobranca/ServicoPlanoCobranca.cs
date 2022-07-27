@@ -174,7 +174,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
 
         private bool GrupoVeiculosDuplicado(PlanoCobranca planoCobranca)
         {
-            return _repositorioPlanoCobranca.GrupoVeiculosDuplicado(planoCobranca.GrupoVeiculos.Id);
+            return _repositorioPlanoCobranca.GrupoVeiculosDuplicado(planoCobranca.Id, planoCobranca.GrupoVeiculos.Id);
         }
     }
 }

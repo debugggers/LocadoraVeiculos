@@ -1,13 +1,11 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
-using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
-using System.Threading;
+using System.IO;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm.ModuloVeiculo
@@ -16,14 +14,15 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
     {
 
         Veiculo veiculo;
-        private RepositorioGrupoVeiculosEmBancoDados repositorioGrupoVeiculos;
         List<GrupoVeiculos> gruposVeiculos;
-        public TelaCadastroVeiculosForm(RepositorioGrupoVeiculosEmBancoDados repositorioGrupoVeiculos)
+        private ServicoGrupoVeiculos _servicoGrupoVeiculos;
+
+        public TelaCadastroVeiculosForm(ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
             InitializeComponent();
             CarregarTipoCombustivel();
-            this.repositorioGrupoVeiculos = repositorioGrupoVeiculos;
-            gruposVeiculos = repositorioGrupoVeiculos.SelecionarTodos();
+            _servicoGrupoVeiculos = servicoGrupoVeiculos;
+            gruposVeiculos = _servicoGrupoVeiculos.SelecionarTodos().Value;
             InicializarComboBoxGrupoVeiculos(gruposVeiculos);
 
         }
@@ -48,8 +47,14 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
                 txtKm.Text = veiculo.QuilometragemPercorrida.ToString();
                 comboBoxGrupoVeiculos.SelectedItem = veiculo.GrupoVeiculo;
                 comboBoxCombustivel.SelectedItem = veiculo.TipoCombustivel;
-                pictureBoxVeiculo.Image = veiculo.Foto;
+                if(veiculo.Foto != null)
+                {
 
+                    byte[] data = veiculo.Foto;
+                    var foto = Image.FromStream(new System.IO.MemoryStream(data));
+                    pictureBoxVeiculo.Image = foto;
+
+                }
             }
         }
 
@@ -78,7 +83,15 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
                 pictureBoxVeiculo.Image = Image.FromFile(openFileDialog1.FileName);
 
-                veiculo.Foto = (Bitmap)pictureBoxVeiculo.Image;
+                //veiculo.Foto = (Bitmap)pictureBoxVeiculo.Image;
+
+                MemoryStream ms = new MemoryStream();
+
+                pictureBoxVeiculo.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                byte[] buff = ms.GetBuffer();
+
+                veiculo.Foto = buff;
 
             }
             catch (Exception ex)

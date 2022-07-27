@@ -43,12 +43,12 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
                 CapacidadeTanque = 200,
                 QuilometragemPercorrida = 1,
                 TipoCombustivel = 0,
-                Foto = new Bitmap(@"C:\temp\download.jpg"),
+                Foto = new byte[10],
                 GrupoVeiculo = _grupoVeiculos
             };
 
             _repositorioVeiculo = new RepositorioVeiculoEmBancoDados();
-            _servicoVeiculo = new ServicoVeiculo(_repositorioVeiculo);
+            _servicoVeiculo = new ServicoVeiculo(_repositorioVeiculo, context);
         }
 
         [TestCleanup()]
@@ -162,7 +162,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
                 CapacidadeTanque = 250,
                 QuilometragemPercorrida = 150,
                 TipoCombustivel = 0,
-                Foto = new Bitmap(@"C:\temp\download.jpg"),
+                Foto = new byte[10],
                 GrupoVeiculo = _grupoVeiculos
             };
 

@@ -20,14 +20,8 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             comando.Parameters.AddWithValue("VEICULO_CAPACIDADE_TANQUE", veiculo.CapacidadeTanque);
             comando.Parameters.AddWithValue("VEICULO_ANO", veiculo.Ano);
             comando.Parameters.AddWithValue("VEICULO_QUILOMETRAGEM", veiculo.QuilometragemPercorrida);
-            byte[] data;
-
-            using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
-            {
-                veiculo.Foto.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
-                data = stream.ToArray();
-            }
-            comando.Parameters.AddWithValue("VEICULO_FOTO", data);
+            
+            comando.Parameters.AddWithValue("VEICULO_FOTO", veiculo.Foto);
             comando.Parameters.AddWithValue("VEICULO_GRUPO_VEICULO_ID", veiculo.GrupoVeiculo.Id);
         }
 
@@ -42,8 +36,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             var capacidadeTanque = Convert.ToInt32(leitorVeiculo["CAPACIDADE_TANQUE"]);
             var ano = Convert.ToInt32(leitorVeiculo["ANO"]);
             var quilometragem = Convert.ToInt32(leitorVeiculo["QUILOMETRAGEM"]);
-            byte[] data = (byte[])leitorVeiculo["FOTO"];
-            var foto = Image.FromStream(new System.IO.MemoryStream(data));
+            byte[] foto = (byte[])leitorVeiculo["FOTO"];
 
             var idGrupo = Guid.Parse(leitorVeiculo["GRUPO_ID"].ToString());
             var nomeGrupo = Convert.ToString(leitorVeiculo["GRUPO_NOME"]);
@@ -58,7 +51,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             veiculo.CapacidadeTanque = capacidadeTanque;
             veiculo.Ano = ano;
             veiculo.QuilometragemPercorrida = quilometragem;
-            veiculo.Foto = (Bitmap)foto;
+            veiculo.Foto = foto;
             veiculo.GrupoVeiculo = new GrupoVeiculos
             {
                 Id = idGrupo,

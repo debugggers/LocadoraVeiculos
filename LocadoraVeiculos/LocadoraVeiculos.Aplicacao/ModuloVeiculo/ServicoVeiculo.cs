@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
 using LocadoraVeiculos.BancoDados.ModuloVeiculo;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using Serilog;
 using System;
@@ -13,10 +14,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
     {
 
         private IRepositorioVeiculo _repositorioVeiculo;
+        private IContext context; 
 
-        public ServicoVeiculo(IRepositorioVeiculo repositorioVeiculo)
+        public ServicoVeiculo(IRepositorioVeiculo repositorioVeiculo, IContext context)
         {
             _repositorioVeiculo = repositorioVeiculo;
+            this.context = context;
         }
 
         public Result<Veiculo> Inserir(Veiculo veiculo)
@@ -39,6 +42,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             try
             {
                 _repositorioVeiculo.Inserir(veiculo);
+
+                context.GravarDados();
 
                 Log.Logger.Information("Veículo {VeículoId} inserido com sucesso", veiculo.Id);
 
@@ -75,6 +80,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             {
                 _repositorioVeiculo.Editar(veiculo);
 
+                context.GravarDados();
+
                 Log.Logger.Information("Veículo {VeículoId} editado com sucesso", veiculo.Id);
 
                 return Result.Ok(veiculo);
@@ -96,6 +103,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             try
             {
                 _repositorioVeiculo.Excluir(veiculo);
+
+                context.GravarDados();
 
                 Log.Logger.Information("Veículo {VeículoId} excluído com sucesso", veiculo.Id);
 

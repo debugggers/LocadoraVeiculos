@@ -3,17 +3,20 @@ using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
+using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
 using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente.ModuloEmpresa;
 using LocadoraVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca;
 using LocadoraVeiculos.Infra.Orm.ModuloTaxa;
+using LocadoraVeiculos.Infra.Orm.ModuloVeiculo;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculosForm.ModuloFuncionario;
 using LocadoraVeiculosForm.ModuloGrupoVeiculos;
 using LocadoraVeiculosForm.ModuloPlanoCobranca;
 using LocadoraVeiculosForm.ModuloTaxa;
+using LocadoraVeiculosForm.ModuloVeiculo;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -63,6 +66,10 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
             var repositorioPlanoCobranca = new RepositorioPlanoCobrancaOrm(contextoDadosOrm);
             var servicoPlanoCobranca = new ServicoPlanoCobranca(repositorioPlanoCobranca, contextoDadosOrm);
             controladores.Add(typeof(ControladorPlanoCobranca).Name, new ControladorPlanoCobranca(servicoPlanoCobranca, servicoGrupoVeiculo));
+
+            var repositorioVeiculo = new RepositorioVeiculoOrm(contextoDadosOrm);
+            var servicoVeiculo = new ServicoVeiculo(repositorioVeiculo, contextoDadosOrm);
+            controladores.Add(typeof(ControladorVeiculo).Name, new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
         }
 
         public T Get<T>() where T : ControladorBase

@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
+﻿using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
 using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculosForm.Compartilhado;
@@ -12,17 +13,18 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
     {
         private ServicoVeiculo _servico;
         private ListagemVeiculosControl _listagem;
-        private RepositorioGrupoVeiculosEmBancoDados _repositorioGrupoVeiculos = new RepositorioGrupoVeiculosEmBancoDados();
+        private ServicoGrupoVeiculos _servicoGrupoVeiculos;
 
-        public ControladorVeiculo(ServicoVeiculo servico)
+        public ControladorVeiculo(ServicoVeiculo servico, ServicoGrupoVeiculos servicoGrupoVeiculos)
         {
             _listagem = new ListagemVeiculosControl();
             _servico = servico;
+            _servicoGrupoVeiculos = servicoGrupoVeiculos;
         }
 
         public override void Inserir()
         {
-            var tela = new TelaCadastroVeiculosForm(_repositorioGrupoVeiculos);
+            var tela = new TelaCadastroVeiculosForm(_servicoGrupoVeiculos);
             tela.Veiculo = new Veiculo();
             tela.GravarRegistro = _servico.Inserir;
             DialogResult resultado = tela.ShowDialog();
@@ -54,7 +56,7 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
             var veiculoSelecionado = resultado.Value;
 
-            var tela = new TelaCadastroVeiculosForm(_repositorioGrupoVeiculos);
+            var tela = new TelaCadastroVeiculosForm(_servicoGrupoVeiculos);
 
             tela.Veiculo = veiculoSelecionado;
 

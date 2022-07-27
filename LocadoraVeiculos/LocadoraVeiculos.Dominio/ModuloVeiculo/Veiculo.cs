@@ -16,7 +16,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
         public int CapacidadeTanque { get; set; }
         public int Ano { get; set; }
         public int QuilometragemPercorrida { get; set; }
-        public Bitmap Foto { get; set; }
+        public byte[] Foto { get; set; }
         public GrupoVeiculos GrupoVeiculo { get; set; }
         public Guid? GrupoVeiculoId { get; set; }
 

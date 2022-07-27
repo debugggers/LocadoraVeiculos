@@ -33,9 +33,9 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca
             _planosCobranca.Remove(registro);
         }
 
-        public bool GrupoVeiculosDuplicado(Guid id)
+        public bool GrupoVeiculosDuplicado(Guid idPlanoCobranca, Guid idGrupoVeiculos)
         {
-            var planoCobrancaComGrupoSelecionado = _planosCobranca.FirstOrDefault(x => x.GrupoVeiculos.Id == id);
+            var planoCobrancaComGrupoSelecionado = _planosCobranca.FirstOrDefault(x => x.GrupoVeiculos.Id == idGrupoVeiculos && x.Id != idPlanoCobranca);
 
             if (planoCobrancaComGrupoSelecionado != null)
                 return true;
@@ -50,7 +50,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca
 
         public List<PlanoCobranca> SelecionarTodos()
         {
-            return _planosCobranca.ToList();
+            return _planosCobranca.Include(x => x.GrupoVeiculos).ToList();
         }
     }
 }
