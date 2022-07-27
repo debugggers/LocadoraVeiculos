@@ -9,16 +9,16 @@ using System.Linq;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 {
-    public class servicoLocacao
+    public class ServicoLocacao
     {
 
-        private IRepositorioLocacao repositorioLocacao;
-        private IContext context;
+        private IRepositorioLocacao _repositorioLocacao;
+        private IContext _context;
 
-        public servicoLocacao(IRepositorioLocacao repositorioLocacao, IContext context)
+        public ServicoLocacao(IRepositorioLocacao repositorioLocacao, IContext context)
         {
-            this.repositorioLocacao = repositorioLocacao;
-            this.context = context;
+            _repositorioLocacao = repositorioLocacao;
+            _context = context;
         }
 
         public Result<Locacao> Inserir(Locacao locacao)
@@ -40,9 +40,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
             try
             {
-                repositorioLocacao.Inserir(locacao);
+                _repositorioLocacao.Inserir(locacao);
 
-                context.GravarDados();
+                _context.GravarDados();
 
                 Log.Logger.Information("Locação {LocaçãoId} inserida com sucesso", locacao.Id);
 
@@ -77,9 +77,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
             try
             {
-                repositorioLocacao.Editar(locacao);
+                _repositorioLocacao.Editar(locacao);
 
-                context.GravarDados();
+                _context.GravarDados();
 
                 Log.Logger.Information("Locação {LocaçãoId} editada com sucesso", locacao.Id);
 
@@ -101,9 +101,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
             try
             {
-                repositorioLocacao.Excluir(locacao);
+                _repositorioLocacao.Excluir(locacao);
 
-                context.GravarDados();
+                _context.GravarDados();
 
                 Log.Logger.Information("Locação {LocaçãoId} excluída com sucesso", locacao.Id);
 
@@ -121,22 +121,17 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
         public Result<Locacao> SelecionarPorId(Guid id)
         {
-
             try
             {
-
-                return Result.Ok(repositorioLocacao.SelecionarPorId(id));
-
+                return Result.Ok(_repositorioLocacao.SelecionarPorId(id));
             }
             catch (Exception ex)
             {
-
                 string msgErro = "Falha no sistema ao tentar selecionar a locação";
 
                 Log.Logger.Error(ex, msgErro + "{LocaçãoId}", id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 
@@ -144,7 +139,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
         {
             try
             {
-                return Result.Ok(repositorioLocacao.SelecionarTodos());
+                return Result.Ok(_repositorioLocacao.SelecionarTodos());
             }
             catch (Exception ex)
             {

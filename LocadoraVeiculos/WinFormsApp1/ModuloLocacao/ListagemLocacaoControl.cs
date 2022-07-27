@@ -37,7 +37,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             return colunas;
         }
 
-        public Guid ObtemIdPlanoCobrancaSelecionado()
+        public Guid ObtemIdLocacaoSelecionada()
         {
             return gridLocacao.SelecionarId<Guid>();
         }
@@ -53,7 +53,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
                     planoCobranca.Funcionario.Nome,
                     planoCobranca.Cliente.Nome,
                     planoCobranca.GrupoVeiculos.Nome,
-                    planoCobranca.Taxa.Descricao,
+                    planoCobranca.Taxas.ToString(),
                     planoCobranca.PlanoCobranca.Id.ToString(),
                     planoCobranca.Veiculo.Placa,
                     planoCobranca.KmVeiculo.ToString(),

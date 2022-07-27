@@ -6,6 +6,7 @@ using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ModuloLocacao
 {
@@ -24,8 +25,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public Guid GrupoVeiculosId { get; set; }
 
-        public Taxa Taxa { get; set; }
-        public Guid TaxaId { get; set; }
+        public List<Taxa> Taxas { get; set; }
 
         public PlanoCobranca PlanoCobranca { get; set; }
         public Guid PlanoCobrancaId { get; set; }
@@ -33,7 +33,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public Veiculo Veiculo { get; set; }
         public Guid VeiculoId { get; set; }
 
-        public int KmVeiculo { get; }
+        public int KmVeiculo { get; set; }
 
         public DateTime DataLocacao { get; set; }
 
@@ -59,8 +59,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
                 locacao.GrupoVeiculosId.Equals(GrupoVeiculosId) &&
                 locacao.PlanoCobranca.Equals(PlanoCobranca) &&
                 locacao.PlanoCobrancaId.Equals(PlanoCobrancaId) &&
-                locacao.Taxa.Equals(Taxa) &&
-                locacao.TaxaId.Equals(Taxa) &&
+                locacao.Taxas.Equals(Taxas) &&
                 locacao.Veiculo.Equals(Veiculo) &&
                 locacao.VeiculoId.Equals(VeiculoId) &&
                 locacao.KmVeiculo.Equals(KmVeiculo) &&
