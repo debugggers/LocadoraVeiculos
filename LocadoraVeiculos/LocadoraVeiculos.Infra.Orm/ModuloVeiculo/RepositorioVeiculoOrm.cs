@@ -46,6 +46,11 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
 
         public bool VeiculoJaExiste(Veiculo veiculo)
         {
+            var veiculoSelecionado = veiculos.FirstOrDefault(x => x.Id != veiculo.Id && x.Placa == veiculo.Placa);
+
+            if (veiculoSelecionado != null)
+                return true;
+
             return false;
         }
     }

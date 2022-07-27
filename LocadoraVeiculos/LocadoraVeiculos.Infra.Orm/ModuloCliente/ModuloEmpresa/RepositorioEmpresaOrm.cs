@@ -26,6 +26,11 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente.ModuloEmpresa
 
         public bool EmpresaJaExiste(Empresa empresa)
         {
+            var empresaSelecionada = empresas.FirstOrDefault(x => x.Id != empresa.Id && (x.Nome == empresa.Nome || x.CNPJ == empresa.CNPJ));
+
+            if (empresaSelecionada != null)
+                return true;
+
             return false;
         }
 

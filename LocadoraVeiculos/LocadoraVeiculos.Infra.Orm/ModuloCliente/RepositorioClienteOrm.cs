@@ -21,6 +21,11 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
 
         public bool ClienteJaExiste(Cliente cliente)
         {
+            var clienteSelecionado = clientes.FirstOrDefault(x => x.Id != cliente.Id && (x.Nome == cliente.Nome || x.CPF == cliente.CPF || x.CnhNumero == cliente.CnhNumero));
+
+            if (clienteSelecionado != null)
+                return true;
+
             return false;
         }
 
