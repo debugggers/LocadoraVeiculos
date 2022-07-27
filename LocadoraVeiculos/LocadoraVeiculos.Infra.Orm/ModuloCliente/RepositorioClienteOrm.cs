@@ -1,39 +1,60 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloCliente;
+using LocadoraVeiculos.Infra.Orm.Compartilhado;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
 {
     public class RepositorioClienteOrm : IRepositorioCliente
     {
+
+        public DbSet<Cliente> clientes { get; set; }
+        private readonly LocadoraVeiculosDbContext dbContext;
+
+        public RepositorioClienteOrm(LocadoraVeiculosDbContext dbContext)
+        {
+            clientes = dbContext.Set<Cliente>();
+            this.dbContext = dbContext;
+        }
+
         public bool ClienteJaExiste(Cliente cliente)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public void Editar(Cliente registro)
         {
-            throw new NotImplementedException();
+            clientes.Update(registro);
         }
 
         public void Excluir(Cliente registro)
         {
-            throw new NotImplementedException();
+            clientes.Remove(registro);
         }
 
         public void Inserir(Cliente novoRegistro)
         {
-            throw new NotImplementedException();
+            clientes.Add(novoRegistro);
         }
 
         public Cliente SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return clientes.SingleOrDefault(x => x.Id == id);
+        }
+
+        public List<Cliente> SelecionarTodos(bool incluirEmpresa = false)
+        {
+            if(incluirEmpresa)
+                return clientes.Include(x => x.Empresa).ToList();
+
+            return clientes.ToList();
         }
 
         public List<Cliente> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return clientes.ToList();
         }
     }
 }

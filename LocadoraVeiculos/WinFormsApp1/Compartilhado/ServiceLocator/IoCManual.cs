@@ -1,16 +1,19 @@
-﻿using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
+﻿using LocadoraVeiculos.Aplicacao.ModuloCliente;
+using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
 using LocadoraVeiculos.Infra.Orm.Compartilhado;
+using LocadoraVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente.ModuloEmpresa;
 using LocadoraVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca;
 using LocadoraVeiculos.Infra.Orm.ModuloTaxa;
 using LocadoraVeiculos.Infra.Orm.ModuloVeiculo;
+using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculosForm.ModuloFuncionario;
 using LocadoraVeiculosForm.ModuloGrupoVeiculos;
@@ -46,7 +49,6 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
 
             var contextoDadosOrm = new LocadoraVeiculosDbContext(connectionString);
 
-            //var repositorioDisciplina = new RepositorioDisciplinaEmArquivo(contextoDados);
             var repositorioEmpresa = new RepositorioEmpresaOrm(contextoDadosOrm);
             var servicoEmpresa = new ServicoEmpresa(repositorioEmpresa, contextoDadosOrm);
             controladores.Add(typeof(ControladorEmpresa).Name, new ControladorEmpresa(servicoEmpresa));
@@ -70,6 +72,10 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
             var repositorioVeiculo = new RepositorioVeiculoOrm(contextoDadosOrm);
             var servicoVeiculo = new ServicoVeiculo(repositorioVeiculo, contextoDadosOrm);
             controladores.Add(typeof(ControladorVeiculo).Name, new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
+
+            var repositorioCliente = new RepositorioClienteOrm(contextoDadosOrm);
+            var servicoCliente = new ServicoCliente(repositorioCliente, contextoDadosOrm);
+            controladores.Add(typeof(ControladorCliente).Name, new ControladorCliente(servicoCliente, servicoEmpresa));
         }
 
         public T Get<T>() where T : ControladorBase

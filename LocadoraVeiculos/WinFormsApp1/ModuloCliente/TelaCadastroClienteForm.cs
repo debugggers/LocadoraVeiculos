@@ -5,6 +5,7 @@ using LocadoraVeiculos.BancoDados.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using System.Collections.Generic;
 using FluentResults;
+using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
 
 namespace LocadoraVeiculosForm.ModuloCliente
 {
@@ -13,11 +14,14 @@ namespace LocadoraVeiculosForm.ModuloCliente
 
         Cliente cliente;
         List<Empresa> empresas;
-        public TelaCadastroClienteForm(RepositorioEmpresaBancoDados repositorioEmpresa)
+        private ServicoEmpresa servicoEmpresa;
+
+        public TelaCadastroClienteForm(ServicoEmpresa servicoEmpresa)
         {
             InitializeComponent();
             comboBoxEmpresas.Enabled = false;
-            empresas = repositorioEmpresa.SelecionarTodos();
+            this.servicoEmpresa = servicoEmpresa;
+            empresas = servicoEmpresa.SelecionarTodos().Value;
         }
 
         public Func<Cliente, Result<Cliente>> GravarRegistro { get; set; }
