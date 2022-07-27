@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloCliente;
 using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.BancoDados.ModuloCliente;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -13,6 +14,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
         private Cliente _cliente;
         private RepositorioClienteEmBancoDados _repositorioCliente;
         private ServicoCliente _servicoCliente;
+        IContext context;
 
         public RepositorioClienteEmBancoDadosTest()
         {
@@ -28,7 +30,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloCliente
             _cliente.CnhVencimento = DateTime.Now.Date.AddMonths(6);
 
             _repositorioCliente = new RepositorioClienteEmBancoDados();
-            _servicoCliente = new ServicoCliente(_repositorioCliente);
+            _servicoCliente = new ServicoCliente(_repositorioCliente, context);
         }
 
         [TestCleanup()]
