@@ -6,7 +6,6 @@ using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
-using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ModuloLocacao
 {
@@ -16,33 +15,23 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         {
         }
 
-        public Locacao(Funcionario funcionario, Cliente cliente, List<GrupoVeiculos> grupoVeiculos, 
-            List<Taxa> taxas, List<PlanoCobranca> planosCobranca, Veiculo veiculo, int kmVeiculo, 
-            DateTime dataLocacao, DateTime dataPrevistaEntrega, decimal valorPrevisto)
-        {
-            Funcionario = funcionario;
-            Cliente = cliente;
-            GrupoVeiculos = grupoVeiculos;
-            Taxas = taxas;
-            PlanosCobranca = planosCobranca;
-            Veiculo = veiculo;
-            KmVeiculo = kmVeiculo;
-            DataLocacao = dataLocacao;
-            DataPrevistaEntrega = dataPrevistaEntrega;
-            ValorPrevisto = valorPrevisto;
-        }
-
         public Funcionario Funcionario { get; set; }
+        public Guid FuncionarioId { get; set; }
 
         public Cliente Cliente { get; set; }
+        public Guid ClienteId { get; set; }
 
-        public List<GrupoVeiculos> GrupoVeiculos { get; set; }
+        public GrupoVeiculos GrupoVeiculos { get; set; }
+        public Guid GrupoVeiculosId { get; set; }
 
-        public List<Taxa> Taxas { get; set; }
+        public Taxa Taxa { get; set; }
+        public Guid TaxaId { get; set; }
 
-        public List<PlanoCobranca> PlanosCobranca { get; set; }
+        public PlanoCobranca PlanoCobranca { get; set; }
+        public Guid PlanoCobrancaId { get; set; }
 
         public Veiculo Veiculo { get; set; }
+        public Guid VeiculoId { get; set; }
 
         public int KmVeiculo { get; }
 
@@ -63,11 +52,17 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             return
                 locacao.Id.Equals(Id) &&
                 locacao.Funcionario.Equals(Funcionario) &&
+                locacao.FuncionarioId.Equals(FuncionarioId) &&
                 locacao.Cliente.Equals(Cliente) &&
+                locacao.ClienteId.Equals(ClienteId) &&
                 locacao.GrupoVeiculos.Equals(GrupoVeiculos) &&
-                locacao.PlanosCobranca.Equals(PlanosCobranca) &&
-                locacao.Taxas.Equals(Taxas) &&
+                locacao.GrupoVeiculosId.Equals(GrupoVeiculosId) &&
+                locacao.PlanoCobranca.Equals(PlanoCobranca) &&
+                locacao.PlanoCobrancaId.Equals(PlanoCobrancaId) &&
+                locacao.Taxa.Equals(Taxa) &&
+                locacao.TaxaId.Equals(Taxa) &&
                 locacao.Veiculo.Equals(Veiculo) &&
+                locacao.VeiculoId.Equals(VeiculoId) &&
                 locacao.KmVeiculo.Equals(KmVeiculo) &&
                 locacao.DataLocacao.Equals(DataLocacao) &&
                 locacao.DataPrevistaEntrega.Equals(DataPrevistaEntrega) &&

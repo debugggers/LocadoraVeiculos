@@ -17,6 +17,7 @@ using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculosForm.ModuloFuncionario;
 using LocadoraVeiculosForm.ModuloGrupoVeiculos;
+using LocadoraVeiculosForm.ModuloLocacao;
 using LocadoraVeiculosForm.ModuloPlanoCobranca;
 using LocadoraVeiculosForm.ModuloTaxa;
 using LocadoraVeiculosForm.ModuloVeiculo;
@@ -76,6 +77,11 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
             var repositorioCliente = new RepositorioClienteOrm(contextoDadosOrm);
             var servicoCliente = new ServicoCliente(repositorioCliente, contextoDadosOrm);
             controladores.Add(typeof(ControladorCliente).Name, new ControladorCliente(servicoCliente, servicoEmpresa));
+
+            //var repositorioLocacao = new RepositorioLocacaoOrm(contextoDadosOrm);
+            //var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm);
+            //controladores.Add(typeof(ControladorLocacao).Name, new ControladorLocacao(servicoLocacao, servicoFuncionario, servicoCliente,
+            //        servicoGrupoVeiculo, servicoTaxa, servicoPlanoCobranca, servicoVeiculo));
         }
 
         public T Get<T>() where T : ControladorBase
