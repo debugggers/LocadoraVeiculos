@@ -35,12 +35,17 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloLocacao
 
         public Locacao SelecionarPorId(Guid id)
         {
-            return _locacoes.SingleOrDefault(x => x.Id == id);
+            return _locacoes.Include(x => x.Taxas).SingleOrDefault(x => x.Id == id);
         }
 
         public List<Locacao> SelecionarTodos()
         {
-            return _locacoes.ToList();
+            return _locacoes
+                .Include(x => x.Cliente)
+                .Include(x => x.Funcionario)
+                .Include(x => x.GrupoVeiculos)
+                .Include(x => x.Veiculo)
+                .ToList();
         }
     }
 }

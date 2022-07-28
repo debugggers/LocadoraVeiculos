@@ -82,8 +82,8 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
 
             var repositorioLocacao = new RepositorioLocacaoOrm(contextoDadosOrm);
             var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm);
-            controladores.Add(typeof(ControladorLocacao).Name, new ControladorLocacao(servicoLocacao, servicoFuncionario, servicoCliente,
-                servicoGrupoVeiculo, servicoTaxa, servicoPlanoCobranca, servicoVeiculo));
+            controladores.Add(typeof(ControladorLocacao).Name, new ControladorLocacao(servicoLocacao, servicoCliente, servicoGrupoVeiculo, 
+                servicoTaxa, servicoPlanoCobranca, servicoVeiculo));
         }
 
         public T Get<T>() where T : ControladorBase

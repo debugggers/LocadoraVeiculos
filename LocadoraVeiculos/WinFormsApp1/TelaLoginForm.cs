@@ -20,7 +20,7 @@ namespace LocadoraVeiculosForm
         {
             if (txtLogin.Text == "admin" && txtSenha.Text == "admin")
             {
-                GerenciadorUsuario.Set(new Funcionario { Nome = "admin", EhAdmin = true });
+                GerenciadorUsuario.Set(new Funcionario { Id = Guid.Empty, Nome = "Admin", EhAdmin = true });
                 DialogResult = DialogResult.OK;
             }
             else

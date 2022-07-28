@@ -39,10 +39,11 @@
             this.gridLocacao.AllowUserToResizeColumns = false;
             this.gridLocacao.AllowUserToResizeRows = false;
             this.gridLocacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridLocacao.Location = new System.Drawing.Point(0, 3);
+            this.gridLocacao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridLocacao.Location = new System.Drawing.Point(0, 0);
             this.gridLocacao.Name = "gridLocacao";
             this.gridLocacao.RowTemplate.Height = 28;
-            this.gridLocacao.Size = new System.Drawing.Size(824, 727);
+            this.gridLocacao.Size = new System.Drawing.Size(1263, 751);
             this.gridLocacao.TabIndex = 0;
             // 
             // ListagemLocacaoControl
@@ -51,7 +52,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gridLocacao);
             this.Name = "ListagemLocacaoControl";
-            this.Size = new System.Drawing.Size(827, 733);
+            this.Size = new System.Drawing.Size(1263, 751);
             ((System.ComponentModel.ISupportInitialize)(this.gridLocacao)).EndInit();
             this.ResumeLayout(false);
 

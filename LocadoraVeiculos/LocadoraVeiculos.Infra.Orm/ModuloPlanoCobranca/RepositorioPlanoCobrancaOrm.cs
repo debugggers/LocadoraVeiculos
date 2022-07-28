@@ -52,5 +52,10 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca
         {
             return _planosCobranca.Include(x => x.GrupoVeiculos).ToList();
         }
+
+        public List<PlanoCobranca> BuscarPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
+        {
+            return _planosCobranca.Where(x => x.GrupoVeiculosId == idGrupoVeiculos).ToList();
+        }
     }
 }

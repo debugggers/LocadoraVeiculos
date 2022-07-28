@@ -176,5 +176,21 @@ namespace LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca
         {
             return _repositorioPlanoCobranca.GrupoVeiculosDuplicado(planoCobranca.Id, planoCobranca.GrupoVeiculos.Id);
         }
+
+        public Result<List<PlanoCobranca>> BuscarPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
+        {
+            try
+            {
+                return Result.Ok(_repositorioPlanoCobranca.BuscarPeloIdGrupoVeiculos(idGrupoVeiculos));
+            }
+            catch (Exception ex)
+            {
+                var msgErro = "Falha no sistema ao tentar selecionar todos os planos de cobrança";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
     }
 }

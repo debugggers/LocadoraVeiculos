@@ -11,7 +11,13 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloLocacao
         public void Configure(EntityTypeBuilder<Locacao> builder)
         {
             builder.ToTable("TBLocacao");
+
             builder.Property(x => x.Id).ValueGeneratedNever();
+            builder.Property(x => x.DataLocacao);
+            builder.Property(x => x.DataPrevistaEntrega);
+            builder.Property(x => x.ValorPrevisto);
+            builder.Property(x => x.PlanosCobranca);
+
             builder.HasOne(x => x.Funcionario)
             .WithMany().OnDelete(DeleteBehavior.NoAction);
 
@@ -21,17 +27,10 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloLocacao
             builder.HasOne(x => x.GrupoVeiculos)
             .WithMany().OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(x => x.PlanoCobranca)
+            builder.HasOne(x => x.Veiculo)
             .WithMany().OnDelete(DeleteBehavior.NoAction);
 
             builder.HasMany(x => x.Taxas);
-
-            builder.HasOne(x => x.Veiculo)
-            .WithMany().OnDelete(DeleteBehavior.NoAction);
-            builder.Property(x => x.KmVeiculo);
-            builder.Property(x => x.DataLocacao);
-            builder.Property(x => x.DataPrevistaEntrega);
-            builder.Property(x => x.ValorPrevisto);
         }
     }
 }

@@ -53,5 +53,10 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
 
             return false;
         }
+
+        public List<Veiculo> BuscarPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
+        {
+            return veiculos.Where(x => x.GrupoVeiculoId == idGrupoVeiculos).ToList();
+        }
     }
 }

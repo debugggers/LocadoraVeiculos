@@ -1,5 +1,4 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloCliente;
-using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloLocacao;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
@@ -16,7 +15,6 @@ namespace LocadoraVeiculosForm.ModuloLocacao
     public class ControladorLocacao : ControladorBase
     {
         private ServicoLocacao _servicoLocacao;
-        private ServicoFuncionario _servicoFuncionario;
         private ServicoCliente _servicoCliente;
         private ServicoGrupoVeiculos _servicoGrupoVeiculos;
         private ServicoTaxa _servicoTaxa;
@@ -24,14 +22,12 @@ namespace LocadoraVeiculosForm.ModuloLocacao
         private ServicoVeiculo _servicoVeiculo;
         private ListagemLocacaoControl _listagemLocacao;
 
-        public ControladorLocacao(ServicoLocacao servicoLocacao, ServicoFuncionario servicoFuncionario, ServicoCliente servicoCliente,
-                ServicoGrupoVeiculos servicoGrupoVeiculos, ServicoTaxa servicoTaxa, ServicoPlanoCobranca servicoPlanoCobranca,
-                ServicoVeiculo servicoVeiculo)
+        public ControladorLocacao(ServicoLocacao servicoLocacao, ServicoCliente servicoCliente,ServicoGrupoVeiculos servicoGrupoVeiculos, 
+            ServicoTaxa servicoTaxa, ServicoPlanoCobranca servicoPlanoCobranca, ServicoVeiculo servicoVeiculo)
         {
             _listagemLocacao = new ListagemLocacaoControl();
 
             _servicoLocacao = servicoLocacao;
-            _servicoFuncionario = servicoFuncionario;
             _servicoCliente = servicoCliente;
             _servicoGrupoVeiculos = servicoGrupoVeiculos;
             _servicoTaxa = servicoTaxa;
@@ -42,7 +38,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
         public override void Inserir()
         {
-            TelaCadastroLocacaoForm tela = new TelaCadastroLocacaoForm(_servicoFuncionario, _servicoCliente,
+            TelaCadastroLocacaoForm tela = new TelaCadastroLocacaoForm(_servicoCliente,
                 _servicoGrupoVeiculos, _servicoPlanoCobranca, _servicoTaxa, _servicoVeiculo);
 
             tela.Locacao = new Locacao();
@@ -77,7 +73,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
             var locacaoSelecionada = resultado.Value;
 
-            var tela = new TelaCadastroLocacaoForm(_servicoFuncionario, _servicoCliente, _servicoGrupoVeiculos,
+            var tela = new TelaCadastroLocacaoForm(_servicoCliente, _servicoGrupoVeiculos,
                 _servicoPlanoCobranca, _servicoTaxa, _servicoVeiculo);
 
             tela.Locacao = locacaoSelecionada;
@@ -99,7 +95,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
                 return;
             }
 
-            var resultadoSelecao = _servicoFuncionario.SelecionarPorId(id);
+            var resultadoSelecao = _servicoLocacao.SelecionarPorId(id);
 
             if (resultadoSelecao.IsFailed)
             {
@@ -108,12 +104,12 @@ namespace LocadoraVeiculosForm.ModuloLocacao
                 return;
             }
 
-            var funcionarioSelecionado = resultadoSelecao.Value;
+            var locacaoSelecionada = resultadoSelecao.Value;
 
             if (MessageBox.Show("Deseja realmente excluir o Funcionário?", "Exclusão de Funcionários",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                var resultadoExclusao = _servicoFuncionario.Excluir(funcionarioSelecionado);
+                var resultadoExclusao = _servicoLocacao.Excluir(locacaoSelecionada);
 
                 if (resultadoExclusao.IsSuccess)
                     CarregarLocacoes();

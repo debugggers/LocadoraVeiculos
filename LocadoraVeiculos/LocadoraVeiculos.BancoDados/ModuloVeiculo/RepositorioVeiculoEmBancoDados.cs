@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
@@ -131,6 +132,11 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             conexaoComBanco.Close();
 
             return veiculoJaExiste;
+        }
+
+        public List<Veiculo> BuscarPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
+        {
+            return new List<Veiculo>();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
@@ -97,6 +98,11 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
             conexaoComBanco.Close();
 
             return grupoVeiculoDuplicado;
+        }
+
+        public List<PlanoCobranca> BuscarPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
+        {
+            return new List<PlanoCobranca>();
         }
     }
 }
