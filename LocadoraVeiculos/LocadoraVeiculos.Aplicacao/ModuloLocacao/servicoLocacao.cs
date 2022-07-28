@@ -2,6 +2,8 @@
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
+using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
+using LocadoraVeiculos.Dominio.ModuloTaxa;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -162,21 +164,34 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             foreach (ValidationFailure item in resultadoValidacao.Errors)
                 erros.Add(new Error(item.ErrorMessage));
 
-            //if (LocacaoDuplicada(locacao))
-             //   erros.Add(new Error("Cliente duplicado"));
-
             if (erros.Any())
                 return Result.Fail(erros);
 
             return Result.Ok();
         }
 
-        //private bool LocacaoDuplicada(Locacao locacao)
-        //{
-            //var clienteEncontrado = _repositorioCliente.ClienteJaExiste(cliente);
+        public decimal CalcularValorPrevisto(DateTime dataLocacao, DateTime dataPrevistaDevolucao, 
+            PlanoCobranca planoCobranca, PlanoCobrancaEnum planoCobrancaEnum, List<Taxa> taxas)
+        {
+            decimal valorPrevisto = 0;
+            var totalDias = (dataPrevistaDevolucao - dataLocacao).Days;
+            
+            if (planoCobrancaEnum == PlanoCobrancaEnum.Diario)
+                valorPrevisto = totalDias * planoCobranca.ValorDiario_Diario;
+            else if (planoCobrancaEnum == PlanoCobrancaEnum.Livre)
+                valorPrevisto = totalDias * planoCobranca.ValorDiario_Livre;
+            else
+                valorPrevisto = totalDias * planoCobranca.ValorDiario_Controlado;
 
-            //return clienteEncontrado;
-        //}
+            foreach (var taxa in taxas)
+            {
+                if (taxa.TipoCalculo == TipoCalculoEnum.CalculoFixo)
+                    valorPrevisto += taxa.Valor;
+                else
+                    valorPrevisto += totalDias * taxa.Valor;
+            }
 
+            return valorPrevisto;
+        }
     }
 }

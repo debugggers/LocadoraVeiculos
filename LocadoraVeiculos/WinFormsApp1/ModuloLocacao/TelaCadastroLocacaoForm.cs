@@ -58,6 +58,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             CarregarClientes();
             CarregarGrupoVeiculos();
             CarregarPlanosCobranca();
+           
         }
 
         public Func<Locacao, Result<Locacao>> GravarRegistro { get; set; }
