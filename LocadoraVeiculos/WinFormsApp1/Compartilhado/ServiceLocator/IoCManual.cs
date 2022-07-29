@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloCliente;
 using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculos.Aplicacao.ModuloDevolucao;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
@@ -8,6 +9,7 @@ using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
 using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraVeiculos.Infra.Orm.ModuloCliente.ModuloEmpresa;
+using LocadoraVeiculos.Infra.Orm.ModuloDevolucao;
 using LocadoraVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca;
@@ -15,6 +17,7 @@ using LocadoraVeiculos.Infra.Orm.ModuloTaxa;
 using LocadoraVeiculos.Infra.Orm.ModuloVeiculo;
 using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculosForm.ModuloDevolucao;
 using LocadoraVeiculosForm.ModuloFuncionario;
 using LocadoraVeiculosForm.ModuloGrupoVeiculos;
 using LocadoraVeiculosForm.ModuloLocacao;
@@ -82,6 +85,10 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
             //var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm);
             //controladores.Add(typeof(ControladorLocacao).Name, new ControladorLocacao(servicoLocacao, servicoFuncionario, servicoCliente,
             //        servicoGrupoVeiculo, servicoTaxa, servicoPlanoCobranca, servicoVeiculo));
+
+            //var repositorioDevolucao = new RepositorioDevolucaoOrm(contextoDadosOrm);
+            //var servicoDevolucao = new ServicoDevolucao(repositorioDevolucao, contextoDadosOrm);
+            //controladores.Add(typeof(ControladorDevolucao).Name, new ControladorDevolucao(servicoDevolucao, servicoLocacao));
         }
 
         public T Get<T>() where T : ControladorBase

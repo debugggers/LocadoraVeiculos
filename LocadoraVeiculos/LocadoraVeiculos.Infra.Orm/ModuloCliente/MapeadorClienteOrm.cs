@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
                 .WithMany()
                 .IsRequired(false)
                 .HasForeignKey(x => x.EmpresaId)
-                .OnDelete(DeleteBehavior.NoAction); ;
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
