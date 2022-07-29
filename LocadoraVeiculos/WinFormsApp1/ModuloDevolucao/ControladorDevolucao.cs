@@ -13,9 +13,9 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
 
         private ServicoDevolucao servico;
         private ListagemDevolucoesControl listagem;
-        private servicoLocacao servicoLocacao;
+        private ServicoLocacao servicoLocacao;
 
-        public ControladorDevolucao(ServicoDevolucao servico, servicoLocacao servicoLocacao)
+        public ControladorDevolucao(ServicoDevolucao servico, ServicoLocacao servicoLocacao)
         {
             listagem = new ListagemDevolucoesControl();
             this.servico = servico;

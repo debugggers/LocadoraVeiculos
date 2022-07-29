@@ -2,6 +2,7 @@
 using LocadoraVeiculosForm.Compartilhado.ServiceLocator;
 using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculosForm.ModuloDevolucao;
 using LocadoraVeiculosForm.ModuloFuncionario;
 using LocadoraVeiculosForm.ModuloGrupoVeiculos;
 using LocadoraVeiculosForm.ModuloLocacao;
@@ -173,6 +174,11 @@ namespace LocadoraVeiculosForm
         private void locacaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
+        }
+
+        private void devoluçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorDevolucao>());
         }
     }
 }

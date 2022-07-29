@@ -12,10 +12,10 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
     {
 
         Devolucao devolucao;
-        private servicoLocacao servicoLocacao;
+        private ServicoLocacao servicoLocacao;
         List<Locacao> locacoes;
 
-        public TelaCadastroDevolucaoForm(servicoLocacao servicoLocacao)
+        public TelaCadastroDevolucaoForm(ServicoLocacao servicoLocacao)
         {
             InitializeComponent();
             this.servicoLocacao = servicoLocacao;
@@ -46,7 +46,7 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
                     txtPlaca.Text = devolucao.Locacao.Veiculo.Placa;
                     txtDataLocacao.Text = devolucao.Locacao.DataLocacao.ToShortDateString();
                     txtDataDevolucaoPrevista.Text = devolucao.Locacao.DataPrevistaEntrega.ToShortDateString();
-                    txtPlanoCobranca.Text = devolucao.Locacao.PlanoCobranca.ToString();
+                    txtPlanoCobranca.Text = devolucao.Locacao.PlanosCobranca.ToString();
 
                 }
                 comboBoxLocacoes.SelectedItem = devolucao.Locacao; 
@@ -150,7 +150,7 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
             txtPlaca.Text = devolucao.Locacao.Veiculo.Placa;
             txtDataLocacao.Text = devolucao.Locacao.DataLocacao.ToShortDateString();
             txtDataDevolucaoPrevista.Text = devolucao.Locacao.DataPrevistaEntrega.ToShortDateString();
-            txtPlanoCobranca.Text = devolucao.Locacao.PlanoCobranca.ToString();
+            txtPlanoCobranca.Text = devolucao.Locacao.PlanosCobranca.ToString();
 
         }
     }

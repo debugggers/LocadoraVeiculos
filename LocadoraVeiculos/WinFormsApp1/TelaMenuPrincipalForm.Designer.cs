@@ -48,6 +48,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
+            this.devoluçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -74,6 +75,7 @@
             this.planosDeCobrançaToolStripMenuItem,
             this.veiculoToolStripMenuItem,
             this.locacaoToolStripMenuItem,
+            this.devoluçãoToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(82, 23);
@@ -242,6 +244,14 @@
             this.panelRegistros.Size = new System.Drawing.Size(1482, 527);
             this.panelRegistros.TabIndex = 4;
             // 
+            // devoluçãoToolStripMenuItem
+            // 
+            this.devoluçãoToolStripMenuItem.Name = "devoluçãoToolStripMenuItem";
+            this.devoluçãoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9;
+            this.devoluçãoToolStripMenuItem.Size = new System.Drawing.Size(223, 24);
+            this.devoluçãoToolStripMenuItem.Text = "Devolução";
+            this.devoluçãoToolStripMenuItem.Click += new System.EventHandler(this.devoluçãoToolStripMenuItem_Click);
+            // 
             // TelaMenuPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -290,5 +300,6 @@
         private System.Windows.Forms.ToolStripMenuItem planosDeCobrançaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem veiculoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem locacaoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem devoluçãoToolStripMenuItem;
     }
 }
