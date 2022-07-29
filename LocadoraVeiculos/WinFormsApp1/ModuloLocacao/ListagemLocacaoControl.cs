@@ -56,8 +56,8 @@ namespace LocadoraVeiculosForm.ModuloLocacao
                     locacao.PlanosCobranca.ToString(),
                     $"{locacao.Veiculo.Modelo} - {locacao.Veiculo.Placa}",
                     locacao.Veiculo.QuilometragemPercorrida,
-                    locacao.DataLocacao.ToString(),
-                    locacao.DataPrevistaEntrega.ToString(),
+                    locacao.DataLocacao.ToShortDateString(),
+                    locacao.DataPrevistaEntrega.ToShortDateString(),
                     locacao.ValorPrevisto.ToString());
             }
         }
