@@ -13,15 +13,15 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
         public  Guid LocacaoId { get; set; }
         public int QuilometragemVeiculo { get; set; }
         public DateTime DataDevolucao { get; set; }
-        public  Double NivelDoTanque { get; set; }
+        public  decimal NivelDoTanque { get; set; }
         public  List<Taxa>? Taxas { get; set; }
-        public Double ValorTotal { get; set; }
+        public decimal ValorTotal { get; set; }
 
         public Devolucao()
         {
         }
 
-        public Devolucao(Locacao locacao, int quilometragemVeiculo, DateTime dataDevolucao, double nivelDoTanque, List<Taxa> taxas, double valorTotal)
+        public Devolucao(Locacao locacao, int quilometragemVeiculo, DateTime dataDevolucao, decimal nivelDoTanque, List<Taxa> taxas, decimal valorTotal)
         {
             Locacao = locacao;
             QuilometragemVeiculo = quilometragemVeiculo;
@@ -48,15 +48,45 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
             return base.ToString();
         }
 
-        public double CalcularTotal()
+        public decimal CalcularTotalGasolina()
         {
-            return 0;
-        }
 
-        public bool EntregueAntesDataPrevista()
-        {
-            return false;
+            decimal total = 0;
+
+            switch (NivelDoTanque)
+            {
+
+                case 1m:
+                    total += 5.89m * Locacao.Veiculo.CapacidadeTanque;
+                    break;
+                case 1/4m:
+                    total += 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
+                    break;
+                case 1/2m:
+                    total += 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
+                    break;
+                case 3/4m:
+                    total += 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
+                    break;
+            }
+
+           return total;
         } 
 
+        public decimal CalcularTotalData()
+        {
+
+            decimal total = 0;
+
+            int resultado = DateTime.Compare(Locacao.DataPrevistaEntrega.Date, DataDevolucao.Date);
+
+            if (resultado == -1)
+                total = Locacao.ValorPrevisto + (Locacao.ValorPrevisto * 0.10m);
+            else if (resultado == 1)
+                total = Locacao.ValorPrevisto + (Locacao.ValorPrevisto * 0.10m);
+
+            return total;
+
+        }
     }
 }

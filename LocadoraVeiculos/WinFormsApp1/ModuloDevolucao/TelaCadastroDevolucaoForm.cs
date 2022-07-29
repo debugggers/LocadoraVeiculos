@@ -88,23 +88,23 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
             {
 
                 case "Vazio":
-                    devolucao.NivelDoTanque = 0d;
+                    devolucao.NivelDoTanque = 0m;
                         break;
                 case "1/4":
-                    devolucao.NivelDoTanque = 1/4d;
+                    devolucao.NivelDoTanque = 1/4m;
                     break;
                 case "1/2":
-                    devolucao.NivelDoTanque = 1/2d;
+                    devolucao.NivelDoTanque = 1/2m;
                     break;
                 case "3/4":
-                    devolucao.NivelDoTanque = 3/4d;
+                    devolucao.NivelDoTanque = 3/4m;
                     break;
                 case "Cheio":
-                    devolucao.NivelDoTanque = 1d;
+                    devolucao.NivelDoTanque = 1m;
                     break;
             }
 
-            devolucao.ValorTotal = devolucao.CalcularTotal();
+            //devolucao.ValorTotal = devolucao.CalcularTotal();
 
             var resultadoValidacao = GravarRegistro(devolucao);
 
@@ -155,11 +155,18 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
             else
                 txtCliente.Text = devolucao.Locacao.Cliente.Empresa.Nome;
             txtGrupoVeiculos.Text = devolucao.Locacao.GrupoVeiculos.Nome;
-            txtPlaca.Text = devolucao.Locacao.Veiculo.Placa;
+            txtPlaca.Text = $"{devolucao.Locacao.Veiculo.Placa}  - {devolucao.Locacao.Veiculo.Modelo}";
             txtDataLocacao.Text = devolucao.Locacao.DataLocacao.ToShortDateString();
             txtDataDevolucaoPrevista.Text = devolucao.Locacao.DataPrevistaEntrega.ToShortDateString();
             txtPlanoCobranca.Text = devolucao.Locacao.PlanosCobranca.ToString();
             labelTotal.Text =  devolucao.Locacao.ValorPrevisto.ToString();
+
+        }
+
+        private void dateTimePickerDevolucao_ValueChanged(object sender, EventArgs e)
+        {
+
+
 
         }
     }

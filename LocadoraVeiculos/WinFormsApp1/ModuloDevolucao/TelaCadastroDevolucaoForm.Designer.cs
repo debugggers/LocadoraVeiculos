@@ -173,9 +173,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(229, 70);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 15);
+            this.label5.Size = new System.Drawing.Size(48, 15);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Placa do veículo:";
+            this.label5.Text = "Veículo:";
             // 
             // txtGrupoVeiculos
             // 
@@ -260,6 +260,7 @@
             this.dateTimePickerDevolucao.Name = "dateTimePickerDevolucao";
             this.dateTimePickerDevolucao.Size = new System.Drawing.Size(200, 23);
             this.dateTimePickerDevolucao.TabIndex = 6;
+            this.dateTimePickerDevolucao.ValueChanged += new System.EventHandler(this.dateTimePickerDevolucao_ValueChanged);
             // 
             // label11
             // 

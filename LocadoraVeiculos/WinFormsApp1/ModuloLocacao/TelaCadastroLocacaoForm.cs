@@ -39,6 +39,8 @@ namespace LocadoraVeiculosForm.ModuloLocacao
         private PlanoCobranca _planoCobranca;
         private ServicoPlanoCobranca _servicoPlanoCobranca;
 
+        decimal valorPrevisto = 0;
+
         public TelaCadastroLocacaoForm(ServicoLocacao servicoLocacao, ServicoCliente servicoCliente, ServicoGrupoVeiculos servicoGrupoVeiculos,
             ServicoTaxa servicoTaxa, ServicoVeiculo servicoVeiculo, ServicoPlanoCobranca servicoPlanoCobranca)
         {
@@ -151,6 +153,8 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
             CarregarTaxasNaLocacao();
 
+            _locacao.ValorPrevisto = valorPrevisto;
+
             var resultadoValidacao = GravarRegistro(_locacao);
 
             if (resultadoValidacao.IsFailed)
@@ -259,7 +263,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
                 var taxasSelecionadas = ObterTaxasSelecionadas();
 
-                var valorPrevisto = _servicoLocacao.CalcularValorPrevisto(dateTimeLocacao.Value, dateTimePrevisaoEntrega.Value, _planoCobranca,
+                valorPrevisto = _servicoLocacao.CalcularValorPrevisto(dateTimeLocacao.Value, dateTimePrevisaoEntrega.Value, _planoCobranca,
                                 planoCobrancaEnum, taxasSelecionadas);
 
                 labelValorPrevisto.Text = valorPrevisto.ToString("C");
