@@ -104,7 +104,7 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
                     break;
             }
 
-            devolucao.ValorTotal = devolucao.CalcularTotal();
+            //devolucao.ValorTotal = devolucao.CalcularTotal();
 
             var resultadoValidacao = GravarRegistro(devolucao);
 
