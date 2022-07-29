@@ -10,6 +10,6 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
         public override string TooltipEditar { get { return "Editar uma Locação existente"; } }
 
-        public override string TooltipExcluir { get { return "Excluir uma Locação existente"; } }
+        public override string TooltipExcluir { get { return "Não é possível excluir uma locação"; } }
     }
 }

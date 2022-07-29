@@ -57,7 +57,7 @@ namespace LocadoraVeiculosForm
         public void AtualizarRodape(string mensagem)
         {
             labelRodape.Text = mensagem;
-        }       
+        }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
@@ -129,11 +129,12 @@ namespace LocadoraVeiculosForm
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void funcionariosMenuItem_Click(object sender, EventArgs e)
         {
+            btnExcluir.Enabled = true;
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorFuncionario>());
         }
 
@@ -143,41 +144,49 @@ namespace LocadoraVeiculosForm
 
         private void pessoaFísicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            btnExcluir.Enabled = true;
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorCliente>());
         }
 
         private void pessoaJurídicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            btnExcluir.Enabled = true;
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorEmpresa>());
         }
 
         private void taxasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            btnExcluir.Enabled = true;
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorTaxa>());
         }
 
         private void grupoDeVeiculosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            btnExcluir.Enabled = true;
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorGupoVeiculos>());
         }
 
         private void planoCobrancaMenuItem_Click(object sender, EventArgs e)
         {
+            btnExcluir.Enabled = true;
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorPlanoCobranca>());
         }
 
         private void veiculoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            btnExcluir.Enabled = true;
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorVeiculo>());
         }
 
         private void locacaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            btnExcluir.Enabled = false;
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
         }
 
         private void devoluçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            btnExcluir.Enabled = false;
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorDevolucao>());
         }
     }

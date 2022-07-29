@@ -10,8 +10,6 @@ namespace LocadoraVeiculosForm.Compartilhado
 
         public abstract void Excluir();
 
-        public virtual void Agrupar() { }
-
         public abstract UserControl ObtemListagem();
 
         public abstract ConfiguracaoToolboxBase ObtemConfiguracaoToolbox();

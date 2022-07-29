@@ -78,14 +78,14 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             {
                 _locacao = value;
 
+                CarregarCheckBoxTaxas();
+                CarregarPlanosCobranca();
+
                 labelFuncionario.Text = _locacao.Funcionario == null ? GerenciadorUsuario.ObtemNome() : _locacao.Funcionario.Nome;
                 comboBoxClientes.SelectedItem = _locacao.Cliente;
                 comboBoxGrupoVeiculos.SelectedItem = _locacao.GrupoVeiculos;
                 comboBoxPlanosCobranca.SelectedItem = _locacao.PlanosCobranca;
                 comboBoxVeiculo.SelectedItem = _locacao.Veiculo;
-
-                CarregarCheckBoxTaxas();
-                CarregarPlanosCobranca();
 
                 if (_locacao.DataLocacao == DateTime.MinValue)
                     dateTimeLocacao.Value = DateTime.Now.Date;
@@ -179,8 +179,11 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
         private void CarregarTaxasNaLocacao()
         {
-            _locacao.Taxas.Clear();
-            _locacao.Taxas = ObterTaxasSelecionadas();
+            if (_locacao.Taxas != null)
+            {
+                _locacao.Taxas.Clear();
+                _locacao.Taxas = ObterTaxasSelecionadas();
+            }            
         }
 
         private void CarregarVeiculos()
