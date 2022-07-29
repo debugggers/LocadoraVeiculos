@@ -137,8 +137,18 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
             _planoCobranca.ValorPorKm_Controlado = Convert.ToDecimal(txtValorPorKm_Controlado.Text);
             _planoCobranca.ControleKm = Convert.ToInt32(txtControleKm.Text);
 
-            _planoCobranca.GrupoVeiculos = (GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem;
-            _planoCobranca.GrupoVeiculosId = _planoCobranca.GrupoVeiculos.Id;
+            var grupoVeiculosSelecionado = (GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem;
+            if (grupoVeiculosSelecionado == null)
+            {
+                labelRodapePlanoCobranca.Text = "Grupo de Veículos deve ser informado";
+
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                _planoCobranca.GrupoVeiculos = grupoVeiculosSelecionado;
+                _planoCobranca.GrupoVeiculosId = _planoCobranca.GrupoVeiculos.Id;
+            }
         }
 
         private void CarregarFormularioTipoPlano()

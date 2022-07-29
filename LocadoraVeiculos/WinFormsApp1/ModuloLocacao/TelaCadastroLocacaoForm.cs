@@ -105,16 +105,46 @@ namespace LocadoraVeiculosForm.ModuloLocacao
         {
             _locacao.FuncionarioId = GerenciadorUsuario.ObtemId();
 
-            _locacao.Cliente = (Cliente)comboBoxClientes.SelectedItem;
-            _locacao.ClienteId = _locacao.Cliente.Id;
+            var clienteSelecionado = (Cliente)comboBoxClientes.SelectedItem;
+            if (clienteSelecionado == null)
+            {
+                labelRodapeLocacao.Text = "Cliente deve ser informado";
 
-            _locacao.GrupoVeiculos = (GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem;
-            _locacao.GrupoVeiculosId = _locacao.GrupoVeiculos.Id;
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                _locacao.Cliente = clienteSelecionado;
+                _locacao.ClienteId = clienteSelecionado.Id;
+            }
+
+            var grupoVeiculosSelecionado = (GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem;
+            if (grupoVeiculosSelecionado == null)
+            {
+                labelRodapeLocacao.Text = "Grupo de Veículos deve ser informado";
+
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                _locacao.GrupoVeiculos = grupoVeiculosSelecionado;
+                _locacao.GrupoVeiculosId = _locacao.GrupoVeiculos.Id;
+            }
 
             _locacao.PlanosCobranca = (PlanoCobrancaEnum)comboBoxPlanosCobranca.SelectedItem;
+            
+            var veiculoSelecionado = (Veiculo)comboBoxVeiculo.SelectedItem;
+            if (veiculoSelecionado == null)
+            {
+                labelRodapeLocacao.Text = "Veículo deve ser informado";
 
-            _locacao.Veiculo = (Veiculo)comboBoxVeiculo.SelectedItem;
-            _locacao.VeiculoId = _locacao.Veiculo.Id;
+                DialogResult = DialogResult.None;
+            }
+            else
+            {
+                _locacao.Veiculo = veiculoSelecionado;
+                _locacao.VeiculoId = _locacao.Veiculo.Id;
+            }
 
             _locacao.DataLocacao = Convert.ToDateTime(dateTimeLocacao.Value);
             _locacao.DataPrevistaEntrega = Convert.ToDateTime(dateTimePrevisaoEntrega.Value);
@@ -183,7 +213,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             {
                 _locacao.Taxas.Clear();
                 _locacao.Taxas = ObterTaxasSelecionadas();
-            }            
+            }
         }
 
         private void CarregarVeiculos()
