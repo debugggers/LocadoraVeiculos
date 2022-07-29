@@ -100,9 +100,14 @@ namespace LocadoraVeiculos.BancoDados.ModuloPlanoCobranca
             return grupoVeiculoDuplicado;
         }
 
-        public List<PlanoCobranca> BuscarPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
+        public List<PlanoCobranca> BuscarListPlanoIdGrupoVeiculos(Guid idGrupoVeiculos)
         {
             return new List<PlanoCobranca>();
+        }
+
+        public PlanoCobranca BuscarPlanoIdGrupoVeiculos(Guid idGrupoVeiculos)
+        {
+            return new PlanoCobranca();
         }
     }
 }

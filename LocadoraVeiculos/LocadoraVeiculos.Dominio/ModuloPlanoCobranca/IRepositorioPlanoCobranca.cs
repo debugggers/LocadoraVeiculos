@@ -7,6 +7,7 @@ namespace LocadoraVeiculos.Dominio.ModuloPlanoCobranca
     public interface IRepositorioPlanoCobranca : IRepositorio<PlanoCobranca>
     {
         bool GrupoVeiculosDuplicado(Guid idPlanoCobranca, Guid idGrupoVeiculos);
-        List<PlanoCobranca> BuscarPeloIdGrupoVeiculos(Guid idGrupoVeiculos);
+        List<PlanoCobranca> BuscarListPlanoIdGrupoVeiculos(Guid idGrupoVeiculos);
+        PlanoCobranca BuscarPlanoIdGrupoVeiculos(Guid idGrupoVeiculos);
     }
 }

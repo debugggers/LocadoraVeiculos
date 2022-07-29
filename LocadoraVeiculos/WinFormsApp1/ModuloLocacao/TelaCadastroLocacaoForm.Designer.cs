@@ -147,6 +147,7 @@
             this.comboBoxPlanosCobranca.Name = "comboBoxPlanosCobranca";
             this.comboBoxPlanosCobranca.Size = new System.Drawing.Size(214, 27);
             this.comboBoxPlanosCobranca.TabIndex = 12;
+            this.comboBoxPlanosCobranca.SelectedIndexChanged += new System.EventHandler(this.comboBoxPlanosCobranca_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -172,6 +173,7 @@
             this.dateTimeLocacao.Name = "dateTimeLocacao";
             this.dateTimeLocacao.Size = new System.Drawing.Size(111, 26);
             this.dateTimeLocacao.TabIndex = 15;
+            this.dateTimeLocacao.ValueChanged += new System.EventHandler(this.dateTimeLocacao_ValueChanged);
             // 
             // label9
             // 
@@ -198,6 +200,7 @@
             this.dateTimePrevisaoEntrega.Name = "dateTimePrevisaoEntrega";
             this.dateTimePrevisaoEntrega.Size = new System.Drawing.Size(111, 26);
             this.dateTimePrevisaoEntrega.TabIndex = 17;
+            this.dateTimePrevisaoEntrega.ValueChanged += new System.EventHandler(this.dateTimePrevisaoEntrega_ValueChanged);
             // 
             // tabControl1
             // 
@@ -226,6 +229,10 @@
             this.checkedListBoxTaxas.Name = "checkedListBoxTaxas";
             this.checkedListBoxTaxas.Size = new System.Drawing.Size(714, 151);
             this.checkedListBoxTaxas.TabIndex = 0;
+            this.checkedListBoxTaxas.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxTaxas_ItemCheck);
+            this.checkedListBoxTaxas.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxTaxas_SelectedIndexChanged);
+            this.checkedListBoxTaxas.KeyUp += new System.Windows.Forms.KeyEventHandler(this.checkedListBoxTaxas_KeyUp);
+            this.checkedListBoxTaxas.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.checkedListBoxTaxas_MouseDoubleClick);
             // 
             // label11
             // 

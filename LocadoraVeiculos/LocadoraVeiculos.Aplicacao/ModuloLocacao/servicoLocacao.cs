@@ -170,12 +170,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             return Result.Ok();
         }
 
-        public decimal CalcularValorPrevisto(DateTime dataLocacao, DateTime dataPrevistaDevolucao, 
+        public decimal CalcularValorPrevisto(DateTime dataLocacao, DateTime dataPrevistaDevolucao,
             PlanoCobranca planoCobranca, PlanoCobrancaEnum planoCobrancaEnum, List<Taxa> taxas)
         {
             decimal valorPrevisto = 0;
-            var totalDias = (dataPrevistaDevolucao - dataLocacao).Days;
-            
+            var totalDias = (dataPrevistaDevolucao - dataLocacao).Days + 1;
+
             if (planoCobrancaEnum == PlanoCobrancaEnum.Diario)
                 valorPrevisto = totalDias * planoCobranca.ValorDiario_Diario;
             else if (planoCobrancaEnum == PlanoCobrancaEnum.Livre)

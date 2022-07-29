@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using LocadoraVeiculos.Aplicacao.ModuloCliente;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Aplicacao.ModuloLocacao;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
@@ -8,6 +9,7 @@ using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
+using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System;
@@ -20,6 +22,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
     public partial class TelaCadastroLocacaoForm : Form
     {
         private Locacao _locacao;
+        private ServicoLocacao _servicoLocacao;
 
         private List<Cliente> _clientes;
         private ServicoCliente _servicoCliente;
@@ -33,13 +36,18 @@ namespace LocadoraVeiculosForm.ModuloLocacao
         private List<Veiculo> _veiculos;
         private ServicoVeiculo _servicoVeiculo;
 
-        public TelaCadastroLocacaoForm(ServicoCliente servicoCliente, ServicoGrupoVeiculos servicoGrupoVeiculos,
-            ServicoPlanoCobranca servicoPlanoCobranca, ServicoTaxa servicoTaxa, ServicoVeiculo servicoVeiculo)
+        private PlanoCobranca _planoCobranca;
+        private ServicoPlanoCobranca _servicoPlanoCobranca;
+
+        public TelaCadastroLocacaoForm(ServicoLocacao servicoLocacao, ServicoCliente servicoCliente, ServicoGrupoVeiculos servicoGrupoVeiculos,
+            ServicoTaxa servicoTaxa, ServicoVeiculo servicoVeiculo, ServicoPlanoCobranca servicoPlanoCobranca)
         {
             InitializeComponent();
 
             checkedListBoxTaxas.DisplayMember = "Descricao";
             checkedListBoxTaxas.ValueMember = "Id";
+
+            _servicoLocacao = servicoLocacao;
 
             _servicoCliente = servicoCliente;
             _clientes = _servicoCliente.SelecionarTodos().Value;
@@ -52,13 +60,13 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
             _servicoVeiculo = servicoVeiculo;
 
+            _servicoPlanoCobranca = servicoPlanoCobranca;
+
             dateTimeLocacao.MinDate = DateTime.Now.Date;
             dateTimePrevisaoEntrega.MinDate = DateTime.Now.Date;
 
             CarregarClientes();
             CarregarGrupoVeiculos();
-            CarregarPlanosCobranca();
-           
         }
 
         public Func<Locacao, Result<Locacao>> GravarRegistro { get; set; }
@@ -76,6 +84,9 @@ namespace LocadoraVeiculosForm.ModuloLocacao
                 comboBoxPlanosCobranca.SelectedItem = _locacao.PlanosCobranca;
                 comboBoxVeiculo.SelectedItem = _locacao.Veiculo;
 
+                CarregarCheckBoxTaxas();
+                CarregarPlanosCobranca();
+
                 if (_locacao.DataLocacao == DateTime.MinValue)
                     dateTimeLocacao.Value = DateTime.Now.Date;
                 else
@@ -87,8 +98,6 @@ namespace LocadoraVeiculosForm.ModuloLocacao
                     dateTimePrevisaoEntrega.Value = _locacao.DataPrevistaEntrega;
 
                 labelValorPrevisto.Text = _locacao.ValorPrevisto.ToString();
-
-                CarregarCheckBoxTaxas();
             }
         }
 
@@ -171,8 +180,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
         private void CarregarTaxasNaLocacao()
         {
             _locacao.Taxas.Clear();
-            foreach (var item in checkedListBoxTaxas.CheckedItems)
-                _locacao.Taxas.Add((Taxa)item);
+            _locacao.Taxas = ObterTaxasSelecionadas();
         }
 
         private void CarregarVeiculos()
@@ -204,8 +212,70 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             var grupoVeiculosSelecionado = (GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem;
 
             _veiculos = _servicoVeiculo.BuscarPeloIdGrupoVeiculos(grupoVeiculosSelecionado.Id).Value;
+            _planoCobranca = _servicoPlanoCobranca.BuscarPlanoIdGrupoVeiculos(grupoVeiculosSelecionado.Id).Value;
 
             CarregarVeiculos();
+            CarregarValorPrevisto();
+        }
+
+        private void CarregarValorPrevisto()
+        {
+            if (_planoCobranca != null)
+            {
+                var planoCobrancaEnum = (PlanoCobrancaEnum)comboBoxPlanosCobranca.SelectedItem;
+
+                var taxasSelecionadas = ObterTaxasSelecionadas();
+
+                var valorPrevisto = _servicoLocacao.CalcularValorPrevisto(dateTimeLocacao.Value, dateTimePrevisaoEntrega.Value, _planoCobranca,
+                                planoCobrancaEnum, taxasSelecionadas);
+
+                labelValorPrevisto.Text = valorPrevisto.ToString("C");
+            }
+        }
+
+        private List<Taxa> ObterTaxasSelecionadas()
+        {
+            var taxasSelecionadas = new List<Taxa>();
+
+            foreach (var item in checkedListBoxTaxas.CheckedItems)
+                taxasSelecionadas.Add((Taxa)item);
+
+            return taxasSelecionadas;
+        }
+
+        private void comboBoxPlanosCobranca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CarregarValorPrevisto();
+        }
+
+        private void dateTimeLocacao_ValueChanged(object sender, EventArgs e)
+        {
+            CarregarValorPrevisto();
+        }
+
+        private void dateTimePrevisaoEntrega_ValueChanged(object sender, EventArgs e)
+        {
+            CarregarValorPrevisto();
+        }
+
+        private void checkedListBoxTaxas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CarregarValorPrevisto();
+        }
+
+        private void checkedListBoxTaxas_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            CarregarValorPrevisto();
+        }
+
+        private void checkedListBoxTaxas_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            CarregarValorPrevisto();
+        }
+
+        private void checkedListBoxTaxas_KeyUp(object sender, KeyEventArgs e)
+        {
+            CarregarValorPrevisto();
         }
     }
 }
