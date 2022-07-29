@@ -290,8 +290,8 @@
             // labelRodapeLocacao
             // 
             this.labelRodapeLocacao.Name = "labelRodapeLocacao";
-            this.labelRodapeLocacao.Size = new System.Drawing.Size(139, 19);
-            this.labelRodapeLocacao.Text = "toolStripStatusLabel1";
+            this.labelRodapeLocacao.Size = new System.Drawing.Size(60, 19);
+            this.labelRodapeLocacao.Text = "[rodapé]";
             // 
             // TelaCadastroLocacaoForm
             // 
