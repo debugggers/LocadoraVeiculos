@@ -10,10 +10,11 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
     {
 
         public Locacao Locacao { get; set; }
+        public  Guid LocacaoId { get; set; }
         public int QuilometragemVeiculo { get; set; }
         public DateTime DataDevolucao { get; set; }
         public  Double NivelDoTanque { get; set; }
-        public  List<Taxa> Taxas { get; set; }
+        public  List<Taxa>? Taxas { get; set; }
         public Double ValorTotal { get; set; }
 
         public Devolucao()
@@ -46,5 +47,16 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
         {
             return base.ToString();
         }
+
+        public double CalcularTotal()
+        {
+            return 0;
+        }
+
+        public bool EntregueAntesDataPrevista()
+        {
+            return false;
+        } 
+
     }
 }
