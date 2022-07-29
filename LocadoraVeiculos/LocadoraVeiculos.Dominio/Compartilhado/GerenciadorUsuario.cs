@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.ModuloFuncionario;
+using System;
 
 namespace LocadoraVeiculos.Dominio.Compartilhado
 {
@@ -13,7 +14,16 @@ namespace LocadoraVeiculos.Dominio.Compartilhado
 
         public static string ObtemNome()
         {
+            if (_funcionario.Id == Guid.Empty)
+                return "Admin";
             return _funcionario.Nome;
+        }
+
+        public static Guid? ObtemId()
+        {
+            if (EhAdmin())
+                return null;
+            return _funcionario.Id;
         }
 
         public static bool EhAdmin()

@@ -30,7 +30,6 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloLocacao
             var resultado = validador.Validate(locacao);
 
             //assert
-            //Assert.AreEqual("'ValorPrevisto' não pode ser nulo.", resultado.Errors[6].ErrorMessage);
             Assert.AreEqual("'Valor Previsto' deve ser informado.", resultado.Errors[7].ErrorMessage);
         }
 
@@ -39,7 +38,6 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloLocacao
         {
             //arrange
             var locacao = new Locacao();
-
             var validador = new ValidadorLocacao();
 
             //action
@@ -54,7 +52,6 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloLocacao
         {
             //arrange
             var locacao = new Locacao();
-
             var validador = new ValidadorLocacao();
 
             //action

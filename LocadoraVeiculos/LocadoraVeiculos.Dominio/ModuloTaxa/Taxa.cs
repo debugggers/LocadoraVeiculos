@@ -1,4 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ModuloTaxa
 {
@@ -20,6 +22,8 @@ namespace LocadoraVeiculos.Dominio.ModuloTaxa
         public decimal Valor { get; set; }
 
         public TipoCalculoEnum TipoCalculo { get; set; }
+
+        public List<Locacao> Locacoes { get; set; }
 
         public override bool Equals(object obj)
         {

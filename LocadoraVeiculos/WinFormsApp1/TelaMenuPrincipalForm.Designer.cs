@@ -60,7 +60,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1041, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(1482, 29);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "toolBox";
             // 
@@ -169,7 +169,7 @@
             this.labelTipoCadastro});
             this.toolbox.Location = new System.Drawing.Point(0, 29);
             this.toolbox.Name = "toolbox";
-            this.toolbox.Size = new System.Drawing.Size(1041, 25);
+            this.toolbox.Size = new System.Drawing.Size(1482, 25);
             this.toolbox.TabIndex = 2;
             this.toolbox.Text = "toolStrip1";
             // 
@@ -220,10 +220,10 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.labelRodape});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 353);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 581);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1041, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(1482, 24);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -239,14 +239,14 @@
             this.panelRegistros.Location = new System.Drawing.Point(0, 54);
             this.panelRegistros.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(1041, 299);
+            this.panelRegistros.Size = new System.Drawing.Size(1482, 527);
             this.panelRegistros.TabIndex = 4;
             // 
             // TelaMenuPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 377);
+            this.ClientSize = new System.Drawing.Size(1482, 605);
             this.Controls.Add(this.panelRegistros);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolbox);

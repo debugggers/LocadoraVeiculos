@@ -11,10 +11,13 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloTaxa
         public void Configure(EntityTypeBuilder<Taxa> builder)
         {
             builder.ToTable("TBTaxa");
+
             builder.Property(x => x.Id).ValueGeneratedNever();
             builder.Property(x => x.Descricao).IsRequired().HasColumnType("Varchar(100)");
             builder.Property(x => x.Valor).IsRequired();
             builder.Property(x => x.TipoCalculo).HasConversion<int>().IsRequired();
+
+            builder.HasMany(x => x.Locacoes);
         }
     }
 }

@@ -51,8 +51,11 @@
             this.labelValorPrevisto = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.labelRodapeLocacao = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1.SuspendLayout();
             this.tabTaxas.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -69,9 +72,8 @@
             this.labelFuncionario.AutoSize = true;
             this.labelFuncionario.Location = new System.Drawing.Point(173, 40);
             this.labelFuncionario.Name = "labelFuncionario";
-            this.labelFuncionario.Size = new System.Drawing.Size(77, 19);
+            this.labelFuncionario.Size = new System.Drawing.Size(0, 19);
             this.labelFuncionario.TabIndex = 1;
-            this.labelFuncionario.Text = "funcionário";
             // 
             // label2
             // 
@@ -84,6 +86,7 @@
             // 
             // comboBoxClientes
             // 
+            this.comboBoxClientes.DisplayMember = "Nome";
             this.comboBoxClientes.FormattingEnabled = true;
             this.comboBoxClientes.Location = new System.Drawing.Point(570, 32);
             this.comboBoxClientes.Name = "comboBoxClientes";
@@ -101,11 +104,13 @@
             // 
             // comboBoxGrupoVeiculos
             // 
+            this.comboBoxGrupoVeiculos.DisplayMember = "Nome";
             this.comboBoxGrupoVeiculos.FormattingEnabled = true;
             this.comboBoxGrupoVeiculos.Location = new System.Drawing.Point(173, 83);
             this.comboBoxGrupoVeiculos.Name = "comboBoxGrupoVeiculos";
             this.comboBoxGrupoVeiculos.Size = new System.Drawing.Size(214, 27);
             this.comboBoxGrupoVeiculos.TabIndex = 7;
+            this.comboBoxGrupoVeiculos.SelectedIndexChanged += new System.EventHandler(this.comboBoxGrupoVeiculos_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -118,11 +123,13 @@
             // 
             // comboBoxVeiculo
             // 
+            this.comboBoxVeiculo.DisplayMember = "Modelo";
             this.comboBoxVeiculo.FormattingEnabled = true;
             this.comboBoxVeiculo.Location = new System.Drawing.Point(570, 83);
             this.comboBoxVeiculo.Name = "comboBoxVeiculo";
             this.comboBoxVeiculo.Size = new System.Drawing.Size(214, 27);
             this.comboBoxVeiculo.TabIndex = 10;
+            this.comboBoxVeiculo.SelectedIndexChanged += new System.EventHandler(this.comboBoxVeiculo_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -140,6 +147,7 @@
             this.comboBoxPlanosCobranca.Name = "comboBoxPlanosCobranca";
             this.comboBoxPlanosCobranca.Size = new System.Drawing.Size(214, 27);
             this.comboBoxPlanosCobranca.TabIndex = 12;
+            this.comboBoxPlanosCobranca.SelectedIndexChanged += new System.EventHandler(this.comboBoxPlanosCobranca_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -155,9 +163,8 @@
             this.labelKmVeiculo.AutoSize = true;
             this.labelKmVeiculo.Location = new System.Drawing.Point(570, 143);
             this.labelKmVeiculo.Name = "labelKmVeiculo";
-            this.labelKmVeiculo.Size = new System.Drawing.Size(74, 19);
+            this.labelKmVeiculo.Size = new System.Drawing.Size(0, 19);
             this.labelKmVeiculo.TabIndex = 14;
-            this.labelKmVeiculo.Text = "km veículo";
             // 
             // dateTimeLocacao
             // 
@@ -166,6 +173,7 @@
             this.dateTimeLocacao.Name = "dateTimeLocacao";
             this.dateTimeLocacao.Size = new System.Drawing.Size(111, 26);
             this.dateTimeLocacao.TabIndex = 15;
+            this.dateTimeLocacao.ValueChanged += new System.EventHandler(this.dateTimeLocacao_ValueChanged);
             // 
             // label9
             // 
@@ -192,6 +200,7 @@
             this.dateTimePrevisaoEntrega.Name = "dateTimePrevisaoEntrega";
             this.dateTimePrevisaoEntrega.Size = new System.Drawing.Size(111, 26);
             this.dateTimePrevisaoEntrega.TabIndex = 17;
+            this.dateTimePrevisaoEntrega.ValueChanged += new System.EventHandler(this.dateTimePrevisaoEntrega_ValueChanged);
             // 
             // tabControl1
             // 
@@ -218,8 +227,12 @@
             this.checkedListBoxTaxas.FormattingEnabled = true;
             this.checkedListBoxTaxas.Location = new System.Drawing.Point(6, 17);
             this.checkedListBoxTaxas.Name = "checkedListBoxTaxas";
-            this.checkedListBoxTaxas.Size = new System.Drawing.Size(517, 151);
+            this.checkedListBoxTaxas.Size = new System.Drawing.Size(714, 151);
             this.checkedListBoxTaxas.TabIndex = 0;
+            this.checkedListBoxTaxas.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxTaxas_ItemCheck);
+            this.checkedListBoxTaxas.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxTaxas_SelectedIndexChanged);
+            this.checkedListBoxTaxas.KeyUp += new System.Windows.Forms.KeyEventHandler(this.checkedListBoxTaxas_KeyUp);
+            this.checkedListBoxTaxas.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.checkedListBoxTaxas_MouseDoubleClick);
             // 
             // label11
             // 
@@ -242,7 +255,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(586, 552);
+            this.btnCancelar.Location = new System.Drawing.Point(590, 527);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(94, 51);
             this.btnCancelar.TabIndex = 22;
@@ -252,18 +265,36 @@
             // btnCadastrar
             // 
             this.btnCadastrar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnCadastrar.Location = new System.Drawing.Point(686, 552);
+            this.btnCadastrar.Location = new System.Drawing.Point(690, 527);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(91, 51);
             this.btnCadastrar.TabIndex = 23;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelRodapeLocacao});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 593);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(817, 24);
+            this.statusStrip1.TabIndex = 24;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // labelRodapeLocacao
+            // 
+            this.labelRodapeLocacao.Name = "labelRodapeLocacao";
+            this.labelRodapeLocacao.Size = new System.Drawing.Size(139, 19);
+            this.labelRodapeLocacao.Text = "toolStripStatusLabel1";
             // 
             // TelaCadastroLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(817, 617);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.labelValorPrevisto);
@@ -291,9 +322,12 @@
             this.Name = "TelaCadastroLocacaoForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tela de Cadastro de Locação";
             this.tabControl1.ResumeLayout(false);
             this.tabTaxas.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,5 +358,7 @@
         private System.Windows.Forms.Label labelValorPrevisto;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnCadastrar;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel labelRodapeLocacao;
     }
 }

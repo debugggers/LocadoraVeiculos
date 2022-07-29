@@ -2,6 +2,8 @@
 using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
+using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
+using LocadoraVeiculos.Dominio.ModuloTaxa;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -9,16 +11,16 @@ using System.Linq;
 
 namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 {
-    public class servicoLocacao
+    public class ServicoLocacao
     {
 
-        private IRepositorioLocacao repositorioLocacao;
-        private IContext context;
+        private IRepositorioLocacao _repositorioLocacao;
+        private IContext _context;
 
-        public servicoLocacao(IRepositorioLocacao repositorioLocacao, IContext context)
+        public ServicoLocacao(IRepositorioLocacao repositorioLocacao, IContext context)
         {
-            this.repositorioLocacao = repositorioLocacao;
-            this.context = context;
+            _repositorioLocacao = repositorioLocacao;
+            _context = context;
         }
 
         public Result<Locacao> Inserir(Locacao locacao)
@@ -40,9 +42,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
             try
             {
-                repositorioLocacao.Inserir(locacao);
+                _repositorioLocacao.Inserir(locacao);
 
-                context.GravarDados();
+                _context.GravarDados();
 
                 Log.Logger.Information("Locação {LocaçãoId} inserida com sucesso", locacao.Id);
 
@@ -77,9 +79,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
             try
             {
-                repositorioLocacao.Editar(locacao);
+                _repositorioLocacao.Editar(locacao);
 
-                context.GravarDados();
+                _context.GravarDados();
 
                 Log.Logger.Information("Locação {LocaçãoId} editada com sucesso", locacao.Id);
 
@@ -101,9 +103,9 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
             try
             {
-                repositorioLocacao.Excluir(locacao);
+                _repositorioLocacao.Excluir(locacao);
 
-                context.GravarDados();
+                _context.GravarDados();
 
                 Log.Logger.Information("Locação {LocaçãoId} excluída com sucesso", locacao.Id);
 
@@ -121,22 +123,17 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
         public Result<Locacao> SelecionarPorId(Guid id)
         {
-
             try
             {
-
-                return Result.Ok(repositorioLocacao.SelecionarPorId(id));
-
+                return Result.Ok(_repositorioLocacao.SelecionarPorId(id));
             }
             catch (Exception ex)
             {
-
                 string msgErro = "Falha no sistema ao tentar selecionar a locação";
 
                 Log.Logger.Error(ex, msgErro + "{LocaçãoId}", id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 
@@ -144,7 +141,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
         {
             try
             {
-                return Result.Ok(repositorioLocacao.SelecionarTodos());
+                return Result.Ok(_repositorioLocacao.SelecionarTodos());
             }
             catch (Exception ex)
             {
@@ -167,21 +164,34 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
             foreach (ValidationFailure item in resultadoValidacao.Errors)
                 erros.Add(new Error(item.ErrorMessage));
 
-            //if (LocacaoDuplicada(locacao))
-             //   erros.Add(new Error("Cliente duplicado"));
-
             if (erros.Any())
                 return Result.Fail(erros);
 
             return Result.Ok();
         }
 
-        //private bool LocacaoDuplicada(Locacao locacao)
-        //{
-            //var clienteEncontrado = _repositorioCliente.ClienteJaExiste(cliente);
+        public decimal CalcularValorPrevisto(DateTime dataLocacao, DateTime dataPrevistaDevolucao,
+            PlanoCobranca planoCobranca, PlanoCobrancaEnum planoCobrancaEnum, List<Taxa> taxas)
+        {
+            decimal valorPrevisto = 0;
+            var totalDias = (dataPrevistaDevolucao - dataLocacao).Days + 1;
 
-            //return clienteEncontrado;
-        //}
+            if (planoCobrancaEnum == PlanoCobrancaEnum.Diario)
+                valorPrevisto = totalDias * planoCobranca.ValorDiario_Diario;
+            else if (planoCobrancaEnum == PlanoCobrancaEnum.Livre)
+                valorPrevisto = totalDias * planoCobranca.ValorDiario_Livre;
+            else
+                valorPrevisto = totalDias * planoCobranca.ValorDiario_Controlado;
 
+            foreach (var taxa in taxas)
+            {
+                if (taxa.TipoCalculo == TipoCalculoEnum.CalculoFixo)
+                    valorPrevisto += taxa.Valor;
+                else
+                    valorPrevisto += totalDias * taxa.Valor;
+            }
+
+            return valorPrevisto;
+        }
     }
 }

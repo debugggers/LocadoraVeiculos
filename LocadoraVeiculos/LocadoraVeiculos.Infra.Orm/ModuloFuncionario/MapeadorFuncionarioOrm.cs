@@ -11,6 +11,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloFuncionario
         public void Configure(EntityTypeBuilder<Funcionario> builder)
         {
             builder.ToTable("TBFuncionario");
+
             builder.Property(x => x.Id).ValueGeneratedNever();
             builder.Property(x => x.Nome).IsRequired().HasColumnType("Varchar(100)");
             builder.Property(x => x.Login).IsRequired().HasColumnType("Varchar(100)");

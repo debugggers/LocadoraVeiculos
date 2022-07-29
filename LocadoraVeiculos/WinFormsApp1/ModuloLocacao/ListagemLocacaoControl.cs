@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloLocacao;
+﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
 using LocadoraVeiculosForm.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,6 @@ namespace LocadoraVeiculosForm.ModuloLocacao
                 new DataGridViewTextBoxColumn { DataPropertyName = "Funcionario", HeaderText = "Funcionário"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Cliente", HeaderText = "Cliente"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "GrupoVeiculos", HeaderText = "Grupo de Veículos"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Taxas", HeaderText = "Taxas"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "PlanosCobranca", HeaderText = "Planos de Cobrança"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Veiculo", HeaderText = "Veículo"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "KmVeiculo", HeaderText = "Km do Veículo"},
@@ -37,7 +37,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             return colunas;
         }
 
-        public Guid ObtemIdPlanoCobrancaSelecionado()
+        public Guid ObtemIdLocacaoSelecionada()
         {
             return gridLocacao.SelecionarId<Guid>();
         }
@@ -46,20 +46,19 @@ namespace LocadoraVeiculosForm.ModuloLocacao
         {
             gridLocacao.Rows.Clear();
 
-            foreach (var planoCobranca in locacoes)
+            foreach (var locacao in locacoes)
             {
                 gridLocacao.Rows.Add(
-                    planoCobranca.Id,
-                    planoCobranca.Funcionario.Nome,
-                    planoCobranca.Cliente.Nome,
-                    planoCobranca.GrupoVeiculos.Nome,
-                    planoCobranca.Taxa.Descricao,
-                    planoCobranca.PlanoCobranca.Id.ToString(),
-                    planoCobranca.Veiculo.Placa,
-                    planoCobranca.KmVeiculo.ToString(),
-                    planoCobranca.DataLocacao.ToString(),
-                    planoCobranca.DataPrevistaEntrega.ToString(),
-                    planoCobranca.ValorPrevisto.ToString());
+                    locacao.Id,
+                    locacao.Funcionario == null ? GerenciadorUsuario.ObtemNome() : locacao.Funcionario.Nome,
+                    locacao.Cliente.Nome,
+                    locacao.GrupoVeiculos.Nome,
+                    locacao.PlanosCobranca.ToString(),
+                    $"{locacao.Veiculo.Modelo} - {locacao.Veiculo.Placa}",
+                    locacao.Veiculo.QuilometragemPercorrida,
+                    locacao.DataLocacao.ToString(),
+                    locacao.DataPrevistaEntrega.ToString(),
+                    locacao.ValorPrevisto.ToString());
             }
         }
     }

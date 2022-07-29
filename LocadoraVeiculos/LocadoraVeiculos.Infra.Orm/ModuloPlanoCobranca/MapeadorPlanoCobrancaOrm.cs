@@ -11,6 +11,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca
         public void Configure(EntityTypeBuilder<PlanoCobranca> builder)
         {
             builder.ToTable("TBPlanoCobranca");
+
             builder.Property(x => x.Id).ValueGeneratedNever();
             builder.Property(x => x.ValorDiario_Diario).IsRequired();
             builder.Property(x => x.ValorPorKm_Diario).IsRequired();
@@ -18,6 +19,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca
             builder.Property(x => x.ValorDiario_Controlado).IsRequired();
             builder.Property(x => x.ValorPorKm_Controlado).IsRequired();
             builder.Property(x => x.ControleKm).IsRequired();
+
             builder.HasOne(x => x.GrupoVeiculos);
         }
     }
