@@ -179,7 +179,8 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
         private void CarregarTaxasNaLocacao()
         {
-            _locacao.Taxas.Clear();
+            if(_locacao.Taxas != null)
+                _locacao.Taxas.Clear();
             _locacao.Taxas = ObterTaxasSelecionadas();
         }
 
