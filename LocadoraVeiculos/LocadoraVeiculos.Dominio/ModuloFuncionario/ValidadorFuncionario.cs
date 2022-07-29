@@ -7,8 +7,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
     {
         public ValidadorFuncionario()
         {
-            RuleFor(x => x.Nome).NotNull()
-                .NotEmpty();
+            RuleFor(x => x.Nome).NotNull().NotEmpty();
 
             RuleFor(x => x.Nome).MinimumLength(3).WithMessage("'Nome' deve ter no mínimo 3 caracteres.");
 

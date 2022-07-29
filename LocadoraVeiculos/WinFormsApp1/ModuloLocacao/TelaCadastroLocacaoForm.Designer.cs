@@ -87,6 +87,7 @@
             // comboBoxClientes
             // 
             this.comboBoxClientes.DisplayMember = "Nome";
+            this.comboBoxClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxClientes.FormattingEnabled = true;
             this.comboBoxClientes.Location = new System.Drawing.Point(570, 32);
             this.comboBoxClientes.Name = "comboBoxClientes";
@@ -105,6 +106,7 @@
             // comboBoxGrupoVeiculos
             // 
             this.comboBoxGrupoVeiculos.DisplayMember = "Nome";
+            this.comboBoxGrupoVeiculos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGrupoVeiculos.FormattingEnabled = true;
             this.comboBoxGrupoVeiculos.Location = new System.Drawing.Point(173, 83);
             this.comboBoxGrupoVeiculos.Name = "comboBoxGrupoVeiculos";
@@ -124,6 +126,7 @@
             // comboBoxVeiculo
             // 
             this.comboBoxVeiculo.DisplayMember = "Modelo";
+            this.comboBoxVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVeiculo.FormattingEnabled = true;
             this.comboBoxVeiculo.Location = new System.Drawing.Point(570, 83);
             this.comboBoxVeiculo.Name = "comboBoxVeiculo";
@@ -142,6 +145,7 @@
             // 
             // comboBoxPlanosCobranca
             // 
+            this.comboBoxPlanosCobranca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPlanosCobranca.FormattingEnabled = true;
             this.comboBoxPlanosCobranca.Location = new System.Drawing.Point(173, 135);
             this.comboBoxPlanosCobranca.Name = "comboBoxPlanosCobranca";
