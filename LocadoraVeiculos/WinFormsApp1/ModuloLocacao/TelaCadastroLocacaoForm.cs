@@ -134,8 +134,9 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             }
 
             _locacao.PlanosCobranca = (PlanoCobrancaEnum)comboBoxPlanosCobranca.SelectedItem;
-            
+
             var veiculoSelecionado = (Veiculo)comboBoxVeiculo.SelectedItem;
+
             if (veiculoSelecionado == null)
             {
                 labelRodapeLocacao.Text = "Veículo deve ser informado";
@@ -144,35 +145,46 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             }
             else
             {
-                _locacao.Veiculo = veiculoSelecionado;
-                _locacao.VeiculoId = _locacao.Veiculo.Id;
-            }
+                var locacoes = _servicoLocacao.SelecionarTodos().Value;
 
-            _locacao.DataLocacao = Convert.ToDateTime(dateTimeLocacao.Value);
-            _locacao.DataPrevistaEntrega = Convert.ToDateTime(dateTimePrevisaoEntrega.Value);
-
-            CarregarTaxasNaLocacao();
-
-            _locacao.ValorPrevisto = valorPrevisto;
-
-            var resultadoValidacao = GravarRegistro(_locacao);
-
-            if (resultadoValidacao.IsFailed)
-            {
-                string erro = resultadoValidacao.Errors[0].Message;
-
-                if (erro.StartsWith("Falha no sistema"))
+                if (locacoes.Any(x => x.VeiculoId == veiculoSelecionado.Id))
                 {
-                    MessageBox.Show(erro, "Inserção de Locação",
-                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    labelRodapeLocacao.Text = "Veículo já está alugado";
 
                     DialogResult = DialogResult.None;
                 }
                 else
                 {
-                    labelRodapeLocacao.Text = erro;
+                    _locacao.Veiculo = veiculoSelecionado;
+                    _locacao.VeiculoId = _locacao.Veiculo.Id;
 
-                    DialogResult = DialogResult.None;
+                    _locacao.DataLocacao = Convert.ToDateTime(dateTimeLocacao.Value);
+                    _locacao.DataPrevistaEntrega = Convert.ToDateTime(dateTimePrevisaoEntrega.Value);
+
+                    CarregarTaxasNaLocacao();
+
+                    _locacao.ValorPrevisto = valorPrevisto;
+
+                    var resultadoValidacao = GravarRegistro(_locacao);
+
+                    if (resultadoValidacao.IsFailed)
+                    {
+                        string erro = resultadoValidacao.Errors[0].Message;
+
+                        if (erro.StartsWith("Falha no sistema"))
+                        {
+                            MessageBox.Show(erro, "Inserção de Locação",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                            DialogResult = DialogResult.None;
+                        }
+                        else
+                        {
+                            labelRodapeLocacao.Text = erro;
+
+                            DialogResult = DialogResult.None;
+                        }
+                    }
                 }
             }
         }
