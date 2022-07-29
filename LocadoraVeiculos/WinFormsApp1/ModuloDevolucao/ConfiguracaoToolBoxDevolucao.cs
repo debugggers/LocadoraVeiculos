@@ -11,6 +11,6 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
 
         public override string TooltipEditar { get { return "Editar uma devolução existente"; } }
 
-        public override string TooltipExcluir { get { return "Excluir uma devolução existente"; } }
+        public override string TooltipExcluir { get { return "Não é possível excluir uma devolução"; } }
     }
 }
