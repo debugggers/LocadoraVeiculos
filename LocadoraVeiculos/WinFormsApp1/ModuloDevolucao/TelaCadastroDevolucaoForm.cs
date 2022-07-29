@@ -37,7 +37,7 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
                 if(devolucao.Locacao != null)
                 {
 
-                    txtFuncionario.Text = devolucao.Locacao.Funcionario.Nome;
+                    //txtFuncionario.Text = devolucao.Locacao.Funcionario.Nome;
                     if (devolucao.Locacao.Cliente.Empresa == null)
                         txtCliente.Text = devolucao.Locacao.Cliente.Nome;
                     else
@@ -88,19 +88,19 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
             {
 
                 case "Vazio":
-                    devolucao.NivelDoTanque = 0;
+                    devolucao.NivelDoTanque = 0d;
                         break;
                 case "1/4":
-                    devolucao.NivelDoTanque = 1/4;
+                    devolucao.NivelDoTanque = 1/4d;
                     break;
                 case "1/2":
-                    devolucao.NivelDoTanque = 1 / 2;
+                    devolucao.NivelDoTanque = 1/2d;
                     break;
                 case "3/4":
-                    devolucao.NivelDoTanque = 3 / 4;
+                    devolucao.NivelDoTanque = 3/4d;
                     break;
                 case "Cheio":
-                    devolucao.NivelDoTanque = 1;
+                    devolucao.NivelDoTanque = 1d;
                     break;
             }
 
@@ -141,7 +141,15 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
         private void comboBoxLocacoes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            txtFuncionario.Text = devolucao.Locacao.Funcionario.Nome;
+            foreach (var item in locacoes)
+            {
+
+                if (item.Id.Equals(comboBoxLocacoes.SelectedItem))
+                    devolucao.Locacao = item;
+
+            }
+
+            //txtFuncionario.Text = devolucao.Locacao.Funcionario.Nome;
             if (devolucao.Locacao.Cliente.Empresa == null)
                 txtCliente.Text = devolucao.Locacao.Cliente.Nome;
             else
@@ -151,6 +159,7 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
             txtDataLocacao.Text = devolucao.Locacao.DataLocacao.ToShortDateString();
             txtDataDevolucaoPrevista.Text = devolucao.Locacao.DataPrevistaEntrega.ToShortDateString();
             txtPlanoCobranca.Text = devolucao.Locacao.PlanosCobranca.ToString();
+            labelTotal.Text =  devolucao.Locacao.ValorPrevisto.ToString();
 
         }
     }
