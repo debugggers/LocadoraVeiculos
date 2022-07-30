@@ -1,5 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.ModuloDevolucao;
 using LocadoraVeiculos.Aplicacao.ModuloLocacao;
+using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
+using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.Dominio.ModuloDevolucao;
 using LocadoraVeiculosForm.Compartilhado;
 using System;
@@ -14,12 +16,16 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
         private ServicoDevolucao servico;
         private ListagemDevolucoesControl listagem;
         private ServicoLocacao servicoLocacao;
+        private ServicoPlanoCobranca servicoPlano;
+        private ServicoTaxa servicoTaxa;
 
-        public ControladorDevolucao(ServicoDevolucao servico, ServicoLocacao servicoLocacao)
+        public ControladorDevolucao(ServicoDevolucao servico, ServicoLocacao servicoLocacao, ServicoPlanoCobranca servicoPlano, ServicoTaxa servicoTaxa)
         {
             listagem = new ListagemDevolucoesControl();
             this.servico = servico;
             this.servicoLocacao = servicoLocacao;
+            this.servicoPlano = servicoPlano;
+            this.servicoTaxa = servicoTaxa;
         }
 
         public override void Editar()
@@ -44,7 +50,7 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
 
             var devoluçãoSelecionada = resultado.Value;
 
-            var tela = new TelaCadastroDevolucaoForm(servicoLocacao);
+            var tela = new TelaCadastroDevolucaoForm(servicoLocacao, servicoPlano, servicoTaxa);
 
             tela.Devolucao = devoluçãoSelecionada;
 
@@ -91,7 +97,7 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
 
         public override void Inserir()
         {
-            var tela = new TelaCadastroDevolucaoForm(servicoLocacao);
+            var tela = new TelaCadastroDevolucaoForm(servicoLocacao, servicoPlano, servicoTaxa);
             tela.Devolucao = new Devolucao();
             tela.GravarRegistro = servico.Inserir;
             DialogResult resultado = tela.ShowDialog();
