@@ -52,16 +52,16 @@
             this.label11 = new System.Windows.Forms.Label();
             this.comboBoxNivelTanque = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.labelTotal = new System.Windows.Forms.Label();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodapeDevolucao = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Calcular = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnTaxas = new System.Windows.Forms.Button();
+            this.btnAddTaxas = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -265,7 +265,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(15, 373);
+            this.label11.Location = new System.Drawing.Point(12, 408);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(178, 15);
             this.label11.TabIndex = 7;
@@ -274,6 +274,7 @@
             // comboBoxNivelTanque
             // 
             this.comboBoxNivelTanque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNivelTanque.Enabled = false;
             this.comboBoxNivelTanque.FormattingEnabled = true;
             this.comboBoxNivelTanque.Items.AddRange(new object[] {
             "0",
@@ -281,59 +282,20 @@
             "1/2",
             "3/4",
             "Cheio"});
-            this.comboBoxNivelTanque.Location = new System.Drawing.Point(12, 391);
+            this.comboBoxNivelTanque.Location = new System.Drawing.Point(9, 426);
             this.comboBoxNivelTanque.Name = "comboBoxNivelTanque";
             this.comboBoxNivelTanque.Size = new System.Drawing.Size(205, 23);
             this.comboBoxNivelTanque.TabIndex = 8;
+            this.comboBoxNivelTanque.SelectedIndexChanged += new System.EventHandler(this.comboBoxNivelTanque_SelectedIndexChanged);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(241, 373);
+            this.label12.Location = new System.Drawing.Point(238, 408);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(94, 15);
             this.label12.TabIndex = 9;
             this.label12.Text = "Taxas adicionais:";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(241, 395);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(83, 19);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(241, 420);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(83, 19);
-            this.checkBox2.TabIndex = 11;
-            this.checkBox2.Text = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(349, 395);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(83, 19);
-            this.checkBox3.TabIndex = 12;
-            this.checkBox3.Text = "checkBox3";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(349, 420);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(83, 19);
-            this.checkBox4.TabIndex = 13;
-            this.checkBox4.Text = "checkBox4";
-            this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // label13
             // 
@@ -391,20 +353,59 @@
             this.labelRodapeDevolucao.Size = new System.Drawing.Size(52, 17);
             this.labelRodapeDevolucao.Text = "[rodapé]";
             // 
+            // Calcular
+            // 
+            this.Calcular.Location = new System.Drawing.Point(103, 373);
+            this.Calcular.Name = "Calcular";
+            this.Calcular.Size = new System.Drawing.Size(75, 23);
+            this.Calcular.TabIndex = 29;
+            this.Calcular.Text = "Calcular";
+            this.Calcular.UseVisualStyleBackColor = true;
+            this.Calcular.Click += new System.EventHandler(this.Calcular_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(15, 377);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 15);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "Calcular valor:";
+            // 
+            // btnTaxas
+            // 
+            this.btnTaxas.Location = new System.Drawing.Point(238, 426);
+            this.btnTaxas.Name = "btnTaxas";
+            this.btnTaxas.Size = new System.Drawing.Size(111, 23);
+            this.btnTaxas.TabIndex = 31;
+            this.btnTaxas.Text = "Selecionar Taxas";
+            this.btnTaxas.UseVisualStyleBackColor = true;
+            this.btnTaxas.Click += new System.EventHandler(this.btnTaxas_Click);
+            // 
+            // btnAddTaxas
+            // 
+            this.btnAddTaxas.Location = new System.Drawing.Point(355, 425);
+            this.btnAddTaxas.Name = "btnAddTaxas";
+            this.btnAddTaxas.Size = new System.Drawing.Size(117, 23);
+            this.btnAddTaxas.TabIndex = 32;
+            this.btnAddTaxas.Text = "Adicionar Taxas";
+            this.btnAddTaxas.UseVisualStyleBackColor = true;
+            this.btnAddTaxas.Click += new System.EventHandler(this.btnAddTaxas_Click);
+            // 
             // TelaCadastroDevolucaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(486, 633);
+            this.Controls.Add(this.btnAddTaxas);
+            this.Controls.Add(this.btnTaxas);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.Calcular);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.labelTotal);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.comboBoxNivelTanque);
             this.Controls.Add(this.label11);
@@ -455,15 +456,15 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBoxNivelTanque;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label labelTotal;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel labelRodapeDevolucao;
+        private System.Windows.Forms.Button Calcular;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btnTaxas;
+        private System.Windows.Forms.Button btnAddTaxas;
     }
 }

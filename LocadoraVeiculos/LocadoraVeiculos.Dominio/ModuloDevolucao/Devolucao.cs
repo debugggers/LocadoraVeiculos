@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
+using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using System;
 using System.Collections.Generic;
@@ -48,45 +49,103 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
             return base.ToString();
         }
 
-        public decimal CalcularTotalGasolina()
+        public decimal CalcularGasolina()
         {
-
-            decimal total = 0;
 
             switch (NivelDoTanque)
             {
 
                 case 1m:
-                    total += 5.89m * Locacao.Veiculo.CapacidadeTanque;
-                    break;
+                    return 5.89m * Locacao.Veiculo.CapacidadeTanque;
                 case 1/4m:
-                    total += 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
-                    break;
+                    return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
                 case 1/2m:
-                    total += 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
-                    break;
+                    return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
                 case 3/4m:
-                    total += 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
-                    break;
+                    return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
+                default:
+                    return 0m;
             }
-
-           return total;
         } 
 
-        public decimal CalcularTotalData()
+        public decimal CalcularTotal(List<PlanoCobranca> planos)
         {
 
+            PlanoCobranca planoCobrancaSelecionado = null;
             decimal total = 0;
+            var dias = (int)DataDevolucao.Subtract(Locacao.DataLocacao).TotalDays;
+            decimal quilometragemPercorrida = QuilometragemVeiculo - Locacao.Veiculo.QuilometragemPercorrida;
+
+            foreach (var plano in planos)
+            {
+
+                if(plano.GrupoVeiculos.Id == Locacao.GrupoVeiculos.Id)
+                {
+
+                    planoCobrancaSelecionado = plano;
+                    break;
+
+                }
+            }
+
+            switch (Locacao.PlanosCobranca)
+            {
+
+                case PlanoCobrancaEnum.Diario:
+                    total = (planoCobrancaSelecionado.ValorDiario_Diario * dias)  + (planoCobrancaSelecionado.ValorPorKm_Diario * quilometragemPercorrida);
+                    break;
+                case PlanoCobrancaEnum.Livre:
+                    total = (planoCobrancaSelecionado.ValorDiario_Livre * dias);
+                    break;
+                case PlanoCobrancaEnum.Controlado:
+                    if (quilometragemPercorrida > planoCobrancaSelecionado.ControleKm)
+                        total = (planoCobrancaSelecionado.ValorDiario_Controlado * dias) + (planoCobrancaSelecionado.ValorPorKm_Controlado * quilometragemPercorrida);
+                    else
+                        total = planoCobrancaSelecionado.ValorDiario_Controlado * dias;
+                    break;
+
+            }
 
             int resultado = DateTime.Compare(Locacao.DataPrevistaEntrega.Date, DataDevolucao.Date);
 
             if (resultado == -1)
-                total = Locacao.ValorPrevisto + (Locacao.ValorPrevisto * 0.10m);
-            else if (resultado == 1)
-                total = Locacao.ValorPrevisto + (Locacao.ValorPrevisto * 0.10m);
+               total += total * 0.10m;
 
             return total;
 
         }
+
+        public decimal CalcularTaxas()
+        {
+
+            decimal total = 0;
+            if(Locacao.Taxas != null)
+            {
+
+                foreach (var item in Locacao.Taxas)
+                {
+                    total += item.Valor;
+                }
+
+            }
+            
+            if(Taxas != null)
+            {
+
+                foreach (var item in Taxas)
+                {
+                    total += item.Valor;
+                }
+
+            }
+            
+            return total;
+        }
+
+        public void AdicionarTaxas(Taxa taxa)
+        {
+            Taxas.Add(taxa);
+        }
+
     }
 }
