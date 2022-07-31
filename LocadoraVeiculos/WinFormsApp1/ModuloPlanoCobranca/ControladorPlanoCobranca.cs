@@ -136,5 +136,10 @@ namespace LocadoraVeiculosForm.ModuloPlanoCobranca
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public override void GerarPdf()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

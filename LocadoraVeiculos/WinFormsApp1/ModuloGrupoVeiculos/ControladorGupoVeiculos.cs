@@ -137,6 +137,11 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
                 MessageBox.Show(resultado.Errors[0].Message, "Carregar listagem",
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }        
+        }
+
+        public override void GerarPdf()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

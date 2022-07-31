@@ -1,4 +1,6 @@
-﻿using LocadoraVeiculos.Aplicacao.ModuloDevolucao;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using LocadoraVeiculos.Aplicacao.ModuloDevolucao;
 using LocadoraVeiculos.Aplicacao.ModuloLocacao;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
@@ -6,6 +8,7 @@ using LocadoraVeiculos.Dominio.ModuloDevolucao;
 using LocadoraVeiculosForm.Compartilhado;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculosForm.ModuloDevolucao
@@ -139,6 +142,48 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
             CarregarDevolucoes();
 
             return listagem;
+        }
+
+        public override void GerarPdf()
+        {
+            var id = listagem.SelecionarIdDevolucao();
+
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione uma devolução primeiro",
+                    "Pdf de Devoluções", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var resultado = servico.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Pdf de devoluções", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var devoluçãoSelecionada = resultado.Value;
+
+            string nomeArquivo = @"C:\Windows\Temp" + @"\teste.pdf";
+            FileStream arquivoPDF = new FileStream(nomeArquivo, FileMode.Create);
+            Document doc = new Document(PageSize.A4);
+            PdfWriter escritorPDF = PdfWriter.GetInstance(doc, arquivoPDF);
+
+            string dados = "";
+
+            Paragraph paragrafo = new Paragraph(dados, new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14, (int)System.Drawing.FontStyle.Regular));
+            paragrafo.Alignment = Element.ALIGN_CENTER;
+            paragrafo.Add("Devolução" + "\n\n");
+            paragrafo.Add("Id da devolução: " + devoluçãoSelecionada.Id + "\n\n");
+            paragrafo.Add("Nome do cliente: " + devoluçãoSelecionada.Locacao.Cliente.Nome + "\n\n");
+            paragrafo.Add("Grupo de veículos da  locação: " + devoluçãoSelecionada.Locacao.GrupoVeiculos.Nome + "\n\n");
+
+            doc.Open();
+            doc.Add(paragrafo);
+            doc.Close();
+
         }
     }
 }

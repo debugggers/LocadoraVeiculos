@@ -13,5 +13,8 @@ namespace LocadoraVeiculosForm.Compartilhado
         public abstract UserControl ObtemListagem();
 
         public abstract ConfiguracaoToolboxBase ObtemConfiguracaoToolbox();
+
+        public abstract void GerarPdf();
+
     }
 }

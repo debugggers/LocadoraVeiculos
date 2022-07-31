@@ -137,5 +137,10 @@ namespace LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa
         {
             return new ConfiguracaoToolBoxEmpresa();
         }
+
+        public override void GerarPdf()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
