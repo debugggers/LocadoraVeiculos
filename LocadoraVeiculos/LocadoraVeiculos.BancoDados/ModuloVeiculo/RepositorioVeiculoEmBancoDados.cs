@@ -134,7 +134,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             return veiculoJaExiste;
         }
 
-        public List<Veiculo> BuscarPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
+        public List<Veiculo> BuscarVeiculosDisponiveisPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
         {
             return new List<Veiculo>();
         }

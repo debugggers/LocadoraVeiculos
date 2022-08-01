@@ -13,6 +13,25 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
     {
         public Locacao() { }
 
+        public Locacao(Funcionario funcionario, Guid? funcionarioId, Cliente cliente, Guid clienteId, 
+            GrupoVeiculos grupoVeiculos, Guid grupoVeiculosId, List<Taxa> taxas, PlanoCobrancaEnum planosCobranca, 
+            Veiculo veiculo, Guid veiculoId, DateTime dataLocacao, DateTime dataPrevistaEntrega, decimal valorPrevisto)
+        {
+            Funcionario = funcionario;
+            FuncionarioId = funcionarioId;
+            Cliente = cliente;
+            ClienteId = clienteId;
+            GrupoVeiculos = grupoVeiculos;
+            GrupoVeiculosId = grupoVeiculosId;
+            Taxas = taxas;
+            PlanosCobranca = planosCobranca;
+            Veiculo = veiculo;
+            VeiculoId = veiculoId;
+            DataLocacao = dataLocacao;
+            DataPrevistaEntrega = dataPrevistaEntrega;
+            ValorPrevisto = valorPrevisto;
+        }
+
         public Funcionario Funcionario { get; set; }
         public Guid? FuncionarioId { get; set; }
 

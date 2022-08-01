@@ -19,10 +19,11 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
         public byte[] Foto { get; set; }
         public GrupoVeiculos GrupoVeiculo { get; set; }
         public Guid? GrupoVeiculoId { get; set; }
+        public bool EstaDisponivel { get; set; }
 
         public Veiculo()
         {
-
+            EstaDisponivel = true;
         }
 
         public override bool Equals(object obj)
