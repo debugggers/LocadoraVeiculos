@@ -260,7 +260,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
             var grupoVeiculosSelecionado = (GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem;
 
-            _veiculos = _servicoVeiculo.BuscarPeloIdGrupoVeiculos(grupoVeiculosSelecionado.Id).Value;
+            _veiculos = _servicoVeiculo.BuscarVeiculosDisponiveisPeloIdGrupoVeiculos(grupoVeiculosSelecionado.Id).Value;
             _planoCobranca = _servicoPlanoCobranca.BuscarPlanoIdGrupoVeiculos(grupoVeiculosSelecionado.Id).Value;
 
             CarregarVeiculos();

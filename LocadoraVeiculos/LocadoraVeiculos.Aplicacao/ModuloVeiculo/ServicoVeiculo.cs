@@ -184,15 +184,15 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
             return veiculoEncontrado;
         }
 
-        public Result<List<Veiculo>> BuscarPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
+        public Result<List<Veiculo>> BuscarVeiculosDisponiveisPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
         {
             try
             {
-                return Result.Ok(_repositorioVeiculo.BuscarPeloIdGrupoVeiculos(idGrupoVeiculos));
+                return Result.Ok(_repositorioVeiculo.BuscarVeiculosDisponiveisPeloIdGrupoVeiculos(idGrupoVeiculos));
             }
             catch (Exception ex)
             {
-                var msgErro = "Falha no sistema ao tentar selecionar todos os planos de cobrança";
+                var msgErro = "Falha no sistema ao tentar selecionar todos os veículos";
 
                 Log.Logger.Error(ex, msgErro);
 
