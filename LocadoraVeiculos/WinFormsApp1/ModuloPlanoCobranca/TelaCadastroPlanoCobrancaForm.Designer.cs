@@ -240,7 +240,7 @@
             this.txtControleKm.Location = new System.Drawing.Point(79, 158);
             this.txtControleKm.Name = "txtControleKm";
             this.txtControleKm.Size = new System.Drawing.Size(152, 26);
-            this.txtControleKm.TabIndex = 27;
+            this.txtControleKm.TabIndex = 7;
             // 
             // label8
             // 
@@ -256,14 +256,14 @@
             this.txtValorPorKm_Controlado.Location = new System.Drawing.Point(79, 238);
             this.txtValorPorKm_Controlado.Name = "txtValorPorKm_Controlado";
             this.txtValorPorKm_Controlado.Size = new System.Drawing.Size(152, 26);
-            this.txtValorPorKm_Controlado.TabIndex = 25;
+            this.txtValorPorKm_Controlado.TabIndex = 8;
             // 
             // txtValorDiario_Controlado
             // 
             this.txtValorDiario_Controlado.Location = new System.Drawing.Point(79, 78);
             this.txtValorDiario_Controlado.Name = "txtValorDiario_Controlado";
             this.txtValorDiario_Controlado.Size = new System.Drawing.Size(152, 26);
-            this.txtValorDiario_Controlado.TabIndex = 23;
+            this.txtValorDiario_Controlado.TabIndex = 6;
             // 
             // label10
             // 

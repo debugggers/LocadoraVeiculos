@@ -107,7 +107,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(961, 208);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 11;
             // 
             // txtDataDevolucaoPrevista
             // 
@@ -116,7 +116,7 @@
             this.txtDataDevolucaoPrevista.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDataDevolucaoPrevista.Name = "txtDataDevolucaoPrevista";
             this.txtDataDevolucaoPrevista.Size = new System.Drawing.Size(230, 26);
-            this.txtDataDevolucaoPrevista.TabIndex = 15;
+            this.txtDataDevolucaoPrevista.TabIndex = 36;
             // 
             // label9
             // 
@@ -134,7 +134,7 @@
             this.txtDataLocacao.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDataLocacao.Name = "txtDataLocacao";
             this.txtDataLocacao.Size = new System.Drawing.Size(230, 26);
-            this.txtDataLocacao.TabIndex = 13;
+            this.txtDataLocacao.TabIndex = 35;
             // 
             // label8
             // 
@@ -152,7 +152,7 @@
             this.txtPlanoCobranca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPlanoCobranca.Name = "txtPlanoCobranca";
             this.txtPlanoCobranca.Size = new System.Drawing.Size(230, 26);
-            this.txtPlanoCobranca.TabIndex = 9;
+            this.txtPlanoCobranca.TabIndex = 34;
             this.txtPlanoCobranca.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // label6
@@ -172,7 +172,7 @@
             this.txtPlaca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(230, 26);
-            this.txtPlaca.TabIndex = 7;
+            this.txtPlaca.TabIndex = 33;
             // 
             // label5
             // 
@@ -190,7 +190,7 @@
             this.txtGrupoVeiculos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtGrupoVeiculos.Name = "txtGrupoVeiculos";
             this.txtGrupoVeiculos.Size = new System.Drawing.Size(230, 26);
-            this.txtGrupoVeiculos.TabIndex = 5;
+            this.txtGrupoVeiculos.TabIndex = 32;
             // 
             // label4
             // 
@@ -208,7 +208,7 @@
             this.txtCliente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(230, 26);
-            this.txtCliente.TabIndex = 3;
+            this.txtCliente.TabIndex = 31;
             // 
             // label3
             // 
@@ -226,7 +226,7 @@
             this.txtFuncionario.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtFuncionario.Name = "txtFuncionario";
             this.txtFuncionario.Size = new System.Drawing.Size(230, 26);
-            this.txtFuncionario.TabIndex = 1;
+            this.txtFuncionario.TabIndex = 30;
             // 
             // label2
             // 
@@ -252,7 +252,7 @@
             this.txtQuilometragem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtQuilometragem.Name = "txtQuilometragem";
             this.txtQuilometragem.Size = new System.Drawing.Size(234, 26);
-            this.txtQuilometragem.TabIndex = 4;
+            this.txtQuilometragem.TabIndex = 2;
             // 
             // label10
             // 
@@ -270,7 +270,7 @@
             this.dateTimePickerDevolucao.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateTimePickerDevolucao.Name = "dateTimePickerDevolucao";
             this.dateTimePickerDevolucao.Size = new System.Drawing.Size(228, 26);
-            this.dateTimePickerDevolucao.TabIndex = 6;
+            this.dateTimePickerDevolucao.TabIndex = 5;
             this.dateTimePickerDevolucao.ValueChanged += new System.EventHandler(this.dateTimePickerDevolucao_ValueChanged);
             // 
             // label11
@@ -297,7 +297,7 @@
             this.comboBoxNivelTanque.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxNivelTanque.Name = "comboBoxNivelTanque";
             this.comboBoxNivelTanque.Size = new System.Drawing.Size(234, 27);
-            this.comboBoxNivelTanque.TabIndex = 8;
+            this.comboBoxNivelTanque.TabIndex = 4;
             this.comboBoxNivelTanque.SelectedIndexChanged += new System.EventHandler(this.comboBoxNivelTanque_SelectedIndexChanged);
             // 
             // label12
@@ -334,7 +334,7 @@
             this.btnCadastrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(125, 52);
-            this.btnCadastrar.TabIndex = 16;
+            this.btnCadastrar.TabIndex = 10;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
@@ -346,7 +346,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(125, 52);
-            this.button2.TabIndex = 17;
+            this.button2.TabIndex = 9;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -372,7 +372,7 @@
             this.Calcular.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Calcular.Name = "Calcular";
             this.Calcular.Size = new System.Drawing.Size(86, 29);
-            this.Calcular.TabIndex = 29;
+            this.Calcular.TabIndex = 8;
             this.Calcular.Text = "Calcular";
             this.Calcular.UseVisualStyleBackColor = true;
             this.Calcular.Click += new System.EventHandler(this.Calcular_Click);
@@ -392,7 +392,7 @@
             this.btnTaxas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTaxas.Name = "btnTaxas";
             this.btnTaxas.Size = new System.Drawing.Size(127, 29);
-            this.btnTaxas.TabIndex = 31;
+            this.btnTaxas.TabIndex = 6;
             this.btnTaxas.Text = "Selecionar Taxas";
             this.btnTaxas.UseVisualStyleBackColor = true;
             this.btnTaxas.Click += new System.EventHandler(this.btnTaxas_Click);
@@ -403,7 +403,7 @@
             this.btnAddTaxas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddTaxas.Name = "btnAddTaxas";
             this.btnAddTaxas.Size = new System.Drawing.Size(134, 29);
-            this.btnAddTaxas.TabIndex = 32;
+            this.btnAddTaxas.TabIndex = 7;
             this.btnAddTaxas.Text = "Adicionar Taxas";
             this.btnAddTaxas.UseVisualStyleBackColor = true;
             this.btnAddTaxas.Click += new System.EventHandler(this.btnAddTaxas_Click);

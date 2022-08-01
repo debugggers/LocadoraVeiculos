@@ -92,7 +92,7 @@
             this.comboBoxClientes.Location = new System.Drawing.Point(570, 32);
             this.comboBoxClientes.Name = "comboBoxClientes";
             this.comboBoxClientes.Size = new System.Drawing.Size(214, 27);
-            this.comboBoxClientes.TabIndex = 3;
+            this.comboBoxClientes.TabIndex = 1;
             // 
             // label4
             // 
@@ -111,7 +111,7 @@
             this.comboBoxGrupoVeiculos.Location = new System.Drawing.Point(173, 83);
             this.comboBoxGrupoVeiculos.Name = "comboBoxGrupoVeiculos";
             this.comboBoxGrupoVeiculos.Size = new System.Drawing.Size(214, 27);
-            this.comboBoxGrupoVeiculos.TabIndex = 7;
+            this.comboBoxGrupoVeiculos.TabIndex = 2;
             this.comboBoxGrupoVeiculos.SelectedIndexChanged += new System.EventHandler(this.comboBoxGrupoVeiculos_SelectedIndexChanged);
             // 
             // label5
@@ -131,7 +131,7 @@
             this.comboBoxVeiculo.Location = new System.Drawing.Point(570, 83);
             this.comboBoxVeiculo.Name = "comboBoxVeiculo";
             this.comboBoxVeiculo.Size = new System.Drawing.Size(214, 27);
-            this.comboBoxVeiculo.TabIndex = 10;
+            this.comboBoxVeiculo.TabIndex = 3;
             this.comboBoxVeiculo.SelectedIndexChanged += new System.EventHandler(this.comboBoxVeiculo_SelectedIndexChanged);
             // 
             // label6
@@ -150,7 +150,7 @@
             this.comboBoxPlanosCobranca.Location = new System.Drawing.Point(173, 135);
             this.comboBoxPlanosCobranca.Name = "comboBoxPlanosCobranca";
             this.comboBoxPlanosCobranca.Size = new System.Drawing.Size(214, 27);
-            this.comboBoxPlanosCobranca.TabIndex = 12;
+            this.comboBoxPlanosCobranca.TabIndex = 4;
             this.comboBoxPlanosCobranca.SelectedIndexChanged += new System.EventHandler(this.comboBoxPlanosCobranca_SelectedIndexChanged);
             // 
             // label7
@@ -176,7 +176,7 @@
             this.dateTimeLocacao.Location = new System.Drawing.Point(173, 192);
             this.dateTimeLocacao.Name = "dateTimeLocacao";
             this.dateTimeLocacao.Size = new System.Drawing.Size(111, 26);
-            this.dateTimeLocacao.TabIndex = 15;
+            this.dateTimeLocacao.TabIndex = 5;
             this.dateTimeLocacao.ValueChanged += new System.EventHandler(this.dateTimeLocacao_ValueChanged);
             // 
             // label9
@@ -203,7 +203,7 @@
             this.dateTimePrevisaoEntrega.Location = new System.Drawing.Point(570, 192);
             this.dateTimePrevisaoEntrega.Name = "dateTimePrevisaoEntrega";
             this.dateTimePrevisaoEntrega.Size = new System.Drawing.Size(111, 26);
-            this.dateTimePrevisaoEntrega.TabIndex = 17;
+            this.dateTimePrevisaoEntrega.TabIndex = 6;
             this.dateTimePrevisaoEntrega.ValueChanged += new System.EventHandler(this.dateTimePrevisaoEntrega_ValueChanged);
             // 
             // tabControl1
@@ -232,7 +232,7 @@
             this.checkedListBoxTaxas.Location = new System.Drawing.Point(6, 17);
             this.checkedListBoxTaxas.Name = "checkedListBoxTaxas";
             this.checkedListBoxTaxas.Size = new System.Drawing.Size(714, 151);
-            this.checkedListBoxTaxas.TabIndex = 0;
+            this.checkedListBoxTaxas.TabIndex = 7;
             this.checkedListBoxTaxas.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxTaxas_ItemCheck);
             this.checkedListBoxTaxas.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxTaxas_SelectedIndexChanged);
             this.checkedListBoxTaxas.KeyUp += new System.Windows.Forms.KeyEventHandler(this.checkedListBoxTaxas_KeyUp);
@@ -262,7 +262,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(590, 527);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(94, 51);
-            this.btnCancelar.TabIndex = 22;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -272,7 +272,7 @@
             this.btnCadastrar.Location = new System.Drawing.Point(690, 527);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(91, 51);
-            this.btnCadastrar.TabIndex = 23;
+            this.btnCadastrar.TabIndex = 9;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);

@@ -7,7 +7,6 @@ namespace LocadoraVeiculos.Infra.Orm.Compartilhado
 {
     public static class MigradorBancoDeDados
     {
-
         public static void AtualizarBancoDados()
         {
             var configuracao = new ConfigurationBuilder()
@@ -24,6 +23,5 @@ namespace LocadoraVeiculos.Infra.Orm.Compartilhado
             if (migracoesPendentes.Count() > 0)
                 db.Database.Migrate();
         }
-
     }
 }
