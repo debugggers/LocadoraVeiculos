@@ -39,7 +39,8 @@ namespace LocadoraVeiculosForm.ModuloLocacao
         private PlanoCobranca _planoCobranca;
         private ServicoPlanoCobranca _servicoPlanoCobranca;
 
-        decimal valorPrevisto = 0;
+        decimal _valorPrevisto = 0;
+        Guid _idVeiculoSelecionado = new Guid();
 
         public TelaCadastroLocacaoForm(ServicoLocacao servicoLocacao, ServicoCliente servicoCliente, ServicoGrupoVeiculos servicoGrupoVeiculos,
             ServicoTaxa servicoTaxa, ServicoVeiculo servicoVeiculo, ServicoPlanoCobranca servicoPlanoCobranca)
@@ -101,7 +102,7 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
                 labelValorPrevisto.Text = _locacao.ValorPrevisto.ToString();
             }
-        }
+        }        
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
@@ -145,45 +146,35 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             }
             else
             {
-                var locacoes = _servicoLocacao.SelecionarTodos().Value;
+                veiculoSelecionado.EstaDisponivel = false;
+                _locacao.Veiculo = veiculoSelecionado;
+                _locacao.VeiculoId = _locacao.Veiculo.Id;
 
-                if (locacoes.Any(x => x.VeiculoId == veiculoSelecionado.Id))
+                _locacao.DataLocacao = Convert.ToDateTime(dateTimeLocacao.Value);
+                _locacao.DataPrevistaEntrega = Convert.ToDateTime(dateTimePrevisaoEntrega.Value);
+
+                CarregarTaxasNaLocacao();
+
+                _locacao.ValorPrevisto = _valorPrevisto;
+
+                var resultadoValidacao = GravarRegistro(_locacao);
+
+                if (resultadoValidacao.IsFailed)
                 {
-                    labelRodapeLocacao.Text = "Veículo já está alugado";
+                    string erro = resultadoValidacao.Errors[0].Message;
 
-                    DialogResult = DialogResult.None;
-                }
-                else
-                {
-                    _locacao.Veiculo = veiculoSelecionado;
-                    _locacao.VeiculoId = _locacao.Veiculo.Id;
-
-                    _locacao.DataLocacao = Convert.ToDateTime(dateTimeLocacao.Value);
-                    _locacao.DataPrevistaEntrega = Convert.ToDateTime(dateTimePrevisaoEntrega.Value);
-
-                    CarregarTaxasNaLocacao();
-
-                    _locacao.ValorPrevisto = valorPrevisto;
-
-                    var resultadoValidacao = GravarRegistro(_locacao);
-
-                    if (resultadoValidacao.IsFailed)
+                    if (erro.StartsWith("Falha no sistema"))
                     {
-                        string erro = resultadoValidacao.Errors[0].Message;
+                        MessageBox.Show(erro, "Inserção de Locação",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                        if (erro.StartsWith("Falha no sistema"))
-                        {
-                            MessageBox.Show(erro, "Inserção de Locação",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        DialogResult = DialogResult.None;
+                    }
+                    else
+                    {
+                        labelRodapeLocacao.Text = erro;
 
-                            DialogResult = DialogResult.None;
-                        }
-                        else
-                        {
-                            labelRodapeLocacao.Text = erro;
-
-                            DialogResult = DialogResult.None;
-                        }
+                        DialogResult = DialogResult.None;
                     }
                 }
             }
@@ -249,6 +240,11 @@ namespace LocadoraVeiculosForm.ModuloLocacao
                 var veiculo = _veiculos.FirstOrDefault(x => x.Id == veiculosSelecionado.Id);
 
                 labelKmVeiculo.Text = veiculo.QuilometragemPercorrida.ToString();
+
+                if (_idVeiculoSelecionado != Guid.Empty && veiculo.EstaDisponivel == false)
+                    _servicoVeiculo.DisponibilizarVeiculoPeloId(_idVeiculoSelecionado);
+
+                _idVeiculoSelecionado = veiculo.Id;
             }
         }
 
@@ -261,6 +257,10 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             var grupoVeiculosSelecionado = (GrupoVeiculos)comboBoxGrupoVeiculos.SelectedItem;
 
             _veiculos = _servicoVeiculo.BuscarVeiculosDisponiveisPeloIdGrupoVeiculos(grupoVeiculosSelecionado.Id).Value;
+
+            if (EhEdicao())
+                _veiculos.Add(_locacao.Veiculo);
+
             _planoCobranca = _servicoPlanoCobranca.BuscarPlanoIdGrupoVeiculos(grupoVeiculosSelecionado.Id).Value;
 
             CarregarVeiculos();
@@ -275,10 +275,10 @@ namespace LocadoraVeiculosForm.ModuloLocacao
 
                 var taxasSelecionadas = ObterTaxasSelecionadas();
 
-                valorPrevisto = _servicoLocacao.CalcularValorPrevisto(dateTimeLocacao.Value, dateTimePrevisaoEntrega.Value, _planoCobranca,
+                _valorPrevisto = _servicoLocacao.CalcularValorPrevisto(dateTimeLocacao.Value, dateTimePrevisaoEntrega.Value, _planoCobranca,
                                 planoCobrancaEnum, taxasSelecionadas);
 
-                labelValorPrevisto.Text = valorPrevisto.ToString("C");
+                labelValorPrevisto.Text = _valorPrevisto.ToString("C");
             }
         }
 
@@ -325,6 +325,11 @@ namespace LocadoraVeiculosForm.ModuloLocacao
         private void checkedListBoxTaxas_KeyUp(object sender, KeyEventArgs e)
         {
             CarregarValorPrevisto();
+        }
+
+        private bool EhEdicao()
+        {
+            return _locacao.ClienteId == Guid.Empty ? false : true;
         }
     }
 }

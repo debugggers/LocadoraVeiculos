@@ -78,17 +78,15 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-
             foreach (var item in locacoes)
             {
-
                 if (item.Id.Equals(comboBoxLocacoes.SelectedItem))
                     devolucao.Locacao = item;
-
             }
             devolucao.QuilometragemVeiculo = Convert.ToInt32(txtQuilometragem.Text);
             devolucao.DataDevolucao = dateTimePickerDevolucao.Value;
             devolucao.ValorTotal = totalLimpo + totalComGasolina + totalComTaxa;
+            devolucao.Locacao.Veiculo.EstaDisponivel = true;
 
             var resultadoValidacao = GravarRegistro(devolucao);
 
