@@ -21,6 +21,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
             builder.Property(x => x.CapacidadeTanque).IsRequired();
             builder.Property(x => x.Ano).IsRequired();
             builder.Property(x => x.QuilometragemPercorrida).IsRequired();
+            builder.Property(x => x.EstaDisponivel).IsRequired();
             builder.HasOne(x => x.GrupoVeiculo);
             builder.Property(x => x.Foto).HasColumnType("Varbinary(max)").IsRequired();
         }

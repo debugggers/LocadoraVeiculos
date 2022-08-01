@@ -125,9 +125,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
 
             try
             {
-
                 return Result.Ok(_repositorioVeiculo.SelecionarPorId(id));
-
             }
             catch (Exception ex)
             {
@@ -195,6 +193,32 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
                 var msgErro = "Falha no sistema ao tentar selecionar todos os veículos";
 
                 Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result<bool> DisponibilizarVeiculoPeloId(Guid idVeiculoSelecionado)
+        {
+            Log.Logger.Debug("Atualizando campo EstaDisponivel para o veículo... {@v}", idVeiculoSelecionado);
+
+            try
+            {
+                var veiculo = _repositorioVeiculo.SelecionarPorId(idVeiculoSelecionado);
+                veiculo.EstaDisponivel = true;
+                _repositorioVeiculo.Editar(veiculo);
+
+                context.GravarDados();
+
+                Log.Logger.Information("Veículo {VeículoId} atualizado com sucesso", idVeiculoSelecionado);
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar atualizar o veículo";
+
+                Log.Logger.Error(ex, msgErro + "{VeículoId}", idVeiculoSelecionado);
 
                 return Result.Fail(msgErro);
             }
