@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using System;
 
 namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
@@ -15,6 +16,8 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
         }
 
         public string Nome { get; set; }
+
+        public PlanoCobranca PlanoCobranca { get; set; }
 
         public override bool Equals(object obj)
         {

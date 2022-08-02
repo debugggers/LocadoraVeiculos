@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,7 +27,17 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
 
         public void Excluir(GrupoVeiculos registro)
         {
-            grupos.Remove(registro);
+            try
+            {
+                grupos.Remove(registro);
+            
+                dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                dbContext.Entry(registro).State = EntityState.Unchanged;
+                throw new NaoPodeExcluirEsteRegistroException(ex);
+            }
         }
 
         public void Inserir(GrupoVeiculos novoRegistro)

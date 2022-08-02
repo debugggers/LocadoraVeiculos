@@ -103,8 +103,6 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             {
                 _repositorioGrupoVeiculos.Excluir(grupo);
 
-                context.GravarDados();
-
                 Log.Logger.Information("Grupo de Veículos {GrupoId} excluído com sucesso", grupo.Id);
 
                 return Result.Ok();
@@ -120,7 +118,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar excluir o grupo veículos";
-
+                
                 Log.Logger.Error(ex, msgErro + "{GrupoId}", grupo.Id);
 
                 return Result.Fail(msgErro);
