@@ -49,22 +49,62 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
             return base.ToString();
         }
 
-        public decimal CalcularGasolina()
+        public decimal CalcularCombustivel()
         {
 
-            switch (NivelDoTanque)
+            if(Locacao.Veiculo.TipoCombustivel.ToString() == "Gasolina")
             {
 
-                case 1m:
-                    return 5.89m * Locacao.Veiculo.CapacidadeTanque;
-                case 1/4m:
-                    return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
-                case 1/2m:
-                    return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
-                case 3/4m:
-                    return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
-                default:
-                    return 0m;
+                switch (NivelDoTanque)
+                {
+
+                    case 0m:
+                        return 5.89m * Locacao.Veiculo.CapacidadeTanque;
+                    case 1 / 4m:
+                        return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
+                    case 1 / 2m:
+                        return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
+                    case 3 / 4m:
+                        return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
+                    default:
+                        return 0m;
+                }
+            }
+            else if(Locacao.Veiculo.TipoCombustivel.ToString() == "Etanol")
+            {
+
+                switch (NivelDoTanque)
+                {
+
+                    case 0m:
+                        return 6.02m * Locacao.Veiculo.CapacidadeTanque;
+                    case 1 / 4m:
+                        return 6.02m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
+                    case 1 / 2m:
+                        return 6.02m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
+                    case 3 / 4m:
+                        return 6.02m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
+                    default:
+                        return 0m;
+                }
+            }
+            else
+            {
+
+                switch (NivelDoTanque)
+                {
+
+                    case 0m:
+                        return 7.56m * Locacao.Veiculo.CapacidadeTanque;
+                    case 1 / 4m:
+                        return 7.56m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
+                    case 1 / 2m:
+                        return 7.56m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
+                    case 3 / 4m:
+                        return 7.56m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
+                    default:
+                        return 0m;
+                }
             }
         } 
 

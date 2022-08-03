@@ -30,7 +30,6 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloDevolucao
 
             Assert.AreEqual("O campo quilometragem não pode ficar vazio", resultadoValidacao.Errors[0].ErrorMessage);
             Assert.AreEqual("O campo data de devolução não pode ficar vazio", resultadoValidacao.Errors[2].ErrorMessage);
-            Assert.AreEqual("O campo nivel do tanque não pode ficar vazio", resultadoValidacao.Errors[4].ErrorMessage);
 
         }
 

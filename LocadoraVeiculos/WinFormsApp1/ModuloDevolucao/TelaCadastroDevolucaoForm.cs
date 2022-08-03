@@ -32,6 +32,19 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
             this.servicoLocacao = servicoLocacao;
             locacoes = servicoLocacao.SelecionarTodos().Value;
             InicializarComboBoxLocacoes(locacoes);
+            InicializarComboBoxNivelTanque();
+        }
+
+        private void InicializarComboBoxNivelTanque()
+        {
+
+            
+            comboBoxNivelTanque.Items.Add("Vazio");
+            comboBoxNivelTanque.Items.Add("1/4");
+            comboBoxNivelTanque.Items.Add("1/2");
+            comboBoxNivelTanque.Items.Add("3/4");
+            comboBoxNivelTanque.Items.Add("Cheio");
+            comboBoxNivelTanque.SelectedIndex = 0;
         }
 
         public Func<Devolucao, Result<Devolucao>> GravarRegistro { get; set; }
@@ -85,6 +98,9 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
             }
             devolucao.QuilometragemVeiculo = Convert.ToInt32(txtQuilometragem.Text);
             devolucao.DataDevolucao = dateTimePickerDevolucao.Value;
+            totalLimpo = devolucao.CalcularTotal(planos);
+            totalComTaxa = devolucao.CalcularTaxas();
+            totalComGasolina = devolucao.CalcularCombustivel();
             devolucao.ValorTotal = totalLimpo + totalComGasolina + totalComTaxa;
             devolucao.Locacao.Veiculo.EstaDisponivel = true;
 
@@ -167,31 +183,41 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
 
         }
 
+        private void txtQuilometragem_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void comboBoxNivelTanque_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBoxNivelTanque.SelectedItem.ToString())
+            if(devolucao != null)
             {
 
-                case "Vazio":
-                    devolucao.NivelDoTanque = 0m;
-                    break;
-                case "1/4":
-                    devolucao.NivelDoTanque = 1 / 4m;
-                    break;
-                case "1/2":
-                    devolucao.NivelDoTanque = 1 / 2m;
-                    break;
-                case "3/4":
-                    devolucao.NivelDoTanque = 3 / 4m;
-                    break;
-                case "Cheio":
-                    devolucao.NivelDoTanque = 100m;
-                    break;
+                switch (comboBoxNivelTanque.SelectedItem.ToString())
+                {
+
+                    case "Vazio":
+                        devolucao.NivelDoTanque = 0m;
+                        break;
+                    case "1/4":
+                        devolucao.NivelDoTanque = 1 / 4m;
+                        break;
+                    case "1/2":
+                        devolucao.NivelDoTanque = 1 / 2m;
+                        break;
+                    case "3/4":
+                        devolucao.NivelDoTanque = 3 / 4m;
+                        break;
+                    case "Cheio":
+                        devolucao.NivelDoTanque = 100m;
+                        break;
+                }
+
+                totalComGasolina = devolucao.CalcularCombustivel();
+                labelTotal.Text = (totalLimpo + totalComGasolina + totalComTaxa).ToString();
+
             }
-
-            totalComGasolina = devolucao.CalcularGasolina();
-            labelTotal.Text = (totalLimpo + totalComGasolina + totalComTaxa).ToString();
-
+            
         }
 
         private void Calcular_Click(object sender, EventArgs e)
