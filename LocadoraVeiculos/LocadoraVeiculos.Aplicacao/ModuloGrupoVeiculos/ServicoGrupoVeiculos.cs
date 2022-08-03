@@ -109,7 +109,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             }
             catch (NaoPodeExcluirEsteRegistroException ex)
             {
-                var msgErro = $"O Grupo de veículos {grupo.Nome} está relacionado com um Plano de Cobrança e não pode ser excluído";
+                var msgErro = $"O Grupo de veículos {grupo.Nome} está relacionado com um Plano de Cobrança/Veículo e não pode ser excluído";
 
                 Log.Logger.Error(ex, msgErro + "{GrupoVeiculosId}", grupo.Id);
 

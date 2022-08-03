@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
             }
             catch (Exception ex)
             {
-                dbContext.Entry(registro).State = EntityState.Unchanged;
+                dbContext.ChangeTracker.Clear();
                 throw new NaoPodeExcluirEsteRegistroException(ex);
             }
         }

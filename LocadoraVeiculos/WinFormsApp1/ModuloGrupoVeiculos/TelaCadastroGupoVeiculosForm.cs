@@ -45,6 +45,8 @@ namespace LocadoraVeiculosForm.ModuloGrupoVeiculos
                 {
                     MessageBox.Show(erro,
                     "Inserção de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    DialogResult = DialogResult.Cancel;
                 }
                 else
                 {

@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloPlanoCobranca
             builder.Property(x => x.ValorPorKm_Controlado).IsRequired();
             builder.Property(x => x.ControleKm).IsRequired();
 
-            builder.HasOne(x => x.GrupoVeiculos).WithOne(x => x.PlanoCobranca);
+            builder.HasOne(x => x.GrupoVeiculos).WithOne(x => x.PlanoCobranca).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

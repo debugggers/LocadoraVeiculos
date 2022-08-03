@@ -41,7 +41,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
 
         public List<Veiculo> SelecionarTodos()
         {
-            return veiculos.Include(x => x.GrupoVeiculo).ToList();
+            return veiculos.Include(x => x.GrupoVeiculos).ToList();
         }
 
         public bool VeiculoJaExiste(Veiculo veiculo)
@@ -56,7 +56,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
 
         public List<Veiculo> BuscarVeiculosDisponiveisPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
         {
-            return veiculos.Where(x => x.GrupoVeiculoId == idGrupoVeiculos && x.EstaDisponivel).ToList();
+            return veiculos.Where(x => x.GrupoVeiculosId == idGrupoVeiculos && x.EstaDisponivel).ToList();
         }
     }
 }

@@ -16,6 +16,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
             builder.Property(x => x.Nome).IsRequired().HasColumnType("Varchar(100)");
 
             builder.HasOne(x => x.PlanoCobranca).WithOne(x => x.GrupoVeiculos).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.Veiculos).WithOne(x => x.GrupoVeiculos).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

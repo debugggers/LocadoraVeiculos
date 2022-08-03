@@ -12,6 +12,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
         public void Configure(EntityTypeBuilder<Veiculo> builder)
         {
             builder.ToTable("TBVeiculo");
+
             builder.Property(x => x.Id).ValueGeneratedNever();
             builder.Property(x => x.Modelo).IsRequired().HasColumnType("Varchar(100)");
             builder.Property(x => x.Placa).IsRequired().HasColumnType("Varchar(10)");
@@ -22,8 +23,9 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
             builder.Property(x => x.Ano).IsRequired();
             builder.Property(x => x.QuilometragemPercorrida).IsRequired();
             builder.Property(x => x.EstaDisponivel).IsRequired();
-            builder.HasOne(x => x.GrupoVeiculo);
             builder.Property(x => x.Foto).HasColumnType("Varbinary(max)").IsRequired();
+
+            builder.HasOne(x => x.GrupoVeiculos);
         }
     }
 }

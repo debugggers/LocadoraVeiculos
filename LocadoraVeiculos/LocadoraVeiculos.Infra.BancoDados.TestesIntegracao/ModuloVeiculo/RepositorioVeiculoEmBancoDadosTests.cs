@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
                 QuilometragemPercorrida = 1,
                 TipoCombustivel = 0,
                 Foto = new byte[10],
-                GrupoVeiculo = _grupoVeiculos
+                GrupoVeiculos = _grupoVeiculos
             };
 
             _repositorioVeiculo = new RepositorioVeiculoEmBancoDados();
@@ -71,7 +71,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
             Assert.AreEqual(_veiculo.Marca, veiculoEncontrado.Marca);
             Assert.AreEqual(_veiculo.Modelo, veiculoEncontrado.Modelo);
             Assert.AreEqual(_veiculo.Placa, veiculoEncontrado.Placa);
-            Assert.AreEqual(_veiculo.GrupoVeiculo, veiculoEncontrado.GrupoVeiculo);
+            Assert.AreEqual(_veiculo.GrupoVeiculos, veiculoEncontrado.GrupoVeiculos);
             Assert.AreEqual(_veiculo.CapacidadeTanque, veiculoEncontrado.CapacidadeTanque);
             Assert.AreEqual(_veiculo.Ano, veiculoEncontrado.Ano);
             Assert.AreEqual(_veiculo.Cor, veiculoEncontrado.Cor);
@@ -104,7 +104,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
             Assert.AreEqual(_veiculo.Marca, veiculoEncontrado.Marca);
             Assert.AreEqual(_veiculo.Modelo, veiculoEncontrado.Modelo);
             Assert.AreEqual(_veiculo.Placa, veiculoEncontrado.Placa);
-            Assert.AreEqual(_veiculo.GrupoVeiculo, veiculoEncontrado.GrupoVeiculo);
+            Assert.AreEqual(_veiculo.GrupoVeiculos, veiculoEncontrado.GrupoVeiculos);
             Assert.AreEqual(_veiculo.CapacidadeTanque, veiculoEncontrado.CapacidadeTanque);
             Assert.AreEqual(_veiculo.Ano, veiculoEncontrado.Ano);
             Assert.AreEqual(_veiculo.Cor, veiculoEncontrado.Cor);
@@ -138,7 +138,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
             Assert.AreEqual(_veiculo.Marca, veiculoEncontrado.Marca);
             Assert.AreEqual(_veiculo.Modelo, veiculoEncontrado.Modelo);
             Assert.AreEqual(_veiculo.Placa, veiculoEncontrado.Placa);
-            Assert.AreEqual(_veiculo.GrupoVeiculo, veiculoEncontrado.GrupoVeiculo);
+            Assert.AreEqual(_veiculo.GrupoVeiculos, veiculoEncontrado.GrupoVeiculos);
             Assert.AreEqual(_veiculo.CapacidadeTanque, veiculoEncontrado.CapacidadeTanque);
             Assert.AreEqual(_veiculo.Ano, veiculoEncontrado.Ano);
             Assert.AreEqual(_veiculo.Cor, veiculoEncontrado.Cor);
@@ -163,7 +163,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloVeiculo
                 QuilometragemPercorrida = 150,
                 TipoCombustivel = 0,
                 Foto = new byte[10],
-                GrupoVeiculo = _grupoVeiculos
+                GrupoVeiculos = _grupoVeiculos
             };
 
             _servicoVeiculo.Inserir(veiculo1);

@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
                 .NotNull().WithMessage("O campo foto não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo foto não pode ficar vazio");
 
-            RuleFor(x => x.GrupoVeiculo)
+            RuleFor(x => x.GrupoVeiculos)
                 .NotNull().WithMessage("O campo grupo de veiculos não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo grupo de veiculos não pode ficar vazio");
 

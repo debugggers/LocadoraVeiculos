@@ -48,7 +48,7 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
                 QuilometragemPercorrida = 1,
                 TipoCombustivel = 0,
                 //Foto = new Bitmap(@"C:\Users\paulo\Downloads\download.jpg"),
-                GrupoVeiculo = grupo
+                GrupoVeiculos = grupo
             };
 
             ValidadorVeiculo validador = new ValidadorVeiculo();
@@ -79,7 +79,7 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
                 QuilometragemPercorrida = 1,
                 TipoCombustivel = 0,
                 //Foto = new Bitmap(@"C:\Users\paulo\Downloads\download.jpg"),
-                GrupoVeiculo = grupo
+                GrupoVeiculos = grupo
             };
 
             ValidadorVeiculo validador = new ValidadorVeiculo();
@@ -109,7 +109,7 @@ namespace LocadoraVeiculos.Infra.Dominio.TestesUnitarios.ModuloVeiculo
                 QuilometragemPercorrida = -100,
                 TipoCombustivel = 0,
                 //Foto = new Bitmap(@"C:\Users\paulo\Downloads\download.jpg"),
-                GrupoVeiculo = grupo
+                GrupoVeiculos = grupo
             };
 
             ValidadorVeiculo validador = new ValidadorVeiculo();

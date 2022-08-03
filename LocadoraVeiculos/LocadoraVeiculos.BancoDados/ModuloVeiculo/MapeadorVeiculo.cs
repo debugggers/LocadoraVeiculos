@@ -22,7 +22,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             comando.Parameters.AddWithValue("VEICULO_QUILOMETRAGEM", veiculo.QuilometragemPercorrida);
             
             comando.Parameters.AddWithValue("VEICULO_FOTO", veiculo.Foto);
-            comando.Parameters.AddWithValue("VEICULO_GRUPO_VEICULO_ID", veiculo.GrupoVeiculo.Id);
+            comando.Parameters.AddWithValue("VEICULO_GRUPO_VEICULO_ID", veiculo.GrupoVeiculos.Id);
         }
 
         public override Veiculo ConverterRegistro(SqlDataReader leitorVeiculo)
@@ -52,7 +52,7 @@ namespace LocadoraVeiculos.BancoDados.ModuloVeiculo
             veiculo.Ano = ano;
             veiculo.QuilometragemPercorrida = quilometragem;
             veiculo.Foto = foto;
-            veiculo.GrupoVeiculo = new GrupoVeiculos
+            veiculo.GrupoVeiculos = new GrupoVeiculos
             {
                 Id = idGrupo,
                 Nome = nomeGrupo

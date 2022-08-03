@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloLocacao
                     QuilometragemPercorrida = 45,
                     TipoCombustivel = 0,
                     Foto = new byte[10],
-                    GrupoVeiculo = _locacao.GrupoVeiculos
+                    GrupoVeiculos = _locacao.GrupoVeiculos
                 },
                 VeiculoId = new Guid(),
                 DataLocacao = DateTime.Now.Date,
