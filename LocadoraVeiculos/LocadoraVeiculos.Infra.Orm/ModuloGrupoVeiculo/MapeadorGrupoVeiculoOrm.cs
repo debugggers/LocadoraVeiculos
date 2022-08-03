@@ -18,6 +18,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
             builder.HasOne(x => x.PlanoCobranca).WithOne(x => x.GrupoVeiculos).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(x => x.Veiculos).WithOne(x => x.GrupoVeiculos).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.Locacoes).WithOne(x => x.GrupoVeiculos).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

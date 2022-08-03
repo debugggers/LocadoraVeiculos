@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
 using LocadoraVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace LocadoraVeiculos.Dominio.ModuloGrupoVeiculos
         public virtual PlanoCobranca PlanoCobranca { get; set; }
 
         public virtual List<Veiculo> Veiculos { get; set; }
+
+        public virtual List<Locacao> Locacoes { get; set; }
 
         public override bool Equals(object obj)
         {
