@@ -49,22 +49,62 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
             return base.ToString();
         }
 
-        public decimal CalcularGasolina()
+        public decimal CalcularCombustivel()
         {
 
-            switch (NivelDoTanque)
+            if(Locacao.Veiculo.TipoCombustivel.ToString() == "Gasolina")
             {
 
-                case 1m:
-                    return 5.89m * Locacao.Veiculo.CapacidadeTanque;
-                case 1/4m:
-                    return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
-                case 1/2m:
-                    return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
-                case 3/4m:
-                    return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
-                default:
-                    return 0m;
+                switch (NivelDoTanque)
+                {
+
+                    case 0m:
+                        return 5.89m * Locacao.Veiculo.CapacidadeTanque;
+                    case 1 / 4m:
+                        return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
+                    case 1 / 2m:
+                        return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
+                    case 3 / 4m:
+                        return 5.89m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
+                    default:
+                        return 0m;
+                }
+            }
+            else if(Locacao.Veiculo.TipoCombustivel.ToString() == "Etanol")
+            {
+
+                switch (NivelDoTanque)
+                {
+
+                    case 0m:
+                        return 6.02m * Locacao.Veiculo.CapacidadeTanque;
+                    case 1 / 4m:
+                        return 6.02m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
+                    case 1 / 2m:
+                        return 6.02m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
+                    case 3 / 4m:
+                        return 6.02m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
+                    default:
+                        return 0m;
+                }
+            }
+            else
+            {
+
+                switch (NivelDoTanque)
+                {
+
+                    case 0m:
+                        return 7.56m * Locacao.Veiculo.CapacidadeTanque;
+                    case 1 / 4m:
+                        return 7.56m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.25m));
+                    case 1 / 2m:
+                        return 7.56m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.5m));
+                    case 3 / 4m:
+                        return 7.56m * (Locacao.Veiculo.CapacidadeTanque - (Locacao.Veiculo.CapacidadeTanque * 0.75m));
+                    default:
+                        return 0m;
+                }
             }
         } 
 
@@ -119,12 +159,17 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
         {
 
             decimal total = 0;
-            if(Locacao.Taxas != null)
+            var dias = (int)DataDevolucao.Subtract(Locacao.DataLocacao).TotalDays;
+
+            if (Locacao.Taxas != null)
             {
 
                 foreach (var item in Locacao.Taxas)
                 {
-                    total += item.Valor;
+                    if (item.TipoCalculo == TipoCalculoEnum.CalculoFixo)
+                        total += item.Valor;
+                    else
+                        total += item.Valor * dias;
                 }
 
             }
@@ -134,7 +179,10 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
 
                 foreach (var item in Taxas)
                 {
-                    total += item.Valor;
+                    if (item.TipoCalculo == TipoCalculoEnum.CalculoFixo)
+                        total += item.Valor;
+                    else
+                        total += item.Valor * dias;
                 }
 
             }
