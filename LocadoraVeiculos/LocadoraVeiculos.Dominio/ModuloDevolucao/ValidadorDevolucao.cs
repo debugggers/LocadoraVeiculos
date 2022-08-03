@@ -20,7 +20,6 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
                 .NotNull().WithMessage("O campo data de devolução não pode ficar vazio")
                 .NotEmpty().WithMessage("O campo data de devolução não pode ficar vazio")
                 .GreaterThan(x => x.Locacao.DataLocacao).WithMessage("A data de entrega não pode ser anterior a locação");
-
         }
     }
 }
