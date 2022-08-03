@@ -159,12 +159,17 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
         {
 
             decimal total = 0;
-            if(Locacao.Taxas != null)
+            var dias = (int)DataDevolucao.Subtract(Locacao.DataLocacao).TotalDays;
+
+            if (Locacao.Taxas != null)
             {
 
                 foreach (var item in Locacao.Taxas)
                 {
-                    total += item.Valor;
+                    if (item.TipoCalculo == TipoCalculoEnum.CalculoFixo)
+                        total += item.Valor;
+                    else
+                        total += item.Valor * dias;
                 }
 
             }
@@ -174,7 +179,10 @@ namespace LocadoraVeiculos.Dominio.ModuloDevolucao
 
                 foreach (var item in Taxas)
                 {
-                    total += item.Valor;
+                    if (item.TipoCalculo == TipoCalculoEnum.CalculoFixo)
+                        total += item.Valor;
+                    else
+                        total += item.Valor * dias;
                 }
 
             }
