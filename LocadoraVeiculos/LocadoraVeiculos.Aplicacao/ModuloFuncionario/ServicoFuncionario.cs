@@ -106,6 +106,14 @@ namespace LocadoraVeiculos.Aplicacao.ModuloFuncionario
 
                 return Result.Ok();
             }
+            catch (NaoPodeExcluirEsteRegistroException ex)
+            {
+                var msgErro = $"O Funcionário {funcionario.Nome} está relacionado com uma Locação e não pode ser excluído";
+
+                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.Id);
+
+                return Result.Fail(msgErro);
+            }
             catch (Exception ex)
             {
                 var msgErro = "Falha no sistema ao tentar excluir o funcionário";

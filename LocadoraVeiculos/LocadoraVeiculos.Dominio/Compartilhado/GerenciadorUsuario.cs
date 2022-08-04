@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.Dominio.Compartilhado
 
         public static Guid? ObtemId()
         {
-            if (EhAdmin())
+            if (EhAdmin() && _funcionario.Id == Guid.Empty)
                 return null;
             return _funcionario.Id;
         }

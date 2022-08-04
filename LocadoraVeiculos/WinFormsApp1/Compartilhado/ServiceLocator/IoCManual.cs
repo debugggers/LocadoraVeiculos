@@ -4,6 +4,7 @@ using LocadoraVeiculos.Aplicacao.ModuloDevolucao;
 using LocadoraVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Aplicacao.ModuloLocacao;
+using LocadoraVeiculos.Aplicacao.ModuloLogin;
 using LocadoraVeiculos.Aplicacao.ModuloPlanoCobranca;
 using LocadoraVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraVeiculos.Aplicacao.ModuloVeiculo;
@@ -27,7 +28,6 @@ using LocadoraVeiculosForm.ModuloPlanoCobranca;
 using LocadoraVeiculosForm.ModuloTaxa;
 using LocadoraVeiculosForm.ModuloVeiculo;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -36,10 +36,12 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
     public class IoCManual : IServiceLocator
     {
         private Dictionary<string, ControladorBase> controladores;
+        private Dictionary<string, object> generico;
 
         public IoCManual()
         {
             controladores = new Dictionary<string, ControladorBase>();
+            generico = new Dictionary<string, object>();
 
             ConfigurarControladores();
         }
@@ -91,6 +93,8 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
             var repositorioDevolucao = new RepositorioDevolucaoOrm(contextoDadosOrm);
             var servicoDevolucao = new ServicoDevolucao(repositorioDevolucao, contextoDadosOrm);
             controladores.Add(typeof(ControladorDevolucao).Name, new ControladorDevolucao(servicoDevolucao, servicoLocacao, servicoPlanoCobranca, servicoTaxa));
+
+            generico.Add(typeof(ServicoLogin).Name, new ServicoLogin(repositorioFuncionario));
         }
 
         public T Get<T>() where T : ControladorBase
@@ -100,6 +104,15 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
             var nomeControlador = tipo.Name;
 
             return (T)controladores[nomeControlador];
+        }
+
+        public T GetGeneric<T>()
+        {
+            var tipo = typeof(T);
+
+            var nomeControlador = tipo.Name;
+
+            return (T)generico[nomeControlador];
         }
     }
 }

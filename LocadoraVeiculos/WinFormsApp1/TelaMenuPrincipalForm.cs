@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculosForm.Compartilhado;
+﻿using LocadoraVeiculos.Aplicacao.ModuloLogin;
+using LocadoraVeiculosForm.Compartilhado;
 using LocadoraVeiculosForm.Compartilhado.ServiceLocator;
 using LocadoraVeiculosForm.ModuloCliente;
 using LocadoraVeiculosForm.ModuloCliente.ClienteEmpresa;
@@ -27,7 +28,8 @@ namespace LocadoraVeiculosForm
 
             this.serviceLocator = serviceLocator;
 
-            var telaLoginForm = new TelaLoginForm();
+            var controladorLogin = serviceLocator.GetGeneric<ServicoLogin>();
+            var telaLoginForm = new TelaLoginForm(controladorLogin);
 
             telaLoginForm.ShowDialog();
 

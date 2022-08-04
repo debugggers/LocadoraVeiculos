@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloLocacao
         {
             _locacao = new Locacao
             {
-                Funcionario = new Funcionario("Tatiane", "tatimossi", "1234567", DateTime.Now.Date, 12000m, true),
+                Funcionario = new Funcionario("Tatiane", "tatimossi", "1234567", DateTime.Now.Date, 12000m, true, true),
                 FuncionarioId = new Guid(),
                 Cliente = new Cliente("Thiago", "thi@email.com", "49999537888", "Rua 123", "04954080932", 123456789, "Thiago", new DateTime(2060, 07, 07)),
                 ClienteId = new Guid(),

@@ -18,8 +18,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloLocacao
             builder.Property(x => x.ValorPrevisto);
             builder.Property(x => x.PlanosCobranca);
 
-            builder.HasOne(x => x.Funcionario)
-            .WithMany().OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.Funcionario);
 
             builder.HasOne(x => x.Cliente)
             .WithMany().OnDelete(DeleteBehavior.NoAction);

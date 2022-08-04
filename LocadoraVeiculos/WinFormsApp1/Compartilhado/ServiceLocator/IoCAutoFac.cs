@@ -75,5 +75,10 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
         {
             return container.Resolve<T>();
         }
+
+        public T GetGeneric<T>()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

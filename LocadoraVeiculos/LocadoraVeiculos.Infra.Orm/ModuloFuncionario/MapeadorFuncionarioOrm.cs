@@ -19,6 +19,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloFuncionario
             builder.Property(x => x.DataAdmissao).IsRequired();
             builder.Property(x => x.Salario).IsRequired();
             builder.Property(x => x.EhAdmin).IsRequired();
+
+            builder.HasMany(x => x.Locacoes).WithOne(x => x.Funcionario).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
