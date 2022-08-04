@@ -26,6 +26,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
             builder.Property(x => x.Foto).HasColumnType("Varbinary(max)").IsRequired();
 
             builder.HasOne(x => x.GrupoVeiculos);
+
+            builder.HasMany(x => x.Locacoes).WithOne(x => x.Veiculo).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

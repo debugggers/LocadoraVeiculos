@@ -1,13 +1,13 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
 using System;
-using System.Drawing;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ModuloVeiculo
 {
     public class Veiculo : EntidadeBase<Veiculo>
     {
-
         public string Modelo { get; set; }
         public string Placa { get; set; }
         public string Marca { get; set; }
@@ -17,6 +17,7 @@ namespace LocadoraVeiculos.Dominio.ModuloVeiculo
         public int Ano { get; set; }
         public int QuilometragemPercorrida { get; set; }
         public byte[] Foto { get; set; }
+        public List<Locacao> Locacoes { get; set; }
         public GrupoVeiculos GrupoVeiculos { get; set; }
         public Guid? GrupoVeiculosId { get; set; }
         public bool EstaDisponivel { get; set; }

@@ -110,6 +110,15 @@ namespace LocadoraVeiculos.Aplicacao.ModuloVeiculo
 
                 return Result.Ok();
             }
+            catch (NaoPodeExcluirEsteRegistroException ex)
+            {
+                var msgErro = $"O Veículo {veiculo.Modelo} - {veiculo.Placa} está relacionado com uma Locação e " +
+                    $"não pode ser excluído";
+
+                Log.Logger.Error(ex, msgErro + "{VeiculoId}", veiculo.Id);
+
+                return Result.Fail(msgErro);
+            }
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar excluir o veículo";

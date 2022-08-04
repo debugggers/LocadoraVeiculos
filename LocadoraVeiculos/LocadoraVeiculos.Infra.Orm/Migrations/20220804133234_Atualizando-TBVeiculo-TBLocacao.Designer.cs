@@ -4,14 +4,16 @@ using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraVeiculos.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraVeiculosDbContext))]
-    partial class LocadoraVeiculosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220804133234_Atualizando-TBVeiculo-TBLocacao")]
+    partial class AtualizandoTBVeiculoTBLocacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
