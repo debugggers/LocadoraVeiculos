@@ -277,7 +277,7 @@
             this.comboBoxNivelTanque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxNivelTanque.Enabled = false;
             this.comboBoxNivelTanque.FormattingEnabled = true;
-            this.comboBoxNivelTanque.Location = new System.Drawing.Point(6, 318);
+            this.comboBoxNivelTanque.Location = new System.Drawing.Point(13, 317);
             this.comboBoxNivelTanque.Name = "comboBoxNivelTanque";
             this.comboBoxNivelTanque.Size = new System.Drawing.Size(205, 23);
             this.comboBoxNivelTanque.TabIndex = 8;

@@ -24,6 +24,7 @@
     <ProjectReference Include="..\LocadoraVeiculos.BancoDados\LocadoraVeiculos.BancoDados.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.Logging\LocadoraVeiculos.Infra.Logging.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.Orm\LocadoraVeiculos.Infra.Orm.csproj" />
+    <ProjectReference Include="..\locadoraVeiculos.PDF\locadoraVeiculos.PDF.csproj" />
   </ItemGroup>
 
   <ItemGroup>

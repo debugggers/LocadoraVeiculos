@@ -209,7 +209,7 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
                         devolucao.NivelDoTanque = 3 / 4m;
                         break;
                     case "Cheio":
-                        devolucao.NivelDoTanque = 100m;
+                        devolucao.NivelDoTanque = 1m;
                         break;
                 }
 

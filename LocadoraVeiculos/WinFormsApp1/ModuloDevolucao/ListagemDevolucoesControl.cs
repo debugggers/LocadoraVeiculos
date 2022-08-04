@@ -24,7 +24,7 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
             foreach (Devolucao d in devolucoes)
             {
 
-                GridDevolucao.Rows.Add(d.Id, d.Locacao.Id, d.QuilometragemVeiculo, d.DataDevolucao.ToShortDateString(), d.NivelDoTanque, d.ValorTotal);
+                GridDevolucao.Rows.Add(d.Id, d.Locacao.Id, d.QuilometragemVeiculo, d.DataDevolucao.ToShortDateString(), d.NivelDoTanque * 100 + "%", d.ValorTotal);
 
             }
 

@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloDevolucao
 
         public Devolucao SelecionarPorId(Guid id)
         {
-            return devolucoes.SingleOrDefault(x => x.Id == id);
+            return devolucoes.Include(x => x.Taxas).SingleOrDefault(x => x.Id == id);
         }
 
         public List<Devolucao> SelecionarTodos()
