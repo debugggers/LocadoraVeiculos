@@ -16,11 +16,13 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
 
         private IRepositorioLocacao _repositorioLocacao;
         private IContext _context;
+        private IGeradorPdfLocacao _geradorPdfLocacao;
 
-        public ServicoLocacao(IRepositorioLocacao repositorioLocacao, IContext context)
+        public ServicoLocacao(IRepositorioLocacao repositorioLocacao, IContext context, IGeradorPdfLocacao geradorPdfLocacao)
         {
             _repositorioLocacao = repositorioLocacao;
             _context = context;
+            _geradorPdfLocacao = geradorPdfLocacao;
         }
 
         public Result<Locacao> Inserir(Locacao locacao)
@@ -45,6 +47,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
                 _repositorioLocacao.Inserir(locacao);
 
                 _context.GravarDados();
+
+                _geradorPdfLocacao.GerarPdf(locacao);
 
                 Log.Logger.Information("Locação {LocaçãoId} inserida com sucesso", locacao.Id);
 
@@ -82,6 +86,8 @@ namespace LocadoraVeiculos.Aplicacao.ModuloLocacao
                 _repositorioLocacao.Editar(locacao);
 
                 _context.GravarDados();
+
+                _geradorPdfLocacao.GerarPdf(locacao);
 
                 Log.Logger.Information("Locação {LocaçãoId} editada com sucesso", locacao.Id);
 

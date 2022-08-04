@@ -1,4 +1,5 @@
 ﻿using locadoraVeiculos.PDF.ModuloDevolucao;
+using locadoraVeiculos.PDF.ModuloLocacao;
 using LocadoraVeiculos.Aplicacao.ModuloCliente;
 using LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Aplicacao.ModuloDevolucao;
@@ -84,13 +85,13 @@ namespace LocadoraVeiculosForm.Compartilhado.ServiceLocator
             var servicoCliente = new ServicoCliente(repositorioCliente, contextoDadosOrm);
             controladores.Add(typeof(ControladorCliente).Name, new ControladorCliente(servicoCliente, servicoEmpresa));
 
+            GeradorPdfLocacao geradorPdfLocacao = new GeradorPdfLocacao();
             var repositorioLocacao = new RepositorioLocacaoOrm(contextoDadosOrm);
-            var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm);
+            var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm, geradorPdfLocacao);
             controladores.Add(typeof(ControladorLocacao).Name, new ControladorLocacao(servicoLocacao, servicoCliente, 
                 servicoGrupoVeiculo, servicoTaxa, servicoVeiculo, servicoPlanoCobranca));
 
             GeradorPdfDEvolucao geradorPdfDevolucao = new GeradorPdfDEvolucao();
-
             var repositorioDevolucao = new RepositorioDevolucaoOrm(contextoDadosOrm);
             var servicoDevolucao = new ServicoDevolucao(repositorioDevolucao, contextoDadosOrm, geradorPdfDevolucao);
             controladores.Add(typeof(ControladorDevolucao).Name, new ControladorDevolucao(servicoDevolucao, servicoLocacao, servicoPlanoCobranca, servicoTaxa));

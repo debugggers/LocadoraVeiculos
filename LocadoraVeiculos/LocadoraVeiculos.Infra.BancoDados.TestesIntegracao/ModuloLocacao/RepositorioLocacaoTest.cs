@@ -23,6 +23,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloLocacao
         private ServicoLocacao _servicoLocacao;
         private LocadoraVeiculosDbContext _dbContext;
         private IContext _contexto;
+        private IGeradorPdfLocacao geradorPdfLocacao;
 
         public RepositorioLocacaoTest()
         {
@@ -56,7 +57,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloLocacao
             };
 
             _repositorioLocacao = new RepositorioLocacaoOrm(_dbContext);
-            _servicoLocacao = new ServicoLocacao(_repositorioLocacao, _contexto);
+            _servicoLocacao = new ServicoLocacao(_repositorioLocacao, _contexto, geradorPdfLocacao);
         }
 
         [TestCleanup()]
