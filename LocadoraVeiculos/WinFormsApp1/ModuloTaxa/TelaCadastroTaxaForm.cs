@@ -62,6 +62,8 @@ namespace LocadoraVeiculosForm.ModuloTaxa
                 {
                     MessageBox.Show(erro, "Inserção de Taxa",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    DialogResult = DialogResult.None;
                 }
                 else
                 {

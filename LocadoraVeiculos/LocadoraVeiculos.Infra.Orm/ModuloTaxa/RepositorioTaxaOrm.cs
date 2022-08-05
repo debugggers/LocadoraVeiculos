@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloTaxa;
+﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloTaxa;
 using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -30,7 +31,17 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloTaxa
 
         public void Excluir(Taxa registro)
         {
-            _taxas.Remove(registro);
+            try
+            {
+                _taxas.Remove(registro);
+
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                _dbContext.Entry(registro).State = EntityState.Detached;
+                throw new NaoPodeExcluirEsteRegistroException(ex);
+            }            
         }
 
         public Taxa SelecionarTaxaPorDescricao(string descricao)
@@ -46,6 +57,11 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloTaxa
         public List<Taxa> SelecionarTodos()
         {
             return _taxas.ToList();
+        }
+
+        public bool ExisteTaxaVinculadaComLocacoes(Guid id)
+        {
+            return _taxas.Any(x => x.Locacoes.Count() > 0);
         }
     }
 }

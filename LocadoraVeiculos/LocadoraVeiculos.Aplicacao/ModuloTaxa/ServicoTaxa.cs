@@ -1,6 +1,5 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
-using LocadoraVeiculos.BancoDados.ModuloTaxa;
 using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
 using Serilog;
@@ -99,6 +98,11 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
 
             try
             {
+                bool taxasVinculadasComLocacoes = _repositorioTaxa.ExisteTaxaVinculadaComLocacoes(taxa.Id);
+
+                if (taxasVinculadasComLocacoes)
+                    throw new NaoPodeExcluirEsteRegistroException();
+
                 _repositorioTaxa.Excluir(taxa);
 
                 _context.GravarDados();
@@ -106,6 +110,14 @@ namespace LocadoraVeiculos.Aplicacao.ModuloTaxa
                 Log.Logger.Information("Taxa {TaxaId} excluída com sucesso", taxa.Id);
 
                 return Result.Ok();
+            }
+            catch (NaoPodeExcluirEsteRegistroException ex)
+            {
+                var msgErro = $"Taxa {taxa.Descricao} está relacionada com uma Locação e não pode ser excluída";
+
+                Log.Logger.Error(ex, msgErro + "{TaxaId}", taxa.Id);
+
+                return Result.Fail(msgErro);
             }
             catch (Exception ex)
             {
