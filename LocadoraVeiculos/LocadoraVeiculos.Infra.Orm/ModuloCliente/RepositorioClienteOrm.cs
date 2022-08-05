@@ -9,7 +9,6 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
 {
     public class RepositorioClienteOrm : IRepositorioCliente
     {
-
         public DbSet<Cliente> clientes { get; set; }
         private readonly LocadoraVeiculosDbContext dbContext;
 

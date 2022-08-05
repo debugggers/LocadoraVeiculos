@@ -4,14 +4,16 @@ using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraVeiculos.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraVeiculosDbContext))]
-    partial class LocadoraVeiculosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220805121411_AtualizacaoTBEmpresa-TBCliente")]
+    partial class AtualizacaoTBEmpresaTBCliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,7 +76,9 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpresaId");
+                    b.HasIndex("EmpresaId")
+                        .IsUnique()
+                        .HasFilter("[EmpresaId] IS NOT NULL");
 
                     b.ToTable("TBCliente");
                 });
@@ -353,8 +357,8 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
             modelBuilder.Entity("LocadoraVeiculos.Dominio.ModuloCliente.Cliente", b =>
                 {
                     b.HasOne("LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa.Empresa", "Empresa")
-                        .WithMany("Clientes")
-                        .HasForeignKey("EmpresaId")
+                        .WithOne("Cliente")
+                        .HasForeignKey("LocadoraVeiculos.Dominio.ModuloCliente.Cliente", "EmpresaId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Empresa");
@@ -436,7 +440,7 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
 
             modelBuilder.Entity("LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa.Empresa", b =>
                 {
-                    b.Navigation("Clientes");
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("LocadoraVeiculos.Dominio.ModuloDevolucao.Devolucao", b =>

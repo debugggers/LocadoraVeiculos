@@ -20,6 +20,11 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
             this.dbContext = dbContext;
         }
 
+        public void Inserir(GrupoVeiculos novoRegistro)
+        {
+            grupos.Add(novoRegistro);
+        }
+
         public void Editar(GrupoVeiculos registro)
         {
             grupos.Update(registro);
@@ -38,11 +43,6 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
                 dbContext.ChangeTracker.Clear();
                 throw new NaoPodeExcluirEsteRegistroException(ex);
             }
-        }
-
-        public void Inserir(GrupoVeiculos novoRegistro)
-        {
-            grupos.Add(novoRegistro);
         }
 
         public GrupoVeiculos SelecionarGrupoVeiculosPorNome(string nome)

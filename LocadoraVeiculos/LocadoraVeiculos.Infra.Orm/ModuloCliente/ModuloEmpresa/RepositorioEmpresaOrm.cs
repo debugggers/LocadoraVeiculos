@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
+﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
 using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,6 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente.ModuloEmpresa
 {
     public class RepositorioEmpresaOrm : IRepositorioEmpresa
     {
-
         public DbSet<Empresa> empresas { get; set; }
         private readonly LocadoraVeiculosDbContext dbContext;
 
@@ -36,7 +36,17 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente.ModuloEmpresa
 
         public void Excluir(Empresa registro)
         {
-            empresas.Remove(registro);
+            try
+            {
+                empresas.Remove(registro);
+
+                dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                dbContext.ChangeTracker.Clear();
+                throw new NaoPodeExcluirEsteRegistroException(ex);
+            }
         }
 
         public void Inserir(Empresa novoRegistro)
