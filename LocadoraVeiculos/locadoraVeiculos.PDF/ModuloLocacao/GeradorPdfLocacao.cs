@@ -36,11 +36,16 @@ namespace locadoraVeiculos.PDF.ModuloLocacao
             paragrafo.Add("Quilometragem atual percorrida pelo veículo: " + comprovante.Veiculo.QuilometragemPercorrida + " Km" + "\n");
             paragrafo.Add("Taxas adicionadas: " + "\n");
             int j = 1;
-            for (int i = 0; i < comprovante.Taxas.Count; i++)
+            if(comprovante.Taxas != null)
             {
 
-                paragrafo.Add("Taxa " + j + ": " + comprovante.Taxas[i].Descricao + "\n");
-                j++;
+                for (int i = 0; i < comprovante.Taxas.Count; i++)
+                {
+
+                    paragrafo.Add("Taxa " + j + ": " + comprovante.Taxas[i].Descricao + "\n");
+                    j++;
+
+                }
 
             }
 

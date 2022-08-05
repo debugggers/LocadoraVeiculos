@@ -38,13 +38,19 @@ namespace locadoraVeiculos.PDF.ModuloDevolucao
             paragrafo.Add("Nivel do tanque: "  + comprovante.NivelDoTanque * 100 + "%" + "\n");
             paragrafo.Add("Taxas adicionadas na devolução: " + "\n");
             int j = 1;
-            for (int i = 0; i < comprovante.Taxas.Count; i++)
+            if(comprovante.Locacao != null)
             {
 
-                paragrafo.Add("Taxa "+ j +": " + comprovante.Taxas[i].Descricao + "\n");
-                j++;
+                for (int i = 0; i < comprovante.Taxas.Count; i++)
+                {
+
+                    paragrafo.Add("Taxa " + j + ": " + comprovante.Taxas[i].Descricao + "\n");
+                    j++;
+
+                }
 
             }
+            
             var precoCombustivel = comprovante.CalcularCombustivel();
             var precoTaxas = comprovante.CalcularTaxas();
             paragrafo.Add("Valor total para completar o tanque: " + "R$" + precoCombustivel + "\n");
