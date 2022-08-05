@@ -96,14 +96,20 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
                 if (item.Id.Equals(comboBoxLocacoes.SelectedItem))
                     devolucao.Locacao = item;
             }
-            devolucao.QuilometragemVeiculo = Convert.ToInt32(txtQuilometragem.Text);
+            if(txtQuilometragem.Text != "")
+                devolucao.QuilometragemVeiculo = Convert.ToInt32(txtQuilometragem.Text);
             devolucao.DataDevolucao = dateTimePickerDevolucao.Value;
-            totalLimpo = devolucao.CalcularTotal(planos);
-            totalComTaxa = devolucao.CalcularTaxas();
-            totalComGasolina = devolucao.CalcularCombustivel();
-            devolucao.ValorTotal = totalLimpo + totalComGasolina + totalComTaxa;
-            devolucao.Locacao.Veiculo.EstaDisponivel = true;
 
+            if(devolucao.Locacao != null)
+            {
+                totalLimpo = devolucao.CalcularTotal(planos);
+                totalComTaxa = devolucao.CalcularTaxas();
+                totalComGasolina = devolucao.CalcularCombustivel();
+                devolucao.ValorTotal = totalLimpo + totalComGasolina + totalComTaxa;
+
+                devolucao.Locacao.Veiculo.EstaDisponivel = true;
+            }
+            
             var resultadoValidacao = GravarRegistro(devolucao);
 
             if (resultadoValidacao.IsFailed)
@@ -134,6 +140,8 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
                 comboBoxLocacoes.Items.Add(l.Id);
 
             }
+
+            //comboBoxLocacoes.SelectedIndex = 0;
         }
 
         private void comboBoxLocacoes_SelectedIndexChanged(object sender, EventArgs e)
@@ -169,18 +177,26 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
 
         private void btnTaxas_Click(object sender, EventArgs e)
         {
-            devolucao.Taxas = new List<Taxa>();
-            TelaCadastroTaxasAdicionaisForm tela = new TelaCadastroTaxasAdicionaisForm(devolucao, servicoTaxa);
-            tela.Show();
+            if(devolucao.Locacao != null)
+            {
 
+                devolucao.Taxas = new List<Taxa>();
+                TelaCadastroTaxasAdicionaisForm tela = new TelaCadastroTaxasAdicionaisForm(devolucao, servicoTaxa);
+                tela.Show();
+
+            }
         }
 
         private void btnAddTaxas_Click(object sender, EventArgs e)
         {
+            
+            if(devolucao.Locacao != null)
+            {
 
-            totalComTaxa = devolucao.CalcularTaxas();
-            labelTotal.Text = (totalLimpo + totalComGasolina + totalComTaxa).ToString();
+                totalComTaxa = devolucao.CalcularTaxas();
+                labelTotal.Text = (totalLimpo + totalComGasolina + totalComTaxa).ToString();
 
+            }
         }
 
         private void txtQuilometragem_TextChanged(object sender, EventArgs e)
@@ -223,28 +239,33 @@ namespace LocadoraVeiculosForm.ModuloDevolucao
         private void Calcular_Click(object sender, EventArgs e)
         {
 
-            if(txtQuilometragem.Text == "")
+            if(devolucao.Locacao != null)
             {
 
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape("A data de devolução e a quiloemtragem precisam ser inseridos!");
+                if (txtQuilometragem.Text == "")
+                {
 
-                labelRodapeDevolucao.Text = "A data de devolução e a quiloemtragem precisam ser inseridos!";
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape("A data de devolução e a quiloemtragem precisam ser inseridos!");
 
-                DialogResult = DialogResult.None;
+                    labelRodapeDevolucao.Text = "A data de devolução e a quiloemtragem precisam ser inseridos!";
 
-            }
-            else
-            {
+                    DialogResult = DialogResult.None;
 
-                comboBoxNivelTanque.Enabled = true;
+                }
+                else
+                {
 
-                devolucao.QuilometragemVeiculo = Convert.ToInt32(txtQuilometragem.Text);
+                    comboBoxNivelTanque.Enabled = true;
 
-                devolucao.DataDevolucao = dateTimePickerDevolucao.Value;
+                    devolucao.QuilometragemVeiculo = Convert.ToInt32(txtQuilometragem.Text);
 
-                totalLimpo = devolucao.CalcularTotal(planos);
+                    devolucao.DataDevolucao = dateTimePickerDevolucao.Value;
 
-                labelTotal.Text = (totalLimpo + totalComGasolina + totalComTaxa).ToString();
+                    totalLimpo = devolucao.CalcularTotal(planos);
+
+                    labelTotal.Text = (totalLimpo + totalComGasolina + totalComTaxa).ToString();
+
+                }
 
             }
         }
