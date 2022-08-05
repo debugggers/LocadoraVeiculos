@@ -19,16 +19,6 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloDevolucao
             this.dbContext = dbContext;
         }
 
-        public bool DevulacaoJaExiste(Devolucao devolucao)
-        {
-            var devolucaoSelecionada = devolucoes.FirstOrDefault(x => x.Id != devolucao.Id && x.Locacao.Id == devolucao.Locacao.Id);
-
-            if (devolucaoSelecionada != null)
-                return true;
-
-            return false;
-        }
-
         public void Editar(Devolucao registro)
         {
             devolucoes.Update(registro);

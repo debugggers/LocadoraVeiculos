@@ -174,21 +174,10 @@ namespace LocadoraVeiculos.Aplicacao.ModuloDevolucao
             foreach (ValidationFailure item in resultadoValidacao.Errors)
                 erros.Add(new Error(item.ErrorMessage));
 
-            if (DevolucaoDuplicada(devolucao))
-                erros.Add(new Error("devolução duplicada"));
-
             if (erros.Any())
                 return Result.Fail(erros);
 
             return Result.Ok();
         }
-
-        private bool DevolucaoDuplicada(Devolucao devolucao)
-        {
-            var devolucaoEncontrada = repositorioDevolucao.DevulacaoJaExiste(devolucao);
-
-            return devolucaoEncontrada;
-        }
-
     }
 }

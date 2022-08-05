@@ -227,8 +227,11 @@ namespace LocadoraVeiculosForm.ModuloLocacao
         {
             comboBoxVeiculo.Items.Clear();
 
-            foreach (var item in _veiculos)
-                comboBoxVeiculo.Items.Add(item);
+            if (_veiculos.Count > 0 )
+            {
+                foreach (var item in _veiculos)
+                    comboBoxVeiculo.Items.Add(item);
+            }            
         }
 
         private void comboBoxVeiculo_SelectedIndexChanged(object sender, EventArgs e)
