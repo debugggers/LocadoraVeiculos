@@ -37,10 +37,12 @@ namespace locadoraVeiculos.PDF.ModuloDevolucao
             paragrafo.Add("Quilometragem percorrida: "  + (comprovante.QuilometragemVeiculo - comprovante.Locacao.Veiculo.QuilometragemPercorrida) + " Km" + "\n");
             paragrafo.Add("Nivel do tanque: "  + comprovante.NivelDoTanque * 100 + "%" + "\n");
             paragrafo.Add("Taxas adicionadas na devolução: " + "\n");
-            for (int i = 1; i <= comprovante.Taxas.Count; i++)
+            int j = 1;
+            for (int i = 0; i < comprovante.Taxas.Count; i++)
             {
 
-                paragrafo.Add("Taxa"+ i +": " + comprovante.Taxas[i].Descricao + "\n");
+                paragrafo.Add("Taxa "+ j +": " + comprovante.Taxas[i].Descricao + "\n");
+                j++;
 
             }
             var precoCombustivel = comprovante.CalcularCombustivel();

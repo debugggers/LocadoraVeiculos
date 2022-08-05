@@ -35,10 +35,12 @@ namespace locadoraVeiculos.PDF.ModuloLocacao
             paragrafo.Add("Data de devolução prevista: " + comprovante.DataPrevistaEntrega.ToShortDateString() + "\n");
             paragrafo.Add("Quilometragem atual percorrida pelo veículo: " + comprovante.Veiculo.QuilometragemPercorrida + " Km" + "\n");
             paragrafo.Add("Taxas adicionadas: " + "\n");
-            for (int i = 1; i <= comprovante.Taxas.Count; i++)
+            int j = 1;
+            for (int i = 0; i < comprovante.Taxas.Count; i++)
             {
 
-                paragrafo.Add("Taxa" + i + ": " + comprovante.Taxas[i].Descricao + "\n");
+                paragrafo.Add("Taxa " + j + ": " + comprovante.Taxas[i].Descricao + "\n");
+                j++;
 
             }
 
