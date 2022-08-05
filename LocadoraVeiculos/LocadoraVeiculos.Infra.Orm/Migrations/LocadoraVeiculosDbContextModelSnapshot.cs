@@ -340,13 +340,13 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
                     b.HasOne("LocadoraVeiculos.Dominio.ModuloLocacao.Locacao", null)
                         .WithMany()
                         .HasForeignKey("LocacoesId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("LocadoraVeiculos.Dominio.ModuloTaxa.Taxa", null)
                         .WithMany()
                         .HasForeignKey("TaxasId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

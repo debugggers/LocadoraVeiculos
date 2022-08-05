@@ -27,27 +27,31 @@ namespace LocadoraVeiculosForm
             InitializeComponent();
 
             this.serviceLocator = serviceLocator;
+            Instancia = this;
 
             var controladorLogin = serviceLocator.GetGeneric<ServicoLogin>();
             var telaLoginForm = new TelaLoginForm(controladorLogin);
 
             telaLoginForm.ShowDialog();
 
-            while (telaLoginForm.DialogResult == DialogResult.Retry)
+            if (telaLoginForm.DialogResult == DialogResult.Cancel)
+                Close();
+            else
             {
-                if (telaLoginForm.DialogResult == DialogResult.OK)
-                    break;
-                else if (telaLoginForm.DialogResult == DialogResult.Cancel)
-                    Close();
 
-                telaLoginForm.ShowDialog();
+                while (telaLoginForm.DialogResult == DialogResult.Retry)
+                {
+                    if (telaLoginForm.DialogResult == DialogResult.OK)
+                        break;
+                    else if (telaLoginForm.DialogResult == DialogResult.Cancel)
+                        Close();
+
+                    telaLoginForm.ShowDialog();
+                }
             }
-
-            Instancia = this;
 
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
-
         }
 
         public static TelaMenuPrincipalForm Instancia
