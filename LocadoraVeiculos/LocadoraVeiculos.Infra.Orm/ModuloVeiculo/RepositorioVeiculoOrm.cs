@@ -10,7 +10,6 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
 {
     public class RepositorioVeiculoOrm : IRepositorioVeiculo
     {
-
         public DbSet<Veiculo> veiculos { get; set; }
         private readonly LocadoraVeiculosDbContext dbContext;
 
@@ -18,6 +17,11 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
         {
             veiculos = dbContext.Set<Veiculo>();
             this.dbContext = dbContext;
+        }
+
+        public void Inserir(Veiculo novoRegistro)
+        {
+            veiculos.Add(novoRegistro);
         }
 
         public void Editar(Veiculo registro)
@@ -38,11 +42,6 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
                 dbContext.ChangeTracker.Clear();
                 throw new NaoPodeExcluirEsteRegistroException(ex);
             }
-        }
-
-        public void Inserir(Veiculo novoRegistro)
-        {
-            veiculos.Add(novoRegistro);
         }
 
         public Veiculo SelecionarPorId(Guid id)

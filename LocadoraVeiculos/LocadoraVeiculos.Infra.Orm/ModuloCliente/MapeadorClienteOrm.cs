@@ -24,6 +24,8 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloCliente
 
             builder.HasOne(x => x.Empresa).WithMany(x => x.Clientes).
                 IsRequired(false).HasForeignKey(x => x.EmpresaId);
+
+            builder.HasMany(x => x.Locacoes).WithOne(x => x.Cliente).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
