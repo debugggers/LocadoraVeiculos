@@ -22,7 +22,8 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
 
             foreach (Veiculo v in veiculos)
             {
-                gridVeiculos.Rows.Add(v.Id, v.Marca, v.Modelo, v.Cor, v.Placa, v.Ano, v.TipoCombustivel, v.CapacidadeTanque, v.QuilometragemPercorrida, v.GrupoVeiculo.Nome);
+                
+                gridVeiculos.Rows.Add(v.Id, v.Marca, v.Modelo, v.Cor, v.Placa, v.Ano, v.TipoCombustivel, v.CapacidadeTanque, v.QuilometragemPercorrida, v.GrupoVeiculos.Nome);
             }
         }
 

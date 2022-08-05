@@ -95,7 +95,7 @@ namespace LocadoraVeiculosForm.ModuloTaxa
                     CarregarTaxas();
                 else
                 {
-                    MessageBox.Show(resultadoSelecao.Errors[0].Message, "Exclusão de taxas",
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de taxas",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

@@ -1,5 +1,7 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
 using System;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ModuloFuncionario
 {
@@ -7,9 +9,11 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
     {
         public Funcionario()
         {
+            Ativo = true;
         }
 
-        public Funcionario(string nome, string login, string senha, DateTime dataAdmissao, decimal salario, bool ehAdmin)
+        public Funcionario(string nome, string login, string senha, DateTime dataAdmissao, decimal salario, 
+            bool ehAdmin, bool ativo)
         {
             Nome = nome;
             Login = login;
@@ -17,6 +21,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
             DataAdmissao = dataAdmissao;
             Salario = salario;
             EhAdmin = ehAdmin;
+            Ativo = ativo;
         }
 
         public string Nome { get; set; }
@@ -25,7 +30,9 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
         public DateTime DataAdmissao { get; set; }
         public decimal Salario { get; set; }
         public bool EhAdmin { get; set; }
-       
+        public bool Ativo { get; set; }
+        public List<Locacao> Locacoes { get; set; }
+
         public override bool Equals(object obj)
         {
             Funcionario funcionario = obj as Funcionario;
@@ -41,6 +48,7 @@ namespace LocadoraVeiculos.Dominio.ModuloFuncionario
                 funcionario.DataAdmissao.Equals(DataAdmissao) &&
                 funcionario.Salario.Equals(Salario);
                 funcionario.EhAdmin.Equals(EhAdmin);
+                funcionario.Ativo.Equals(Ativo);
         }
     }
 }

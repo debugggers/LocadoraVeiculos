@@ -12,13 +12,12 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
     public class ServicoCliente
     {
         private IRepositorioCliente _repositorioCliente;
-        private IContext context;
+        private IContext _context;
 
         public ServicoCliente(IRepositorioCliente repositorioCliente, IContext context)
         {
             _repositorioCliente = repositorioCliente;
-            this.context = context;
-
+            _context = context;
         }
 
         public  Result<Cliente> Inserir(Cliente cliente)
@@ -42,7 +41,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             {
                 _repositorioCliente.Inserir(cliente);
 
-                context.GravarDados();
+                _context.GravarDados();
 
                 Log.Logger.Information("Cliente {ClienteId} inserido com sucesso", cliente.Id);
 
@@ -79,7 +78,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             {
                 _repositorioCliente.Editar(cliente);
 
-                context.GravarDados();
+                _context.GravarDados();
 
                 Log.Logger.Information("Cliente {ClienteId} editado com sucesso", cliente.Id);
 
@@ -103,11 +102,19 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
             {
                 _repositorioCliente.Excluir(cliente);
 
-                context.GravarDados();
+                _context.GravarDados();
 
                 Log.Logger.Information("Cliente {ClienteId} excluído com sucesso", cliente.Id);
 
                 return Result.Ok();
+            }
+            catch (NaoPodeExcluirEsteRegistroException ex)
+            {
+                var msgErro = $"O Cliente {cliente.Nome} está relacionado com uma Locação e não pode ser excluído";
+
+                Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
+
+                return Result.Fail(msgErro);
             }
             catch (Exception ex)
             {
@@ -121,22 +128,17 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente
 
         public Result<Cliente> SelecionarPorId(Guid id)
         {
-
             try
             {
-
                 return Result.Ok(_repositorioCliente.SelecionarPorId(id));
-
             }
             catch (Exception ex)
             {
-
                 string msgErro = "Falha no sistema ao tentar selecionar o cliente";
 
                 Log.Logger.Error(ex, msgErro + "{ClienteId}", id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 

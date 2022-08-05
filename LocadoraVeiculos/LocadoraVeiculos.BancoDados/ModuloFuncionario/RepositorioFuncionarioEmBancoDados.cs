@@ -120,5 +120,10 @@ namespace LocadoraVeiculos.BancoDados.ModuloFuncionario
 
             return funcionario;
         }
+
+        public Funcionario SelecionarFuncionarioPorLoginSenha(string login, string senha)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

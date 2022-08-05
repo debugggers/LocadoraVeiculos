@@ -104,16 +104,16 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(12, 56);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(841, 164);
-            this.panel1.TabIndex = 2;
+            this.panel1.Size = new System.Drawing.Size(961, 208);
+            this.panel1.TabIndex = 11;
             // 
             // txtDataDevolucaoPrevista
             // 
             this.txtDataDevolucaoPrevista.Enabled = false;
             this.txtDataDevolucaoPrevista.Location = new System.Drawing.Point(4, 127);
             this.txtDataDevolucaoPrevista.Name = "txtDataDevolucaoPrevista";
-            this.txtDataDevolucaoPrevista.Size = new System.Drawing.Size(202, 23);
-            this.txtDataDevolucaoPrevista.TabIndex = 15;
+            this.txtDataDevolucaoPrevista.Size = new System.Drawing.Size(230, 26);
+            this.txtDataDevolucaoPrevista.TabIndex = 36;
             // 
             // label9
             // 
@@ -129,8 +129,8 @@
             this.txtDataLocacao.Enabled = false;
             this.txtDataLocacao.Location = new System.Drawing.Point(474, 77);
             this.txtDataLocacao.Name = "txtDataLocacao";
-            this.txtDataLocacao.Size = new System.Drawing.Size(202, 23);
-            this.txtDataLocacao.TabIndex = 13;
+            this.txtDataLocacao.Size = new System.Drawing.Size(230, 26);
+            this.txtDataLocacao.TabIndex = 35;
             // 
             // label8
             // 
@@ -146,8 +146,8 @@
             this.txtPlanoCobranca.Enabled = false;
             this.txtPlanoCobranca.Location = new System.Drawing.Point(229, 77);
             this.txtPlanoCobranca.Name = "txtPlanoCobranca";
-            this.txtPlanoCobranca.Size = new System.Drawing.Size(202, 23);
-            this.txtPlanoCobranca.TabIndex = 9;
+            this.txtPlanoCobranca.Size = new System.Drawing.Size(230, 26);
+            this.txtPlanoCobranca.TabIndex = 34;
             this.txtPlanoCobranca.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // label6
@@ -165,8 +165,8 @@
             this.txtPlaca.Enabled = false;
             this.txtPlaca.Location = new System.Drawing.Point(4, 77);
             this.txtPlaca.Name = "txtPlaca";
-            this.txtPlaca.Size = new System.Drawing.Size(202, 23);
-            this.txtPlaca.TabIndex = 7;
+            this.txtPlaca.Size = new System.Drawing.Size(230, 26);
+            this.txtPlaca.TabIndex = 33;
             // 
             // label5
             // 
@@ -182,8 +182,8 @@
             this.txtGrupoVeiculos.Enabled = false;
             this.txtGrupoVeiculos.Location = new System.Drawing.Point(474, 28);
             this.txtGrupoVeiculos.Name = "txtGrupoVeiculos";
-            this.txtGrupoVeiculos.Size = new System.Drawing.Size(202, 23);
-            this.txtGrupoVeiculos.TabIndex = 5;
+            this.txtGrupoVeiculos.Size = new System.Drawing.Size(230, 26);
+            this.txtGrupoVeiculos.TabIndex = 32;
             // 
             // label4
             // 
@@ -199,8 +199,8 @@
             this.txtCliente.Enabled = false;
             this.txtCliente.Location = new System.Drawing.Point(229, 28);
             this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(202, 23);
-            this.txtCliente.TabIndex = 3;
+            this.txtCliente.Size = new System.Drawing.Size(230, 26);
+            this.txtCliente.TabIndex = 31;
             // 
             // label3
             // 
@@ -216,8 +216,8 @@
             this.txtFuncionario.Enabled = false;
             this.txtFuncionario.Location = new System.Drawing.Point(3, 28);
             this.txtFuncionario.Name = "txtFuncionario";
-            this.txtFuncionario.Size = new System.Drawing.Size(202, 23);
-            this.txtFuncionario.TabIndex = 1;
+            this.txtFuncionario.Size = new System.Drawing.Size(230, 26);
+            this.txtFuncionario.TabIndex = 30;
             // 
             // label2
             // 
@@ -241,9 +241,8 @@
             // 
             this.txtQuilometragem.Location = new System.Drawing.Point(13, 256);
             this.txtQuilometragem.Name = "txtQuilometragem";
-            this.txtQuilometragem.Size = new System.Drawing.Size(205, 23);
-            this.txtQuilometragem.TabIndex = 4;
-            this.txtQuilometragem.TextChanged += new System.EventHandler(this.txtQuilometragem_TextChanged);
+            this.txtQuilometragem.Size = new System.Drawing.Size(234, 26);
+            this.txtQuilometragem.TabIndex = 2;
             // 
             // label10
             // 
@@ -259,8 +258,8 @@
             this.dateTimePickerDevolucao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerDevolucao.Location = new System.Drawing.Point(242, 256);
             this.dateTimePickerDevolucao.Name = "dateTimePickerDevolucao";
-            this.dateTimePickerDevolucao.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePickerDevolucao.TabIndex = 6;
+            this.dateTimePickerDevolucao.Size = new System.Drawing.Size(228, 26);
+            this.dateTimePickerDevolucao.TabIndex = 5;
             this.dateTimePickerDevolucao.ValueChanged += new System.EventHandler(this.dateTimePickerDevolucao_ValueChanged);
             // 
             // label11
@@ -279,8 +278,8 @@
             this.comboBoxNivelTanque.FormattingEnabled = true;
             this.comboBoxNivelTanque.Location = new System.Drawing.Point(13, 317);
             this.comboBoxNivelTanque.Name = "comboBoxNivelTanque";
-            this.comboBoxNivelTanque.Size = new System.Drawing.Size(205, 23);
-            this.comboBoxNivelTanque.TabIndex = 8;
+            this.comboBoxNivelTanque.Size = new System.Drawing.Size(234, 27);
+            this.comboBoxNivelTanque.TabIndex = 4;
             this.comboBoxNivelTanque.SelectedIndexChanged += new System.EventHandler(this.comboBoxNivelTanque_SelectedIndexChanged);
             // 
             // label12
@@ -315,8 +314,8 @@
             this.btnCadastrar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCadastrar.Location = new System.Drawing.Point(744, 353);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(109, 41);
-            this.btnCadastrar.TabIndex = 16;
+            this.btnCadastrar.Size = new System.Drawing.Size(125, 52);
+            this.btnCadastrar.TabIndex = 10;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
@@ -326,8 +325,8 @@
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.Location = new System.Drawing.Point(629, 353);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 41);
-            this.button2.TabIndex = 17;
+            this.button2.Size = new System.Drawing.Size(125, 52);
+            this.button2.TabIndex = 9;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -352,8 +351,8 @@
             // 
             this.Calcular.Location = new System.Drawing.Point(605, 253);
             this.Calcular.Name = "Calcular";
-            this.Calcular.Size = new System.Drawing.Size(75, 23);
-            this.Calcular.TabIndex = 29;
+            this.Calcular.Size = new System.Drawing.Size(86, 29);
+            this.Calcular.TabIndex = 8;
             this.Calcular.Text = "Calcular";
             this.Calcular.UseVisualStyleBackColor = true;
             this.Calcular.Click += new System.EventHandler(this.Calcular_Click);
@@ -371,8 +370,8 @@
             // 
             this.btnTaxas.Location = new System.Drawing.Point(235, 318);
             this.btnTaxas.Name = "btnTaxas";
-            this.btnTaxas.Size = new System.Drawing.Size(111, 23);
-            this.btnTaxas.TabIndex = 31;
+            this.btnTaxas.Size = new System.Drawing.Size(127, 29);
+            this.btnTaxas.TabIndex = 6;
             this.btnTaxas.Text = "Selecionar Taxas";
             this.btnTaxas.UseVisualStyleBackColor = true;
             this.btnTaxas.Click += new System.EventHandler(this.btnTaxas_Click);
@@ -381,8 +380,8 @@
             // 
             this.btnAddTaxas.Location = new System.Drawing.Point(353, 317);
             this.btnAddTaxas.Name = "btnAddTaxas";
-            this.btnAddTaxas.Size = new System.Drawing.Size(117, 23);
-            this.btnAddTaxas.TabIndex = 32;
+            this.btnAddTaxas.Size = new System.Drawing.Size(134, 29);
+            this.btnAddTaxas.TabIndex = 7;
             this.btnAddTaxas.Text = "Adicionar Taxas";
             this.btnAddTaxas.UseVisualStyleBackColor = true;
             this.btnAddTaxas.Click += new System.EventHandler(this.btnAddTaxas_Click);

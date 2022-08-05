@@ -45,7 +45,7 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
                 txtCapacidadeTanque.Text = veiculo.CapacidadeTanque.ToString();
                 txtAno.Text = veiculo.Ano.ToString();
                 txtKm.Text = veiculo.QuilometragemPercorrida.ToString();
-                comboBoxGrupoVeiculos.SelectedItem = veiculo.GrupoVeiculo;
+                comboBoxGrupoVeiculos.SelectedItem = veiculo.GrupoVeiculos;
                 comboBoxCombustivel.SelectedItem = veiculo.TipoCombustivel;
                 if(veiculo.Foto != null)
                 {
@@ -119,7 +119,7 @@ namespace LocadoraVeiculosForm.ModuloVeiculo
             {
 
                 if (item.Nome.Equals(comboBoxGrupoVeiculos.SelectedItem))
-                    veiculo.GrupoVeiculo = item;
+                    veiculo.GrupoVeiculos = item;
 
             }
 

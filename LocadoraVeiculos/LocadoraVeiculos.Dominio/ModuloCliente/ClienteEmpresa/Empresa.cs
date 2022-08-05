@@ -1,9 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
 {
@@ -14,6 +10,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa
         public string Telefone { get; set; }
         public string Endereco { get; set; }
         public string CNPJ { get; set; }
+        public List<Cliente> Clientes { get; set; }
 
         public Empresa()
         {

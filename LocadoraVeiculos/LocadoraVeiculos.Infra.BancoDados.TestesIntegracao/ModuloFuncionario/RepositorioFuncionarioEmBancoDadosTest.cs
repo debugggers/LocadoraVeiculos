@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
 
         public RepositorioFuncionarioEmBancoDadosTest()
         {
-            _funcionario = new Funcionario("Tatiane Mossi", "tatimossi", "12345", new DateTime(2022, 02, 02), 2000.00m, true);
+            _funcionario = new Funcionario("Tatiane Mossi", "tatimossi", "12345", new DateTime(2022, 02, 02), 2000.00m, true, true);
             _repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
             _servicoFuncionario = new ServicoFuncionario(_repositorioFuncionario, contexto);
         }
@@ -97,9 +97,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         public void Deve_selecionar_todos_os_funcionarios()
         {
             //arrange
-            var funcionario1 = new Funcionario("Thiago Souza", "thiagosouza", "12345", new DateTime(2022, 02, 03), 3000.00m, false);
-            var funcionario2 = new Funcionario("Rosimeri Morais", "merimorais", "13579", new DateTime(2022, 02, 04), 4000.00m, true);
-            var funcionario3 = new Funcionario("Ademir Jaco Mossi", "milamossi", "24680", new DateTime(2022, 02, 05), 5000.00m, false);
+            var funcionario1 = new Funcionario("Thiago Souza", "thiagosouza", "12345", new DateTime(2022, 02, 03), 3000.00m, false, true);
+            var funcionario2 = new Funcionario("Rosimeri Morais", "merimorais", "13579", new DateTime(2022, 02, 04), 4000.00m, true, true);
+            var funcionario3 = new Funcionario("Ademir Jaco Mossi", "milamossi", "24680", new DateTime(2022, 02, 05), 5000.00m, false, true);
 
             _servicoFuncionario.Inserir(funcionario1);
             _servicoFuncionario.Inserir(funcionario2);
@@ -150,7 +150,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         public void Deve_inserir_somente_se_nome_tiver_mais_que_2_caracteres()
         {
             //arrange
-            var funcionario = new Funcionario("Ha", "tatimossi", "12345", new DateTime(2022, 06, 24), 2200.00m, false);
+            var funcionario = new Funcionario("Ha", "tatimossi", "12345", new DateTime(2022, 06, 24), 2200.00m, false, false);
 
             //action
             _servicoFuncionario.Inserir(funcionario);
@@ -166,7 +166,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.TestesIntegracao.ModuloFuncionario
         public void Nao_deve_inserir_se_nome_tiver_caracteres_especiais()
         {
             //arrange
-            var funcionario = new Funcionario("T@ti4ne", "tatimossi", "12345", new DateTime(2022, 06, 24), 2200.00m, false);
+            var funcionario = new Funcionario("T@ti4ne", "tatimossi", "12345", new DateTime(2022, 06, 24), 2200.00m, false, false);
 
             //action
             _servicoFuncionario.Inserir(funcionario);

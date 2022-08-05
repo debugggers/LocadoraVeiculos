@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.BancoDados.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloTaxa;
+using System;
 using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.BancoDados.ModuloTaxa
@@ -64,6 +65,11 @@ namespace LocadoraVeiculos.BancoDados.ModuloTaxa
         public Taxa SelecionarTaxaPorDescricao(string descricao)
         {
             return SelecionarPorParametro(sqlSelecionarPorDescricao, new SqlParameter("DESCRICAO", descricao));
+        }
+
+        public bool ExisteTaxaVinculadaComLocacoes(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloFuncionario;
+﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloFuncionario;
 using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -30,31 +31,34 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloFuncionario
 
         public void Excluir(Funcionario registro)
         {
-            _funcionarios.Remove(registro);
+            registro.Ativo = false;
+
+            _funcionarios.Update(registro);
         }
 
         public Funcionario SelecionarFuncionarioPorLogin(string login)
         {
-            return _funcionarios.FirstOrDefault(x => x.Login == login);
+            return _funcionarios.FirstOrDefault(x => x.Login == login && x.Ativo);
         }
 
         public Funcionario SelecionarFuncionarioPorNome(string nome)
         {
-            return _funcionarios.FirstOrDefault(x => x.Nome == nome);
+            return _funcionarios.FirstOrDefault(x => x.Nome == nome && x.Ativo);
+        }
+
+        public Funcionario SelecionarFuncionarioPorLoginSenha(string login, string senha)
+        {
+            return _funcionarios.FirstOrDefault(x => x.Login == login && x.Senha == senha && x.Ativo);
         }
 
         public Funcionario SelecionarPorId(Guid id)
         {
-            //cache
-            //return disciplinas.Find(id);
-
-            //executa a query no banco
-            return _funcionarios.SingleOrDefault(x => x.Id == id);
+            return _funcionarios.SingleOrDefault(x => x.Id == id && x.Ativo);
         }
 
         public List<Funcionario> SelecionarTodos()
         {
-            return _funcionarios.ToList();
+            return _funcionarios.Where(x => x.Ativo).ToList();
         }
     }
 }

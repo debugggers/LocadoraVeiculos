@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.ModuloVeiculo;
+﻿using LocadoraVeiculos.Dominio.Compartilhado;
+using LocadoraVeiculos.Dominio.ModuloVeiculo;
 using LocadoraVeiculos.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,6 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
 {
     public class RepositorioVeiculoOrm : IRepositorioVeiculo
     {
-
         public DbSet<Veiculo> veiculos { get; set; }
         private readonly LocadoraVeiculosDbContext dbContext;
 
@@ -19,6 +19,11 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
             this.dbContext = dbContext;
         }
 
+        public void Inserir(Veiculo novoRegistro)
+        {
+            veiculos.Add(novoRegistro);
+        }
+
         public void Editar(Veiculo registro)
         {
             veiculos.Update(registro);
@@ -26,12 +31,17 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
 
         public void Excluir(Veiculo registro)
         {
-            veiculos.Remove(registro);
-        }
+            try
+            {
+                veiculos.Remove(registro);
 
-        public void Inserir(Veiculo novoRegistro)
-        {
-            veiculos.Add(novoRegistro);
+                dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                dbContext.ChangeTracker.Clear();
+                throw new NaoPodeExcluirEsteRegistroException(ex);
+            }
         }
 
         public Veiculo SelecionarPorId(Guid id)
@@ -41,7 +51,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
 
         public List<Veiculo> SelecionarTodos()
         {
-            return veiculos.Include(x => x.GrupoVeiculo).ToList();
+            return veiculos.Include(x => x.GrupoVeiculos).ToList();
         }
 
         public bool VeiculoJaExiste(Veiculo veiculo)
@@ -56,7 +66,7 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloVeiculo
 
         public List<Veiculo> BuscarVeiculosDisponiveisPeloIdGrupoVeiculos(Guid idGrupoVeiculos)
         {
-            return veiculos.Where(x => x.GrupoVeiculoId == idGrupoVeiculos && x.EstaDisponivel).ToList();
+            return veiculos.Where(x => x.GrupoVeiculosId == idGrupoVeiculos && x.EstaDisponivel).ToList();
         }
     }
 }

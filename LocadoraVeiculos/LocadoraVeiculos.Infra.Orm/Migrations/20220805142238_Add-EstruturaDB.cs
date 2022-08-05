@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LocadoraVeiculos.Infra.Orm.Migrations
 {
-    public partial class Estruturabanco : Migration
+    public partial class AddEstruturaDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,8 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
                     Senha = table.Column<string>(type: "Varchar(100)", nullable: false),
                     DataAdmissao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Salario = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    EhAdmin = table.Column<bool>(type: "bit", nullable: false)
+                    EhAdmin = table.Column<bool>(type: "bit", nullable: false),
+                    Ativo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -98,7 +99,7 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
                         column: x => x.GrupoVeiculosId,
                         principalTable: "TBGrupoVeiculos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,14 +116,15 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
                     Ano = table.Column<int>(type: "int", nullable: false),
                     QuilometragemPercorrida = table.Column<int>(type: "int", nullable: false),
                     Foto = table.Column<byte[]>(type: "Varbinary(max)", nullable: false),
-                    GrupoVeiculoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    GrupoVeiculosId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    EstaDisponivel = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TBVeiculo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TBVeiculo_TBGrupoVeiculos_GrupoVeiculoId",
-                        column: x => x.GrupoVeiculoId,
+                        name: "FK_TBVeiculo_TBGrupoVeiculos_GrupoVeiculosId",
+                        column: x => x.GrupoVeiculosId,
                         principalTable: "TBGrupoVeiculos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -149,22 +151,26 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
                         name: "FK_TBLocacao_TBCliente_ClienteId",
                         column: x => x.ClienteId,
                         principalTable: "TBCliente",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TBLocacao_TBFuncionario_FuncionarioId",
                         column: x => x.FuncionarioId,
                         principalTable: "TBFuncionario",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TBLocacao_TBGrupoVeiculos_GrupoVeiculosId",
                         column: x => x.GrupoVeiculosId,
                         principalTable: "TBGrupoVeiculos",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TBLocacao_TBVeiculo_VeiculoId",
                         column: x => x.VeiculoId,
                         principalTable: "TBVeiculo",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -222,14 +228,12 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
                         name: "FK_LocacaoTaxa_TBLocacao_LocacoesId",
                         column: x => x.LocacoesId,
                         principalTable: "TBLocacao",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_LocacaoTaxa_TBTaxa_TaxasId",
                         column: x => x.TaxasId,
                         principalTable: "TBTaxa",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -270,7 +274,8 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_TBPlanoCobranca_GrupoVeiculosId",
                 table: "TBPlanoCobranca",
-                column: "GrupoVeiculosId");
+                column: "GrupoVeiculosId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_TBTaxa_DevolucaoId",
@@ -278,9 +283,9 @@ namespace LocadoraVeiculos.Infra.Orm.Migrations
                 column: "DevolucaoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TBVeiculo_GrupoVeiculoId",
+                name: "IX_TBVeiculo_GrupoVeiculosId",
                 table: "TBVeiculo",
-                column: "GrupoVeiculoId");
+                column: "GrupoVeiculosId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

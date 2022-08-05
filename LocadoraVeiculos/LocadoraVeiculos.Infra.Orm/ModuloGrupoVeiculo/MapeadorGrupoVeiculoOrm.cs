@@ -11,9 +11,15 @@ namespace LocadoraVeiculos.Infra.Orm.ModuloGrupoVeiculo
 
         public void Configure(EntityTypeBuilder<GrupoVeiculos> builder)
         {
-                builder.ToTable("TBGrupoVeiculos");
-                builder.Property(x => x.Id).ValueGeneratedNever();
-                builder.Property(x => x.Nome).IsRequired().HasColumnType("Varchar(100)");
+            builder.ToTable("TBGrupoVeiculos");
+            builder.Property(x => x.Id).ValueGeneratedNever();
+            builder.Property(x => x.Nome).IsRequired().HasColumnType("Varchar(100)");
+
+            builder.HasOne(x => x.PlanoCobranca).WithOne(x => x.GrupoVeiculos).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.Veiculos).WithOne(x => x.GrupoVeiculos).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.Locacoes).WithOne(x => x.GrupoVeiculos).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

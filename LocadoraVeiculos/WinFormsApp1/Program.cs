@@ -23,7 +23,18 @@ namespace LocadoraVeiculosForm
 
             var serviceLocator = new IoCManual();
 
-            Application.Run(new TelaMenuPrincipalForm(serviceLocator));
+            try
+            {
+                Application.Run(new TelaMenuPrincipalForm(serviceLocator));
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.StartsWith("Cannot access a disposed object"))
+                {
+                    return;
+                }
+                throw ex;
+            }
         }
     }
 }

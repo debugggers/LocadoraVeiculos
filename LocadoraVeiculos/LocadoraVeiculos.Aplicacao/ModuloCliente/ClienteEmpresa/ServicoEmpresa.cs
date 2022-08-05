@@ -108,6 +108,15 @@ namespace LocadoraVeiculos.Aplicacao.ModuloCliente.ClienteEmpresa
 
                 return Result.Ok();
             }
+            catch (NaoPodeExcluirEsteRegistroException ex)
+            {
+                var msgErro = $"A empresa {empresa.Nome} está relacionado com um " +
+                    $"Cliente e não pode ser excluído";
+
+                Log.Logger.Error(ex, msgErro + "{EmpresaId}", empresa.Id);
+
+                return Result.Fail(msgErro);
+            }
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar excluir a empresa";

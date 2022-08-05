@@ -50,66 +50,69 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 64);
+            this.label1.Location = new System.Drawing.Point(14, 81);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 15);
+            this.label1.Size = new System.Drawing.Size(124, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome da empresa:";
             // 
             // txtNomeEmpresa
             // 
-            this.txtNomeEmpresa.Location = new System.Drawing.Point(12, 82);
+            this.txtNomeEmpresa.Location = new System.Drawing.Point(14, 104);
+            this.txtNomeEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNomeEmpresa.Name = "txtNomeEmpresa";
-            this.txtNomeEmpresa.Size = new System.Drawing.Size(292, 23);
+            this.txtNomeEmpresa.Size = new System.Drawing.Size(333, 26);
             this.txtNomeEmpresa.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 118);
+            this.label2.Location = new System.Drawing.Point(14, 149);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(208, 15);
+            this.label2.Size = new System.Drawing.Size(229, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "Telefone da empresa((xx) xxxxx-xxxx):";
             // 
             // txtEmailEmpresa
             // 
-            this.txtEmailEmpresa.Location = new System.Drawing.Point(12, 195);
+            this.txtEmailEmpresa.Location = new System.Drawing.Point(14, 247);
+            this.txtEmailEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmailEmpresa.Name = "txtEmailEmpresa";
-            this.txtEmailEmpresa.Size = new System.Drawing.Size(292, 23);
-            this.txtEmailEmpresa.TabIndex = 5;
+            this.txtEmailEmpresa.Size = new System.Drawing.Size(333, 26);
+            this.txtEmailEmpresa.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 177);
+            this.label3.Location = new System.Drawing.Point(14, 224);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 15);
+            this.label3.Size = new System.Drawing.Size(125, 19);
             this.label3.TabIndex = 4;
             this.label3.Text = "E-mail da empresa:";
             // 
             // txtEnderecoEmpresa
             // 
-            this.txtEnderecoEmpresa.Location = new System.Drawing.Point(12, 258);
+            this.txtEnderecoEmpresa.Location = new System.Drawing.Point(14, 327);
+            this.txtEnderecoEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEnderecoEmpresa.Name = "txtEnderecoEmpresa";
-            this.txtEnderecoEmpresa.Size = new System.Drawing.Size(292, 23);
-            this.txtEnderecoEmpresa.TabIndex = 7;
+            this.txtEnderecoEmpresa.Size = new System.Drawing.Size(333, 26);
+            this.txtEnderecoEmpresa.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 240);
+            this.label4.Location = new System.Drawing.Point(14, 304);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 15);
+            this.label4.Size = new System.Drawing.Size(143, 19);
             this.label4.TabIndex = 6;
             this.label4.Text = "Endereço da empresa:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 300);
+            this.label5.Location = new System.Drawing.Point(14, 380);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(209, 15);
+            this.label5.Size = new System.Drawing.Size(255, 19);
             this.label5.TabIndex = 8;
             this.label5.Text = "CNPJ da empresa(00.000.000/0000-00):";
             // 
@@ -117,7 +120,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(12, 9);
+            this.label6.Location = new System.Drawing.Point(14, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(512, 21);
             this.label6.TabIndex = 10;
@@ -127,7 +130,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(12, 30);
+            this.label7.Location = new System.Drawing.Point(14, 38);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(300, 21);
             this.label7.TabIndex = 11;
@@ -136,64 +139,67 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(322, 374);
+            this.btnCancelar.Location = new System.Drawing.Point(368, 474);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(98, 46);
-            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.Size = new System.Drawing.Size(112, 58);
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // btnCadastrar
             // 
             this.btnCadastrar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnCadastrar.Location = new System.Drawing.Point(426, 374);
+            this.btnCadastrar.Location = new System.Drawing.Point(487, 474);
+            this.btnCadastrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(98, 46);
-            this.btnCadastrar.TabIndex = 15;
+            this.btnCadastrar.Size = new System.Drawing.Size(112, 58);
+            this.btnCadastrar.TabIndex = 7;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // txtTelefoneEmpresa
             // 
-            this.txtTelefoneEmpresa.Location = new System.Drawing.Point(12, 136);
+            this.txtTelefoneEmpresa.Location = new System.Drawing.Point(14, 172);
+            this.txtTelefoneEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTelefoneEmpresa.Mask = "(00)00000-0000";
             this.txtTelefoneEmpresa.Name = "txtTelefoneEmpresa";
-            this.txtTelefoneEmpresa.Size = new System.Drawing.Size(292, 23);
-            this.txtTelefoneEmpresa.TabIndex = 17;
+            this.txtTelefoneEmpresa.Size = new System.Drawing.Size(333, 26);
+            this.txtTelefoneEmpresa.TabIndex = 2;
             this.txtTelefoneEmpresa.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // txtCnpjEmpresa
             // 
-            this.txtCnpjEmpresa.Location = new System.Drawing.Point(12, 318);
+            this.txtCnpjEmpresa.Location = new System.Drawing.Point(14, 403);
+            this.txtCnpjEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCnpjEmpresa.Mask = "99.999.999/9999-99";
             this.txtCnpjEmpresa.Name = "txtCnpjEmpresa";
-            this.txtCnpjEmpresa.Size = new System.Drawing.Size(292, 23);
-            this.txtCnpjEmpresa.TabIndex = 18;
+            this.txtCnpjEmpresa.Size = new System.Drawing.Size(333, 26);
+            this.txtCnpjEmpresa.TabIndex = 5;
             this.txtCnpjEmpresa.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.labelRodapeEmpresa});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 450);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 574);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(532, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(608, 24);
             this.statusStrip1.TabIndex = 28;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // labelRodapeEmpresa
             // 
             this.labelRodapeEmpresa.Name = "labelRodapeEmpresa";
-            this.labelRodapeEmpresa.Size = new System.Drawing.Size(52, 17);
+            this.labelRodapeEmpresa.Size = new System.Drawing.Size(60, 19);
             this.labelRodapeEmpresa.Text = "[rodapé]";
             // 
             // TelaCadastroEmpresaForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 472);
+            this.ClientSize = new System.Drawing.Size(608, 598);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.txtCnpjEmpresa);
             this.Controls.Add(this.txtTelefoneEmpresa);
@@ -210,6 +216,7 @@
             this.Controls.Add(this.txtNomeEmpresa);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroEmpresaForm";

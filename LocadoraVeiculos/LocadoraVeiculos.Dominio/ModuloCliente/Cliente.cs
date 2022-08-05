@@ -1,6 +1,8 @@
 ﻿using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloCliente.ClienteEmpresa;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
 using System;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ModuloCliente
 {
@@ -16,6 +18,7 @@ namespace LocadoraVeiculos.Dominio.ModuloCliente
         public DateTime CnhVencimento { get; set; }
         public Empresa Empresa { get; set; }
         public Guid? EmpresaId { get; set; }
+        public List<Locacao> Locacoes { get; set; }
 
         public Cliente()
         {

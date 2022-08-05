@@ -35,7 +35,6 @@ namespace LocadoraVeiculosForm.ModuloLocacao
             _servicoPlanoCobranca = servicoPlanoCobranca;
         }
 
-
         public override void Inserir()
         {
             TelaCadastroLocacaoForm tela = new TelaCadastroLocacaoForm(_servicoLocacao, _servicoCliente,

@@ -92,7 +92,7 @@
             this.txtModelo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(201, 26);
-            this.txtModelo.TabIndex = 3;
+            this.txtModelo.TabIndex = 2;
             // 
             // txtMarca
             // 
@@ -100,7 +100,7 @@
             this.txtMarca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(201, 26);
-            this.txtMarca.TabIndex = 5;
+            this.txtMarca.TabIndex = 3;
             // 
             // label3
             // 
@@ -126,7 +126,7 @@
             this.txtCor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCor.Name = "txtCor";
             this.txtCor.Size = new System.Drawing.Size(201, 26);
-            this.txtCor.TabIndex = 9;
+            this.txtCor.TabIndex = 5;
             // 
             // label5
             // 
@@ -154,7 +154,7 @@
             this.comboBoxCombustivel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxCombustivel.Name = "comboBoxCombustivel";
             this.comboBoxCombustivel.Size = new System.Drawing.Size(225, 27);
-            this.comboBoxCombustivel.TabIndex = 11;
+            this.comboBoxCombustivel.TabIndex = 7;
             // 
             // txtCapacidadeTanque
             // 
@@ -162,7 +162,7 @@
             this.txtCapacidadeTanque.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCapacidadeTanque.Name = "txtCapacidadeTanque";
             this.txtCapacidadeTanque.Size = new System.Drawing.Size(201, 26);
-            this.txtCapacidadeTanque.TabIndex = 13;
+            this.txtCapacidadeTanque.TabIndex = 8;
             // 
             // label7
             // 
@@ -179,7 +179,7 @@
             this.txtAno.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAno.Name = "txtAno";
             this.txtAno.Size = new System.Drawing.Size(201, 26);
-            this.txtAno.TabIndex = 15;
+            this.txtAno.TabIndex = 6;
             // 
             // label8
             // 
@@ -196,7 +196,7 @@
             this.txtKm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtKm.Name = "txtKm";
             this.txtKm.Size = new System.Drawing.Size(201, 26);
-            this.txtKm.TabIndex = 17;
+            this.txtKm.TabIndex = 9;
             // 
             // label9
             // 
@@ -232,7 +232,7 @@
             this.btnImagem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnImagem.Name = "btnImagem";
             this.btnImagem.Size = new System.Drawing.Size(136, 29);
-            this.btnImagem.TabIndex = 20;
+            this.btnImagem.TabIndex = 10;
             this.btnImagem.Text = "Escolher imagem";
             this.btnImagem.UseVisualStyleBackColor = true;
             this.btnImagem.Click += new System.EventHandler(this.btnImagem_Click);
@@ -244,7 +244,7 @@
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(102, 51);
-            this.btnCancelar.TabIndex = 21;
+            this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -255,7 +255,7 @@
             this.btnCadastrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(102, 51);
-            this.btnCadastrar.TabIndex = 22;
+            this.btnCadastrar.TabIndex = 12;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
@@ -270,7 +270,7 @@
             this.maskedTxtPlaca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.maskedTxtPlaca.Name = "maskedTxtPlaca";
             this.maskedTxtPlaca.Size = new System.Drawing.Size(225, 26);
-            this.maskedTxtPlaca.TabIndex = 23;
+            this.maskedTxtPlaca.TabIndex = 4;
             // 
             // statusStrip1
             // 

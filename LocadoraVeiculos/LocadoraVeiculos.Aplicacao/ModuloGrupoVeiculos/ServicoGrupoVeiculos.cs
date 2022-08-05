@@ -1,6 +1,5 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
-using LocadoraVeiculos.BancoDados.ModuloGrupoVeiculos;
 using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloGrupoVeiculos;
 using Serilog;
@@ -103,15 +102,14 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             {
                 _repositorioGrupoVeiculos.Excluir(grupo);
 
-                context.GravarDados();
-
                 Log.Logger.Information("Grupo de Veículos {GrupoId} excluído com sucesso", grupo.Id);
 
                 return Result.Ok();
             }
             catch (NaoPodeExcluirEsteRegistroException ex)
             {
-                var msgErro = $"O Grupo de veículos {grupo.Nome} está relacionado com um Plano de Cobrança e não pode ser excluído";
+                var msgErro = $"O Grupo de veículos {grupo.Nome} está relacionado com um " +
+                    $"Plano de Cobrança/Veículo/Locação e não pode ser excluído";
 
                 Log.Logger.Error(ex, msgErro + "{GrupoVeiculosId}", grupo.Id);
 
@@ -120,7 +118,7 @@ namespace LocadoraVeiculos.Aplicacao.ModuloGrupoVeiculos
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar excluir o grupo veículos";
-
+                
                 Log.Logger.Error(ex, msgErro + "{GrupoId}", grupo.Id);
 
                 return Result.Fail(msgErro);
